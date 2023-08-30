@@ -43,11 +43,10 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    Parent root = loadFxml("room");
-    scene = new Scene(root, 600, 470);
+    Parent root = loadFxml("room_template");
+    scene = new Scene(root, 600, 600);
     stage.setScene(scene);
     stage.show();
     root.requestFocus();
   }
-
 }
