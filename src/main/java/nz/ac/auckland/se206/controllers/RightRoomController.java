@@ -5,20 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
 /** Controller class for the room view. */
-public class RoomTemplate {
-
-  @FXML private Text objective;
+public class RightRoomController {
 
   /** Initializes the room view, it is called when the room loads. */
-  public void initialize() {
-    // Initialization code goes here
-    objective.setText("What room?");
-  }
+  public void initialize() {}
 
   /**
    * Handles the key pressed event.

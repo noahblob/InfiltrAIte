@@ -1,23 +1,53 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.TimerClass;
 
 /** Controller class for the room view. */
-public class RoomTemplate {
+public class TitleController {
 
+  @FXML private Text timer;
   @FXML private Text objective;
+
+  private Timeline timeline;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    // Initialization code goes here
-    objective.setText("What room?");
+
+    updateTimer();
+    objective.setText("TITLE SCREEN");
+  }
+
+  private void updateTimer() {
+    TimerClass.initialize(20);
+    TimerClass timerText = TimerClass.getInstance();
+    timer.setText(timerText.getTimeLeft());
+    timerText.start();
+
+    timeline =
+        new Timeline(
+            new KeyFrame(
+                Duration.seconds(1),
+                event -> {
+                  if (Integer.parseInt(timerText.getTimeLeft()) > 0) {
+                    timer.setText(timerText.getTimeLeft());
+                  } else {
+                    timeline.stop();
+                  }
+                }));
+
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.play();
   }
 
   /**
