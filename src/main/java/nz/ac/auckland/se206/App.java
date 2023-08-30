@@ -45,13 +45,12 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-    
-    // SceneManager.addUserInterface(AppUI.TITLE, loadFxml("title"));
-    
+
+    SceneManager.addUserInterface(AppUI.TITLE, loadFxml("title"));
+    SceneManager.addUserInterface(AppUI.RIGHT, loadFxml("rightroom"));
     SceneManager.addUserInterface(AppUI.MAIN, loadFxml("mainroom"));
     SceneManager.addUserInterface(AppUI.LEFT, loadFxml("leftroom"));
-    SceneManager.addUserInterface(AppUI.RIGHT, loadFxml("rightroom"));
-    scene = new Scene(SceneManager.getuserInterface(AppUI.MAIN), 600, 600);
+    scene = new Scene(SceneManager.getuserInterface(AppUI.TITLE), 600, 600);
     stage.setScene(scene);
     stage.show();
     stage.setOnCloseRequest(
