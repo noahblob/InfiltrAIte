@@ -6,18 +6,29 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.TimerClass;
+import nz.ac.auckland.se206.TimerObserver;
 
 /** Controller class for the room view. */
-public class MainRoomController {
+public class MainRoomController implements TimerObserver {
 
   @FXML private TextArea objective;
+  @FXML private Text timer;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
     // Initialization code goes here
-    objective.setText("What room?");
+    objective.setText("This is the MAIN ROOM");
+    TimerClass.add(this);
+  }
+
+  @Override
+  public void timerStart() {
+    TimerClass timerText = TimerClass.getInstance();
+    timer.setText(timerText.getTimerLeft());
   }
 
   /**

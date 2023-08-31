@@ -5,14 +5,28 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.TimerClass;
+import nz.ac.auckland.se206.TimerObserver;
 
 /** Controller class for the room view. */
-public class RightRoomController {
+public class RightRoomController implements TimerObserver {
+  @FXML private Text objective;
+  @FXML private Text timer;
 
   /** Initializes the room view, it is called when the room loads. */
-  public void initialize() {}
+  public void initialize() {
+    objective.setText("This is the RIGHT ROOM");
+    System.out.println("Right init");
+  }
+
+  @Override
+  public void timerStart() {
+    TimerClass timerText = TimerClass.getInstance();
+    timer.setText(timerText.getTimerLeft());
+  }
 
   /**
    * Handles the key pressed event.
