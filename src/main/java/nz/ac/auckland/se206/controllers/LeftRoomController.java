@@ -12,7 +12,7 @@ import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 
 /** Controller class for the room view. */
-public class RightRoomController implements TimerObserver {
+public class LeftRoomController implements TimerObserver {
   @FXML private Text objective;
   @FXML private Text timer;
 
