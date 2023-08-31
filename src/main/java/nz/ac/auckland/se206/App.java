@@ -51,7 +51,11 @@ public class App extends Application {
     SceneManager.addUserInterface(AppUI.MAIN, loadFxml("mainroom"));
     SceneManager.addUserInterface(AppUI.RIGHT, loadFxml("rightroom"));
     SceneManager.addUserInterface(AppUI.LEFT, loadFxml("leftroom"));
-    scene = new Scene(SceneManager.getuserInterface(AppUI.TITLE), 477, 600);
+    SceneManager.addUserInterface(AppUI.LOCKER, loadFxml("rightlocker"));
+
+    scene = new Scene(SceneManager.getuserInterface(AppUI.TITLE), 800, 600);
+
+    scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     stage.setScene(scene);
     stage.show();
     stage.setOnCloseRequest(

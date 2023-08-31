@@ -1,10 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -15,26 +15,20 @@ import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
 /** Controller class for the room view. */
-public class RightRoomController implements TimerObserver {
-  @FXML private Label objectiveRight;
+public class LockerController implements TimerObserver {
+  @FXML private Label objective;
   @FXML private Text timer;
-
-  static NumberGroup answer;
-
-  public enum NumberGroup {
-    ANS1,
-    ANS2,
-    ANS3,
-  }
+  @FXML private Label first;
+  @FXML private Label second;
+  @FXML private Label third;
+  private int one = 0;
+  private int two = 0;
+  private int three = 0;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    objectiveRight.setText("You must find the clue!!");
+    objective.setText("Whats the correct combination?");
     TimerClass.add(this);
-
-    final NumberGroup[] answerGroup = NumberGroup.values();
-    // Randomnly select a number group
-    answer = answerGroup[new Random().nextInt(answerGroup.length)];
   }
 
   @Override
@@ -94,29 +88,79 @@ public class RightRoomController implements TimerObserver {
   }
 
   /**
-   * Handles the click event on the vase.
+   * Handles the increase event.
    *
    * @param event the mouse event
    */
   @FXML
-  public void clickRiddle(MouseEvent event) {
-    System.out.println("Locker clicked");
-    showDialog(
-        "Its Locked!", "Theres a lock on this cabinet", "I need to find the correct combination");
+  public void increase(MouseEvent event) {
+    Rectangle rect = (Rectangle) event.getSource();
+    switch (rect.getId()) {
+      case "upOne":
+        if (one == 9) one = 0;
+        else one++;
+        first.setText(String.valueOf(one));
+        break;
 
-    Rectangle rectangle = (Rectangle) event.getSource();
-    Scene currentScene = rectangle.getScene();
-    // Update the scene to the main room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.LOCKER));
+      case "upTwo":
+        if (two == 9) two = 0;
+        else two++;
+        second.setText(String.valueOf(two));
+        break;
+
+      case "upThree":
+        if (three == 9) three = 0;
+        else three++;
+        third.setText(String.valueOf(three));
+        break;
+
+      default:
+        break;
+    }
   }
 
   /**
-   * Handles the click event on the window.
+   * Handles the decrease event.
    *
    * @param event the mouse event
    */
   @FXML
-  public void clickWindow(MouseEvent event) {
-    System.out.println("window clicked");
+  public void decrease(MouseEvent event) {
+    Rectangle rect = (Rectangle) event.getSource();
+    switch (rect.getId()) {
+      case "downOne":
+        if (one == 0) one = 9;
+        else one--;
+        first.setText(String.valueOf(one));
+        break;
+
+      case "downTwo":
+        if (two == 0) two = 9;
+        else two--;
+        second.setText(String.valueOf(two));
+        break;
+
+      case "downThree":
+        if (three == 0) three = 9;
+        else three--;
+        third.setText(String.valueOf(three));
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  /**
+   * Handles the return event
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onGoBack(MouseEvent event) {
+    Button rectangle = (Button) event.getSource();
+    Scene currentScene = rectangle.getScene();
+    // Update the scene to the right room
+    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
   }
 }
