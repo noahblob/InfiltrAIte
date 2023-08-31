@@ -39,8 +39,8 @@ public class TimerClass {
 
   // Starts or resumes the timer from counting
   public void start() {
+    shouldRun = true;
     if (timerThread == null) {
-      shouldRun = true;
       timerThread =
           new Thread(
               () -> {

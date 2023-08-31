@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
    <children>
-      <ImageView fx:id="roomimage" fitHeight="836.0" fitWidth="600.0" layoutY="-6.0" pickOnBounds="true">
+      <ImageView fx:id="roomimage" fitHeight="632.0" fitWidth="477.0" pickOnBounds="true">
          <image>
             <Image url="@../images/t1.png" />
          </image></ImageView>
-      <Label layoutX="109.0" layoutY="22.0" text="GAME TITLE" textAlignment="CENTER" textFill="WHITE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="100.0" prefWidth="477.0" text="GAME TITLE" textFill="WHITE">
          <font>
             <Font name="Anonymous Pro Bold" size="70.0" />
          </font>
@@ -25,10 +25,10 @@
             <Font name="Anonymous Pro Bold" size="20.0" />
          </font>
       </Text>
-      <TextArea fx:id="difficulty" layoutX="240.0" layoutY="491.0" prefHeight="82.0" prefWidth="122.0" />
-      <Rectangle fx:id="elbonia" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="104.0" layoutX="124.0" layoutY="198.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="116.0" />
-      <Rectangle fx:id="genovia" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="104.0" layoutX="304.0" layoutY="214.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="116.0" />
-      <Rectangle fx:id="sanescobar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="82.0" layoutX="166.0" layoutY="336.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="82.0" />
-      <Rectangle fx:id="zubrowka" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="429.0" layoutY="361.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="62.0" />
+      <TextArea fx:id="difficulty" layoutX="178.0" layoutY="378.0" prefHeight="57.0" prefWidth="122.0" />
+      <Rectangle fx:id="elbonia" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="99.0" layoutY="178.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="69.0" />
+      <Rectangle fx:id="genovia" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="270.0" layoutY="188.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="69.0" />
+      <Rectangle fx:id="sanescobar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="82.0" layoutX="143.0" layoutY="245.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="50.0" />
+      <Rectangle fx:id="zubrowka" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="27.0" layoutX="339.0" layoutY="287.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="39.0" />
    </children>
 </Pane>
