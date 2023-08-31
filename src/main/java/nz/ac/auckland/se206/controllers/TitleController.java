@@ -21,30 +21,8 @@ public class TitleController {
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    initialiseCountries(); 
+    initialiseCountries();
   }
-
-  // private void updateTimer() {
-  //   TimerClass.initialize(20);
-  //   TimerClass timerText = TimerClass.getInstance();
-  //   timer.setText(timerText.getTimeLeft());
-  //   timerText.start();
-
-  //   timeline =
-  //       new Timeline(
-  //           new KeyFrame(
-  //               Duration.seconds(1),
-  //               event -> {
-  //                 if (Integer.parseInt(timerText.getTimeLeft()) > 0) {
-  //                   timer.setText(timerText.getTimeLeft());
-  //                 } else {
-  //                   timeline.stop();
-  //                 }
-  //               }));
-
-  //   timeline.setCycleCount(Timeline.INDEFINITE);
-  //   timeline.play();
-  // }
 
   /**
    * Handles the key pressed event.
@@ -67,13 +45,15 @@ public class TitleController {
   }
 
   private void setRectangleHover(Rectangle rectangle, String info) {
-      rectangle.setOnMouseEntered(event -> {
+    rectangle.setOnMouseEntered(
+        event -> {
           difficulty.setText(info);
-      });
+        });
 
-      rectangle.setOnMouseExited(event -> {
+    rectangle.setOnMouseExited(
+        event -> {
           difficulty.setText("");
-      });
+        });
   }
 
   @FXML
@@ -83,7 +63,6 @@ public class TitleController {
     Scene currentScene = rectangle.getScene();
     // Update the scene to the watch.
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.WATCH));
-
   }
 
   private void initialiseCountries() {
@@ -93,5 +72,4 @@ public class TitleController {
     setRectangleHover(zubrowka, "???");
     difficulty.setEditable(false);
   }
- 
 }

@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -13,15 +12,14 @@ import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 
 /** Controller class for the room view. */
-public class MainRoomController implements TimerObserver {
-
-  @FXML private TextArea objective;
+public class LeftRoomController implements TimerObserver {
+  @FXML private Text objective;
   @FXML private Text timer;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    // Initialization code goes here
-    objective.setText("This is the MAIN ROOM");
+    objective.setText("This is the RIGHT ROOM");
+    System.out.println("Right init");
     TimerClass.add(this);
   }
 
