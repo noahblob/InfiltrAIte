@@ -11,7 +11,8 @@ public class SceneManager {
     WATCH,
     MAIN,
     LEFT,
-    RIGHT
+    RIGHT,
+    LOCKER
   }
 
   private static Map<AppUI, Parent> sceneMap = new HashMap<>();

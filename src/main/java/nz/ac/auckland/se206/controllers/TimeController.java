@@ -53,7 +53,7 @@ public class TimeController {
     TimerClass timer = TimerClass.getInstance();
     timer.start();
 
-    // Update the scene to the watch.
+    // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
   }
 

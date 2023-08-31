@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,14 +9,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="477.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RightRoomController">
    <children>
       <Rectangle fx:id="phone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="429.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="43.0" />
       <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/start.png" />
+            <Image url="@../images/rightroom.png" />
          </image></ImageView>
-      <Text fx:id="timer" layoutX="381.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
+      <Text fx:id="timer" layoutX="390.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
          <font>
             <Font size="25.0" />
          </font>
@@ -26,6 +27,12 @@
          </image>
       </ImageView>
       <TextArea layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
-      <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="159.0" layoutX="143.0" layoutY="233.0" onMouseClicked="#clickDoor" opacity="0.56" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+      <Rectangle fx:id="riddle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="113.0" layoutX="300.0" layoutY="323.0" onMouseClicked="#clickRiddle" opacity="0.56" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+      <Label fx:id="objectiveRight" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
