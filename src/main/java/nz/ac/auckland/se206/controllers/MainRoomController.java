@@ -2,21 +2,29 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
 /** Controller class for the room view. */
 public class MainRoomController implements TimerObserver {
 
   @FXML private TextArea objective;
+  @FXML private TextArea helpText;
   @FXML private Text timer;
+  @FXML private Rectangle leftDoor;
+  @FXML private Rectangle rightDoor;
+  @FXML private Rectangle middleDoor;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
@@ -39,16 +47,13 @@ public class MainRoomController implements TimerObserver {
   @FXML
   public void onKeyPressed(KeyEvent event) {
     System.out.println("key " + event.getCode() + " pressed");
-  }
-
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
+    Pane pane = (Pane) event.getSource();
+    Scene currentScene = pane.getScene();
+    if (event.getCode().toString().equals(("LEFT"))) {
+      currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
+    } else if (event.getCode().toString().equals("RIGHT")) {
+      currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+    }
   }
 
   /**
@@ -91,26 +96,94 @@ public class MainRoomController implements TimerObserver {
   }
 
   /**
-   * Handles the click event on the vase.
+   * Handles the click event on the left door.
    *
    * @param event the mouse event
    */
   @FXML
-  public void clickVase(MouseEvent event) {
-    System.out.println("vase clicked");
-    if (GameState.isRiddleResolved && !GameState.isKeyFound) {
-      showDialog("Info", "Key Found", "You found a key under the vase!");
-      GameState.isKeyFound = true;
-    }
+  public void onLeftClick(MouseEvent event) {
+    // move the user to the left room
+    Rectangle rectangle = (Rectangle) event.getSource();
+    Scene currentScene = rectangle.getScene();
+    currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
   }
 
   /**
-   * Handles the click event on the window.
+   * Handles the click event on the right door.
    *
    * @param event the mouse event
    */
   @FXML
-  public void clickWindow(MouseEvent event) {
-    System.out.println("window clicked");
+  public void onRightClick(MouseEvent event) {
+    // move the user to the right room
+    Rectangle rectangle = (Rectangle) event.getSource();
+    Scene currentScene = rectangle.getScene();
+    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+  }
+
+  /**
+   * Handles the hover event on the left door.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onLeftEnter(MouseEvent event) {
+    // enable indicator
+    leftDoor.setOpacity(1);
+  }
+
+  /**
+   * Handles the un-hover event on the left door.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onLeftExit(MouseEvent event) {
+    // disable indicator
+    leftDoor.setOpacity(0);
+  }
+
+  /**
+   * Handles the hover event on the middle door.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onMiddleEnter(MouseEvent event) {
+    // enable indicator
+    middleDoor.setOpacity(1);
+  }
+
+  /**
+   * Handles the un-hover event on the left door.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onMiddleExit(MouseEvent event) {
+    // disable indicator
+    middleDoor.setOpacity(0);
+  }
+
+  /**
+   * Handles the hover event on the right door.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onRightEnter(MouseEvent event) {
+    // enable indicator
+    rightDoor.setOpacity(1);
+  }
+
+  /**
+   * Handles the un-hover event on the left door.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onRightExit(MouseEvent event) {
+    // didsable indicator
+    rightDoor.setOpacity(0);
   }
 }
