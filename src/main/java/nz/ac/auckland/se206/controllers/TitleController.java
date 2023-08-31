@@ -6,6 +6,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
 /** Controller class for the room view. */
@@ -60,6 +61,14 @@ public class TitleController {
   private void onClick(MouseEvent event) {
     // Update in the future with different difficulties but for now just click to next screen.
     Rectangle rectangle = (Rectangle) event.getSource();
+    // Set difficulty of game
+    if (rectangle == elbonia) {
+      GameState.difficulty = 1;
+    } else if (rectangle == genovia) {
+      GameState.difficulty = 2;
+    } else if (rectangle == sanescobar) {
+      GameState.difficulty = 3;
+    }
     Scene currentScene = rectangle.getScene();
     // Update the scene to the watch.
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.WATCH));
