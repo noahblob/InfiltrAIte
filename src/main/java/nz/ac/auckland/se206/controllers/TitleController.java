@@ -1,54 +1,50 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
+import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
-import nz.ac.auckland.se206.App;
-import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
+import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
 /** Controller class for the room view. */
 public class TitleController {
 
-  @FXML private Text timer;
-  @FXML private Text objective;
+  @FXML private TextArea difficulty;
+  @FXML private Rectangle elbonia;
+  @FXML private Rectangle genovia;
+  @FXML private Rectangle sanescobar;
+  @FXML private Rectangle zubrowka;
 
-  private Timeline timeline;
+  // private Timeline timeline;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-
-    updateTimer();
-    objective.setText("TITLE SCREEN");
+    initialiseCountries(); 
   }
 
-  private void updateTimer() {
-    TimerClass.initialize(20);
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimeLeft());
-    timerText.start();
+  // private void updateTimer() {
+  //   TimerClass.initialize(20);
+  //   TimerClass timerText = TimerClass.getInstance();
+  //   timer.setText(timerText.getTimeLeft());
+  //   timerText.start();
 
-    timeline =
-        new Timeline(
-            new KeyFrame(
-                Duration.seconds(1),
-                event -> {
-                  if (Integer.parseInt(timerText.getTimeLeft()) > 0) {
-                    timer.setText(timerText.getTimeLeft());
-                  } else {
-                    timeline.stop();
-                  }
-                }));
+  //   timeline =
+  //       new Timeline(
+  //           new KeyFrame(
+  //               Duration.seconds(1),
+  //               event -> {
+  //                 if (Integer.parseInt(timerText.getTimeLeft()) > 0) {
+  //                   timer.setText(timerText.getTimeLeft());
+  //                 } else {
+  //                   timeline.stop();
+  //                 }
+  //               }));
 
-    timeline.setCycleCount(Timeline.INDEFINITE);
-    timeline.play();
-  }
+  //   timeline.setCycleCount(Timeline.INDEFINITE);
+  //   timeline.play();
+  // }
 
   /**
    * Handles the key pressed event.
@@ -70,66 +66,32 @@ public class TitleController {
     System.out.println("key " + event.getCode() + " released");
   }
 
-  /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message the message content of the dialog box
-   */
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
+  private void setRectangleHover(Rectangle rectangle, String info) {
+      rectangle.setOnMouseEntered(event -> {
+          difficulty.setText(info);
+      });
+
+      rectangle.setOnMouseExited(event -> {
+          difficulty.setText("");
+      });
   }
 
-  /**
-   * Handles the click event on the door.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
   @FXML
-  public void clickDoor(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
+  private void onClick(MouseEvent event) {
+    // Update in the future with different difficulties but for now just click to next screen.
+    Rectangle rectangle = (Rectangle) event.getSource();
+    Scene currentScene = rectangle.getScene();
+    // Update the scene to the watch.
+    currentScene.setRoot(SceneManager.getuserInterface(AppUI.WATCH));
 
-    if (!GameState.isRiddleResolved) {
-      showDialog("Info", "Riddle", "You need to resolve the riddle!");
-      App.setRoot("chat");
-      return;
-    }
-
-    if (!GameState.isKeyFound) {
-      showDialog(
-          "Info", "Find the key!", "You resolved the riddle, now you know where the key is.");
-    } else {
-      showDialog("Info", "You Won!", "Good Job!");
-    }
   }
 
-  /**
-   * Handles the click event on the vase.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickVase(MouseEvent event) {
-    System.out.println("vase clicked");
-    if (GameState.isRiddleResolved && !GameState.isKeyFound) {
-      showDialog("Info", "Key Found", "You found a key under the vase!");
-      GameState.isKeyFound = true;
-    }
+  private void initialiseCountries() {
+    setRectangleHover(elbonia, "DIFFICULTY: \nEASY");
+    setRectangleHover(genovia, "DIFFICULTY: \nMEDIUM");
+    setRectangleHover(sanescobar, "DIFFICULTY: \nHARD");
+    setRectangleHover(zubrowka, "???");
+    difficulty.setEditable(false);
   }
-
-  /**
-   * Handles the click event on the window.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void clickWindow(MouseEvent event) {
-    System.out.println("window clicked");
-  }
+ 
 }
