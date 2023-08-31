@@ -109,6 +109,22 @@ public class MainRoomController implements TimerObserver {
   }
 
   /**
+   * Handles the click event on the middle door.
+   *
+   * @param event the mouse event
+   */
+  @FXML
+  public void onMiddleClick(MouseEvent event) {
+    if (GameState.difficulty == 1) {
+      helpText.setText("You must gather 1 more piece of intel before you may leave.");
+    } else if (GameState.difficulty == 2) {
+      helpText.setText("You must gather 2 more pieces of intel before you may leave.");
+    } else if (GameState.difficulty == 3) {
+      helpText.setText("You must gather 3 more pieces of intel before you may leave.");
+    }
+  }
+
+  /**
    * Handles the click event on the right door.
    *
    * @param event the mouse event
