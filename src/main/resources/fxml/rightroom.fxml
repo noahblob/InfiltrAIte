@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -8,33 +9,28 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RightRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
    <children>
-      <Rectangle fx:id="phone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="505.0" layoutY="478.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
-      <Line endX="546.0" endY="19.0" layoutX="54.0" layoutY="436.0" startX="-54.00001525878906" startY="19.0" strokeWidth="3.0" />
-      <ImageView fx:id="roomimage" fitHeight="378.0" fitWidth="603.0" layoutX="-1.0" layoutY="74.0" pickOnBounds="true">
+      <Rectangle fx:id="phone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="67.0" layoutX="527.0" layoutY="673.0" stroke="BLACK" strokeType="INSIDE" width="58.0" />
+      <Line endX="536.5" endY="227.0" layoutX="54.0" layoutY="439.0" startX="-47.0" startY="227.0" strokeWidth="3.0" />
+      <Line endX="-53.5" endY="179.0" layoutX="59.0" layoutY="487.0" startX="-53.5" startY="259.0" strokeWidth="3.0" />
+      <ImageView fx:id="roomimage" fitHeight="587.0" fitWidth="587.0" layoutX="6.0" layoutY="69.0" pickOnBounds="true">
          <image>
             <Image url="@../images/start.png" />
          </image></ImageView>
-      <Text fx:id="objective" layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OBJECTIVE" textAlignment="CENTER" wrappingWidth="464.13673400878906">
+      <Text fx:id="timer" layoutX="501.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="90.0">
          <font>
-            <Font size="50.0" />
+            <Font size="25.0" />
          </font>
       </Text>
-      <Text fx:id="timer" layoutX="478.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="115.13673400878906">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Text>
-      <Text layoutX="102.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEXT FROM COMMANDER" textAlignment="CENTER" wrappingWidth="396.109375">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="134.0" fitWidth="133.0" layoutX="8.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="67.0" fitWidth="79.0" layoutX="10.0" layoutY="673.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
+      <TextArea layoutX="83.0" layoutY="673.0" prefHeight="67.0" prefWidth="438.0" />
+      <Line endX="523.5" endY="227.0" layoutX="66.0" layoutY="520.0" startX="-60.50001525878906" startY="227.0" strokeWidth="3.0" />
+      <Line endX="516.0" endY="136.0" layoutX="76.0" layoutY="530.0" startX="515.0" startY="217.0" strokeWidth="3.0" />
+      <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="491.0" text="OBJECTIVE" />
    </children>
 </Pane>

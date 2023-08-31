@@ -8,6 +8,7 @@ public class SceneManager {
 
   public enum AppUI {
     TITLE,
+    WATCH,
     MAIN,
     LEFT,
     RIGHT

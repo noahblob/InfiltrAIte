@@ -3,16 +3,16 @@ package nz.ac.auckland.se206.controllers;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.GameState;
 
 /** Controller class for the room view. */
-public class RoomTemplate {
+public class MainRoomController {
 
-  @FXML private Text objective;
+  @FXML private TextArea objective;
 
   /** Initializes the room view, it is called when the room loads. */
   public void initialize() {

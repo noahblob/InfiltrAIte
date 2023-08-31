@@ -47,10 +47,11 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
 
     SceneManager.addUserInterface(AppUI.TITLE, loadFxml("title"));
-    SceneManager.addUserInterface(AppUI.RIGHT, loadFxml("rightroom"));
+    SceneManager.addUserInterface(AppUI.WATCH, loadFxml("time"));
     SceneManager.addUserInterface(AppUI.MAIN, loadFxml("mainroom"));
+    SceneManager.addUserInterface(AppUI.RIGHT, loadFxml("rightroom"));
     SceneManager.addUserInterface(AppUI.LEFT, loadFxml("leftroom"));
-    scene = new Scene(SceneManager.getuserInterface(AppUI.TITLE), 600, 600);
+    scene = new Scene(SceneManager.getuserInterface(AppUI.TITLE), 600, 754);
     stage.setScene(scene);
     stage.show();
     stage.setOnCloseRequest(

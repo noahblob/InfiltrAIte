@@ -1,40 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="754.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TitleController">
    <children>
-      <Rectangle fx:id="phone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="505.0" layoutY="478.0" stroke="BLACK" strokeType="INSIDE" width="79.0" />
-      <Line endX="546.0" endY="19.0" layoutX="54.0" layoutY="436.0" startX="-54.00001525878906" startY="19.0" strokeWidth="3.0" />
-      <ImageView fx:id="roomimage" fitHeight="378.0" fitWidth="603.0" layoutX="-1.0" layoutY="74.0" pickOnBounds="true">
+      <ImageView fx:id="roomimage" fitHeight="836.0" fitWidth="600.0" layoutY="-6.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/start.png" />
+            <Image url="@../images/t1.png" />
          </image></ImageView>
-      <Text fx:id="objective" layoutX="14.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="OBJECTIVE" textAlignment="CENTER" wrappingWidth="464.13673400878906">
+      <Label layoutX="109.0" layoutY="22.0" text="GAME TITLE" textAlignment="CENTER" textFill="WHITE">
          <font>
-            <Font size="50.0" />
+            <Font name="Anonymous Pro Bold" size="70.0" />
+         </font>
+      </Label>
+      <Text fill="WHITE" layoutX="225.0" layoutY="673.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SELECT COUNTRY">
+         <font>
+            <Font name="Anonymous Pro Bold" size="20.0" />
          </font>
       </Text>
-      <Text fx:id="timer" layoutX="478.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="115.13673400878906">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Text>
-      <Text layoutX="102.0" layoutY="510.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TEXT FROM COMMANDER" textAlignment="CENTER" wrappingWidth="396.109375">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="134.0" fitWidth="133.0" layoutX="8.0" layoutY="462.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/commander.png" />
-         </image>
-      </ImageView>
+      <TextArea fx:id="difficulty" layoutX="240.0" layoutY="491.0" prefHeight="82.0" prefWidth="122.0" />
+      <Rectangle fx:id="elbonia" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="104.0" layoutX="124.0" layoutY="198.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="116.0" />
+      <Rectangle fx:id="genovia" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="104.0" layoutX="304.0" layoutY="214.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="116.0" />
+      <Rectangle fx:id="sanescobar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="82.0" layoutX="166.0" layoutY="336.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="82.0" />
+      <Rectangle fx:id="zubrowka" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="57.0" layoutX="429.0" layoutY="361.0" onMouseClicked="#onClick" opacity="0.5" stroke="BLACK" strokeType="INSIDE" width="62.0" />
    </children>
 </Pane>
