@@ -88,6 +88,17 @@ public class LockerController implements TimerObserver {
   }
 
   /**
+   * Checks the answer
+   *
+   * @param event
+   */
+  @FXML
+  public void onCheckAns(MouseEvent event) {
+    // If one, two and three is same to answer
+    System.out.println("You got it!!");
+  }
+
+  /**
    * Handles the increase event.
    *
    * @param event the mouse event
