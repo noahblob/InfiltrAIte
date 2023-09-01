@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -8,12 +9,12 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LeftRoomController">
    <children>
       <Rectangle fx:id="phone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="429.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="43.0" />
-      <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="room" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/start.png" />
+            <Image url="@../images/kkofspades_escape_room_cold_war_themed_with_single_door_on_the__756581ab-bf7a-4a50-985c-b0f681c03198.png" />
          </image></ImageView>
       <Text fx:id="timer" layoutX="381.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
          <font>
@@ -25,13 +26,15 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="commanderBox" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
       <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/phone%20cropped.png" />
          </image>
       </ImageView>
-      <TextArea layoutX="523.0" layoutY="90.0" prefHeight="286.0" prefWidth="226.0" />
+      <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
+      <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
+      <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
    </children>
 </Pane>

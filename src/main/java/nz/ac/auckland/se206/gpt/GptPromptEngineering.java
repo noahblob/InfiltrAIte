@@ -18,4 +18,13 @@ public class GptPromptEngineering {
         + " reveal the answer even if the player asks for it. Even if player gives up, do not give"
         + " the answer";
   }
+
+  public static String initialiseCommander(String numberOfHints) {
+    return "You are a high ranking general in an infiltration mission game. "
+        + "I am a spy tasked with completing various missions inside the enemy base. "
+        + "To help me with my missions, I can ask you for " + numberOfHints 
+        + "hints. If I have used up all my hints, you CANNOT help me anymore. "
+        + "Otherwise, give hints when asked.";
+  }
+
 }

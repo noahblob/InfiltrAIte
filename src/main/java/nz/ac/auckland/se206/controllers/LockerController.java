@@ -13,9 +13,10 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class LockerController implements TimerObserver {
+public class LockerController extends Phone implements TimerObserver {
   @FXML private Label objective;
   @FXML private Text timer;
   @FXML private Label first;
@@ -25,8 +26,10 @@ public class LockerController implements TimerObserver {
   private int two = 0;
   private int three = 0;
 
-  /** Initializes the room view, it is called when the room loads. */
-  public void initialize() {
+  /** Initializes the room view, it is called when the room loads. 
+   * @throws ApiProxyException */
+  public void initialize() throws ApiProxyException {
+    super.initialize();
     objective.setText("Whats the correct combination?");
     TimerClass.add(this);
   }
