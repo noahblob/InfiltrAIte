@@ -10,13 +10,14 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class RightRoomController extends Phone implements TimerObserver {
+public class RightRoomController extends Commander implements TimerObserver {
   
   @FXML private Label objectiveRight;
   @FXML private Text timer;

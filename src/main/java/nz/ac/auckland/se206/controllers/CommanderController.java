@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
@@ -27,20 +30,19 @@ public class CommanderController {
     return instance;
   }
   
+  // Instance fields
   private ChatCompletionRequest messages;
   private List<TextArea> phoneScreens;
+  private List<TextArea> dialogues;
 
   private CommanderController() throws ApiProxyException {
 
     phoneScreens = new ArrayList<>();
+    dialogues = new ArrayList<>();
+
+    // Determine number of hints that commander is able to give.
     String hintCount = "";
-    if (GameState.difficulty == 1) {
-      hintCount = "infinite";
-    } else if (GameState.difficulty == 2) {
-      hintCount = "5";
-    } else {
-      hintCount = "0";
-    }
+    hintCount = (GameState.difficulty == 1) ? "infinite" : (GameState.difficulty == 2) ? "5" : "0";
     messages = new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     runGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander(hintCount)));
   }
@@ -134,8 +136,46 @@ public class CommanderController {
       new Thread(task).start();
   }
 
+  // Helper method to add text areas from different scenes to the controller.
   public void addTextArea(TextArea textArea) {
     phoneScreens.add(textArea);
+  }
+  // Helper method to add text areas from different scenes to the controller.
+  public void addDialogueBox(TextArea textArea) {
+    dialogues.add(textArea);
+  }
+
+  // Method to update commander's dialogue.
+  public void updateDialogueBox(String textToRollOut) {
+    for (TextArea dialogue : dialogues) {
+      textRollout(textToRollOut, dialogue);
+    }
+  }
+
+  // Method to generate commander text roll out on each screen.
+  public void textRollout(String message, TextArea dialogue) {
+
+      String[] words = message.split(" ");
+      Timeline timeline = new Timeline();
+      Duration timepoint = Duration.ZERO;
+
+      for (String word : words) {
+          timepoint = timepoint.add(Duration.millis(100));
+          final String finalWord = word;  // Make a final local copy of the word
+          KeyFrame keyFrame = new KeyFrame(timepoint, e -> {
+            dialogue.appendText(finalWord + " ");
+          });
+          timeline.getKeyFrames().add(keyFrame);
+      }
+
+      // Clear the text after the dialogue
+      KeyFrame clearKeyFrame = new KeyFrame(timepoint.add(Duration.millis(2000)), e -> {
+              if (dialogue != null) {
+                  dialogue.clear();
+              }
+      });
+      timeline.getKeyFrames().add(clearKeyFrame);
+      timeline.play();
   }
 
 }

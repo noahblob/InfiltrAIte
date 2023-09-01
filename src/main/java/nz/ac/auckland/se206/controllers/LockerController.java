@@ -10,26 +10,32 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class LockerController extends Phone implements TimerObserver {
+public class LockerController extends Commander implements TimerObserver {
+
   @FXML private Label objective;
   @FXML private Text timer;
   @FXML private Label first;
   @FXML private Label second;
   @FXML private Label third;
-  private int one = 0;
-  private int two = 0;
-  private int three = 0;
+  private int one;
+  private int two;
+  private int three;
 
-  /** Initializes the room view, it is called when the room loads. 
-   * @throws ApiProxyException */
+  /**
+   * Initializes the room view, it is called when the room loads.
+   *
+   * @throws ApiProxyException
+   */
   public void initialize() throws ApiProxyException {
     super.initialize();
+    one = two = three = 0;
     objective.setText("Whats the correct combination?");
     TimerClass.add(this);
   }

@@ -5,20 +5,23 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
+import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class LeftRoomController extends Phone implements TimerObserver {
-  
+public class LeftRoomController extends Commander implements TimerObserver {
+
   @FXML private TextArea objective;
   @FXML private Text timer;
   @FXML private ImageView room;
-  @FXML private TextArea commanderBox;
 
-  /** Initializes the room view, it is called when the room loads. 
-   * @throws ApiProxyException */
+  /**
+   * Initializes the room view, it is called when the room loads.
+   *
+   * @throws ApiProxyException
+   */
   public void initialize() throws ApiProxyException {
     // Initialise phone.
     super.initialize();
@@ -51,5 +54,4 @@ public class LeftRoomController extends Phone implements TimerObserver {
   public void onKeyReleased(KeyEvent event) {
     System.out.println("key " + event.getCode() + " released");
   }
-
 }
