@@ -100,14 +100,33 @@ public class RightRoomController implements TimerObserver {
    */
   @FXML
   public void clickRiddle(MouseEvent event) {
-    System.out.println("Locker clicked");
-    showDialog(
-        "Its Locked!", "Theres a lock on this cabinet", "I need to find the correct combination");
 
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.LOCKER));
+  }
+
+  /**
+   * Handles the hovering of rectangles
+   *
+   * @param event the mouse
+   */
+  @FXML
+  public void onHover(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(1);
+  }
+
+  /**
+   * Handles the un-hovering of rectangles
+   *
+   * @param event the mouse
+   */
+  @FXML
+  public void onHoverExit(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(0);
   }
 
   /**
