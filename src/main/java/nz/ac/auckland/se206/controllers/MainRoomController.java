@@ -11,6 +11,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.App;
+import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
@@ -26,8 +27,11 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle rightDoor;
   @FXML private Rectangle middleDoor;
 
-  /** Initializes the room view, it is called when the room loads. 
-   * @throws ApiProxyException */
+  /**
+   * Initializes the room view, it is called when the room loads.
+   *
+   * @throws ApiProxyException
+   */
   public void initialize() throws ApiProxyException {
 
     // Initialization code goes here
@@ -35,7 +39,6 @@ public class MainRoomController extends Commander implements TimerObserver {
     super.initialize();
     objective.setText("This is the MAIN ROOM");
     TimerClass.add(this);
-
   }
 
   @Override
@@ -207,5 +210,4 @@ public class MainRoomController extends Commander implements TimerObserver {
     // didsable indicator
     rightDoor.setOpacity(0);
   }
-
 }
