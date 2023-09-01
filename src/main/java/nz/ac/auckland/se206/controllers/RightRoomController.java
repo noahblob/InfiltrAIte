@@ -13,9 +13,11 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class RightRoomController implements TimerObserver {
+public class RightRoomController extends Phone implements TimerObserver {
+  
   @FXML private Label objectiveRight;
   @FXML private Text timer;
 
@@ -27,14 +29,18 @@ public class RightRoomController implements TimerObserver {
     ANS3,
   }
 
-  /** Initializes the room view, it is called when the room loads. */
-  public void initialize() {
+  /** Initializes the room view, it is called when the room loads. 
+   * @throws ApiProxyException */
+  public void initialize() throws ApiProxyException {
+
+    // Initialise phone.
+    super.initialize();
     objectiveRight.setText("You must find the clue!!");
     TimerClass.add(this);
-
     final NumberGroup[] answerGroup = NumberGroup.values();
     // Randomnly select a number group
     answer = answerGroup[new Random().nextInt(answerGroup.length)];
+    
   }
 
   @Override
@@ -100,14 +106,33 @@ public class RightRoomController implements TimerObserver {
    */
   @FXML
   public void clickRiddle(MouseEvent event) {
-    System.out.println("Locker clicked");
-    showDialog(
-        "Its Locked!", "Theres a lock on this cabinet", "I need to find the correct combination");
 
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.LOCKER));
+  }
+
+  /**
+   * Handles the hovering of rectangles
+   *
+   * @param event the mouse
+   */
+  @FXML
+  public void onHover(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(1);
+  }
+
+  /**
+   * Handles the un-hovering of rectangles
+   *
+   * @param event the mouse
+   */
+  @FXML
+  public void onHoverExit(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(0);
   }
 
   /**

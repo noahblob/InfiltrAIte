@@ -15,9 +15,10 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class MainRoomController implements TimerObserver {
+public class MainRoomController extends Phone implements TimerObserver {
 
   @FXML private TextArea objective;
   @FXML private TextArea helpText;
@@ -26,9 +27,13 @@ public class MainRoomController implements TimerObserver {
   @FXML private Rectangle rightDoor;
   @FXML private Rectangle middleDoor;
 
-  /** Initializes the room view, it is called when the room loads. */
-  public void initialize() {
+  /** Initializes the room view, it is called when the room loads. 
+   * @throws ApiProxyException */
+  public void initialize() throws ApiProxyException {
+
     // Initialization code goes here
+    // Initialise phone.
+    super.initialize();
     objective.setText("This is the MAIN ROOM");
     TimerClass.add(this);
   }
@@ -160,4 +165,5 @@ public class MainRoomController implements TimerObserver {
     Rectangle rectangle = (Rectangle) event.getSource();
     rectangle.setOpacity(0);
   }
+
 }
