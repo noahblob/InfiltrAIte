@@ -36,7 +36,7 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="dialogue" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
       <Label fx:id="first" alignment="CENTER" layoutX="66.0" layoutY="218.0" prefHeight="117.0" prefWidth="98.0" style="-fx-border-color: black; -fx-background-color: white;" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />

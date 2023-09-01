@@ -26,7 +26,7 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="commanderBox" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
       <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>

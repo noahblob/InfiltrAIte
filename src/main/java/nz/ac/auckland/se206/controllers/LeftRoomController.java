@@ -10,12 +10,11 @@ import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class LeftRoomController extends Phone implements TimerObserver {
+public class LeftRoomController extends Commander implements TimerObserver {
   
   @FXML private TextArea objective;
   @FXML private Text timer;
   @FXML private ImageView room;
-  @FXML private TextArea commanderBox;
 
   /** Initializes the room view, it is called when the room loads. 
    * @throws ApiProxyException */
