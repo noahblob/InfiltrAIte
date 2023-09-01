@@ -16,7 +16,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class RightRoomController extends Phone implements TimerObserver {
+public class RightRoomController extends Commander implements TimerObserver {
   
   @FXML private Label objectiveRight;
   @FXML private Text timer;

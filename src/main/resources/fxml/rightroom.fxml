@@ -27,7 +27,7 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
       <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="159.0" layoutX="136.0" layoutY="234.0" onMouseClicked="#clickDoor" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
       <Rectangle fx:id="riddle" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="113.0" layoutX="300.0" layoutY="323.0" onMouseClicked="#clickRiddle" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
       <Label fx:id="objectiveRight" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">

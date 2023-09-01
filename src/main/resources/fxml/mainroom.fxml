@@ -27,7 +27,7 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="helpText" disable="true" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="dialogue" disable="true" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
       <TextArea fx:id="objective" disable="true" editable="false" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
       <Rectangle fx:id="middleDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="183.0" layoutX="179.0" layoutY="209.0" onMouseClicked="#onMiddleClick" onMouseEntered="#onMiddleEnter" onMouseExited="#onMiddleExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
       <Rectangle fx:id="leftDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="261.0" layoutX="32.0" layoutY="182.0" onMouseClicked="#onLeftClick" onMouseEntered="#onLeftEnter" onMouseExited="#onLeftExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0" />

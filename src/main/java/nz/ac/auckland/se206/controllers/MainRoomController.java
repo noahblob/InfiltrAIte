@@ -18,10 +18,9 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
-public class MainRoomController extends Phone implements TimerObserver {
+public class MainRoomController extends Commander implements TimerObserver {
 
   @FXML private TextArea objective;
-  @FXML private TextArea helpText;
   @FXML private Text timer;
   @FXML private Rectangle leftDoor;
   @FXML private Rectangle rightDoor;
@@ -36,6 +35,7 @@ public class MainRoomController extends Phone implements TimerObserver {
     super.initialize();
     objective.setText("This is the MAIN ROOM");
     TimerClass.add(this);
+
   }
 
   @Override
@@ -121,11 +121,11 @@ public class MainRoomController extends Phone implements TimerObserver {
   @FXML
   public void onMiddleClick(MouseEvent event) {
     if (GameState.difficulty == 1) {
-      helpText.setText("You must gather 1 more piece of intel before you may leave.");
+      dialogue.setText("You must gather 1 more piece of intel before you may leave.");
     } else if (GameState.difficulty == 2) {
-      helpText.setText("You must gather 2 more pieces of intel before you may leave.");
+      dialogue.setText("You must gather 2 more pieces of intel before you may leave.");
     } else if (GameState.difficulty == 3) {
-      helpText.setText("You must gather 3 more pieces of intel before you may leave.");
+      dialogue.setText("You must gather 3 more pieces of intel before you may leave.");
     }
   }
 
