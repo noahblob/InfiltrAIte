@@ -1,29 +1,32 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
 /** Controller class for the room view. */
 public class TitleController {
 
-  @FXML private TextArea difficulty;
+  @FXML private Label difficulty;
+  @FXML private TextArea description;
   @FXML private Rectangle elbonia;
   @FXML private Rectangle genovia;
   @FXML private Rectangle sanescobar;
   @FXML private Rectangle zubrowka;
 
-  // private Timeline timeline;
-
-  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
-    initialiseCountries();
+      intialiseFonts();
+      initialiseCountries();
   }
+
 
   /**
    * Handles the key pressed event.
@@ -45,15 +48,17 @@ public class TitleController {
     System.out.println("key " + event.getCode() + " released");
   }
 
-  private void setRectangleHover(Rectangle rectangle, String info) {
+  private void setRectangleHover(Rectangle rectangle, String info, String about) {
     rectangle.setOnMouseEntered(
         event -> {
           difficulty.setText(info);
+          description.setText(about);
         });
 
     rectangle.setOnMouseExited(
         event -> {
-          difficulty.setText("");
+          difficulty.setText("DIFFICULTY");
+          description.setText("");
         });
   }
 
@@ -75,10 +80,21 @@ public class TitleController {
   }
 
   private void initialiseCountries() {
-    setRectangleHover(elbonia, "DIFFICULTY: \nEASY");
-    setRectangleHover(genovia, "DIFFICULTY: \nMEDIUM");
-    setRectangleHover(sanescobar, "DIFFICULTY: \nHARD");
-    setRectangleHover(zubrowka, "???");
-    difficulty.setEditable(false);
+    setRectangleHover(elbonia, "EASY", "Unlimited hints provided");
+    setRectangleHover(genovia, "MEDIUM","Five hints provided");
+    setRectangleHover(sanescobar, "HARD", "No Hints provided");
+    setRectangleHover(zubrowka, "???", "???");
+  }
+
+  private void intialiseFonts() {
+      
+      difficulty.setText("DIFFICULTY");
+      difficulty.setAlignment(Pos.CENTER_RIGHT);
+      description.setEditable(false);
+      description.setWrapText(true);
+      Font level = Font.font("Anonymous Pro", 18); 
+      Font font = Font.font("Anonymous Pro", 14); 
+      difficulty.setFont(level);
+      description.setFont(font);
   }
 }
