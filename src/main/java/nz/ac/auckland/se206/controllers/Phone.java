@@ -19,6 +19,7 @@ public abstract class Phone {
     CommanderController.getInstance().addTextArea(output);
     if (output != null) {
       output.setWrapText(true);
+      output.setEditable(false);
     }
   }
 

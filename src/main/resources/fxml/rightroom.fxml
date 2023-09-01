@@ -28,8 +28,8 @@
          </image>
       </ImageView>
       <TextArea layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="159.0" layoutX="143.0" layoutY="233.0" onMouseClicked="#clickDoor" opacity="0.56" stroke="BLACK" strokeType="INSIDE" width="88.0" />
-      <Rectangle fx:id="riddle" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="113.0" layoutX="300.0" layoutY="323.0" onMouseClicked="#clickRiddle" opacity="0.56" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="159.0" layoutX="136.0" layoutY="234.0" onMouseClicked="#clickDoor" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+      <Rectangle fx:id="riddle" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="113.0" layoutX="300.0" layoutY="323.0" onMouseClicked="#clickRiddle" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
       <Label fx:id="objectiveRight" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
@@ -42,6 +42,6 @@
       </ImageView>
       <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
-      <Button fx:id="send" layoutX="704.0" layoutY="446.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
+      <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
    </children>
 </Pane>
