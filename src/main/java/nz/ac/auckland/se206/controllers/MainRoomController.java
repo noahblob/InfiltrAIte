@@ -138,68 +138,26 @@ public class MainRoomController implements TimerObserver {
   }
 
   /**
-   * Handles the hover event on the left door.
+   * Handles the hover event on the the doors.
    *
    * @param event the mouse event
    */
   @FXML
-  public void onLeftEnter(MouseEvent event) {
+  public void onHover(MouseEvent event) {
     // enable indicator
-    leftDoor.setOpacity(1);
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(1);
   }
 
   /**
-   * Handles the un-hover event on the left door.
+   * Handles the un-hover event on the doors.
    *
    * @param event the mouse event
    */
   @FXML
-  public void onLeftExit(MouseEvent event) {
+  public void onHoverExit(MouseEvent event) {
     // disable indicator
-    leftDoor.setOpacity(0);
-  }
-
-  /**
-   * Handles the hover event on the middle door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onMiddleEnter(MouseEvent event) {
-    // enable indicator
-    middleDoor.setOpacity(1);
-  }
-
-  /**
-   * Handles the un-hover event on the left door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onMiddleExit(MouseEvent event) {
-    // disable indicator
-    middleDoor.setOpacity(0);
-  }
-
-  /**
-   * Handles the hover event on the right door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onRightEnter(MouseEvent event) {
-    // enable indicator
-    rightDoor.setOpacity(1);
-  }
-
-  /**
-   * Handles the un-hover event on the left door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onRightExit(MouseEvent event) {
-    // didsable indicator
-    rightDoor.setOpacity(0);
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(0);
   }
 }
