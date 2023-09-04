@@ -26,18 +26,15 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle leftDoor;
   @FXML private Rectangle rightDoor;
   @FXML private Rectangle middleDoor;
-  @FXML private Rectangle cabinet;
-  @FXML private Rectangle keyPad;
 
   /**
-   * Initializes the room view, it is called when the room loads.
+   * s Initializes the room view, it is called when the room loads.
    *
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
-    // Initialise phone, objective text and timer.
     super.initialize();
-    objectiveMiddle.setText("Find intel and leave the enemy base!");
+    objectiveMiddle.setText("This is the MAIN ROOM");
     TimerClass.add(this);
   }
 
@@ -103,50 +100,34 @@ public class MainRoomController extends Commander implements TimerObserver {
     }
   }
 
-  /**
-   * Handles the click event on the left door.
-   *
-   * @param event the mouse event
-   */
   @FXML
-  public void onLeftClick(MouseEvent event) {
-    // move the user to the left room
+  public void onClick(MouseEvent event) {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
-  }
-
-  /**
-   * Handles the click event on the middle door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onMiddleClick(MouseEvent event) {
-    if (GameState.difficulty == 1) {
-      dialogue.setText("You must gather 1 more piece of intel before you may leave.");
-    } else if (GameState.difficulty == 2) {
-      dialogue.setText("You must gather 2 more pieces of intel before you may leave.");
-    } else if (GameState.difficulty == 3) {
-      dialogue.setText("You must gather 3 more pieces of intel before you may leave.");
+    switch (rectangle.getId()) {
+      case ("middleDoor"):
+        if (GameState.difficulty == 1) {
+          dialogue.setText("You must gather 1 more piece of intel before you may leave.");
+        } else if (GameState.difficulty == 2) {
+          dialogue.setText("You must gather 2 more pieces of intel before you may leave.");
+        } else if (GameState.difficulty == 3) {
+          dialogue.setText("You must gather 3 more pieces of intel before you may leave.");
+        }
+        break;
+      case ("leftDoor"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
+        break;
+      case ("rightDoor"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+        break;
+      case ("keyPad"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
+        break;
     }
   }
 
   /**
-   * Handles the click event on the right door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onRightClick(MouseEvent event) {
-    // move the user to the right room
-    Rectangle rectangle = (Rectangle) event.getSource();
-    Scene currentScene = rectangle.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
-  }
-
-  /**
-   * Handles the hover event on the the doors.
+   * Handles the hover event on the left door.
    *
    * @param event the mouse event
    */
@@ -158,7 +139,7 @@ public class MainRoomController extends Commander implements TimerObserver {
   }
 
   /**
-   * Handles the un-hover event on the doors.
+   * Handles the un-hover event on the left door.
    *
    * @param event the mouse event
    */

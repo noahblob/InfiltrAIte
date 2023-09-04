@@ -12,7 +12,8 @@ public class SceneManager {
     MAIN,
     LEFT,
     RIGHT,
-    LOCKER
+    LOCKER,
+    KEYPAD
   }
 
   private static Map<AppUI, Parent> sceneMap = new HashMap<>();
