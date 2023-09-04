@@ -2,6 +2,7 @@
 
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -17,7 +18,7 @@
          <image>
             <Image url="@../images/start.png" />
          </image></ImageView>
-      <Text fx:id="timer" layoutX="381.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
+      <Text fx:id="timer" layoutX="390.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
          <font>
             <Font size="25.0" />
          </font>
@@ -27,11 +28,15 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="dialogue" disable="true" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
-      <TextArea fx:id="objective" disable="true" editable="false" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
-      <Rectangle fx:id="middleDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="183.0" layoutX="179.0" layoutY="209.0" onMouseClicked="#onMiddleClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="121.0" />
-      <Rectangle fx:id="leftDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="261.0" layoutX="32.0" layoutY="182.0" onMouseClicked="#onLeftClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0" />
-      <Rectangle fx:id="rightDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="261.0" layoutX="412.0" layoutY="182.0" onMouseClicked="#onRightClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="50.0">
+      <Rectangle fx:id="middleDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="183.0" layoutX="179.0" layoutY="209.0" onMouseClicked="#onMiddleClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="121.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="leftDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="261.0" layoutX="32.0" layoutY="182.0" onMouseClicked="#onLeftClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="33.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="rightDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="261.0" layoutX="412.0" layoutY="182.0" onMouseClicked="#onRightClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -44,5 +49,23 @@
       <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
+      <Rectangle fx:id="cabinet" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="88.0" layoutX="330.0" layoutY="300.0" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Label fx:id="objectiveMiddle" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Rectangle fx:id="keyPad" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="45.0" layoutX="147.0" layoutY="278.0" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="26.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0">
+         <font>
+            <Font name="Courier New" size="12.0" />
+         </font>
+      </TextArea>
    </children>
 </Pane>

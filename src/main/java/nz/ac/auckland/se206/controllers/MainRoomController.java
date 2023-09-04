@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -21,11 +21,13 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 /** Controller class for the room view. */
 public class MainRoomController extends Commander implements TimerObserver {
 
-  @FXML private TextArea objective;
+  @FXML private Label objectiveMiddle;
   @FXML private Text timer;
   @FXML private Rectangle leftDoor;
   @FXML private Rectangle rightDoor;
   @FXML private Rectangle middleDoor;
+  @FXML private Rectangle cabinet;
+  @FXML private Rectangle keyPad;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -33,11 +35,9 @@ public class MainRoomController extends Commander implements TimerObserver {
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
-
-    // Initialization code goes here
-    // Initialise phone.
+    // Initialise phone, objective text and timer.
     super.initialize();
-    objective.setText("This is the MAIN ROOM");
+    objectiveMiddle.setText("Find intel and leave the enemy base!");
     TimerClass.add(this);
   }
 
