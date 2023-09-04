@@ -34,12 +34,13 @@ public class CommanderController {
   private ChatCompletionRequest messages;
   private List<TextArea> phoneScreens;
   private List<TextArea> dialogues;
+  private boolean isFirstMessage;
 
   private CommanderController() throws ApiProxyException {
 
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
-
+    isFirstMessage = true;
     // Determine number of hints that commander is able to give.
     String hintCount = "";
     hintCount = (GameState.difficulty == 1) ? "infinite" : (GameState.difficulty == 2) ? "5" : "0";
@@ -54,12 +55,19 @@ public class CommanderController {
    */
   private void appendChatMessage(ChatMessage msg) {
 
+    if (isFirstMessage) {
+      isFirstMessage = false;
+    return;
+    }
+
+    String role;
+    role = msg.getRole().equals("user") ? "You" : "Commander";
     // Updates each of the screens in each room with updated message.
     for (TextArea screen : phoneScreens) {
       if (screen == null) {
         continue;
       }
-      screen.appendText(msg.getRole() + ": " + msg.getContent() + "\n\n");
+      screen.appendText(role + ": " + msg.getContent() + "\n\n");
     }
   }
 
