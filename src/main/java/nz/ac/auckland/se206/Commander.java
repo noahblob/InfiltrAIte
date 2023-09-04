@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206;
 
 import java.io.IOException;
 
@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public abstract class Commander {

@@ -11,4 +11,8 @@ public class GameState {
 
   /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD */
   public static int difficulty = 0;
+
+  /** Indicates current country we are infiltrating */
+  public static String country = null;
+
 }

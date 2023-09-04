@@ -69,10 +69,13 @@ public class TitleController {
     // Set difficulty of game
     if (rectangle == elbonia) {
       GameState.difficulty = 1;
+      GameState.country = "Elbonia";
     } else if (rectangle == genovia) {
       GameState.difficulty = 2;
+      GameState.country = "Genovia";
     } else if (rectangle == sanescobar) {
       GameState.difficulty = 3;
+      GameState.country = "Sanescobar";
     }
     Scene currentScene = rectangle.getScene();
     // Update the scene to the watch.
