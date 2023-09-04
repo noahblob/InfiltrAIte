@@ -18,18 +18,21 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
 public class LockerController extends Commander implements TimerObserver {
- 
+
   @FXML private Label objective;
   @FXML private Text timer;
   @FXML private Label first;
   @FXML private Label second;
   @FXML private Label third;
   private int one;
-  private int two ;
+  private int two;
   private int three;
 
-  /** Initializes the room view, it is called when the room loads. 
-   * @throws ApiProxyException */
+  /**
+   * Initializes the room view, it is called when the room loads.
+   *
+   * @throws ApiProxyException
+   */
   public void initialize() throws ApiProxyException {
     super.initialize();
     one = two = three = 0;

@@ -4,7 +4,7 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -21,22 +21,21 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 /** Controller class for the room view. */
 public class MainRoomController extends Commander implements TimerObserver {
 
-  @FXML private TextArea objective;
+  @FXML private Label objectiveMiddle;
   @FXML private Text timer;
   @FXML private Rectangle leftDoor;
   @FXML private Rectangle rightDoor;
   @FXML private Rectangle middleDoor;
 
-  /** Initializes the room view, it is called when the room loads. 
-   * @throws ApiProxyException */
+  /**
+   * s Initializes the room view, it is called when the room loads.
+   *
+   * @throws ApiProxyException
+   */
   public void initialize() throws ApiProxyException {
-
-    // Initialization code goes here
-    // Initialise phone.
     super.initialize();
-    objective.setText("This is the MAIN ROOM");
+    objectiveMiddle.setText("This is the MAIN ROOM");
     TimerClass.add(this);
-
   }
 
   @Override
@@ -101,46 +100,30 @@ public class MainRoomController extends Commander implements TimerObserver {
     }
   }
 
-  /**
-   * Handles the click event on the left door.
-   *
-   * @param event the mouse event
-   */
   @FXML
-  public void onLeftClick(MouseEvent event) {
-    // move the user to the left room
+  public void onClick(MouseEvent event) {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
-  }
-
-  /**
-   * Handles the click event on the middle door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onMiddleClick(MouseEvent event) {
-    if (GameState.difficulty == 1) {
-      dialogue.setText("You must gather 1 more piece of intel before you may leave.");
-    } else if (GameState.difficulty == 2) {
-      dialogue.setText("You must gather 2 more pieces of intel before you may leave.");
-    } else if (GameState.difficulty == 3) {
-      dialogue.setText("You must gather 3 more pieces of intel before you may leave.");
+    switch (rectangle.getId()) {
+      case ("middleDoor"):
+        if (GameState.difficulty == 1) {
+          dialogue.setText("You must gather 1 more piece of intel before you may leave.");
+        } else if (GameState.difficulty == 2) {
+          dialogue.setText("You must gather 2 more pieces of intel before you may leave.");
+        } else if (GameState.difficulty == 3) {
+          dialogue.setText("You must gather 3 more pieces of intel before you may leave.");
+        }
+        break;
+      case ("leftDoor"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
+        break;
+      case ("rightDoor"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+        break;
+      case ("keyPad"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
+        break;
     }
-  }
-
-  /**
-   * Handles the click event on the right door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onRightClick(MouseEvent event) {
-    // move the user to the right room
-    Rectangle rectangle = (Rectangle) event.getSource();
-    Scene currentScene = rectangle.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
   }
 
   /**
@@ -149,9 +132,10 @@ public class MainRoomController extends Commander implements TimerObserver {
    * @param event the mouse event
    */
   @FXML
-  public void onLeftEnter(MouseEvent event) {
+  public void onHover(MouseEvent event) {
     // enable indicator
-    leftDoor.setOpacity(1);
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(1);
   }
 
   /**
@@ -160,53 +144,9 @@ public class MainRoomController extends Commander implements TimerObserver {
    * @param event the mouse event
    */
   @FXML
-  public void onLeftExit(MouseEvent event) {
+  public void onHoverExit(MouseEvent event) {
     // disable indicator
-    leftDoor.setOpacity(0);
+    Rectangle rectangle = (Rectangle) event.getSource();
+    rectangle.setOpacity(0);
   }
-
-  /**
-   * Handles the hover event on the middle door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onMiddleEnter(MouseEvent event) {
-    // enable indicator
-    middleDoor.setOpacity(1);
-  }
-
-  /**
-   * Handles the un-hover event on the left door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onMiddleExit(MouseEvent event) {
-    // disable indicator
-    middleDoor.setOpacity(0);
-  }
-
-  /**
-   * Handles the hover event on the right door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onRightEnter(MouseEvent event) {
-    // enable indicator
-    rightDoor.setOpacity(1);
-  }
-
-  /**
-   * Handles the un-hover event on the left door.
-   *
-   * @param event the mouse event
-   */
-  @FXML
-  public void onRightExit(MouseEvent event) {
-    // didsable indicator
-    rightDoor.setOpacity(0);
-  }
-
 }
