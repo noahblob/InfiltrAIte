@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -28,8 +29,7 @@
          </image>
       </ImageView>
       <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="159.0" layoutX="136.0" layoutY="234.0" onMouseClicked="#clickDoor" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
-      <Rectangle fx:id="riddle" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="113.0" layoutX="300.0" layoutY="323.0" onMouseClicked="#clickRiddle" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="88.0" />
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="153.0" layoutX="150.0" layoutY="239.0" onMouseClicked="#clickDoor" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
       <Label fx:id="objectiveRight" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
@@ -43,5 +43,7 @@
       <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
+      <Polygon fx:id="riddle" fill="#fffa9680" layoutX="316.0" layoutY="452.0" onMouseClicked="#clickRiddle" opacity="0.0" points="2.0, -47.0, 36.0, -12.0, 36.0, -86.0, 2.0, -104.0" stroke="BLACK" strokeType="INSIDE" />
+      <Rectangle fx:id="book" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="38.0" layoutX="244.0" layoutY="359.0" onMouseClicked="#clickBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
    </children>
 </Pane>
