@@ -8,6 +8,7 @@ import java.util.Map;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -19,6 +20,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.Items.CustomSliderSkin;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
@@ -42,9 +44,17 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private ImageView p2;
   @FXML private ImageView comms;
   @FXML private ImageView comms1;
+  @FXML private Slider s;
+  @FXML private Slider s1;
+  @FXML private Slider s2;
+  @FXML private Slider s3;
+  @FXML private Slider s4;
+  @FXML private Slider s5;
 
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
+  private List<Slider> sliders;
+
 
   private enum Object {
     COMMS,
@@ -55,7 +65,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     DOOR,
     NEWS
   }
-
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -69,7 +78,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
     createRoom();
     setPopups();
     setHoverEvents();
-    
+    setSliders();
+
     TimerClass.add(this);
     
   }
@@ -78,24 +88,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
   public void timerStart() {
     TimerClass timerText = TimerClass.getInstance();
     timer.setText(timerText.getTimerLeft());
-  }
-
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
-  }
-
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
   }
 
   private void clickDoor() {
@@ -138,6 +130,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
       back.setVisible(true);
   }
 
+  private void toggleSliders(Boolean flag) {
+    for (Slider s : sliders) {
+      s.setVisible(flag);
+    }
+  }
+
   private void setPopups() {
     visiblePopups = new ArrayList<>();
     popUpBackGround.setVisible(false);
@@ -158,7 +156,25 @@ public class LeftRoomController extends Commander implements TimerObserver {
         visiblePopups.clear();
         back.setVisible(false);
         popUpBackGround.setVisible(false);
+        // Disables sliders.
+        toggleSliders(false);
     });
+  }
+
+  private void setSliders() {
+    this.sliders = new ArrayList<>();
+    sliders.add(s);
+    sliders.add(s1);
+    sliders.add(s2);
+    sliders.add(s3);
+    sliders.add(s4);
+    sliders.add(s5);
+
+    for (int i = 0; i < sliders.size(); i++) {
+      Slider s = sliders.get(i);
+      s.setVisible(false);
+      s.setSkin(new CustomSliderSkin(s));
+    }
   }
 
   @FXML public void onClick(MouseEvent event) {
@@ -183,6 +199,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
         case COMMS:
         showPopup(comms);
         showPopup(comms1);
+        toggleSliders(true);
       default:
         break;
     }

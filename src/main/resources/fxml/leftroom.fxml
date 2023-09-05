@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -60,7 +61,7 @@
             <Image url="@../images/news.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="comms" fitHeight="489.0" fitWidth="560.0" layoutX="-40.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="comms" fitHeight="489.0" fitWidth="560.0" layoutX="-40.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/newcomms.png" />
          </image>
@@ -71,5 +72,11 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" text="RETURN" />
+      <Slider fx:id="s" layoutX="31.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
+      <Slider fx:id="s1" layoutX="79.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
+      <Slider fx:id="s2" layoutX="103.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
+      <Slider fx:id="s3" layoutX="127.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
+      <Slider fx:id="s4" layoutX="152.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
+      <Slider fx:id="s5" layoutX="56.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
    </children>
 </Pane>
