@@ -53,6 +53,7 @@ public class App extends Application {
     SceneManager.addUserInterface(AppUI.LEFT, loadFxml("leftroom"));
     SceneManager.addUserInterface(AppUI.LOCKER, loadFxml("rightlocker"));
     SceneManager.addUserInterface(AppUI.KEYPAD, loadFxml("keypad"));
+    SceneManager.addUserInterface(AppUI.BOOKSHELF, loadFxml("bookshelf"));
 
     scene = new Scene(SceneManager.getuserInterface(AppUI.TITLE), 800, 600);
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());

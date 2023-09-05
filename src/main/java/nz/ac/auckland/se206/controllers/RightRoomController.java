@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
@@ -18,9 +19,10 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
 public class RightRoomController extends Commander implements TimerObserver {
-  
+
   @FXML private Label objectiveRight;
   @FXML private Text timer;
+  @FXML private Polygon riddle;
 
   static NumberGroup answer;
 
@@ -30,8 +32,11 @@ public class RightRoomController extends Commander implements TimerObserver {
     ANS3,
   }
 
-  /** Initializes the room view, it is called when the room loads. 
-   * @throws ApiProxyException */
+  /**
+   * Initializes the room view, it is called when the room loads.
+   *
+   * @throws ApiProxyException
+   */
   public void initialize() throws ApiProxyException {
 
     // Initialise phone.
@@ -41,7 +46,15 @@ public class RightRoomController extends Commander implements TimerObserver {
     final NumberGroup[] answerGroup = NumberGroup.values();
     // Randomnly select a number group
     answer = answerGroup[new Random().nextInt(answerGroup.length)];
-    
+
+    riddle.setOnMouseEntered(
+        event -> {
+          riddle.setOpacity(0.5);
+        });
+    riddle.setOnMouseExited(
+        event -> {
+          riddle.setOpacity(0);
+        });
   }
 
   @Override
@@ -108,7 +121,7 @@ public class RightRoomController extends Commander implements TimerObserver {
   @FXML
   public void clickRiddle(MouseEvent event) {
 
-    Rectangle rectangle = (Rectangle) event.getSource();
+    Polygon rectangle = (Polygon) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.LOCKER));
@@ -142,7 +155,10 @@ public class RightRoomController extends Commander implements TimerObserver {
    * @param event the mouse event
    */
   @FXML
-  public void clickWindow(MouseEvent event) {
-    System.out.println("window clicked");
+  public void clickBook(MouseEvent event) {
+    Rectangle rectangle = (Rectangle) event.getSource();
+    Scene currentScene = rectangle.getScene();
+    // Update the scene to the main game.
+    currentScene.setRoot(SceneManager.getuserInterface(AppUI.BOOKSHELF));
   }
 }
