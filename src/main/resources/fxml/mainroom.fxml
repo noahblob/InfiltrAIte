@@ -49,7 +49,7 @@
       <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
-      <Rectangle fx:id="cabinet" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="88.0" layoutX="330.0" layoutY="300.0" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
+      <Rectangle fx:id="cabinet" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="88.0" layoutX="330.0" layoutY="300.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
@@ -67,5 +67,12 @@
             <Font name="Courier New" size="12.0" />
          </font>
       </TextArea>
+      <Rectangle fx:id="background" arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="466.0" layoutX="6.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="466.0" />
+      <ImageView fx:id="filingCabinet" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/cabinet-nobg.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#clickBack" text="RETURN" visible="false" />
    </children>
 </Pane>

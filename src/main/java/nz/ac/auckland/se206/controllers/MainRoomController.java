@@ -1,16 +1,16 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
@@ -22,10 +22,13 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class MainRoomController extends Commander implements TimerObserver {
 
   @FXML private Label objectiveMiddle;
+  @FXML private Button back;
   @FXML private Text timer;
   @FXML private Rectangle leftDoor;
   @FXML private Rectangle rightDoor;
   @FXML private Rectangle middleDoor;
+  @FXML private Rectangle background;
+  @FXML private ImageView filingCabinet;
 
   /**
    * s Initializes the room view, it is called when the room loads.
@@ -76,30 +79,6 @@ public class MainRoomController extends Commander implements TimerObserver {
     alert.showAndWait();
   }
 
-  /**
-   * Handles the click event on the door.
-   *
-   * @param event the mouse event
-   * @throws IOException if there is an error loading the chat view
-   */
-  @FXML
-  public void clickDoor(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
-
-    if (!GameState.isRiddleResolved) {
-      showDialog("Info", "Riddle", "You need to resolve the riddle!");
-      App.setRoot("chat");
-      return;
-    }
-
-    if (!GameState.isKeyFound) {
-      showDialog(
-          "Info", "Find the key!", "You resolved the riddle, now you know where the key is.");
-    } else {
-      showDialog("Info", "You Won!", "Good Job!");
-    }
-  }
-
   @FXML
   public void onClick(MouseEvent event) {
     Rectangle rectangle = (Rectangle) event.getSource();
@@ -123,7 +102,19 @@ public class MainRoomController extends Commander implements TimerObserver {
       case ("keyPad"):
         currentScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
         break;
+      case ("cabinet"):
+        filingCabinet.setVisible(true);
+        background.setVisible(true);
+        back.setVisible(true);
+        break;
     }
+  }
+
+  @FXML
+  public void clickBack(MouseEvent event) {
+    filingCabinet.setVisible(false);
+    background.setVisible(false);
+    back.setVisible(false);
   }
 
   /**
