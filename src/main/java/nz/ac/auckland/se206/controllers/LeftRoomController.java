@@ -39,8 +39,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Polygon newspaper;
   @FXML private ImageView p;
   @FXML private ImageView p1;
+  @FXML private ImageView p2;
+  @FXML private ImageView comms;
+  @FXML private ImageView comms1;
 
-  
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
 
@@ -144,6 +146,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
     // Individual popup items.
     p.setVisible(false);
     p1.setVisible(false);
+    p2.setVisible(false);
+    comms.setVisible(false);
+    comms1.setVisible(false);
    
 
     back.setOnAction(event -> {
@@ -161,6 +166,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     Shape clickedObject = (Shape) event.getSource();
     Object type = objects.get(clickedObject);
 
+    // Add more items that can be clicked on.
     switch(type) {
       case DOOR:
         clickDoor();
@@ -170,6 +176,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
         break;
         case PAINT:
         showPopup(p);
+        break;
+        case NEWS:
+        showPopup(p2);
+        break;
+        case COMMS:
+        showPopup(comms);
+        showPopup(comms1);
       default:
         break;
     }
