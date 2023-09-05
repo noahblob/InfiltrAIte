@@ -40,9 +40,9 @@
       <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
       <Polygon fx:id="door" fill="#fffa96" layoutX="313.0" layoutY="318.0" onMouseClicked="#onClick" opacity="0.0" points="-19.0, 93.0, 5.25, 79.0, 5.25, -67.5, -19.0, -77.5" stroke="BLACK" strokeType="INSIDE" />
       <Rectangle fx:id="painting1" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="41.0" layoutX="220.0" layoutY="261.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="49.0" />
-      <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" onMouseClicked="#onClick" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" />
       <Polygon fx:id="painting2" fill="#fffa96" layoutX="23.0" layoutY="252.0" opacity="0.0" points="-10.666666984558105, 83.66665649414062, 39.66666793823242, 79.66665649414062, 39.66666793823242, -20.333328247070312, -10.666666984558105, -41.66667175292969" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="332.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+      <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
       <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
       <Rectangle fx:id="popUpBackGround" arcHeight="5.0" arcWidth="5.0" height="466.0" layoutX="7.0" layoutY="68.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" width="466.0" />
       <ImageView fx:id="p1" fitHeight="358.0" fitWidth="406.0" layoutX="40.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -53,6 +53,21 @@
       <ImageView fx:id="p" fitHeight="358.0" fitWidth="406.0" layoutX="50.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/FP.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="p2" fitHeight="358.0" fitWidth="406.0" layoutX="45.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/news.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="comms" fitHeight="489.0" fitWidth="560.0" layoutX="-40.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/newcomms.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="comms1" fitHeight="24.0" fitWidth="63.0" layoutX="207.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/output-onlinegiftools.gif" />
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" text="RETURN" />
