@@ -37,6 +37,7 @@ public class BookController extends Commander implements TimerObserver {
   @FXML private ImageView actual4;
   @FXML private ImageView actual5;
   @FXML private Button back;
+  @FXML private Button goBack;
 
   @FXML private String currentBook;
   List<Rectangle> bookButtons;
@@ -76,7 +77,9 @@ public class BookController extends Commander implements TimerObserver {
   @FXML
   private void showBook() {
     back.setVisible(true);
+    back.setDisable(false);
     book.setVisible(true);
+
     for (Rectangle bookInShelf : bookButtons) {
       bookInShelf.setVisible(false);
     }
@@ -90,7 +93,9 @@ public class BookController extends Commander implements TimerObserver {
   @FXML
   private void onGoBackShelf() {
     back.setVisible(false);
+    back.setDisable(true);
     book.setVisible(false);
+
     for (Rectangle bookInShelf : bookButtons) {
       bookInShelf.setVisible(true);
     }
