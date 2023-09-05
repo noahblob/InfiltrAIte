@@ -1,7 +1,5 @@
 package nz.ac.auckland.se206.gpt;
 
-import nz.ac.auckland.se206.GameState;
-
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
 
