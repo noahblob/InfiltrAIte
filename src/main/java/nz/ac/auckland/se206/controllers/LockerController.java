@@ -24,9 +24,12 @@ public class LockerController extends Commander implements TimerObserver {
   @FXML private Label first;
   @FXML private Label second;
   @FXML private Label third;
+  @FXML private Label fourth;
+
   private int one;
   private int two;
   private int three;
+  private int four;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -134,6 +137,11 @@ public class LockerController extends Commander implements TimerObserver {
         third.setText(String.valueOf(three));
         break;
 
+      case "upFour":
+        if (four == 9) four = 0;
+        else four++;
+        fourth.setText(String.valueOf(four));
+        break;
       default:
         break;
     }
@@ -166,6 +174,11 @@ public class LockerController extends Commander implements TimerObserver {
         third.setText(String.valueOf(three));
         break;
 
+      case "downFour":
+        if (four == 0) four = 9;
+        else four--;
+        fourth.setText(String.valueOf(four));
+        break;
       default:
         break;
     }
