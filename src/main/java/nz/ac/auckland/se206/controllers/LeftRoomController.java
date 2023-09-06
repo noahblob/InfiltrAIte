@@ -29,7 +29,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 /** Controller class for the room view. */
 public class LeftRoomController extends Commander implements TimerObserver {
 
-  private static int year;
+  public static int year;
 
   @FXML private TextArea objective;
   @FXML private Text timer;
@@ -50,6 +50,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private ImageView comms;
   @FXML private ImageView comms1;
   @FXML private ImageView tear;
+  @FXML private ImageView drawer1;
   @FXML private Slider s;
   @FXML private Slider s1;
   @FXML private Slider s2;
@@ -57,6 +58,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Slider s4;
   @FXML private Slider s5;
   @FXML private Label lastDigits;
+  @FXML private Rectangle topDrawer;
+  @FXML private Rectangle midDrawer;
+  @FXML private Rectangle botDrawer;
 
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
@@ -88,6 +92,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     setHoverEvents();
     setSliders();
     generateYear();
+    openCabinet(false);
     TimerClass.add(this);
     
   }
@@ -132,6 +137,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
     communications.setOnMouseExited(event -> { communications.setOpacity(0);});
     desk.setOnMouseEntered(event -> { desk.setOpacity(0.5);});
     desk.setOnMouseExited(event -> { desk.setOpacity(0);});
+
+    topDrawer.setOnMouseEntered(event -> { topDrawer.setOpacity(0.5);});
+    topDrawer.setOnMouseExited(event -> { topDrawer.setOpacity(0);});
+    midDrawer.setOnMouseEntered(event -> { midDrawer.setOpacity(0.5);});
+    midDrawer.setOnMouseExited(event -> { midDrawer.setOpacity(0);});
+    botDrawer.setOnMouseEntered(event -> { botDrawer.setOpacity(0.5);});
+    botDrawer.setOnMouseExited(event -> { botDrawer.setOpacity(0);});
   }
 
   private void showPopup(ImageView popup) {
@@ -164,6 +176,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     comms1.setVisible(false);
     tear.setVisible(false);
     lastDigits.setVisible(false);
+    drawer1.setVisible(false);
    
     back.setOnAction(event -> {
         for (ImageView popup : visiblePopups) {
@@ -175,6 +188,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
         // Disables sliders & last digits.
         toggleSliders(false);
         toggleYear(false);
+        openCabinet(false);
 
     });
   }
@@ -191,7 +205,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
      
   }
 
-
   private void setSliders() {
     this.sliders = new ArrayList<>();
     sliders.add(s);
@@ -206,6 +219,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
       s.setVisible(false);
       s.setSkin(new CustomSliderSkin(s));
     }
+  }
+
+  private void openCabinet(Boolean flag) {
+    topDrawer.setVisible(flag);
+    midDrawer.setVisible(flag);
+    botDrawer.setVisible(flag);
   }
 
   @FXML public void onClick(MouseEvent event) {
@@ -235,6 +254,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
         case DESK:
         showPopup(tear);
         toggleYear(true);
+        break;
+        case DRAWER:
+        showPopup(drawer1);
+        openCabinet(true);
       default:
         break;
     }

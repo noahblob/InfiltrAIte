@@ -46,7 +46,7 @@
       <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" onMouseClicked="#onClick" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" />
       <Polygon fx:id="painting2" fill="#fffa96" layoutX="23.0" layoutY="252.0" opacity="0.0" points="-10.666666984558105, 83.66665649414062, 39.66666793823242, 79.66665649414062, 39.66666793823242, -20.333328247070312, -10.666666984558105, -41.66667175292969" stroke="BLACK" strokeType="INSIDE" />
       <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
-      <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
+      <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
       <Rectangle fx:id="popUpBackGround" arcHeight="5.0" arcWidth="5.0" height="466.0" layoutX="7.0" layoutY="68.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" visible="false" width="466.0" />
       <ImageView fx:id="p1" fitHeight="358.0" fitWidth="406.0" layoutX="40.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
@@ -73,12 +73,20 @@
             <Image url="@../images/output-onlinegiftools.gif" />
          </image>
       </ImageView>
-      <ImageView fx:id="tear" fitHeight="186.0" fitWidth="171.0" layoutX="163.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="tear" fitHeight="186.0" fitWidth="171.0" layoutX="163.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/corner.png" />
          </image>
       </ImageView>
-      <Label fx:id="lastDigits" layoutX="264.0" layoutY="267.0" prefHeight="57.0" prefWidth="60.0" text="XX">
+      <ImageView fx:id="drawer1" fitHeight="400.0" fitWidth="276.0" layoutX="109.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/drawer.png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="69.0" layoutX="157.0" layoutY="218.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0" />
+      <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="57.0" layoutX="157.0" layoutY="142.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0" />
+      <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="155.0" layoutX="157.0" layoutY="304.0" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0" />
+      <Label fx:id="lastDigits" layoutX="264.0" layoutY="267.0" prefHeight="57.0" prefWidth="60.0" text="XX" visible="false">
          <font>
             <Font name="Anonymous Pro Bold" size="30.0" />
          </font>
