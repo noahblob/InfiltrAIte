@@ -23,22 +23,12 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Label objectiveMiddle;
   @FXML private Label numberLabel;
   @FXML private TextArea dialogue;
-  @FXML private Rectangle one;
-  @FXML private Rectangle two;
-  @FXML private Rectangle three;
-  @FXML private Rectangle four;
-  @FXML private Rectangle five;
-  @FXML private Rectangle six;
-  @FXML private Rectangle seven;
-  @FXML private Rectangle eight;
-  @FXML private Rectangle nine;
-  @FXML private Rectangle zero;
-  private int factor = 1;
+  @FXML private Rectangle one, two, three, four, five, six, seven, eight, nine, zero;
 
   public void initialize() throws ApiProxyException {
     super.initialize();
     objectiveMiddle.setText("Figure out the combination!");
-    numberLabel.setText("0");
+    numberLabel.setText("");
     TimerClass.add(this);
   }
 
@@ -59,23 +49,22 @@ public class KeyPadController extends Commander implements TimerObserver {
   }
 
   @FXML
-  public void onClick(MouseEvent event) {
+  public void onClick(MouseEvent event) throws ApiProxyException {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
     switch (button.getId()) {
       case "clearButton":
-        numberLabel.setText("0");
-        factor = 1;
+        numberLabel.setText("");
         break;
       case "submitButton":
-        factor = 1;
-        if (numberLabel.getText() == "123") {
-          dialogue.setText("Nice work, you cracked the code to the door!");
+        if (numberLabel.getText().equals("123")) {
+          // dialogue.setText("Nice work, you cracked the code to the door!");
+          System.out.println("user solved the code");
+          CommanderController commander = CommanderController.getInstance();
+          commander.updateDialogueBox("Nice work, you cracked the code to the door!");
         }
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
         break;
       case "exitButton":
-        factor = 1;
         currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
         break;
       default:
@@ -86,53 +75,41 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML
   public void clickNum(MouseEvent event) {
     Rectangle number = (Rectangle) event.getSource();
-    int currentValue = Integer.parseInt(numberLabel.getText());
+    String currentText = numberLabel.getText();
     switch (number.getId()) {
       case ("one"):
-        currentValue += 1 * factor;
-        factor *= 10;
+        currentText = currentText + "1";
         break;
       case ("two"):
-        currentValue += 2 * factor;
-        factor *= 10;
+        currentText = currentText + "2";
         break;
       case ("three"):
-        currentValue += 3 * factor;
-        factor *= 10;
+        currentText = currentText + "3";
         break;
       case ("four"):
-        currentValue += 4 * factor;
-        factor *= 10;
+        currentText = currentText + "4";
         break;
       case ("five"):
-        currentValue += 5 * factor;
-        factor *= 10;
+        currentText = currentText + "5";
         break;
       case ("six"):
-        currentValue += 6 * factor;
-        factor *= 10;
+        currentText = currentText + "6";
         break;
       case ("seven"):
-        currentValue += 7 * factor;
-        factor *= 10;
+        currentText = currentText + "7";
         break;
       case ("eight"):
-        currentValue += 8 * factor;
-        factor *= 10;
+        currentText = currentText + "8";
         break;
       case ("nine"):
-        currentValue += 9 * factor;
-        factor *= 10;
+        currentText = currentText + "9";
         break;
       case ("zero"):
-        String text = numberLabel.getText();
-        text = "0" + text;
-        numberLabel.setText(text);
-        factor *= 10;
+        currentText = currentText + "0";
         break;
       default:
         break;
     }
-    numberLabel.setText(String.valueOf(currentValue));
+    numberLabel.setText(currentText);
   }
 }
