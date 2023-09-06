@@ -3,3 +3,18 @@
     -fx-text-alignment: center;
     padding: 30px 0;
 }
+
+/* Normal state style */
+.highlight-rectangle {
+    fill: transparent;
+    stroke: black;
+    /* Border color */
+    stroke-width: 2;
+    /* Border width */
+}
+
+/* Hovered state style */
+.highlight-rectangle:hover {
+    stroke: red;
+    /* Change border color on hover */
+}

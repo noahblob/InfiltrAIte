@@ -71,21 +71,6 @@ public class MainRoomController extends Commander implements TimerObserver {
     }
   }
 
-  /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message the message content of the dialog box
-   */
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
-  }
-
   public void setDoorEvents() {
     // set click functionaltiy for left and right door
     leftDoor.setOnMouseClicked(

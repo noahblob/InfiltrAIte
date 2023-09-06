@@ -29,7 +29,10 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0">
+         <font>
+            <Font name="Courier New" size="12.0" />
+         </font></TextArea>
       <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -78,7 +81,7 @@
             <Image url="@../images/corner.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="drawer1" fitHeight="400.0" fitWidth="276.0" layoutX="109.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="drawer1" fitHeight="400.0" fitWidth="276.0" layoutX="109.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/drawer.png" />
          </image>
