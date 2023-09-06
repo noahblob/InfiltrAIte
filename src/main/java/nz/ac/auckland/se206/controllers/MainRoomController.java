@@ -29,6 +29,9 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Polygon rightDoor;
   @FXML private Rectangle middleDoor;
   @FXML private Rectangle background;
+  @FXML private Rectangle topDrawer;
+  @FXML private Rectangle midDrawer;
+  @FXML private Rectangle botDrawer;
   @FXML private ImageView filingCabinet;
 
   /**
@@ -137,6 +140,9 @@ public class MainRoomController extends Commander implements TimerObserver {
         filingCabinet.setVisible(true);
         background.setVisible(true);
         back.setVisible(true);
+        topDrawer.setVisible(true);
+        midDrawer.setVisible(true);
+        botDrawer.setVisible(true);
         break;
       default:
         break;
@@ -148,6 +154,9 @@ public class MainRoomController extends Commander implements TimerObserver {
     filingCabinet.setVisible(false);
     background.setVisible(false);
     back.setVisible(false);
+    topDrawer.setVisible(false);
+    midDrawer.setVisible(false);
+    botDrawer.setVisible(false);
   }
 
   /**
