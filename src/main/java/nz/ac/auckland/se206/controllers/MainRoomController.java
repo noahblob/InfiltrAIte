@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
@@ -24,8 +25,8 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Label objectiveMiddle;
   @FXML private Button back;
   @FXML private Text timer;
-  @FXML private Rectangle leftDoor;
-  @FXML private Rectangle rightDoor;
+  @FXML private Polygon leftDoor;
+  @FXML private Polygon rightDoor;
   @FXML private Rectangle middleDoor;
   @FXML private Rectangle background;
   @FXML private ImageView filingCabinet;
@@ -39,6 +40,9 @@ public class MainRoomController extends Commander implements TimerObserver {
     super.initialize();
     objectiveMiddle.setText("This is the MAIN ROOM");
     TimerClass.add(this);
+
+    // separate method for left and right door hover and click events
+    setDoorEvents();
   }
 
   @Override
@@ -79,10 +83,43 @@ public class MainRoomController extends Commander implements TimerObserver {
     alert.showAndWait();
   }
 
+  public void setDoorEvents() {
+    // set click functionaltiy for left and right door
+    leftDoor.setOnMouseClicked(
+        event -> {
+          Polygon object = (Polygon) event.getSource();
+          Scene scene = object.getScene();
+          scene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
+        });
+    rightDoor.setOnMouseClicked(
+        event -> {
+          Polygon object = (Polygon) event.getSource();
+          Scene scene = object.getScene();
+          scene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+        });
+    // set hover effects for left door and right door
+    leftDoor.setOnMouseEntered(
+        event -> {
+          leftDoor.setOpacity(1);
+        });
+    leftDoor.setOnMouseExited(
+        event -> {
+          leftDoor.setOpacity(0);
+        });
+    rightDoor.setOnMouseEntered(
+        event -> {
+          rightDoor.setOpacity(1);
+        });
+    rightDoor.setOnMouseExited(
+        event -> {
+          rightDoor.setOpacity(0);
+        });
+  }
+
   @FXML
   public void onClick(MouseEvent event) {
     Rectangle rectangle = (Rectangle) event.getSource();
-    Scene currentScene = rectangle.getScene();
+    Scene rectangleScene = rectangle.getScene();
     switch (rectangle.getId()) {
       case ("middleDoor"):
         if (GameState.difficulty == 1) {
@@ -93,19 +130,15 @@ public class MainRoomController extends Commander implements TimerObserver {
           dialogue.setText("You must gather 3 more pieces of intel before you may leave.");
         }
         break;
-      case ("leftDoor"):
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
-        break;
-      case ("rightDoor"):
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
-        break;
       case ("keyPad"):
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
+        rectangleScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
         break;
       case ("cabinet"):
         filingCabinet.setVisible(true);
         background.setVisible(true);
         back.setVisible(true);
+        break;
+      default:
         break;
     }
   }

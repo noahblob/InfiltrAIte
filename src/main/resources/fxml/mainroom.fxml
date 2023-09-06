@@ -7,6 +7,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -32,15 +33,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Rectangle fx:id="leftDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="261.0" layoutX="32.0" layoutY="182.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="33.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Rectangle fx:id="rightDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="261.0" layoutX="412.0" layoutY="182.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Rectangle>
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/phone%20cropped.png" />
@@ -74,5 +66,7 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#clickBack" text="RETURN" visible="false" />
+      <Polygon fx:id="leftDoor" fill="#fffa9680" layoutX="82.0" layoutY="242.0" opacity="0.0" points="-50.00000762939453, 192.66665649414062, -24.000011444091797, 180.66665649414062, -24.000011444091797, -49.33332824707031, -50.00000762939453, -60.0" stroke="BLACK" strokeType="INSIDE" />
+      <Polygon fx:id="rightDoor" fill="#fffa9680" layoutX="412.0" layoutY="319.0" opacity="0.0" points="2.66668701171875, 110.33331298828125, 31.33331298828125, 127.0, 31.33331298828125, -141.66665649414062, 2.66668701171875, -127.66665649414062" stroke="BLACK" strokeType="INSIDE" />
    </children>
 </Pane>
