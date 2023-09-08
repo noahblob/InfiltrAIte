@@ -14,7 +14,6 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LeftRoomController">
    <children>
-      <Rectangle fx:id="phone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="429.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="43.0" />
       <ImageView fx:id="room" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/testroom.gif" />
@@ -29,7 +28,7 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="247.0" />
       <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -98,5 +97,20 @@
       <Slider fx:id="s3" layoutX="127.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" visible="false" />
       <Slider fx:id="s4" layoutX="152.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" visible="false" />
       <Slider fx:id="s5" layoutX="56.0" layoutY="206.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" visible="false" />
+      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Key.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="58.0" layoutX="362.0" layoutY="535.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/intel%20(1).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="intel" alignment="CENTER" layoutX="417.0" layoutY="540.0" prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#f80303">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
