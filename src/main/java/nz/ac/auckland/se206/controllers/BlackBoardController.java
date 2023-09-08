@@ -30,16 +30,16 @@ public class BlackBoardController extends Commander implements TimerObserver {
   @FXML private Label sat;
   @FXML private Label sun;
 
-  int monday;
-  int tuesday;
-  int wednesday;
-  int thursday;
-  int friday;
-  int saturday;
-  int sunday;
-  int day;
-  int ans;
-  LocalDate currentDate;
+  private int monday;
+  private int tuesday;
+  private int wednesday;
+  private int thursday;
+  private int friday;
+  private int saturday;
+  private int sunday;
+  private int day;
+  private int ans;
+  private LocalDate currentDate;
 
   Map<Integer, Integer> hashmap = new HashMap<>();
 
@@ -99,6 +99,8 @@ public class BlackBoardController extends Commander implements TimerObserver {
     fr.setText(Integer.toString(friday));
     sat.setText(Integer.toString(saturday));
     sun.setText(Integer.toString(sunday));
+
+    ans = hashmap.get(day);
   }
 
   /**
@@ -107,7 +109,7 @@ public class BlackBoardController extends Commander implements TimerObserver {
    * @return Correct answer for keypad
    */
   public int getKeypadAns() {
-    return hashmap.get(day);
+    return ans;
   }
 
   /**

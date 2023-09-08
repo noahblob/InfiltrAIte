@@ -63,7 +63,6 @@ public class BookController extends Commander implements TimerObserver {
     bookMap.put("book3", actual3);
     bookMap.put("book4", actual4);
     bookMap.put("book5", actual5);
-
     bookButtons = Arrays.asList(book1, book2, book3, book4, book5);
   }
 
