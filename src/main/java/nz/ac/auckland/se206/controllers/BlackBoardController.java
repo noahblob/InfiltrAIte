@@ -4,14 +4,12 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
@@ -48,9 +46,6 @@ public class BlackBoardController extends Commander implements TimerObserver {
   Map<Integer, Integer> hashmap = new HashMap<>();
 
   Random random = new Random();
-
-  Font chalkFont =
-      Font.loadFont(getClass().getResource("/fonts/Chalkduster.ttf").toExternalForm(), 12);
 
   /**
    * Initializes the room view, it is called when the room loads.
