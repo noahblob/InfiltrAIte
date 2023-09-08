@@ -62,7 +62,7 @@ public class KeyPadController extends Commander implements TimerObserver {
         numberLabel.setText("");
         break;
       case "submitButton":
-        if (numberLabel.getText().equals("123")) {
+        if (Integer.parseInt(numberLabel.getText()) == BlackBoardController.getKeypadAns()) {
           // dialogue.setText("Nice work, you cracked the code to the door!");
           System.out.println("user solved the code");
           CommanderController commander = CommanderController.getInstance();
@@ -81,39 +81,43 @@ public class KeyPadController extends Commander implements TimerObserver {
   public void clickNum(MouseEvent event) {
     Rectangle number = (Rectangle) event.getSource();
     String currentText = numberLabel.getText();
-    switch (number.getId()) {
-      case ("one"):
-        currentText = currentText + "1";
-        break;
-      case ("two"):
-        currentText = currentText + "2";
-        break;
-      case ("three"):
-        currentText = currentText + "3";
-        break;
-      case ("four"):
-        currentText = currentText + "4";
-        break;
-      case ("five"):
-        currentText = currentText + "5";
-        break;
-      case ("six"):
-        currentText = currentText + "6";
-        break;
-      case ("seven"):
-        currentText = currentText + "7";
-        break;
-      case ("eight"):
-        currentText = currentText + "8";
-        break;
-      case ("nine"):
-        currentText = currentText + "9";
-        break;
-      case ("zero"):
-        currentText = currentText + "0";
-        break;
-      default:
-        break;
+    if (currentText.length() >= 3) {
+      return;
+    } else {
+      switch (number.getId()) {
+        case ("one"):
+          currentText = currentText + "1";
+          break;
+        case ("two"):
+          currentText = currentText + "2";
+          break;
+        case ("three"):
+          currentText = currentText + "3";
+          break;
+        case ("four"):
+          currentText = currentText + "4";
+          break;
+        case ("five"):
+          currentText = currentText + "5";
+          break;
+        case ("six"):
+          currentText = currentText + "6";
+          break;
+        case ("seven"):
+          currentText = currentText + "7";
+          break;
+        case ("eight"):
+          currentText = currentText + "8";
+          break;
+        case ("nine"):
+          currentText = currentText + "9";
+          break;
+        case ("zero"):
+          currentText = currentText + "0";
+          break;
+        default:
+          break;
+      }
     }
     numberLabel.setText(currentText);
   }
