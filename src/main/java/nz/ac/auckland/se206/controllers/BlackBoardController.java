@@ -38,7 +38,7 @@ public class BlackBoardController extends Commander implements TimerObserver {
   private int saturday;
   private int sunday;
   private int day;
-  private int ans;
+  private static int ans;
   private LocalDate currentDate;
 
   Map<Integer, Integer> hashmap = new HashMap<>();
@@ -108,7 +108,7 @@ public class BlackBoardController extends Commander implements TimerObserver {
    *
    * @return Correct answer for keypad
    */
-  public int getKeypadAns() {
+  public static int getKeypadAns() {
     return ans;
   }
 
