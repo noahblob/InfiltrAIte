@@ -11,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
@@ -25,11 +26,14 @@ public class LockerController extends Commander implements TimerObserver {
   @FXML private Label second;
   @FXML private Label third;
   @FXML private Label fourth;
+  @FXML private Label intel;
 
   private int one;
   private int two;
   private int three;
   private int four;
+
+  private boolean isIntelGathered = false;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -38,7 +42,7 @@ public class LockerController extends Commander implements TimerObserver {
    */
   public void initialize() throws ApiProxyException {
     super.initialize();
-    one = two = three = 0;
+    one = two = three = four = 0;
     objective.setText("Whats the correct combination?");
     TimerClass.add(this);
   }
@@ -106,8 +110,15 @@ public class LockerController extends Commander implements TimerObserver {
    */
   @FXML
   public void onCheckAns(MouseEvent event) {
-    // If one, two and three is same to answer
-    System.out.println("You got it!!");
+    if (!isIntelGathered) {
+      int answer = LeftRoomController.year;
+      int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
+      if (answer == userAnswer) {
+        isIntelGathered = true;
+        GameState.numOfIntel++;
+        intel.setText("x" + GameState.numOfIntel);
+      } else System.out.println("Incorrect");
+    }
   }
 
   /**

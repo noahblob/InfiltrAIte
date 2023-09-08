@@ -23,6 +23,7 @@ public class RightRoomController extends Commander implements TimerObserver {
   @FXML private Label objectiveRight;
   @FXML private Text timer;
   @FXML private Polygon riddle;
+  @FXML private Polygon blackboard;
 
   static NumberGroup answer;
 
@@ -54,6 +55,15 @@ public class RightRoomController extends Commander implements TimerObserver {
     riddle.setOnMouseExited(
         event -> {
           riddle.setOpacity(0);
+        });
+
+    blackboard.setOnMouseEntered(
+        event -> {
+          blackboard.setOpacity(0.5);
+        });
+    blackboard.setOnMouseExited(
+        event -> {
+          blackboard.setOpacity(0);
         });
   }
 
@@ -125,6 +135,19 @@ public class RightRoomController extends Commander implements TimerObserver {
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.LOCKER));
+  }
+
+  /**
+   * Shows the blackboard this is connected to the answer for the keypad
+   *
+   * @param event
+   */
+  @FXML
+  public void clickBlackBoard(MouseEvent event) throws IOException {
+    Polygon poly = (Polygon) event.getSource();
+    Scene currentScene = poly.getScene();
+    // Update the scene to the blackboard
+    currentScene.setRoot(SceneManager.getuserInterface(AppUI.BLACKBOARD));
   }
 
   /**

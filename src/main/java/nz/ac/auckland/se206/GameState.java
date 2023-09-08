@@ -15,4 +15,6 @@ public class GameState {
   /** Indicates current country we are infiltrating */
   public static String country = null;
 
+  /** Indicates amount of intelligence gathered */
+  public static int numOfIntel = 0;
 }

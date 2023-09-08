@@ -7,17 +7,16 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Polygon?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RightRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BlackBoardController">
    <children>
-      <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightroom.png" />
-         </image></ImageView>
+         </image>
+      </ImageView>
       <Text fx:id="timer" layoutX="390.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
          <font>
             <Font size="25.0" />
@@ -28,12 +27,16 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="247.0" />
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="153.0" layoutX="150.0" layoutY="239.0" onMouseClicked="#clickDoor" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0">
+      <TextArea fx:id="dialogue" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="247.0" />
+      <Button fx:id="goBack" layoutX="149.0" layoutY="471.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" text="RETURN TO ROOM">
+         <font>
+            <Font size="18.0" />
+         </font>
          <cursor>
             <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Label fx:id="objectiveRight" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
+         </cursor>
+      </Button>
+      <Label fx:id="objective" alignment="CENTER" layoutX="7.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
          <font>
             <Font size="20.0" />
          </font>
@@ -43,14 +46,11 @@
             <Image url="@../images/phone%20cropped.png" />
          </image>
       </ImageView>
+      
+      
       <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
-      <Polygon fx:id="riddle" fill="#fffa9680" layoutX="316.0" layoutY="452.0" onMouseClicked="#clickRiddle" opacity="0.0" points="2.0, -47.0, 36.0, -12.0, 36.0, -86.0, 2.0, -104.0" stroke="BLACK" strokeType="INSIDE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Polygon>
-      <Rectangle fx:id="book" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="38.0" layoutX="244.0" layoutY="359.0" onMouseClicked="#clickBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
       <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
@@ -61,14 +61,22 @@
             <Image url="@../images/intel%20(1).png" />
          </image>
       </ImageView>
-      <Polygon fx:id="blackboard" fill="#fffa9680" layoutX="38.0" layoutY="328.0" onMouseClicked="#clickBlackBoard" opacity="0.0" points="-5.0, -4.0, 52.0, -4.0, 52.0, -86.0, -5.0, -105.0" stroke="BLACK" strokeType="INSIDE">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Polygon>
       <Label fx:id="intel" alignment="CENTER" layoutX="417.0" layoutY="540.0" prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#f80303">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
+      <ImageView fitHeight="268.0" fitWidth="443.0" layoutX="18.0" layoutY="152.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/blackboard-2618793_640.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="mon" layoutX="61.0" layoutY="297.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
+      <Label fx:id="wed" layoutX="62.0" layoutY="323.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
+      <Label fx:id="sun" layoutX="60.0" layoutY="377.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
+      <Label fx:id="th" layoutX="74.0" layoutY="336.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
+      <Label fx:id="fr" layoutX="61.0" layoutY="349.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
+      <Label fx:id="sat" layoutX="60.0" layoutY="363.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
+      <Label fx:id="tues" layoutX="65.0" layoutY="310.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
    </children>
 </Pane>

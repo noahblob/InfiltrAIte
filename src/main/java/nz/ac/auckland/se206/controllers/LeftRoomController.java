@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,16 +12,15 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Items.CustomSliderSkin;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.Items.CustomSliderSkin;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
@@ -62,11 +60,14 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle midDrawer;
   @FXML private Rectangle botDrawer;
 
+  /** The key in the inventory box. It is currently set to visible. */
+  @FXML private ImageView key;
+
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
   private List<Slider> sliders;
   private int lastNumbers;
-  
+
   private enum Object {
     COMMS,
     DRAWER,
@@ -86,7 +87,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   public void initialize() throws ApiProxyException {
     super.initialize();
     objective.setText("This is the LEFT ROOM");
-    
+
     createRoom();
     setPopups();
     setHoverEvents();
@@ -94,7 +95,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     generateYear();
     openCabinet(false);
     TimerClass.add(this);
-    
   }
 
   @Override
@@ -121,36 +121,102 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void setHoverEvents() {
-    door.setOnMouseEntered(event -> { door.setOpacity(0.5);});
-    door.setOnMouseExited(event -> { door.setOpacity(0);});
-    painting.setOnMouseEntered(event -> { painting.setOpacity(0.5);});
-    painting.setOnMouseExited(event -> { painting.setOpacity(0);});
-    painting1.setOnMouseEntered(event -> { painting1.setOpacity(0.5);});
-    painting1.setOnMouseExited(event -> { painting1.setOpacity(0);});
-    painting2.setOnMouseEntered(event -> { painting2.setOpacity(0.5);});
-    painting2.setOnMouseExited(event -> { painting2.setOpacity(0);});
-    newspaper.setOnMouseEntered(event -> { newspaper.setOpacity(0.5);});
-    newspaper.setOnMouseExited(event -> { newspaper.setOpacity(0);});
-    drawer.setOnMouseEntered(event -> { drawer.setOpacity(0.5);});
-    drawer.setOnMouseExited(event -> { drawer.setOpacity(0);});
-    communications.setOnMouseEntered(event -> { communications.setOpacity(0.5);});
-    communications.setOnMouseExited(event -> { communications.setOpacity(0);});
-    desk.setOnMouseEntered(event -> { desk.setOpacity(0.5);});
-    desk.setOnMouseExited(event -> { desk.setOpacity(0);});
+    door.setOnMouseEntered(
+        event -> {
+          door.setOpacity(0.5);
+        });
+    door.setOnMouseExited(
+        event -> {
+          door.setOpacity(0);
+        });
+    painting.setOnMouseEntered(
+        event -> {
+          painting.setOpacity(0.5);
+        });
+    painting.setOnMouseExited(
+        event -> {
+          painting.setOpacity(0);
+        });
+    painting1.setOnMouseEntered(
+        event -> {
+          painting1.setOpacity(0.5);
+        });
+    painting1.setOnMouseExited(
+        event -> {
+          painting1.setOpacity(0);
+        });
+    painting2.setOnMouseEntered(
+        event -> {
+          painting2.setOpacity(0.5);
+        });
+    painting2.setOnMouseExited(
+        event -> {
+          painting2.setOpacity(0);
+        });
+    newspaper.setOnMouseEntered(
+        event -> {
+          newspaper.setOpacity(0.5);
+        });
+    newspaper.setOnMouseExited(
+        event -> {
+          newspaper.setOpacity(0);
+        });
+    drawer.setOnMouseEntered(
+        event -> {
+          drawer.setOpacity(0.5);
+        });
+    drawer.setOnMouseExited(
+        event -> {
+          drawer.setOpacity(0);
+        });
+    communications.setOnMouseEntered(
+        event -> {
+          communications.setOpacity(0.5);
+        });
+    communications.setOnMouseExited(
+        event -> {
+          communications.setOpacity(0);
+        });
+    desk.setOnMouseEntered(
+        event -> {
+          desk.setOpacity(0.5);
+        });
+    desk.setOnMouseExited(
+        event -> {
+          desk.setOpacity(0);
+        });
 
-    topDrawer.setOnMouseEntered(event -> { topDrawer.setOpacity(0.5);});
-    topDrawer.setOnMouseExited(event -> { topDrawer.setOpacity(0);});
-    midDrawer.setOnMouseEntered(event -> { midDrawer.setOpacity(0.5);});
-    midDrawer.setOnMouseExited(event -> { midDrawer.setOpacity(0);});
-    botDrawer.setOnMouseEntered(event -> { botDrawer.setOpacity(0.5);});
-    botDrawer.setOnMouseExited(event -> { botDrawer.setOpacity(0);});
+    topDrawer.setOnMouseEntered(
+        event -> {
+          topDrawer.setOpacity(0.5);
+        });
+    topDrawer.setOnMouseExited(
+        event -> {
+          topDrawer.setOpacity(0);
+        });
+    midDrawer.setOnMouseEntered(
+        event -> {
+          midDrawer.setOpacity(0.5);
+        });
+    midDrawer.setOnMouseExited(
+        event -> {
+          midDrawer.setOpacity(0);
+        });
+    botDrawer.setOnMouseEntered(
+        event -> {
+          botDrawer.setOpacity(0.5);
+        });
+    botDrawer.setOnMouseExited(
+        event -> {
+          botDrawer.setOpacity(0);
+        });
   }
 
   private void showPopup(ImageView popup) {
-      popup.setVisible(true);
-      popUpBackGround.setVisible(true);
-      visiblePopups.add(popup);
-      back.setVisible(true);
+    popup.setVisible(true);
+    popUpBackGround.setVisible(true);
+    visiblePopups.add(popup);
+    back.setVisible(true);
   }
 
   private void toggleSliders(Boolean flag) {
@@ -177,24 +243,24 @@ public class LeftRoomController extends Commander implements TimerObserver {
     tear.setVisible(false);
     lastDigits.setVisible(false);
     drawer1.setVisible(false);
-   
-    back.setOnAction(event -> {
-        for (ImageView popup : visiblePopups) {
-            popup.setVisible(false);
-        }
-        visiblePopups.clear();
-        back.setVisible(false);
-        popUpBackGround.setVisible(false);
-        // Disables sliders & last digits.
-        toggleSliders(false);
-        toggleYear(false);
-        openCabinet(false);
 
-    });
+    back.setOnAction(
+        event -> {
+          for (ImageView popup : visiblePopups) {
+            popup.setVisible(false);
+          }
+          visiblePopups.clear();
+          back.setVisible(false);
+          popUpBackGround.setVisible(false);
+          // Disables sliders & last digits.
+          toggleSliders(false);
+          toggleYear(false);
+          openCabinet(false);
+        });
   }
 
   private void generateYear() {
-     
+
     Random random = new Random();
     lastNumbers = random.nextInt(41) + 20; // Generates number between 20 and 60
 
@@ -202,7 +268,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     LeftRoomController.year = 1900 + lastNumbers;
     // Update the tear piece to show the last digits.
     lastDigits.setText(String.valueOf(lastNumbers));
-     
   }
 
   private void setSliders() {
@@ -227,43 +292,40 @@ public class LeftRoomController extends Commander implements TimerObserver {
     botDrawer.setVisible(flag);
   }
 
-  @FXML public void onClick(MouseEvent event) {
+  @FXML
+  public void onClick(MouseEvent event) {
 
     Shape clickedObject = (Shape) event.getSource();
     Object type = objects.get(clickedObject);
 
     // Add more items that can be clicked on.
-    switch(type) {
+    switch (type) {
       case DOOR:
         clickDoor();
         break;
-        case PAINT1:
+      case PAINT1:
         showPopup(p1);
         break;
-        case PAINT:
+      case PAINT:
         showPopup(p);
         break;
-        case NEWS:
+      case NEWS:
         showPopup(p2);
         break;
-        case COMMS:
+      case COMMS:
         showPopup(comms);
         showPopup(comms1);
         toggleSliders(true);
         break;
-        case DESK:
+      case DESK:
         showPopup(tear);
         toggleYear(true);
         break;
-        case DRAWER:
+      case DRAWER:
         showPopup(drawer1);
         openCabinet(true);
       default:
         break;
     }
-
   }
-
-  
-
 }

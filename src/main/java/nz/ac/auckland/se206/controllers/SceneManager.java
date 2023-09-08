@@ -15,7 +15,8 @@ public class SceneManager {
     LOCKER,
     KEYPAD,
     BOOKSHELF,
-    POPUP
+    POPUP,
+    BLACKBOARD
   }
 
   private static Map<AppUI, Parent> sceneMap = new HashMap<>();
