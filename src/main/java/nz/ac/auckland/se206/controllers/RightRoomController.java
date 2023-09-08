@@ -2,6 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
+
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -12,6 +14,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
@@ -24,6 +27,7 @@ public class RightRoomController extends Commander implements TimerObserver {
   @FXML private Text timer;
   @FXML private Polygon riddle;
   @FXML private Polygon blackboard;
+  @FXML private Label intel;
 
   static NumberGroup answer;
 
@@ -39,6 +43,7 @@ public class RightRoomController extends Commander implements TimerObserver {
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     // Initialise phone.
     super.initialize();
@@ -116,7 +121,7 @@ public class RightRoomController extends Commander implements TimerObserver {
    */
   @FXML
   public void clickDoor(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
+    System.out.println(BlackBoardController.getKeypadAns());
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room

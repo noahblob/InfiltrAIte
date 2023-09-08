@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -18,6 +19,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Items.CustomSliderSkin;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
@@ -59,6 +61,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle topDrawer;
   @FXML private Rectangle midDrawer;
   @FXML private Rectangle botDrawer;
+  @FXML private Label intel;
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
@@ -85,6 +88,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+
     super.initialize();
     objective.setText("This is the LEFT ROOM");
 

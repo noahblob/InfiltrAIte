@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
@@ -24,8 +26,11 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Label numberLabel;
   @FXML private TextArea dialogue;
   @FXML private Rectangle one, two, three, four, five, six, seven, eight, nine, zero;
+  @FXML private Label intel;
 
   public void initialize() throws ApiProxyException {
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+
     super.initialize();
     objectiveMiddle.setText("Figure out the combination!");
     numberLabel.setText("");

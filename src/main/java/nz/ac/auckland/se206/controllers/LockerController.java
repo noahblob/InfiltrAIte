@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -41,6 +42,7 @@ public class LockerController extends Commander implements TimerObserver {
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     super.initialize();
     one = two = three = four = 0;
     objective.setText("Whats the correct combination?");
@@ -115,8 +117,8 @@ public class LockerController extends Commander implements TimerObserver {
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
         isIntelGathered = true;
-        GameState.numOfIntel++;
-        intel.setText("x" + GameState.numOfIntel);
+        GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+
       } else System.out.println("Incorrect");
     }
   }
