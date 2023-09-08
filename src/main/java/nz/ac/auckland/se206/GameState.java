@@ -1,5 +1,7 @@
 package nz.ac.auckland.se206;
 
+import javafx.beans.property.SimpleIntegerProperty;
+
 /** Represents the state of the game. */
 public class GameState {
 
@@ -16,5 +18,5 @@ public class GameState {
   public static String country = null;
 
   /** Indicates amount of intelligence gathered */
-  public static int numOfIntel = 0;
+  public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
 }

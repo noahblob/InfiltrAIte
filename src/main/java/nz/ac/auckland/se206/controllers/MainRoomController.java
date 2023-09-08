@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -33,6 +34,7 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle midDrawer;
   @FXML private Rectangle botDrawer;
   @FXML private ImageView filingCabinet;
+  @FXML private Label intel;
 
   /**
    * s Initializes the room view, it is called when the room loads.
@@ -40,6 +42,8 @@ public class MainRoomController extends Commander implements TimerObserver {
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+
     super.initialize();
     objectiveMiddle.setText("This is the MAIN ROOM");
     TimerClass.add(this);
