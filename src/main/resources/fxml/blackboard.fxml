@@ -71,12 +71,33 @@
             <Image url="@../images/blackboard-2618793_640.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="mon" layoutX="61.0" layoutY="297.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
-      <Label fx:id="wed" layoutX="62.0" layoutY="323.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
-      <Label fx:id="sun" layoutX="60.0" layoutY="377.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
-      <Label fx:id="th" layoutX="74.0" layoutY="336.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
-      <Label fx:id="fr" layoutX="61.0" layoutY="349.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
-      <Label fx:id="sat" layoutX="60.0" layoutY="363.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
-      <Label fx:id="tues" layoutX="65.0" layoutY="310.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE" />
+      <Label fx:id="mon" layoutX="79.0" layoutY="295.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE">
+         <font>
+            <Font name="Chalkduster" size="12.0" />
+         </font></Label>
+      <Label fx:id="wed" layoutX="78.0" layoutY="321.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE">
+         <font>
+            <Font name="Chalkduster" size="12.0" />
+         </font></Label>
+      <Label fx:id="sun" layoutX="76.0" layoutY="375.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE">
+         <font>
+            <Font name="Chalkduster" size="12.0" />
+         </font></Label>
+      <Label fx:id="th" layoutX="78.0" layoutY="334.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE">
+         <font>
+            <Font name="Chalkduster" size="12.0" />
+         </font></Label>
+      <Label fx:id="fr" layoutX="77.0" layoutY="349.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE">
+         <font>
+            <Font name="Chalkduster" size="12.0" />
+         </font></Label>
+      <Label fx:id="sat" layoutX="76.0" layoutY="363.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE">
+         <font>
+            <Font name="Chalkduster" size="12.0" />
+         </font></Label>
+      <Label fx:id="tues" layoutX="79.0" layoutY="307.0" prefHeight="17.0" prefWidth="58.0" text="123" textFill="WHITE">
+         <font>
+            <Font name="Chalkduster" size="12.0" />
+         </font></Label>
    </children>
 </Pane>
