@@ -8,8 +8,11 @@ public class GameState {
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
 
-  /** Indicates whether the key has been found. */
+  /** Indicates whether the key to the cabinet has been found. */
   public static boolean isKeyFound = false;
+
+  /** Indicates whether the keypad has had the correct digits input */
+  public static boolean isKeypadSolved = false;
 
   /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD */
   public static int difficulty = 0;

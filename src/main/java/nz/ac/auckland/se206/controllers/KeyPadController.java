@@ -62,11 +62,12 @@ public class KeyPadController extends Commander implements TimerObserver {
         numberLabel.setText("");
         break;
       case "submitButton":
+        CommanderController commander = CommanderController.getInstance();
         if (Integer.parseInt(numberLabel.getText()) == BlackBoardController.getKeypadAns()) {
-          // dialogue.setText("Nice work, you cracked the code to the door!");
-          System.out.println("user solved the code");
-          CommanderController commander = CommanderController.getInstance();
+          GameState.isKeypadSolved = true;
           commander.updateDialogueBox("Nice work, you cracked the code to the door!");
+        } else {
+          commander.updateDialogueBox("That's not the right code, try again!");
         }
         break;
       case "exitButton":
