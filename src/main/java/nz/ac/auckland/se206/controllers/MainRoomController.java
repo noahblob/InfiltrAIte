@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -37,15 +36,16 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Label intel;
 
   /**
-   * s Initializes the room view, it is called when the room loads.
+   * Initializes the room view, it is called when the room loads.
    *
-   * @throws ApiProxyException
+   * @throws ApiProxyException if there is an error with the API
    */
   public void initialize() throws ApiProxyException {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
     objectiveMiddle.setText("This is the MAIN ROOM");
+    // set timer
     TimerClass.add(this);
 
     // separate method for left and right door hover and click events
@@ -68,6 +68,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     System.out.println("key " + event.getCode() + " pressed");
     Pane pane = (Pane) event.getSource();
     Scene currentScene = pane.getScene();
+    // switch rooms upon arrow key press
     if (event.getCode().toString().equals(("LEFT"))) {
       currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
     } else if (event.getCode().toString().equals("RIGHT")) {
@@ -75,6 +76,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     }
   }
 
+  /** Handles the click and hover effects for left and right door in main room. */
   public void setDoorEvents() {
     // set click functionaltiy for left and right door
     leftDoor.setOnMouseClicked(
@@ -108,22 +110,33 @@ public class MainRoomController extends Commander implements TimerObserver {
         });
   }
 
+  /**
+   * Handles the onClick event for all rectangles in the middle room.
+   *
+   * @param event the mouse event
+   * @throws ApiProxyException if there is an error with the API
+   */
   @FXML
   public void onClick(MouseEvent event) throws ApiProxyException {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene rectangleScene = rectangle.getScene();
+    // switch case for each rectangle, including the middle door, keypad and cabinet
     switch (rectangle.getId()) {
       case ("middleDoor"):
         CommanderController commander = CommanderController.getInstance();
         if (GameState.isKeypadSolved) {
+          // set commander message based on how much intel has already been found, how much needs to
+          // be found and the difficulty of the game
           switch (GameState.numOfIntel.get()) {
             case 0:
+              // need at least 1 intel for any difficulty
               commander.updateDialogueBox(
                   "Don't forget, there is still "
                       + (GameState.difficulty - GameState.numOfIntel.get())
                       + " more intel to find!");
               break;
             case 1:
+              // need one intel for difficulty 1
               if (GameState.difficulty == 1) {
                 commander.updateDialogueBox("You have found all required intel, time to escape!");
               } else {
@@ -134,6 +147,7 @@ public class MainRoomController extends Commander implements TimerObserver {
               }
               break;
             case 2:
+              // need two intel for difficulty 2
               if (GameState.difficulty <= 2) {
                 commander.updateDialogueBox("You have found all required intel, time to escape!");
               } else {
@@ -144,9 +158,11 @@ public class MainRoomController extends Commander implements TimerObserver {
               }
               break;
             case 3:
+              // 3 or more intel and user has found all required intel
               commander.updateDialogueBox("You have found all required intel, time to escape!");
               break;
             default:
+              commander.updateDialogueBox("You have found all required intel, time to escape!");
               break;
           }
         } else {
@@ -157,6 +173,7 @@ public class MainRoomController extends Commander implements TimerObserver {
         rectangleScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
         break;
       case ("cabinet"):
+        // set visibility of the filing cabinet and background
         filingCabinet.setVisible(true);
         background.setVisible(true);
         back.setVisible(true);
@@ -169,6 +186,11 @@ public class MainRoomController extends Commander implements TimerObserver {
     }
   }
 
+  /**
+   * Handles the back button on cabinet popup to disable all popups.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickBack(MouseEvent event) {
     filingCabinet.setVisible(false);
