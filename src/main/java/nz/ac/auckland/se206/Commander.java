@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -32,7 +31,7 @@ public abstract class Commander {
   }
 
   @FXML
-  protected void onSendMessage(MouseEvent event) throws ApiProxyException, IOException {
+  protected void onSendMessage(MouseEvent event) throws Exception {
     // Send the message to the commander controller.
     CommanderController.getInstance().onSendMessage(event, input);
   }

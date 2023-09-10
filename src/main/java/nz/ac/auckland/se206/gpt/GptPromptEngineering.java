@@ -19,20 +19,22 @@ public class GptPromptEngineering {
         + " the answer";
   }
 
-  public static String initialiseCommander(String numberOfHints) {
+  public static String initialiseCommander() {
       StringBuilder sb = new StringBuilder();
-      addGameIntro(sb, numberOfHints);
+      addGameIntro(sb);
       addBattleInfo(sb);
       addViktorInfo(sb);
       addNikolaiInfo(sb);
+      addRiddleCreation(sb);
       return sb.toString();
   }
 
-  private static void addGameIntro(StringBuilder sb, String numberOfHints) {
+  // Update the number of hints, and the riddle we have later.
+  private static void addGameIntro(StringBuilder sb) {
     sb.append("You are a high-ranking general in an infiltration mission game. ")
       .append("You must speak with authority and never apologize. ")
       .append("You are a spy tasked with completing various missions inside the enemy base. ")
-      .append("To help me with my missions, I can ask you for ").append(numberOfHints).append(" hints. ")
+      .append("To help me with my missions, I can ask you for hints. I will update you on how many hints I can have.")
       .append("If I have used up all my hints, you CANNOT help me anymore. ")
       .append("Otherwise, provide hints when asked. Here is more information about the game.\n");
   }
@@ -55,8 +57,11 @@ public class GptPromptEngineering {
       .append("\"I do not have intelligence records about him.\"\n");
   }
 
-
-
-
+  private static void addRiddleCreation(StringBuilder sb) {
+    sb.append("When I give you a series of random ASCII characters, ")
+      .append("you must say: Hang on I will get Intel OPS to decrypt the message, ")
+      .append("Ask for an update in a few seconds. ")
+      .append("When I ask for an update about the decryption, tell me a riddle. I will update you on the topic of the riddle later.");
+  }
 
 }

@@ -1,10 +1,14 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -12,12 +16,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Items.CustomSliderSkin;
@@ -62,6 +68,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle midDrawer;
   @FXML private Rectangle botDrawer;
   @FXML private Label intel;
+  @FXML private ImageView paper;
+  @FXML private TextArea riddle;
+  @FXML private Button decrypt;
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
@@ -70,6 +79,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private List<ImageView> visiblePopups;
   private List<Slider> sliders;
   private int lastNumbers;
+  private String riddleCode;
 
   private enum Object {
     COMMS,
@@ -79,7 +89,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
     PAINT2,
     DOOR,
     DESK,
-    NEWS
+    NEWS,
+    BOT,
+    MID,
+    TOP
   }
 
   /**
@@ -89,6 +102,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
    */
   public void initialize() throws ApiProxyException {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+
+    System.out.println(GameState.getRandomWord());
 
     super.initialize();
     objective.setText("This is the LEFT ROOM");
@@ -101,7 +116,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     openCabinet(false);
     TimerClass.add(this);
   }
-
   @Override
   public void timerStart() {
     TimerClass timerText = TimerClass.getInstance();
@@ -123,6 +137,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
     objects.put(door, Object.DOOR);
     objects.put(newspaper, Object.NEWS);
     objects.put(desk, Object.DESK);
+    objects.put(topDrawer, Object.TOP);
+    objects.put(midDrawer, Object.MID);
+    objects.put(botDrawer, Object.BOT);
   }
 
   private void setHoverEvents() {
@@ -238,7 +255,11 @@ public class LeftRoomController extends Commander implements TimerObserver {
     visiblePopups = new ArrayList<>();
     popUpBackGround.setVisible(false);
     back.setVisible(false);
-
+    decrypt.setVisible(false);
+    riddleCode = generateEncrypted(100);
+    riddle.appendText(riddleCode);
+    riddle.setWrapText(true);
+    
     // Individual popup items.
     p.setVisible(false);
     p1.setVisible(false);
@@ -248,6 +269,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
     tear.setVisible(false);
     lastDigits.setVisible(false);
     drawer1.setVisible(false);
+    riddle.setVisible(false);
+    paper.setVisible(false);
 
     back.setOnAction(
         event -> {
@@ -261,7 +284,38 @@ public class LeftRoomController extends Commander implements TimerObserver {
           toggleSliders(false);
           toggleYear(false);
           openCabinet(false);
+          riddle.setVisible(false);
+          decrypt.setVisible(false);
         });
+    
+    decrypt.setOnAction(event -> {
+        // send the encrypted message to GPT.
+        System.out.println("TEST PRESS");
+        String dialogue = "Sir, I found a piece of paper with the following character, what does it say? " + riddleCode;
+        try {
+            CommanderController.getInstance().onSendMessage(event, dialogue);
+
+            // Create a Timeline to wait for 10 seconds
+            Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(10000),
+                ae -> {
+                    try {
+                        String getRiddle = "Give me the riddle";
+                        CommanderController.getInstance().sendHiddenMessageToGpt(getRiddle);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }));
+            
+            // Play the Timeline
+            timeline.play();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    });
+
+      
   }
 
   private void generateYear() {
@@ -329,8 +383,33 @@ public class LeftRoomController extends Commander implements TimerObserver {
       case DRAWER:
         showPopup(drawer1);
         openCabinet(true);
+        break;
+      case MID:
+        showPopup(paper);
+        riddle.setVisible(true);
+        decrypt.setVisible(true);
       default:
         break;
     }
   }
+
+  private String generateEncrypted(int length) {
+    
+    String asciiChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+    SecureRandom random = new SecureRandom();
+    StringBuilder encryptedText = new StringBuilder();
+    int count = 0;
+    for (int i = 0; i < length; i++) {
+      if (count > 0 && random.nextInt(10) < 2) { // 20% chance to insert a space
+          encryptedText.append(' ');
+          count = 0;
+          continue;
+      }
+      int index = random.nextInt(asciiChars.length());
+      encryptedText.append(asciiChars.charAt(index));
+      count++;
+    }
+    return encryptedText.toString();
+  }
+
 }
