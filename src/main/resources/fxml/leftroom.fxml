@@ -77,7 +77,7 @@
             <Image url="@../images/corner.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="drawer1" fitHeight="400.0" fitWidth="276.0" layoutX="109.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="drawer1" fitHeight="400.0" fitWidth="276.0" layoutX="109.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/drawer.png" />
          </image>
