@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
@@ -53,25 +54,26 @@ public class CommanderController {
    *
    * @param msg the chat message to append
    */
-  private void appendChatMessage(ChatMessage msg) {
+  private void appendChatMessage(ChatMessage msg, boolean showUserMessage) {
 
     if (isFirstMessage) {
       isFirstMessage = false;
-    return;
+      return;
     }
 
     String role;
     role = msg.getRole().equals("user") ? "You" : "Commander";
-    // Updates each of the screens in each room with updated message.
-    for (TextArea screen : phoneScreens) {
-      if (screen == null) {
-        continue;
+
+    // Only append the user message if showUserMessage is true
+    if (showUserMessage || !msg.getRole().equals("user")) {
+      for (TextArea screen : phoneScreens) {
+        if (screen == null) {
+          continue;
+        }
+        screen.appendText(role + ": " + msg.getContent() + "\n\n");
       }
-      screen.appendText(role + ": " + msg.getContent() + "\n\n");
     }
   }
-
-
   /**
    * Runs the GPT model with a given chat message.
    *
@@ -100,7 +102,7 @@ public class CommanderController {
     task.setOnSucceeded(
         workerStateEvent -> {
           ChatMessage result = task.getValue();
-          appendChatMessage(result);
+          appendChatMessage(result, true);
         });
 
     // Optional: catch any exceptions thrown during the task execution.
@@ -114,14 +116,52 @@ public class CommanderController {
     return msg;
   }
 
-  public void onSendMessage(MouseEvent event, TextArea inputText) throws ApiProxyException, IOException {
+  // For TextArea input
+    public void onSendMessage(MouseEvent event, TextArea inputText) throws Exception {
       String message = inputText.getText();
+      handleSendMessage(message);
+      inputText.clear();
+    }
+
+    // For String input
+    public void onSendMessage(ActionEvent event, String message) throws Exception {
+      handleSendMessage(message);
+    }
+
+    // Method to update GPT with the gamestate.
+    public void sendHiddenMessageToGpt(String messageContent) throws Exception {
+      ChatMessage msg = new ChatMessage("user", messageContent);
+
+      Task<ChatMessage> task = new Task<>() {
+        @Override
+        protected ChatMessage call() throws Exception {
+          return runGpt(msg);
+        }
+      };
+      task.setOnSucceeded(e -> {
+        ChatMessage gptResponse = task.getValue();
+        if (gptResponse != null) {
+          javafx.application.Platform.runLater(() -> {
+            appendChatMessage(gptResponse, false);
+          });
+        }
+      });
+      task.setOnFailed(e -> {
+        Throwable ex = task.getException();
+        ex.printStackTrace();
+      });
+      new Thread(task).start();
+    }
+
+
+
+    // Common code to handle sending message
+    private void handleSendMessage(String message) throws Exception {
       if (message.trim().isEmpty()) {
           return;
       }
-      inputText.clear();
       ChatMessage msg = new ChatMessage("user", message);
-      
+
       // Asynchronous task to get GPT response
       Task<ChatMessage> task = new Task<>() {
           @Override
@@ -133,7 +173,7 @@ public class CommanderController {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
               javafx.application.Platform.runLater(() -> {
-                  appendChatMessage(gptResponse);
+                  appendChatMessage(gptResponse, true);
               });
           }
       });
@@ -142,7 +182,7 @@ public class CommanderController {
           ex.printStackTrace();
       });
       new Thread(task).start();
-  }
+    }
 
   // Helper method to add text areas from different scenes to the controller.
   public void addTextArea(TextArea textArea) {
