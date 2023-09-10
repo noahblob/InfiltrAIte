@@ -42,11 +42,8 @@ public class CommanderController {
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
     isFirstMessage = true;
-    // Determine number of hints that commander is able to give.
-    String hintCount = "";
-    hintCount = (GameState.difficulty == 1) ? "infinite" : (GameState.difficulty == 2) ? "5" : "0";
     messages = new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander(hintCount)));
+    runGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
   }
 
   /**

@@ -19,9 +19,9 @@ public class GptPromptEngineering {
         + " the answer";
   }
 
-  public static String initialiseCommander(String numberOfHints) {
+  public static String initialiseCommander() {
       StringBuilder sb = new StringBuilder();
-      addGameIntro(sb, numberOfHints);
+      addGameIntro(sb);
       addBattleInfo(sb);
       addViktorInfo(sb);
       addNikolaiInfo(sb);
@@ -30,7 +30,7 @@ public class GptPromptEngineering {
   }
 
   // Update the number of hints, and the riddle we have later.
-  private static void addGameIntro(StringBuilder sb, String numberOfHints) {
+  private static void addGameIntro(StringBuilder sb) {
     sb.append("You are a high-ranking general in an infiltration mission game. ")
       .append("You must speak with authority and never apologize. ")
       .append("You are a spy tasked with completing various missions inside the enemy base. ")
