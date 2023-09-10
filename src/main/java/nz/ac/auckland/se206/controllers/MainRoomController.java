@@ -24,6 +24,7 @@ public class MainRoomController extends Commander implements TimerObserver {
 
   @FXML private Label objectiveMiddle;
   @FXML private Button back;
+  @FXML private Button cabinetButton;
   @FXML private Text timer;
   @FXML private Polygon leftDoor;
   @FXML private Polygon rightDoor;
@@ -33,6 +34,7 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle midDrawer;
   @FXML private Rectangle botDrawer;
   @FXML private ImageView filingCabinet;
+  @FXML private ImageView intelFile;
   @FXML private Label intel;
 
   /**
@@ -193,12 +195,60 @@ public class MainRoomController extends Commander implements TimerObserver {
    */
   @FXML
   public void clickBack(MouseEvent event) {
-    filingCabinet.setVisible(false);
-    background.setVisible(false);
-    back.setVisible(false);
-    topDrawer.setVisible(false);
-    midDrawer.setVisible(false);
-    botDrawer.setVisible(false);
+    Button button = (Button) event.getSource();
+    switch (button.getId()) {
+      case ("back"):
+        filingCabinet.setVisible(false);
+        background.setVisible(false);
+        back.setVisible(false);
+        topDrawer.setVisible(false);
+        midDrawer.setVisible(false);
+        botDrawer.setVisible(false);
+        break;
+      case ("cabinetButton"):
+        cabinetButton.setVisible(false);
+        intelFile.setVisible(false);
+        break;
+      default:
+        break;
+    }
+  }
+
+  /**
+   * Handles the click event on the cabinet drawers.
+   *
+   * @param event the mouse event
+   * @throws ApiProxyException
+   */
+  @FXML
+  public void clickDrawer(MouseEvent event) throws ApiProxyException {
+    Rectangle drawer = (Rectangle) event.getSource();
+    CommanderController commander = CommanderController.getInstance();
+    switch (drawer.getId()) {
+      case ("topDrawer"):
+        commander.updateDialogueBox("Doesn't look like anything is here...");
+        break;
+      case ("midDrawer"):
+        commander.updateDialogueBox("Doesn't look like anything is here...");
+        break;
+      case ("botDrawer"):
+        // if user has key to cabinet and intel in the cabinet has been found, show intel file and
+        // update intel accordingly
+        if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
+          intelFile.setVisible(true);
+          cabinetButton.setVisible(true);
+          commander.updateDialogueBox("You found some intel!");
+          GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+          GameState.cabinetIntelfound = true;
+        } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
+          commander.updateDialogueBox("You already found the intel in this drawer!");
+        } else {
+          commander.updateDialogueBox("Looks like you need a key to open this drawer");
+        }
+        break;
+      default:
+        break;
+    }
   }
 
   /**
