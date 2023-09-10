@@ -21,7 +21,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Rectangle fx:id="phone" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="50.0" layoutX="429.0" layoutY="540.0" stroke="BLACK" strokeType="INSIDE" width="43.0" />
       <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="466.0" layoutX="11.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/metal-2069115_640.jpg" />
@@ -36,9 +35,7 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="dialogue" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
-      
-      <TextArea editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="357.0" />
+      <TextArea fx:id="dialogue" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="247.0" />
       <Label fx:id="first" alignment="CENTER" layoutX="19.0" layoutY="218.0" prefHeight="117.0" prefWidth="98.0" style="-fx-border-color: black; -fx-background-color: white;" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
@@ -156,5 +153,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
+      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Key.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="58.0" layoutX="362.0" layoutY="535.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/intel%20(1).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="intel" alignment="CENTER" layoutX="417.0" layoutY="540.0" prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#f80303">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

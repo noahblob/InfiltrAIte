@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -15,6 +17,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
@@ -38,6 +41,7 @@ public class BookController extends Commander implements TimerObserver {
   @FXML private ImageView actual5;
   @FXML private Button back;
   @FXML private Button goBack;
+  @FXML private Label intel;
 
   @FXML private String currentBook;
   List<Rectangle> bookButtons;
@@ -52,6 +56,7 @@ public class BookController extends Commander implements TimerObserver {
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     // Initialise phone.
     super.initialize();
@@ -63,7 +68,6 @@ public class BookController extends Commander implements TimerObserver {
     bookMap.put("book3", actual3);
     bookMap.put("book4", actual4);
     bookMap.put("book5", actual5);
-
     bookButtons = Arrays.asList(book1, book2, book3, book4, book5);
   }
 

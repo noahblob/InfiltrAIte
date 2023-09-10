@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -33,6 +34,7 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle midDrawer;
   @FXML private Rectangle botDrawer;
   @FXML private ImageView filingCabinet;
+  @FXML private Label intel;
 
   /**
    * s Initializes the room view, it is called when the room loads.
@@ -40,6 +42,8 @@ public class MainRoomController extends Commander implements TimerObserver {
    * @throws ApiProxyException
    */
   public void initialize() throws ApiProxyException {
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+
     super.initialize();
     objectiveMiddle.setText("This is the MAIN ROOM");
     TimerClass.add(this);
@@ -105,17 +109,48 @@ public class MainRoomController extends Commander implements TimerObserver {
   }
 
   @FXML
-  public void onClick(MouseEvent event) {
+  public void onClick(MouseEvent event) throws ApiProxyException {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene rectangleScene = rectangle.getScene();
     switch (rectangle.getId()) {
       case ("middleDoor"):
-        if (GameState.difficulty == 1) {
-          dialogue.setText("You must gather 1 more piece of intel before you may leave.");
-        } else if (GameState.difficulty == 2) {
-          dialogue.setText("You must gather 2 more pieces of intel before you may leave.");
-        } else if (GameState.difficulty == 3) {
-          dialogue.setText("You must gather 3 more pieces of intel before you may leave.");
+        CommanderController commander = CommanderController.getInstance();
+        if (GameState.isKeypadSolved) {
+          switch (GameState.numOfIntel.get()) {
+            case 0:
+              commander.updateDialogueBox(
+                  "Don't forget, there is still "
+                      + (GameState.difficulty - GameState.numOfIntel.get())
+                      + " more intel to find!");
+              break;
+            case 1:
+              if (GameState.difficulty == 1) {
+                commander.updateDialogueBox("You have found all required intel, time to escape!");
+              } else {
+                commander.updateDialogueBox(
+                    "Don't forget, there is still "
+                        + (GameState.difficulty - GameState.numOfIntel.get())
+                        + " more intel to find!");
+              }
+              break;
+            case 2:
+              if (GameState.difficulty <= 2) {
+                commander.updateDialogueBox("You have found all required intel, time to escape!");
+              } else {
+                commander.updateDialogueBox(
+                    "Don't forget, there is still "
+                        + (GameState.difficulty - GameState.numOfIntel.get())
+                        + " more intel to find!");
+              }
+              break;
+            case 3:
+              commander.updateDialogueBox("You have found all required intel, time to escape!");
+              break;
+            default:
+              break;
+          }
+        } else {
+          commander.updateDialogueBox("You need to solve the keypad first!");
         }
         break;
       case ("keyPad"):
