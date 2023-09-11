@@ -89,11 +89,7 @@ public class CommanderController {
               ChatCompletionResult chatCompletionResult = messages.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
 
-              // Only show the resulting message if chosen.
-              if (!isHidden) {
-                messages.addMessage(result.getChatMessage());
-              }
-
+              messages.addMessage(result.getChatMessage());
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               e.printStackTrace();
@@ -241,18 +237,18 @@ public class CommanderController {
   // Method to generate commander text roll out on each screen.
   public void textRollout(String message, TextArea dialogue) {
 
-    String[] words = message.split(" ");
+    char[] chars = message.toCharArray();
     Timeline timeline = new Timeline();
     Duration timepoint = Duration.ZERO;
 
-    for (String word : words) {
-      timepoint = timepoint.add(Duration.millis(100));
-      final String finalWord = word; // Make a final local copy of the word
+    for (char ch : chars) {
+      timepoint = timepoint.add(Duration.millis(20));
+      final char finalChar = ch; // Make a final local copy of the character
       KeyFrame keyFrame =
           new KeyFrame(
               timepoint,
               e -> {
-                dialogue.appendText(finalWord + " ");
+                dialogue.appendText(String.valueOf(finalChar));
               });
       timeline.getKeyFrames().add(keyFrame);
     }

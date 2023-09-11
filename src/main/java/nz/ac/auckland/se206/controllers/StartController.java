@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
 public class StartController {
@@ -17,18 +18,8 @@ public class StartController {
   @FXML private Button decline;
   @FXML private TextArea dialogue;
 
-  private final String context =
-      "Greetings, Agent. Your mission, should you choose to accept it, involves infiltrating"
-          + " hostile territory.\n\n"
-          + "The objective: retrieve vital intelligence critical to national"
-          + " security in a high-stakes espionage mission. You'll need to utilize your skillset in"
-          + " problem solving to complete the mission.\n"
-          + "Remember, should you be caught or killed, the agency will disavow any knowledge of"
-          + " your actions. Good luck, Agent.";
-
   public void initialize() {
     initialiseDialogue();
-    Platform.runLater(() -> textRollout(context));
   }
 
   @FXML
@@ -46,6 +37,7 @@ public class StartController {
 
   private void initialiseDialogue() {
     dialogue.setEditable(false);
+    Platform.runLater(() -> textRollout(Dialogue.BACKSTORY.toString()));
   }
 
   // Method to generate backstory.

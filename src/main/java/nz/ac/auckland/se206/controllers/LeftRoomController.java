@@ -20,7 +20,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
@@ -36,39 +35,19 @@ public class LeftRoomController extends Commander implements TimerObserver {
   public static int year;
 
   @FXML private TextArea objective;
-  @FXML private Text timer;
   @FXML private ImageView room;
   @FXML private Rectangle popUpBackGround;
-  @FXML private Button back;
-  @FXML private Rectangle communications;
-  @FXML private Rectangle drawer;
-  @FXML private Rectangle painting;
-  @FXML private Rectangle painting1;
-  @FXML private Polygon painting2;
-  @FXML private Polygon door;
-  @FXML private Polygon desk;
-  @FXML private Polygon newspaper;
-  @FXML private ImageView p;
-  @FXML private ImageView p1;
-  @FXML private ImageView p2;
-  @FXML private ImageView comms;
-  @FXML private ImageView comms1;
-  @FXML private ImageView tear;
-  @FXML private ImageView drawer1;
-  @FXML private Slider s;
-  @FXML private Slider s1;
-  @FXML private Slider s2;
-  @FXML private Slider s3;
-  @FXML private Slider s4;
-  @FXML private Slider s5;
+  @FXML private Button back, decrypt;
+  @FXML
+  private Rectangle communications, drawer, painting, painting1, topDrawer, midDrawer, botDrawer;
+  @FXML private Polygon painting2, door, desk, newspaper;
+  @FXML private ImageView p, p1, p2;
+  @FXML private ImageView comms, comms1, tear, drawer1;
+  @FXML private Slider s, s1, s2, s3, s4, s5;
   @FXML private Label lastDigits;
-  @FXML private Rectangle topDrawer;
-  @FXML private Rectangle midDrawer;
-  @FXML private Rectangle botDrawer;
   @FXML private Label intel;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
-  @FXML private Button decrypt;
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;

@@ -3,7 +3,6 @@ package nz.ac.auckland.se206.controllers;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -12,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
@@ -25,7 +23,6 @@ public class MainRoomController extends Commander implements TimerObserver {
 
   @FXML private Label objectiveMiddle;
   @FXML private Button back;
-  @FXML private Text timer;
   @FXML private Polygon leftDoor;
   @FXML private Polygon rightDoor;
   @FXML private Rectangle middleDoor;

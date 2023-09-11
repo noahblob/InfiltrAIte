@@ -9,6 +9,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
@@ -19,6 +20,7 @@ public class TitleController {
   @FXML private Label difficulty;
   @FXML private TextArea description;
 
+  @FXML private Circle ring;
   @FXML private ImageView elbonia;
   @FXML private ImageView genovia;
   @FXML private ImageView sanescobar;
@@ -27,6 +29,7 @@ public class TitleController {
   private final Map<String, String> countryImageMap = new HashMap<>();
 
   public void initialize() {
+    ring.getStyleClass().add("titlerings");
     intialiseFonts();
     initialiseCountries();
     initialiseImageMap();
@@ -44,7 +47,7 @@ public class TitleController {
   }
 
   private void initialiseCountries() {
-    setImageHover(elbonia, "EASY", "Unlimited hints provided", "Elbonia");
+    setImageHover(elbonia, "EASY", "\u221E hints provided", "Elbonia");
     setImageHover(genovia, "MEDIUM", "Five hints provided", "Genovia");
     setImageHover(sanescobar, "HARD", "No Hints provided", "Sanescobar");
     setImageHover(zubrowka, "???", "???", "Zubrowka");
@@ -58,6 +61,7 @@ public class TitleController {
           difficulty.setText(info);
           difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText(about);
+          description.setStyle("-fx-text-alignment: center;");
         });
 
     image.setOnMouseExited(
@@ -66,6 +70,7 @@ public class TitleController {
           difficulty.setText("DIFFICULTY");
           difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText("");
+          description.setStyle("-fx-text-alignment: center;");
         });
   }
 

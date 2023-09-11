@@ -14,27 +14,27 @@
             <Image url="@../images/newwatch.png" />
          </image>
       </ImageView>
-      <Label fx:id="time" layoutX="354.0" layoutY="281.0" prefHeight="38.0" prefWidth="92.0" text="0:00">
+      <Label fx:id="time" alignment="CENTER" layoutX="355.0" layoutY="278.0" prefHeight="38.0" prefWidth="92.0" text="0:00">
          <font>
             <Font name="Anonymous Pro Bold" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="increase" layoutX="559.0" layoutY="190.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="53.0" text="UP">
+      <Button fx:id="increase" layoutX="647.0" layoutY="232.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="136.0" styleClass="accept" stylesheets="@../css/styles.css" text="INCREASE">
          <font>
-            <Font name="Anonymous Pro Bold" size="22.0" />
+            <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="set" layoutX="586.0" layoutY="315.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="35.0" prefWidth="66.0" text="SET">
+      <Button fx:id="set" layoutX="647.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="136.0" styleClass="accept" stylesheets="@../css/styles.css" text="SET">
          <font>
-            <Font name="Anonymous Pro Bold" size="22.0" />
+            <Font size="18.0" />
          </font>
       </Button>
-      <Button fx:id="decrease" layoutX="565.0" layoutY="415.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="82.0" text="DOWN">
+      <Button fx:id="decrease" alignment="CENTER" layoutX="647.0" layoutY="375.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="136.0" styleClass="accept" stylesheets="@../css/styles.css" text="DECREASE">
          <font>
-            <Font name="Anonymous Pro Bold" size="22.0" />
+            <Font size="18.0" />
          </font>
       </Button>
-      <Label layoutX="120.0" layoutY="14.0" text="SELECT MISSION TIME">
+      <Label alignment="CENTER" layoutX="133.0" layoutY="14.0" stylesheets="@../css/styles.css" text="SELECT MISSION TIME">
          <font>
             <Font name="Anonymous Pro Bold" size="54.0" />
          </font>
