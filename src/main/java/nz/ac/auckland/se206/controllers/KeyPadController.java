@@ -17,6 +17,7 @@ import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
+/** Controller class for the keypad view. */
 public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Text timer;
   @FXML private Button clearButton;
@@ -28,6 +29,11 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Rectangle one, two, three, four, five, six, seven, eight, nine, zero;
   @FXML private Label intel;
 
+  /**
+   * Initializes the keypad view, it is called when the keypad loads.
+   *
+   * @throws ApiProxyException if there is an error with the API
+   */
   public void initialize() throws ApiProxyException {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
@@ -53,16 +59,24 @@ public class KeyPadController extends Commander implements TimerObserver {
     System.out.println("key " + event.getCode() + " pressed");
   }
 
+  /**
+   * Handles the click event for the keypad buttons.
+   *
+   * @param event the mouse event
+   * @throws ApiProxyException if there is an error with the API
+   */
   @FXML
   public void onClick(MouseEvent event) throws ApiProxyException {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
+    // switch case for the different buttons, including clear, submit and exit
     switch (button.getId()) {
       case "clearButton":
         numberLabel.setText("");
         break;
       case "submitButton":
         CommanderController commander = CommanderController.getInstance();
+        // Check if user has typed in the correct value to the keypad
         if (Integer.parseInt(numberLabel.getText()) == BlackBoardController.getKeypadAns()) {
           GameState.isKeypadSolved = true;
           commander.updateDialogueBox("Nice work, you cracked the code to the door!");
@@ -78,13 +92,20 @@ public class KeyPadController extends Commander implements TimerObserver {
     }
   }
 
+  /**
+   * Handles the click event for the keypad numbers.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void clickNum(MouseEvent event) {
     Rectangle number = (Rectangle) event.getSource();
     String currentText = numberLabel.getText();
+    // Limit the user to typing only 3 numbers at a time
     if (currentText.length() >= 3) {
       return;
     } else {
+      // Update text to new number after user has pressed a number button
       switch (number.getId()) {
         case ("one"):
           currentText = currentText + "1";
