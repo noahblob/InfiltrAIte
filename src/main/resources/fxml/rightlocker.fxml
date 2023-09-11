@@ -13,7 +13,12 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LockerController">
    <children>
-      <Button fx:id="checkAns" layoutX="244.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" text="CHECK ANSWER">
+      <ImageView fx:id="roomimage1" fitHeight="470.0" fitWidth="483.0" layoutY="63.0" opacity="0.34" pickOnBounds="true">
+         <image>
+            <Image url="@../images/rightroom.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="checkAns" layoutX="244.0" layoutY="480.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" text="CHECK ANSWER">
          <font>
             <Font size="18.0" />
          </font>
@@ -21,9 +26,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="466.0" layoutX="11.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomimage" fitHeight="378.0" fitWidth="489.0" layoutX="1.0" layoutY="66.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/metal-2069115_640.jpg" />
+            <Image url="@../images/best-puzzles-that-make-an-escape-room-more-challenging.png" />
          </image></ImageView>
       <Text fx:id="timer" layoutX="390.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
          <font>
@@ -36,22 +41,22 @@
          </image>
       </ImageView>
       <TextArea fx:id="dialogue" editable="false" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="247.0" />
-      <Label fx:id="first" alignment="CENTER" layoutX="19.0" layoutY="218.0" prefHeight="117.0" prefWidth="98.0" style="-fx-border-color: black; -fx-background-color: white;" text="0" textAlignment="CENTER">
+      <Label fx:id="first" alignment="CENTER" layoutX="148.0" layoutY="292.0" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label fx:id="third" alignment="CENTER" layoutX="253.0" layoutY="218.0" prefHeight="117.0" prefWidth="98.0" style="-fx-border-color: black; -fx-background-color: white;" text="0" textAlignment="CENTER">
+      <Label fx:id="third" alignment="CENTER" layoutX="253.0" layoutY="292.0" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label fx:id="second" alignment="CENTER" layoutX="135.0" layoutY="218.0" prefHeight="117.0" prefWidth="98.0" style="-fx-border-color: black; -fx-background-color: white;" text="0" textAlignment="CENTER">
+      <Label fx:id="second" alignment="CENTER" layoutX="201.0" layoutY="292.0" opacity="0.8" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Button fx:id="goBack" layoutX="14.0" layoutY="491.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" text="RETURN">
+      <Button fx:id="goBack" layoutX="14.0" layoutY="482.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" text="RETURN">
          <font>
             <Font size="18.0" />
          </font>
@@ -74,85 +79,16 @@
       <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="140.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="197.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="24.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-         <image>
-            <Image url="@../images/arrow-25834_640.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="257.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-         <image>
-            <Image url="@../images/arrow-25834_640.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="262.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
-         <image>
-            <Image url="@../images/arrow-25834_640.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="139.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
-         <image>
-            <Image url="@../images/arrow-25834_640.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="24.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
-         <image>
-            <Image url="@../images/arrow-25834_640.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="368.0" layoutY="375.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
-         <image>
-            <Image url="@../images/arrow-25834_640.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="63.0" fitWidth="90.0" layoutX="368.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
-         <image>
-            <Image url="@../images/arrow-25834_640.png" />
-         </image>
-      </ImageView>
-      <Rectangle fx:id="downThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="94.0" layoutX="273.0" layoutY="357.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="58.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Rectangle fx:id="downTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="109.0" layoutX="150.0" layoutY="349.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="68.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Rectangle fx:id="downOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="35.0" layoutY="359.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="68.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Rectangle fx:id="upThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="268.0" layoutY="114.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="68.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Rectangle fx:id="upTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="147.0" layoutY="114.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="75.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Rectangle fx:id="upOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="31.0" layoutY="114.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="75.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
-      <Label fx:id="fourth" alignment="CENTER" layoutX="364.0" layoutY="218.0" prefHeight="117.0" prefWidth="98.0" style="-fx-border-color: black; -fx-background-color: white;" text="0" textAlignment="CENTER">
+      <Label fx:id="fourth" alignment="CENTER" layoutX="304.0" layoutY="292.0" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Rectangle fx:id="downFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="94.0" layoutX="384.0" layoutY="357.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="58.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Rectangle>
-      <Rectangle fx:id="upFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="379.0" layoutY="114.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="68.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Rectangle>
       <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
@@ -163,10 +99,79 @@
             <Image url="@../images/intel%20(1).png" />
          </image>
       </ImageView>
+      <ImageView fx:id="downOne" fitHeight="33.0" fitWidth="75.0" layoutX="144.0" layoutY="378.0" onMouseClicked="#decrease" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../images/arrow-25834_640.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="249.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../images/arrow-25834_640.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="300.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+         <image>
+            <Image url="@../images/arrow-25834_640.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="144.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/arrow-25834_640.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="197.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/arrow-25834_640.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="249.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/arrow-25834_640.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="33.0" fitWidth="52.0" layoutX="300.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+         <image>
+            <Image url="@../images/arrow-25834_640.png" />
+         </image>
+      </ImageView>
       <Label fx:id="intel" alignment="CENTER" layoutX="417.0" layoutY="540.0" prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#f80303">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
+      <Rectangle fx:id="upOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="156.0" layoutY="221.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="downTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="209.0" layoutY="368.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="downThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="261.0" layoutY="362.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="downOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="153.0" layoutY="368.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="upTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="206.0" layoutY="227.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="upThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="258.0" layoutY="226.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="downFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="313.0" layoutY="370.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Rectangle fx:id="upFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="312.0" layoutY="227.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
    </children>
 </Pane>
