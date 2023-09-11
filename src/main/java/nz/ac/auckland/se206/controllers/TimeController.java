@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
@@ -23,7 +24,10 @@ public class TimeController {
   private int gameTime;
 
   public void initialize() {
-    gameTime = 2;
+
+    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
+    time.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 50px; -fx-text-fill: black;");
+    gameTime = 4;
     updateTime();
     initialiseButtons();
   }
@@ -56,7 +60,8 @@ public class TimeController {
     // Update game master with number of hints I have.
     try {
       CommanderController.getInstance()
-          .updateGPT(GptPromptEngineering.giveUpdateInfo(GameState.numHints, GameState.getRandomWord()));
+          .updateGPT(
+              GptPromptEngineering.giveUpdateInfo(GameState.numHints, GameState.getRandomWord()));
     } catch (Exception e) {
       e.printStackTrace();
     }

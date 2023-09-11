@@ -3,14 +3,14 @@ package nz.ac.auckland.se206.controllers;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
@@ -20,6 +20,7 @@ public class TitleController {
   @FXML private Label difficulty;
   @FXML private TextArea description;
 
+  @FXML private Circle ring;
   @FXML private ImageView elbonia;
   @FXML private ImageView genovia;
   @FXML private ImageView sanescobar;
@@ -28,6 +29,7 @@ public class TitleController {
   private final Map<String, String> countryImageMap = new HashMap<>();
 
   public void initialize() {
+    ring.getStyleClass().add("titlerings");
     intialiseFonts();
     initialiseCountries();
     initialiseImageMap();
@@ -45,7 +47,7 @@ public class TitleController {
   }
 
   private void initialiseCountries() {
-    setImageHover(elbonia, "EASY", "Unlimited hints provided", "Elbonia");
+    setImageHover(elbonia, "EASY", "\u221E hints provided", "Elbonia");
     setImageHover(genovia, "MEDIUM", "Five hints provided", "Genovia");
     setImageHover(sanescobar, "HARD", "No Hints provided", "Sanescobar");
     setImageHover(zubrowka, "???", "???", "Zubrowka");
@@ -57,14 +59,18 @@ public class TitleController {
         event -> {
           changeImage(event, country, true);
           difficulty.setText(info);
+          difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText(about);
+          description.setStyle("-fx-text-alignment: center;");
         });
 
     image.setOnMouseExited(
         event -> {
           changeImage(event, country, false);
           difficulty.setText("DIFFICULTY");
+          difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText("");
+          description.setStyle("-fx-text-alignment: center;");
         });
   }
 
@@ -104,14 +110,8 @@ public class TitleController {
   }
 
   private void intialiseFonts() {
-
     difficulty.setText("DIFFICULTY");
-    difficulty.setAlignment(Pos.CENTER_RIGHT);
     description.setEditable(false);
     description.setWrapText(true);
-    Font level = Font.font("Anonymous Pro", 18);
-    Font font = Font.font("Anonymous Pro", 14);
-    difficulty.setFont(level);
-    description.setFont(font);
   }
 }

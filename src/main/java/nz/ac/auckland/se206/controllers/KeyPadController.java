@@ -9,7 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
@@ -19,7 +18,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the keypad view. */
 public class KeyPadController extends Commander implements TimerObserver {
-  @FXML private Text timer;
+
   @FXML private Button clearButton;
   @FXML private Button submitButton;
   @FXML private Button exitButton;

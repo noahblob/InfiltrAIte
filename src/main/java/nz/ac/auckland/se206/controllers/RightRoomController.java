@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
 import java.util.Random;
-
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -12,7 +11,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
@@ -24,7 +22,6 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 public class RightRoomController extends Commander implements TimerObserver {
 
   @FXML private Label objectiveRight;
-  @FXML private Text timer;
   @FXML private Polygon riddle;
   @FXML private Polygon blackboard;
   @FXML private Label intel;

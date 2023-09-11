@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
@@ -25,7 +24,6 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Label objectiveMiddle;
   @FXML private Button back;
   @FXML private Button cabinetButton;
-  @FXML private Text timer;
   @FXML private Polygon leftDoor;
   @FXML private Polygon rightDoor;
   @FXML private Rectangle middleDoor;
