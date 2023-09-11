@@ -1,9 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.concurrent.Task;
@@ -11,7 +9,6 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -30,7 +27,7 @@ public class CommanderController {
     }
     return instance;
   }
-  
+
   // Instance fields
   private ChatCompletionRequest messages;
   private List<TextArea> phoneScreens;
@@ -39,11 +36,12 @@ public class CommanderController {
 
   private CommanderController() throws ApiProxyException {
 
+    isFirstMessage = true;
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
-    isFirstMessage = true;
-    messages = new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
+    messages =
+        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+    runGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander()), true);
   }
 
   /**
@@ -71,6 +69,7 @@ public class CommanderController {
       }
     }
   }
+
   /**
    * Runs the GPT model with a given chat message.
    *
@@ -78,24 +77,30 @@ public class CommanderController {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-   private ChatMessage runGpt(ChatMessage msg) {
-    
+  private ChatMessage runGpt(ChatMessage msg, Boolean isHidden) {
+
     // Create new Task (Thread) to handle calling chatGPT.
-    Task<ChatMessage> task = new Task<>() {
-      @Override
-      protected ChatMessage call() throws Exception {
-        messages.addMessage(msg);
-        try {
-          ChatCompletionResult chatCompletionResult = messages.execute();
-          Choice result = chatCompletionResult.getChoices().iterator().next();
-          messages.addMessage(result.getChatMessage());
-          return result.getChatMessage();
-        } catch (ApiProxyException e) {
-          e.printStackTrace();
-          return null;
-        }
-      }
-    };
+    Task<ChatMessage> task =
+        new Task<>() {
+          @Override
+          protected ChatMessage call() throws Exception {
+            messages.addMessage(msg);
+            try {
+              ChatCompletionResult chatCompletionResult = messages.execute();
+              Choice result = chatCompletionResult.getChoices().iterator().next();
+
+              // Only show the resulting message if chosen.
+              if (!isHidden) {
+                messages.addMessage(result.getChatMessage());
+              }
+
+              return result.getChatMessage();
+            } catch (ApiProxyException e) {
+              e.printStackTrace();
+              return null;
+            }
+          }
+        };
     task.setOnSucceeded(
         workerStateEvent -> {
           ChatMessage result = task.getValue();
@@ -114,77 +119,113 @@ public class CommanderController {
   }
 
   // For TextArea input
-    public void onSendMessage(MouseEvent event, TextArea inputText) throws Exception {
-      String message = inputText.getText();
-      handleSendMessage(message);
-      inputText.clear();
-    }
+  public void onSendMessage(MouseEvent event, TextArea inputText) throws Exception {
+    String message = inputText.getText();
+    handleSendMessage(message);
+    inputText.clear();
+  }
 
-    // For String input
-    public void onSendMessage(ActionEvent event, String message) throws Exception {
-      handleSendMessage(message);
-    }
+  // For String input
+  public void onSendMessage(ActionEvent event, String message) throws Exception {
+    handleSendMessage(message);
+  }
 
-    // Method to update GPT with the gamestate.
-    public void sendHiddenMessageToGpt(String messageContent) throws Exception {
-      ChatMessage msg = new ChatMessage("user", messageContent);
+  // Method to talk to GPT without typing.
+  public void sendHiddenMessageToGpt(String messageContent) throws Exception {
+    ChatMessage msg = new ChatMessage("user", messageContent);
 
-      Task<ChatMessage> task = new Task<>() {
-        @Override
-        protected ChatMessage call() throws Exception {
-          return runGpt(msg);
-        }
-      };
-      task.setOnSucceeded(e -> {
-        ChatMessage gptResponse = task.getValue();
-        if (gptResponse != null) {
-          javafx.application.Platform.runLater(() -> {
-            appendChatMessage(gptResponse, false);
-          });
-        }
-      });
-      task.setOnFailed(e -> {
-        Throwable ex = task.getException();
-        ex.printStackTrace();
-      });
-      new Thread(task).start();
-    }
-
-
-
-    // Common code to handle sending message
-    private void handleSendMessage(String message) throws Exception {
-      if (message.trim().isEmpty()) {
-          return;
-      }
-      ChatMessage msg = new ChatMessage("user", message);
-
-      // Asynchronous task to get GPT response
-      Task<ChatMessage> task = new Task<>() {
+    Task<ChatMessage> task =
+        new Task<>() {
           @Override
           protected ChatMessage call() throws Exception {
-              return runGpt(msg);
+            return runGpt(msg, false);
           }
-      };
-      task.setOnSucceeded(e -> {
+        };
+    task.setOnSucceeded(
+        e -> {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
-              javafx.application.Platform.runLater(() -> {
-                  appendChatMessage(gptResponse, true);
-              });
+            javafx.application.Platform.runLater(
+                () -> {
+                  appendChatMessage(gptResponse, false);
+                });
           }
-      });
-      task.setOnFailed(e -> {
+        });
+    task.setOnFailed(
+        e -> {
           Throwable ex = task.getException();
           ex.printStackTrace();
-      });
-      new Thread(task).start();
+        });
+    new Thread(task).start();
+  }
+
+  // Method to update GPT's information without any output.
+  public void updateGPT(String messageContent) throws Exception {
+    ChatMessage msg = new ChatMessage("user", messageContent);
+
+    Task<ChatMessage> task =
+        new Task<>() {
+          @Override
+          protected ChatMessage call() throws Exception {
+            return runGpt(msg, true);
+          }
+        };
+    task.setOnSucceeded(
+        e -> {
+          ChatMessage gptResponse = task.getValue();
+          if (gptResponse != null) {
+            javafx.application.Platform.runLater(
+                () -> {
+                  System.out.println("GPT has been updated with new gamestate");
+                });
+          }
+        });
+    task.setOnFailed(
+        e -> {
+          Throwable ex = task.getException();
+          ex.printStackTrace();
+        });
+    new Thread(task).start();
+  }
+
+  // Common code to handle sending message
+  private void handleSendMessage(String message) throws Exception {
+    if (message.trim().isEmpty()) {
+      return;
     }
+    ChatMessage msg = new ChatMessage("user", message);
+
+    // Asynchronous task to get GPT response
+    Task<ChatMessage> task =
+        new Task<>() {
+          @Override
+          protected ChatMessage call() throws Exception {
+            return runGpt(msg, false);
+          }
+        };
+    task.setOnSucceeded(
+        e -> {
+          ChatMessage gptResponse = task.getValue();
+          if (gptResponse != null) {
+            javafx.application.Platform.runLater(
+                () -> {
+                  appendChatMessage(gptResponse, true);
+                });
+          }
+        });
+    task.setOnFailed(
+        e -> {
+          Throwable ex = task.getException();
+          ex.printStackTrace();
+        });
+    new Thread(task).start();
+  }
 
   // Helper method to add text areas from different scenes to the controller.
   public void addTextArea(TextArea textArea) {
     phoneScreens.add(textArea);
   }
+
   // Helper method to add text areas from different scenes to the controller.
   public void addDialogueBox(TextArea textArea) {
     dialogues.add(textArea);
@@ -200,27 +241,32 @@ public class CommanderController {
   // Method to generate commander text roll out on each screen.
   public void textRollout(String message, TextArea dialogue) {
 
-      String[] words = message.split(" ");
-      Timeline timeline = new Timeline();
-      Duration timepoint = Duration.ZERO;
+    String[] words = message.split(" ");
+    Timeline timeline = new Timeline();
+    Duration timepoint = Duration.ZERO;
 
-      for (String word : words) {
-          timepoint = timepoint.add(Duration.millis(100));
-          final String finalWord = word;  // Make a final local copy of the word
-          KeyFrame keyFrame = new KeyFrame(timepoint, e -> {
-            dialogue.appendText(finalWord + " ");
-          });
-          timeline.getKeyFrames().add(keyFrame);
-      }
+    for (String word : words) {
+      timepoint = timepoint.add(Duration.millis(100));
+      final String finalWord = word; // Make a final local copy of the word
+      KeyFrame keyFrame =
+          new KeyFrame(
+              timepoint,
+              e -> {
+                dialogue.appendText(finalWord + " ");
+              });
+      timeline.getKeyFrames().add(keyFrame);
+    }
 
-      // Clear the text after the dialogue
-      KeyFrame clearKeyFrame = new KeyFrame(timepoint.add(Duration.millis(2000)), e -> {
+    // Clear the text after the dialogue
+    KeyFrame clearKeyFrame =
+        new KeyFrame(
+            timepoint.add(Duration.millis(2000)),
+            e -> {
               if (dialogue != null) {
-                  dialogue.clear();
+                dialogue.clear();
               }
-      });
-      timeline.getKeyFrames().add(clearKeyFrame);
-      timeline.play();
+            });
+    timeline.getKeyFrames().add(clearKeyFrame);
+    timeline.play();
   }
-
 }

@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 public class SceneManager {
 
   public enum AppUI {
+    START,
     TITLE,
     WATCH,
     MAIN,
