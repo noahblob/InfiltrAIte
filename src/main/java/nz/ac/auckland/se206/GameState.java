@@ -3,7 +3,6 @@ package nz.ac.auckland.se206;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-
 import javafx.beans.property.SimpleIntegerProperty;
 
 /** Represents the state of the game. */
@@ -24,7 +23,7 @@ public class GameState {
   public static boolean isRiddleResolved = false;
 
   /** Indicates whether the key to the cabinet has been found. */
-  public static boolean isKeyFound = false;
+  public static boolean isKeyFound = true;
 
   /** Indicates whether the keypad has had the correct digits input */
   public static boolean isKeypadSolved = false;
@@ -37,6 +36,9 @@ public class GameState {
 
   /** Indicates amount of intelligence gathered */
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
+
+  /** Indicates whether the player has found intel in the cabinet */
+  public static boolean cabinetIntelfound = false;
 
   public static String getRandomWord() {
     // Create an ArrayList to hold the keys (words)
