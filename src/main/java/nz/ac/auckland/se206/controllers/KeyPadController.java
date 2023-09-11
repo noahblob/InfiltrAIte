@@ -14,7 +14,6 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the keypad view. */
 public class KeyPadController extends Commander implements TimerObserver {
@@ -30,10 +29,9 @@ public class KeyPadController extends Commander implements TimerObserver {
 
   /**
    * Initializes the keypad view, it is called when the keypad loads.
-   *
-   * @throws ApiProxyException if there is an error with the API
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
@@ -62,10 +60,10 @@ public class KeyPadController extends Commander implements TimerObserver {
    * Handles the click event for the keypad buttons.
    *
    * @param event the mouse event
-   * @throws ApiProxyException if there is an error with the API
+   * @throws Exception
    */
   @FXML
-  public void onClick(MouseEvent event) throws ApiProxyException {
+  public void onClick(MouseEvent event) throws Exception {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
     // switch case for the different buttons, including clear, submit and exit

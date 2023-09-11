@@ -18,7 +18,7 @@ public abstract class Commander {
   @FXML protected Text timer;
 
   @FXML
-  protected void initialize() throws ApiProxyException {
+  protected void initialize() throws Exception {
 
     CommanderController.getInstance().addTextArea(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
