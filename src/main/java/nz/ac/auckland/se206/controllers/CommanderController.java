@@ -6,9 +6,11 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
+import nz.ac.auckland.se206.ChatCell;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -30,7 +32,7 @@ public class CommanderController {
 
   // Instance fields
   private ChatCompletionRequest messages;
-  private List<TextArea> phoneScreens;
+  private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> dialogues;
 
   private CommanderController() throws Exception {
@@ -48,15 +50,10 @@ public class CommanderController {
    * @param msg the chat message to append
    */
   private void appendChatMessage(ChatMessage msg) {
-
-    String role;
-    role = msg.getRole().equals("user") ? "You" : "Commander";
-
-    for (TextArea screen : phoneScreens) {
-      if (screen == null) {
-        continue;
+    for (ListView<ChatMessage> screen : phoneScreens) {
+      if (screen != null) {
+        screen.getItems().add(msg);
       }
-      screen.appendText(role + ": " + msg.getContent() + "\n\n");
     }
   }
 
@@ -87,12 +84,12 @@ public class CommanderController {
             }
           }
         };
-          task.setOnSucceeded(
+    task.setOnSucceeded(
         workerStateEvent -> {
           ChatMessage result = task.getValue();
           appendChatMessage(result);
         });
-    
+
     // Optional: catch any exceptions thrown during the task execution.
     task.setOnFailed(
         workerStateEvent -> {
@@ -133,7 +130,7 @@ public class CommanderController {
   public void updateGPT(String messageContent) throws Exception {
     ChatMessage msg = new ChatMessage("user", messageContent);
     updateGPT(msg);
-}
+  }
 
   // Method to update GPT's information without any output.
   public void updateGPT(ChatMessage msg) throws Exception {
@@ -156,7 +153,7 @@ public class CommanderController {
             }
           }
         };
-          task.setOnSucceeded(
+    task.setOnSucceeded(
         workerStateEvent -> {
           System.out.println("Updated GPT without printing to phone");
         });
@@ -178,7 +175,7 @@ public class CommanderController {
             return runGpt(msg);
           }
         };
-        task.setOnSucceeded(
+    task.setOnSucceeded(
         e -> {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
@@ -197,7 +194,8 @@ public class CommanderController {
   }
 
   // Helper method to add text areas from different scenes to the controller.
-  public void addTextArea(TextArea textArea) {
+  public void addListView(ListView<ChatMessage> textArea) {
+    textArea.setCellFactory(param -> new ChatCell());
     phoneScreens.add(textArea);
   }
 
