@@ -20,7 +20,7 @@ public class StartController {
   private final String context =
       "Greetings, Agent. Your mission, should you choose to accept it, involves infiltrating"
           + " hostile territory.\n\n"
-          + " The objective: retrieve vital intelligence critical to national"
+          + "The objective: retrieve vital intelligence critical to national"
           + " security in a high-stakes espionage mission. You'll need to utilize your skillset in"
           + " problem solving to complete the mission.\n"
           + "Remember, should you be caught or killed, the agency will disavow any knowledge of"

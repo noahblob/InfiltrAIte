@@ -1,0 +1,37 @@
+/* First custom button style */
+.accept {
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #00FF00;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #00FF00;
+  -fx-border-width: 5px;
+}
+
+.accept:hover {
+  -fx-background-color: #00FF00;
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
+.accept:pressed {
+  -fx-background-color: rgb(121, 231, 121);
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
+/* Second custom button style */
+.decline {
+  -fx-background-color: rgb(238, 33, 33);
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #ef0f0f;
+  -fx-border-color: #e72323;
+  -fx-border-width: 5px;
+}
+
+.decline:hover {
+  -fx-background-color: #fe1f1f;
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
+.decline:pressed {
+  -fx-background-color: rgb(242, 80, 80);
+  -fx-text-fill: rgb(0, 0, 0);
+}
