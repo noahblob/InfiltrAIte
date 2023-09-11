@@ -7,8 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.Dialogue;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class TimeController {
@@ -50,6 +52,15 @@ public class TimeController {
   private void onClick(MouseEvent event) throws ApiProxyException {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
+
+    // Update game master with number of hints I have.
+    try {
+      CommanderController.getInstance()
+          .updateGPT(GptPromptEngineering.giveUpdateInfo(GameState.numHints, GameState.getRandomWord()));
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
     // Sets the timer time and starts it
     TimerClass.initialize(gameTime);
     TimerClass timer = TimerClass.getInstance();
@@ -57,7 +68,7 @@ public class TimeController {
 
     // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
-    
+
     // TO SHOW HOW TEXT ROLL OUT WORKS, CAN DELETE LATER
     CommanderController.getInstance().updateDialogueBox(Dialogue.INITIAL.toString());
   }

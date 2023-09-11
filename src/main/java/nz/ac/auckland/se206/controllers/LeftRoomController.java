@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
@@ -16,7 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
@@ -116,6 +114,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     openCabinet(false);
     TimerClass.add(this);
   }
+
   @Override
   public void timerStart() {
     TimerClass timerText = TimerClass.getInstance();
@@ -259,7 +258,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     riddleCode = generateEncrypted(100);
     riddle.appendText(riddleCode);
     riddle.setWrapText(true);
-    
+
     // Individual popup items.
     p.setVisible(false);
     p1.setVisible(false);
@@ -287,35 +286,38 @@ public class LeftRoomController extends Commander implements TimerObserver {
           riddle.setVisible(false);
           decrypt.setVisible(false);
         });
-    
-    decrypt.setOnAction(event -> {
-        // send the encrypted message to GPT.
-        System.out.println("TEST PRESS");
-        String dialogue = "Sir, I found a piece of paper with the following character, what does it say? " + riddleCode;
-        try {
+
+    decrypt.setOnAction(
+        event -> {
+          // send the encrypted message to GPT.
+          System.out.println("TEST PRESS");
+          String dialogue =
+              "Sir, I found a piece of paper with the following character, what does it say? "
+                  + riddleCode;
+          try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
 
             // Create a Timeline to wait for 10 seconds
-            Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(10000),
-                ae -> {
-                    try {
-                        String getRiddle = "Give me the riddle";
-                        CommanderController.getInstance().sendHiddenMessageToGpt(getRiddle);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }));
-            
+            Timeline timeline =
+                new Timeline(
+                    new KeyFrame(
+                        Duration.millis(10000),
+                        ae -> {
+                          try {
+                            String getRiddle = "Give me the riddle";
+                            CommanderController.getInstance().sendHiddenMessageToGpt(getRiddle);
+                          } catch (Exception e) {
+                            e.printStackTrace();
+                          }
+                        }));
+
             // Play the Timeline
             timeline.play();
 
-        } catch (Exception e) {
+          } catch (Exception e) {
             e.printStackTrace();
-        }
-    });
-
-      
+          }
+        });
   }
 
   private void generateYear() {
@@ -394,16 +396,16 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private String generateEncrypted(int length) {
-    
+
     String asciiChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
     SecureRandom random = new SecureRandom();
     StringBuilder encryptedText = new StringBuilder();
     int count = 0;
     for (int i = 0; i < length; i++) {
       if (count > 0 && random.nextInt(10) < 2) { // 20% chance to insert a space
-          encryptedText.append(' ');
-          count = 0;
-          continue;
+        encryptedText.append(' ');
+        count = 0;
+        continue;
       }
       int index = random.nextInt(asciiChars.length());
       encryptedText.append(asciiChars.charAt(index));
@@ -411,5 +413,4 @@ public class LeftRoomController extends Commander implements TimerObserver {
     }
     return encryptedText.toString();
   }
-
 }
