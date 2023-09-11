@@ -1,84 +1,90 @@
 /** Centers the text in the objective textarea for the right room **/
 #objectiveRight *.text {
-    -fx-text-alignment: center;
-    padding: 30px 0;
+  -fx-text-alignment: center;
+  padding: 30px 0;
 }
 
 /* Normal state style */
 .highlight-rectangle {
-    fill: transparent;
-    stroke: black;
-    /* Border color */
-    stroke-width: 2;
-    /* Border width */
+  fill: transparent;
+  stroke: black;
+  /* Border color */
+  stroke-width: 2;
+  /* Border width */
 }
 
 /* Hovered state style */
 .highlight-rectangle:hover {
-    stroke: red;
-    /* Change border color on hover */
+  stroke: red;
+  /* Change border color on hover */
 }
 
 /* First custom button style */
 .accept {
-    -fx-background-color: rgb(0, 0, 0);
-    -fx-text-fill: #00FF00;
-    -fx-font-smoothing-type: green;
-    -fx-border-color: #00FF00;
-    -fx-border-width: 5px;
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #00FF00;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #00FF00;
+  -fx-border-width: 5px;
 }
 
 .accept:hover {
-    -fx-background-color: #00FF00;
-    -fx-text-fill: rgb(0, 0, 0);
+  -fx-background-color: #00FF00;
+  -fx-text-fill: rgb(0, 0, 0);
 }
 
 .accept:pressed {
-    -fx-background-color: rgb(121, 231, 121);
-    -fx-text-fill: rgb(0, 0, 0);
+  -fx-background-color: rgb(121, 231, 121);
+  -fx-text-fill: rgb(0, 0, 0);
 }
 
 /* Second custom button style */
 .decline {
-    -fx-background-color: rgb(238, 33, 33);
-    -fx-background-color: rgb(0, 0, 0);
-    -fx-text-fill: #ef0f0f;
-    -fx-border-color: #e72323;
-    -fx-border-width: 5px;
+  -fx-background-color: rgb(238, 33, 33);
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #ef0f0f;
+  -fx-border-color: #e72323;
+  -fx-border-width: 5px;
 }
 
 .decline:hover {
-    -fx-background-color: #fe1f1f;
-    -fx-text-fill: rgb(0, 0, 0);
+  -fx-background-color: #fe1f1f;
+  -fx-text-fill: rgb(0, 0, 0);
 }
 
 .decline:pressed {
-    -fx-background-color: rgb(242, 80, 80);
-    -fx-text-fill: rgb(0, 0, 0);
+  -fx-background-color: rgb(242, 80, 80);
+  -fx-text-fill: rgb(0, 0, 0);
 }
 
 .text-area {
-    -fx-background-color: rgb(0, 0, 0);
-    -fx-text-fill: #00FF00;
-    -fx-font-smoothing-type: green;
-    -fx-border-color: #00FF00;
-    -fx-border-width: 5px, 5px, 5px, 5px
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #00FF00;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #00FF00;
+  -fx-border-width: 5px, 5px, 5px, 5px
 }
 
 .text-area .scroll-pane {
-    -fx-background-color: transparent;
+  -fx-background-color: transparent;
 }
 
 .text-area .scroll-pane .viewport {
-    -fx-background-color: transparent;
+  -fx-background-color: transparent;
 }
 
 .text-area .scroll-pane .content {
-    -fx-background-color: transparent;
+  -fx-background-color: transparent;
 }
 
 .titlearea {
-    -fx-background-color: rgb(0, 0, 0);
-    -fx-border-color: #000000;
-    -fx-text-fill: #ff0000;
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-border-color: #000000;
+  -fx-text-fill: #ff0000;
+  -fx-text-alignment: justify;
+}
+
+.difficulty {
+  -fx-alignment: center;
+  -fx-text-fill: #ffffff
 }

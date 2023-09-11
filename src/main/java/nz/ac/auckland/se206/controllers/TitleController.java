@@ -3,14 +3,13 @@ package nz.ac.auckland.se206.controllers;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
@@ -57,6 +56,7 @@ public class TitleController {
         event -> {
           changeImage(event, country, true);
           difficulty.setText(info);
+          difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText(about);
         });
 
@@ -64,6 +64,7 @@ public class TitleController {
         event -> {
           changeImage(event, country, false);
           difficulty.setText("DIFFICULTY");
+          difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText("");
         });
   }
@@ -104,14 +105,8 @@ public class TitleController {
   }
 
   private void intialiseFonts() {
-
     difficulty.setText("DIFFICULTY");
-    difficulty.setAlignment(Pos.CENTER_RIGHT);
     description.setEditable(false);
     description.setWrapText(true);
-    Font level = Font.font("Anonymous Pro", 18);
-    Font font = Font.font("Anonymous Pro", 14);
-    difficulty.setFont(level);
-    description.setFont(font);
   }
 }

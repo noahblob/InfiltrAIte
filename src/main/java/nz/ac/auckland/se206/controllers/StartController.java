@@ -51,18 +51,18 @@ public class StartController {
   // Method to generate backstory.
   private void textRollout(String message) {
 
-    String[] words = message.split(" ");
+    char[] chars = message.toCharArray();
     Timeline timeline = new Timeline();
     Duration timepoint = Duration.ZERO;
 
-    for (String word : words) {
-      timepoint = timepoint.add(Duration.millis(100));
-      final String finalWord = word; // Make a final local copy of the word
+    for (char ch : chars) {
+      timepoint = timepoint.add(Duration.millis(12));
+      final char finalChar = ch; // Make a final local copy of the character
       KeyFrame keyFrame =
           new KeyFrame(
               timepoint,
               e -> {
-                dialogue.appendText(finalWord + " ");
+                dialogue.appendText(String.valueOf(finalChar));
               });
       timeline.getKeyFrames().add(keyFrame);
     }
