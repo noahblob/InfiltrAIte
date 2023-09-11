@@ -21,7 +21,7 @@ public class CommanderController {
 
   private static CommanderController instance;
 
-  public static CommanderController getInstance() throws ApiProxyException {
+  public static CommanderController getInstance() throws Exception {
     if (instance == null) {
       instance = new CommanderController();
     }
@@ -32,16 +32,14 @@ public class CommanderController {
   private ChatCompletionRequest messages;
   private List<TextArea> phoneScreens;
   private List<TextArea> dialogues;
-  private boolean isFirstMessage;
 
-  private CommanderController() throws ApiProxyException {
+  private CommanderController() throws Exception {
 
-    isFirstMessage = true;
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
     messages =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander()), true);
+    updateGPT(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
   }
 
   /**
@@ -49,24 +47,16 @@ public class CommanderController {
    *
    * @param msg the chat message to append
    */
-  private void appendChatMessage(ChatMessage msg, boolean showUserMessage) {
-
-    if (isFirstMessage) {
-      isFirstMessage = false;
-      return;
-    }
+  private void appendChatMessage(ChatMessage msg) {
 
     String role;
     role = msg.getRole().equals("user") ? "You" : "Commander";
 
-    // Only append the user message if showUserMessage is true
-    if (showUserMessage || !msg.getRole().equals("user")) {
-      for (TextArea screen : phoneScreens) {
-        if (screen == null) {
-          continue;
-        }
-        screen.appendText(role + ": " + msg.getContent() + "\n\n");
+    for (TextArea screen : phoneScreens) {
+      if (screen == null) {
+        continue;
       }
+      screen.appendText(role + ": " + msg.getContent() + "\n\n");
     }
   }
 
@@ -77,7 +67,7 @@ public class CommanderController {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  private ChatMessage runGpt(ChatMessage msg, Boolean isHidden) {
+  private ChatMessage runGpt(ChatMessage msg) {
 
     // Create new Task (Thread) to handle calling chatGPT.
     Task<ChatMessage> task =
@@ -97,12 +87,12 @@ public class CommanderController {
             }
           }
         };
-    task.setOnSucceeded(
+          task.setOnSucceeded(
         workerStateEvent -> {
           ChatMessage result = task.getValue();
-          appendChatMessage(result, true);
+          appendChatMessage(result);
         });
-
+    
     // Optional: catch any exceptions thrown during the task execution.
     task.setOnFailed(
         workerStateEvent -> {
@@ -127,59 +117,48 @@ public class CommanderController {
   }
 
   // Method to talk to GPT without typing.
-  public void sendHiddenMessageToGpt(String messageContent) throws Exception {
+  public void sendForUser(String messageContent) throws Exception {
     ChatMessage msg = new ChatMessage("user", messageContent);
 
     Task<ChatMessage> task =
         new Task<>() {
           @Override
           protected ChatMessage call() throws Exception {
-            return runGpt(msg, false);
+            return runGpt(msg);
           }
         };
-    task.setOnSucceeded(
-        e -> {
-          ChatMessage gptResponse = task.getValue();
-          if (gptResponse != null) {
-            javafx.application.Platform.runLater(
-                () -> {
-                  appendChatMessage(gptResponse, false);
-                });
-          }
-        });
-    task.setOnFailed(
-        e -> {
-          Throwable ex = task.getException();
-          ex.printStackTrace();
-        });
     new Thread(task).start();
   }
 
-  // Method to update GPT's information without any output.
   public void updateGPT(String messageContent) throws Exception {
     ChatMessage msg = new ChatMessage("user", messageContent);
+    updateGPT(msg);
+}
 
+  // Method to update GPT's information without any output.
+  public void updateGPT(ChatMessage msg) throws Exception {
+
+    // Create new Task (Thread) to handle calling chatGPT.
     Task<ChatMessage> task =
         new Task<>() {
           @Override
           protected ChatMessage call() throws Exception {
-            return runGpt(msg, true);
+            messages.addMessage(msg);
+            try {
+              ChatCompletionResult chatCompletionResult = messages.execute();
+              Choice result = chatCompletionResult.getChoices().iterator().next();
+
+              messages.addMessage(result.getChatMessage());
+              return result.getChatMessage();
+            } catch (ApiProxyException e) {
+              e.printStackTrace();
+              return null;
+            }
           }
         };
-    task.setOnSucceeded(
-        e -> {
-          ChatMessage gptResponse = task.getValue();
-          if (gptResponse != null) {
-            javafx.application.Platform.runLater(
-                () -> {
-                  System.out.println("GPT has been updated with new gamestate");
-                });
-          }
-        });
-    task.setOnFailed(
-        e -> {
-          Throwable ex = task.getException();
-          ex.printStackTrace();
+          task.setOnSucceeded(
+        workerStateEvent -> {
+          System.out.println("Updated GPT without printing to phone");
         });
     new Thread(task).start();
   }
@@ -196,16 +175,16 @@ public class CommanderController {
         new Task<>() {
           @Override
           protected ChatMessage call() throws Exception {
-            return runGpt(msg, false);
+            return runGpt(msg);
           }
         };
-    task.setOnSucceeded(
+        task.setOnSucceeded(
         e -> {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
             javafx.application.Platform.runLater(
                 () -> {
-                  appendChatMessage(gptResponse, true);
+                  appendChatMessage(gptResponse);
                 });
           }
         });

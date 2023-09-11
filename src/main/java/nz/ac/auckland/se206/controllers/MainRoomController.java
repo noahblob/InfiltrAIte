@@ -16,7 +16,6 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
 public class MainRoomController extends Commander implements TimerObserver {
@@ -37,10 +36,9 @@ public class MainRoomController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
-   *
-   * @throws ApiProxyException if there is an error with the API
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
@@ -114,10 +112,10 @@ public class MainRoomController extends Commander implements TimerObserver {
    * Handles the onClick event for all rectangles in the middle room.
    *
    * @param event the mouse event
-   * @throws ApiProxyException if there is an error with the API
+   * @throws Exception
    */
   @FXML
-  public void onClick(MouseEvent event) throws ApiProxyException {
+  public void onClick(MouseEvent event) throws Exception {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene rectangleScene = rectangle.getScene();
     // switch case for each rectangle, including the middle door, keypad and cabinet
@@ -216,10 +214,10 @@ public class MainRoomController extends Commander implements TimerObserver {
    * Handles the click event on the cabinet drawers.
    *
    * @param event the mouse event
-   * @throws ApiProxyException
+   * @throws Exception
    */
   @FXML
-  public void clickDrawer(MouseEvent event) throws ApiProxyException {
+  public void clickDrawer(MouseEvent event) throws Exception {
     Rectangle drawer = (Rectangle) event.getSource();
     CommanderController commander = CommanderController.getInstance();
     switch (drawer.getId()) {

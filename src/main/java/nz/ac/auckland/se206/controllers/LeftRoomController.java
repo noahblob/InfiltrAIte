@@ -27,7 +27,7 @@ import nz.ac.auckland.se206.Items.CustomSliderSkin;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class LeftRoomController extends Commander implements TimerObserver {
@@ -59,25 +59,14 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private String riddleCode;
 
   private enum Object {
-    COMMS,
-    DRAWER,
-    PAINT,
-    PAINT1,
-    PAINT2,
-    DOOR,
-    DESK,
-    NEWS,
-    BOT,
-    MID,
-    TOP
+    COMMS, DRAWER, PAINT, PAINT1,PAINT2,DOOR, DESK, NEWS, BOT, MID, TOP
   }
 
   /**
    * Initializes the room view, it is called when the room loads.
-   *
-   * @throws ApiProxyException
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     System.out.println(GameState.getRandomWord());
@@ -271,7 +260,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
           // send the encrypted message to GPT.
           System.out.println("TEST PRESS");
           String dialogue =
-              "Sir, I found a piece of paper with the following character, what does it say? "
+              "Sir, I found a piece of paper with the following characters, what does it say? "
                   + riddleCode;
           try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
@@ -283,8 +272,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
                         Duration.millis(10000),
                         ae -> {
                           try {
-                            String getRiddle = "Give me the riddle";
-                            CommanderController.getInstance().sendHiddenMessageToGpt(getRiddle);
+                            CommanderController.getInstance().sendForUser(GptPromptEngineering.getRiddleWithGivenWord(GameState.getRandomWord()));
                           } catch (Exception e) {
                             e.printStackTrace();
                           }

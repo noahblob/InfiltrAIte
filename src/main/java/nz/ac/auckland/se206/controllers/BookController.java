@@ -21,7 +21,6 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
 public class BookController extends Commander implements TimerObserver {
@@ -52,10 +51,9 @@ public class BookController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
-   *
-   * @throws ApiProxyException
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     // Initialise phone.

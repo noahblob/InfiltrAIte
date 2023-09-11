@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -60,8 +61,7 @@ public class TimeController {
     // Update game master with number of hints I have.
     try {
       CommanderController.getInstance()
-          .updateGPT(
-              GptPromptEngineering.giveUpdateInfo(GameState.numHints, GameState.getRandomWord()));
+          .updateGPT(GptPromptEngineering.updateNumberOfHints(GameState.numHints));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -75,7 +75,13 @@ public class TimeController {
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
 
     // TO SHOW HOW TEXT ROLL OUT WORKS, CAN DELETE LATER
-    CommanderController.getInstance().updateDialogueBox(Dialogue.INITIAL.toString());
+    Platform.runLater(() -> {
+      try {
+        CommanderController.getInstance().updateDialogueBox(Dialogue.INITIAL.toString());
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    });
   }
 
   private void updateTime() {
