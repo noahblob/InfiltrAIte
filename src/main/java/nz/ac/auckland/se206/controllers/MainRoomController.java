@@ -1,10 +1,12 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.Random;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +22,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 /** Controller class for the room view. */
 public class MainRoomController extends Commander implements TimerObserver {
 
-  @FXML private Label objectiveMiddle;
+  @FXML private TextArea objective;
   @FXML private Button back;
   @FXML private Button cabinetButton;
   @FXML private Polygon leftDoor;
@@ -34,15 +36,18 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private ImageView intelFile;
   @FXML private Label intel;
 
+  Random random = new Random();
+
   /**
    * Initializes the room view, it is called when the room loads.
+   *
    * @throws Exception
    */
   public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
-    objectiveMiddle.setText("This is the MAIN ROOM");
+    objective.setText("Find 3 pieces of intel and escape!");
     // set timer
     TimerClass.add(this);
 
@@ -123,45 +128,14 @@ public class MainRoomController extends Commander implements TimerObserver {
       case ("middleDoor"):
         CommanderController commander = CommanderController.getInstance();
         if (GameState.isKeypadSolved) {
-          // set commander message based on how much intel has already been found, how much needs to
-          // be found and the difficulty of the game
-          switch (GameState.numOfIntel.get()) {
-            case 0:
-              // need at least 1 intel for any difficulty
-              commander.updateDialogueBox(
-                  "Don't forget, there is still "
-                      + (GameState.difficulty - GameState.numOfIntel.get())
-                      + " more intel to find!");
-              break;
-            case 1:
-              // need one intel for difficulty 1
-              if (GameState.difficulty == 1) {
-                commander.updateDialogueBox("You have found all required intel, time to escape!");
-              } else {
-                commander.updateDialogueBox(
-                    "Don't forget, there is still "
-                        + (GameState.difficulty - GameState.numOfIntel.get())
-                        + " more intel to find!");
-              }
-              break;
-            case 2:
-              // need two intel for difficulty 2
-              if (GameState.difficulty <= 2) {
-                commander.updateDialogueBox("You have found all required intel, time to escape!");
-              } else {
-                commander.updateDialogueBox(
-                    "Don't forget, there is still "
-                        + (GameState.difficulty - GameState.numOfIntel.get())
-                        + " more intel to find!");
-              }
-              break;
-            case 3:
-              // 3 or more intel and user has found all required intel
-              commander.updateDialogueBox("You have found all required intel, time to escape!");
-              break;
-            default:
-              commander.updateDialogueBox("You have found all required intel, time to escape!");
-              break;
+          // set commander message based on how much intel needs to be found
+          if (GameState.numOfIntel.get() < 3) {
+            commander.updateDialogueBox(
+                "Don't forget, there is still "
+                    + (3 - GameState.numOfIntel.get())
+                    + " more intel to find!");
+          } else {
+            commander.updateDialogueBox("You have found all required intel, time to escape!");
           }
         } else {
           commander.updateDialogueBox("You need to solve the keypad first!");
@@ -220,26 +194,59 @@ public class MainRoomController extends Commander implements TimerObserver {
   public void clickDrawer(MouseEvent event) throws Exception {
     Rectangle drawer = (Rectangle) event.getSource();
     CommanderController commander = CommanderController.getInstance();
+    int randomDrawer = 1 + random.nextInt(2);
     switch (drawer.getId()) {
       case ("topDrawer"):
-        commander.updateDialogueBox("Doesn't look like anything is here...");
+        if (randomDrawer == 1) {
+          if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
+            intelFile.setVisible(true);
+            cabinetButton.setVisible(true);
+            commander.updateDialogueBox("You found some intel!");
+            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+            GameState.cabinetIntelfound = true;
+          } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
+            commander.updateDialogueBox("You already found the intel in this drawer!");
+          } else {
+            commander.updateDialogueBox("Looks like you need a key to open this drawer");
+          }
+        } else {
+          commander.updateDialogueBox("Doesn't look like anything is here...");
+        }
         break;
       case ("midDrawer"):
-        commander.updateDialogueBox("Doesn't look like anything is here...");
+        if (randomDrawer == 2) {
+          if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
+            intelFile.setVisible(true);
+            cabinetButton.setVisible(true);
+            commander.updateDialogueBox("You found some intel!");
+            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+            GameState.cabinetIntelfound = true;
+          } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
+            commander.updateDialogueBox("You already found the intel in this drawer!");
+          } else {
+            commander.updateDialogueBox("Looks like you need a key to open this drawer");
+          }
+        } else {
+          commander.updateDialogueBox("Doesn't look like anything is here...");
+        }
         break;
       case ("botDrawer"):
         // if user has key to cabinet and intel in the cabinet has been found, show intel file and
         // update intel accordingly
-        if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
-          intelFile.setVisible(true);
-          cabinetButton.setVisible(true);
-          commander.updateDialogueBox("You found some intel!");
-          GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-          GameState.cabinetIntelfound = true;
-        } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
-          commander.updateDialogueBox("You already found the intel in this drawer!");
+        if (randomDrawer == 3) {
+          if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
+            intelFile.setVisible(true);
+            cabinetButton.setVisible(true);
+            commander.updateDialogueBox("You found some intel!");
+            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+            GameState.cabinetIntelfound = true;
+          } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
+            commander.updateDialogueBox("You already found the intel in this drawer!");
+          } else {
+            commander.updateDialogueBox("Looks like you need a key to open this drawer");
+          }
         } else {
-          commander.updateDialogueBox("Looks like you need a key to open this drawer");
+          commander.updateDialogueBox("Doesn't look like anything is here...");
         }
         break;
       default:
