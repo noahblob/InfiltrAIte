@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
@@ -16,13 +15,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
@@ -30,7 +27,7 @@ import nz.ac.auckland.se206.Items.CustomSliderSkin;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class LeftRoomController extends Commander implements TimerObserver {
@@ -38,39 +35,19 @@ public class LeftRoomController extends Commander implements TimerObserver {
   public static int year;
 
   @FXML private TextArea objective;
-  @FXML private Text timer;
   @FXML private ImageView room;
   @FXML private Rectangle popUpBackGround;
-  @FXML private Button back;
-  @FXML private Rectangle communications;
-  @FXML private Rectangle drawer;
-  @FXML private Rectangle painting;
-  @FXML private Rectangle painting1;
-  @FXML private Polygon painting2;
-  @FXML private Polygon door;
-  @FXML private Polygon desk;
-  @FXML private Polygon newspaper;
-  @FXML private ImageView p;
-  @FXML private ImageView p1;
-  @FXML private ImageView p2;
-  @FXML private ImageView comms;
-  @FXML private ImageView comms1;
-  @FXML private ImageView tear;
-  @FXML private ImageView drawer1;
-  @FXML private Slider s;
-  @FXML private Slider s1;
-  @FXML private Slider s2;
-  @FXML private Slider s3;
-  @FXML private Slider s4;
-  @FXML private Slider s5;
+  @FXML private Button back, decrypt;
+  @FXML
+  private Rectangle communications, drawer, painting, painting1, topDrawer, midDrawer, botDrawer;
+  @FXML private Polygon painting2, door, desk, newspaper;
+  @FXML private ImageView p, p1, p2;
+  @FXML private ImageView comms, comms1, tear, drawer1;
+  @FXML private Slider s, s1, s2, s3, s4, s5;
   @FXML private Label lastDigits;
-  @FXML private Rectangle topDrawer;
-  @FXML private Rectangle midDrawer;
-  @FXML private Rectangle botDrawer;
   @FXML private Label intel;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
-  @FXML private Button decrypt;
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
@@ -82,25 +59,14 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private String riddleCode;
 
   private enum Object {
-    COMMS,
-    DRAWER,
-    PAINT,
-    PAINT1,
-    PAINT2,
-    DOOR,
-    DESK,
-    NEWS,
-    BOT,
-    MID,
-    TOP
+    COMMS, DRAWER, PAINT, PAINT1,PAINT2,DOOR, DESK, NEWS, BOT, MID, TOP
   }
 
   /**
    * Initializes the room view, it is called when the room loads.
-   *
-   * @throws ApiProxyException
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     System.out.println(GameState.getRandomWord());
@@ -116,6 +82,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     openCabinet(false);
     TimerClass.add(this);
   }
+
   @Override
   public void timerStart() {
     TimerClass timerText = TimerClass.getInstance();
@@ -259,7 +226,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     riddleCode = generateEncrypted(100);
     riddle.appendText(riddleCode);
     riddle.setWrapText(true);
-    
+
     // Individual popup items.
     p.setVisible(false);
     p1.setVisible(false);
@@ -287,35 +254,37 @@ public class LeftRoomController extends Commander implements TimerObserver {
           riddle.setVisible(false);
           decrypt.setVisible(false);
         });
-    
-    decrypt.setOnAction(event -> {
-        // send the encrypted message to GPT.
-        System.out.println("TEST PRESS");
-        String dialogue = "Sir, I found a piece of paper with the following character, what does it say? " + riddleCode;
-        try {
+
+    decrypt.setOnAction(
+        event -> {
+          // send the encrypted message to GPT.
+          System.out.println("TEST PRESS");
+          String dialogue =
+              "Sir, I found a piece of paper with the following characters, what does it say? "
+                  + riddleCode;
+          try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
 
             // Create a Timeline to wait for 10 seconds
-            Timeline timeline = new Timeline(new KeyFrame(
-                Duration.millis(10000),
-                ae -> {
-                    try {
-                        String getRiddle = "Give me the riddle";
-                        CommanderController.getInstance().sendHiddenMessageToGpt(getRiddle);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }));
-            
+            Timeline timeline =
+                new Timeline(
+                    new KeyFrame(
+                        Duration.millis(10000),
+                        ae -> {
+                          try {
+                            CommanderController.getInstance().sendForUser(GptPromptEngineering.getRiddleWithGivenWord(GameState.getRandomWord()));
+                          } catch (Exception e) {
+                            e.printStackTrace();
+                          }
+                        }));
+
             // Play the Timeline
             timeline.play();
 
-        } catch (Exception e) {
+          } catch (Exception e) {
             e.printStackTrace();
-        }
-    });
-
-      
+          }
+        });
   }
 
   private void generateYear() {
@@ -394,16 +363,16 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private String generateEncrypted(int length) {
-    
+
     String asciiChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
     SecureRandom random = new SecureRandom();
     StringBuilder encryptedText = new StringBuilder();
     int count = 0;
     for (int i = 0; i < length; i++) {
       if (count > 0 && random.nextInt(10) < 2) { // 20% chance to insert a space
-          encryptedText.append(' ');
-          count = 0;
-          continue;
+        encryptedText.append(' ');
+        count = 0;
+        continue;
       }
       int index = random.nextInt(asciiChars.length());
       encryptedText.append(asciiChars.charAt(index));
@@ -411,5 +380,4 @@ public class LeftRoomController extends Commander implements TimerObserver {
     }
     return encryptedText.toString();
   }
-
 }

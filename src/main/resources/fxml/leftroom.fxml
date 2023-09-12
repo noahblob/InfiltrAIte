@@ -3,6 +3,7 @@
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
@@ -36,7 +37,6 @@
             <Image url="@../images/phone%20cropped.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="output" layoutX="522.0" layoutY="93.0" prefHeight="248.0" prefWidth="226.0" />
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
       <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
@@ -133,5 +133,6 @@
          </font>
       </TextArea>
       <Button fx:id="decrypt" layoutX="298.0" layoutY="489.0" mnemonicParsing="false" text="Decrypt" />
+      <ListView fx:id="output" layoutX="522.0" layoutY="96.0" prefHeight="245.0" prefWidth="226.0" />
    </children>
 </Pane>

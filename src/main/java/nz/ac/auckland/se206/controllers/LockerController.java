@@ -10,19 +10,16 @@ import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
 public class LockerController extends Commander implements TimerObserver {
 
   @FXML private Label objective;
-  @FXML private Text timer;
   @FXML private Label first;
   @FXML private Label second;
   @FXML private Label third;
@@ -38,10 +35,9 @@ public class LockerController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
-   *
-   * @throws ApiProxyException
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     super.initialize();
     one = two = three = four = 0;

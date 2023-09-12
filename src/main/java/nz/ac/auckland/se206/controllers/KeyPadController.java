@@ -9,17 +9,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the keypad view. */
 public class KeyPadController extends Commander implements TimerObserver {
-  @FXML private Text timer;
+
   @FXML private Button clearButton;
   @FXML private Button submitButton;
   @FXML private Button exitButton;
@@ -31,10 +29,9 @@ public class KeyPadController extends Commander implements TimerObserver {
 
   /**
    * Initializes the keypad view, it is called when the keypad loads.
-   *
-   * @throws ApiProxyException if there is an error with the API
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
@@ -63,10 +60,10 @@ public class KeyPadController extends Commander implements TimerObserver {
    * Handles the click event for the keypad buttons.
    *
    * @param event the mouse event
-   * @throws ApiProxyException if there is an error with the API
+   * @throws Exception
    */
   @FXML
-  public void onClick(MouseEvent event) throws ApiProxyException {
+  public void onClick(MouseEvent event) throws Exception {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
     // switch case for the different buttons, including clear, submit and exit

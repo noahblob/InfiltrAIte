@@ -1,21 +1,23 @@
 package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Random;
+import java.util.Set;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /** Represents the state of the game. */
 public class GameState {
 
-  private static final HashMap<String, String> dictionary = new HashMap<>();
+  private static final Set<String> riddleAnswers = new HashSet<>();
 
   // Create riddle answers
   static {
     // Decide what type of riddle answers we want later.
-    dictionary.put("apple", "A round fruit with red or green skin and crisp flesh.");
-    dictionary.put("banana", "A yellow fruit that is long and curved.");
-    dictionary.put("cherry", "A small, round fruit that is typically red or black.");
+    riddleAnswers.add("apple");
+    riddleAnswers.add("pear");
+    riddleAnswers.add("banana");
+    riddleAnswers.add("book");
     // Add more words and definitions here
   }
 
@@ -37,12 +39,16 @@ public class GameState {
   /** Indicates amount of intelligence gathered */
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
 
+
+  /** Indeicates the number of hints allowed */
+  public static String numHints = "0";
+
   /** Indicates whether the player has found intel in the cabinet */
   public static boolean cabinetIntelfound = false;
 
   public static String getRandomWord() {
     // Create an ArrayList to hold the keys (words)
-    ArrayList<String> keys = new ArrayList<>(dictionary.keySet());
+    ArrayList<String> keys = new ArrayList<>(riddleAnswers);
 
     // Create a Random object
     Random random = new Random();

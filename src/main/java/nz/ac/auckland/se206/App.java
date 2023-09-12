@@ -46,6 +46,7 @@ public class App extends Application {
   @Override
   public void start(final Stage stage) throws IOException {
 
+    SceneManager.addUserInterface(AppUI.START, loadFxml("start"));
     SceneManager.addUserInterface(AppUI.TITLE, loadFxml("title"));
     SceneManager.addUserInterface(AppUI.WATCH, loadFxml("time"));
     SceneManager.addUserInterface(AppUI.MAIN, loadFxml("mainroom"));
@@ -56,7 +57,7 @@ public class App extends Application {
     SceneManager.addUserInterface(AppUI.BOOKSHELF, loadFxml("bookshelf"));
     SceneManager.addUserInterface(AppUI.BLACKBOARD, loadFxml("blackboard"));
 
-    scene = new Scene(SceneManager.getuserInterface(AppUI.TITLE), 800, 600);
+    scene = new Scene(SceneManager.getuserInterface(AppUI.START), 800, 600);
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     stage.setResizable(false);
     stage.setScene(scene);

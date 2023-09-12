@@ -10,13 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Controller class for the room view. */
 public class BlackBoardController extends Commander implements TimerObserver {
@@ -49,11 +49,11 @@ public class BlackBoardController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
-   *
-   * @throws ApiProxyException
+   * @throws Exception
    */
-  public void initialize() throws ApiProxyException {
+  public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+    Font.loadFont(getClass().getResourceAsStream("/fonts/Chalkduster.ttf"), 12);
 
     super.initialize();
     objective.setText("Hmm this seems pretty important");
@@ -92,6 +92,14 @@ public class BlackBoardController extends Commander implements TimerObserver {
     hashmap.put(5, friday);
     hashmap.put(6, saturday);
     hashmap.put(7, sunday);
+
+    mon.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
+    tues.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
+    wed.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
+    th.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
+    fr.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
+    sat.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
+    sun.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
 
     mon.setText(Integer.toString(monday));
     tues.setText(Integer.toString(tuesday));

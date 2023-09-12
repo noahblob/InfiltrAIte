@@ -2,16 +2,15 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 
@@ -20,18 +19,20 @@ public class TitleController {
 
   @FXML private Label difficulty;
   @FXML private TextArea description;
-  
+
+  @FXML private Circle ring;
   @FXML private ImageView elbonia;
   @FXML private ImageView genovia;
   @FXML private ImageView sanescobar;
   @FXML private ImageView zubrowka;
-  
+
   private final Map<String, String> countryImageMap = new HashMap<>();
 
   public void initialize() {
-      intialiseFonts();
-      initialiseCountries();
-      initialiseImageMap();
+    ring.getStyleClass().add("titlerings");
+    intialiseFonts();
+    initialiseCountries();
+    initialiseImageMap();
   }
 
   private void initialiseImageMap() {
@@ -45,31 +46,33 @@ public class TitleController {
     countryImageMap.put("Z2", "images/countries/4.png");
   }
 
-
   private void initialiseCountries() {
-    setImageHover(elbonia, "EASY", "Unlimited hints provided", "Elbonia");
-    setImageHover(genovia, "MEDIUM","Five hints provided", "Genovia");
+    setImageHover(elbonia, "EASY", "\u221E hints provided", "Elbonia");
+    setImageHover(genovia, "MEDIUM", "Five hints provided", "Genovia");
     setImageHover(sanescobar, "HARD", "No Hints provided", "Sanescobar");
     setImageHover(zubrowka, "???", "???", "Zubrowka");
   }
 
   private void setImageHover(ImageView image, String info, String about, String country) {
 
-      image.setOnMouseEntered(
-          event -> {
-            changeImage(event, country, true);
-            difficulty.setText(info);
-            description.setText(about);
-          });
+    image.setOnMouseEntered(
+        event -> {
+          changeImage(event, country, true);
+          difficulty.setText(info);
+          difficulty.setTextAlignment(TextAlignment.JUSTIFY);
+          description.setText(about);
+          description.setStyle("-fx-text-alignment: center;");
+        });
 
-      image.setOnMouseExited(
-          event -> {
-            changeImage(event, country, false);
-            difficulty.setText("DIFFICULTY");
-            description.setText("");
-          });
+    image.setOnMouseExited(
+        event -> {
+          changeImage(event, country, false);
+          difficulty.setText("DIFFICULTY");
+          difficulty.setTextAlignment(TextAlignment.JUSTIFY);
+          description.setText("");
+          description.setStyle("-fx-text-alignment: center;");
+        });
   }
-
 
   @FXML
   private void onClick(MouseEvent event) {
@@ -80,39 +83,35 @@ public class TitleController {
     if (image.equals(elbonia)) {
       GameState.difficulty = 1;
       GameState.country = "Elbonia";
+      GameState.numHints = "Unlimited";
     } else if (image.equals(genovia)) {
       GameState.difficulty = 2;
       GameState.country = "Genovia";
+      GameState.numHints = "5";
     } else if (image.equals(sanescobar)) {
       GameState.difficulty = 3;
       GameState.country = "Sanescobar";
+      GameState.numHints = "no";
     }
     Scene currentScene = image.getScene();
     // Update the scene to the watch.
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.WATCH));
   }
-  
+
   private void changeImage(MouseEvent event, String country, Boolean flag) {
-      ImageView imageView = (ImageView) event.getSource();
-      String suffix = flag ? "2" : "1";
-      String prefix = country.substring(0, 1).toUpperCase();
+    ImageView imageView = (ImageView) event.getSource();
+    String suffix = flag ? "2" : "1";
+    String prefix = country.substring(0, 1).toUpperCase();
 
-      String key = prefix + suffix;
-      String path = countryImageMap.getOrDefault(key, "default-image-path.png");
+    String key = prefix + suffix;
+    String path = countryImageMap.getOrDefault(key, "default-image-path.png");
 
-      imageView.setImage(new Image(path));
+    imageView.setImage(new Image(path));
   }
 
-
   private void intialiseFonts() {
-      
-      difficulty.setText("DIFFICULTY");
-      difficulty.setAlignment(Pos.CENTER_RIGHT);
-      description.setEditable(false);
-      description.setWrapText(true);
-      Font level = Font.font("Anonymous Pro", 18); 
-      Font font = Font.font("Anonymous Pro", 14); 
-      difficulty.setFont(level);
-      description.setFont(font);
+    difficulty.setText("DIFFICULTY");
+    description.setEditable(false);
+    description.setWrapText(true);
   }
 }
