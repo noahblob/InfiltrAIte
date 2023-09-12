@@ -23,6 +23,11 @@ public abstract class Commander {
   protected void initialize() throws Exception {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
+    input
+        .textProperty()
+        .bindBidirectional(CommanderController.getInstance().lastInputTextProperty());
+
+    output.scrollTo(output.getItems().size() - 1);
 
     if (dialogue != null) {
       dialogue.setEditable(false);
