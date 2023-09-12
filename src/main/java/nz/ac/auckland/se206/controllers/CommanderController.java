@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
@@ -35,6 +38,8 @@ public class CommanderController {
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> dialogues;
+  private StringProperty lastInputTextProperty = new SimpleStringProperty("");
+  private boolean scroll = false;
 
   private CommanderController() throws Exception {
 
@@ -205,6 +210,48 @@ public class CommanderController {
   public void addListView(ListView<ChatMessage> textArea) {
     textArea.setCellFactory(param -> new ChatCell());
     phoneScreens.add(textArea);
+
+    // Ensure the scrollbar is at the bottom initially.
+    scrollToBottom(textArea);
+
+    // Add a change listener to keep the scrollbar at the bottom when new items are added.
+    textArea
+        .getItems()
+        .addListener(
+            (ListChangeListener<ChatMessage>)
+                c -> {
+                  if (scroll) return;
+                  while (c.next()) {
+                    if (c.wasAdded()) {
+                      scrollToBottom(textArea);
+                    }
+                  }
+                });
+  }
+
+  private void scrollToBottom(ListView<ChatMessage> textArea) {
+    scroll = true;
+    // Add a non-visible empty item and scroll to it.
+    textArea.getItems().add(new ChatMessage("", ""));
+    textArea.scrollTo(textArea.getItems().size() - 1);
+
+    // Then remove the added empty item.
+    textArea.getItems().remove(textArea.getItems().size() - 1);
+    scroll = false;
+  }
+
+  // Helper method which keeps track of what is written in the users text are so that it can be kept
+  // through different scenes
+  public String getLastInputText() {
+    return lastInputTextProperty.get();
+  }
+
+  public void setLastInputText(String text) {
+    this.lastInputTextProperty.set(text);
+  }
+
+  public StringProperty lastInputTextProperty() {
+    return lastInputTextProperty;
   }
 
   // Helper method to add text areas from different scenes to the controller.
