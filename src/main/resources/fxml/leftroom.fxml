@@ -63,7 +63,7 @@
             <Image url="@../images/news.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="comms" fitHeight="489.0" fitWidth="560.0" layoutX="-40.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="comms" fitHeight="489.0" fitWidth="560.0" layoutX="-40.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/newcomms.png" />
          </image>
@@ -101,41 +101,41 @@
          </font>
       </Label>
       <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" text="RETURN" />
-      <Pane fx:id="passcodePane" layoutX="18.0" layoutY="114.0" prefHeight="98.0" prefWidth="444.0">
+      <Pane fx:id="passcodePane" layoutX="18.0" layoutY="114.0" prefHeight="98.0" prefWidth="444.0" visible="false">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" text="X" fx:id="x">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X" fx:id="x">
                <font>
                   <Font size="52.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="75.0" layoutY="10.0" prefHeight="85.0" prefWidth="64.0" text="X" fx:id="x1">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X" fx:id="x1">
                <font>
                   <Font size="52.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="11.0" prefHeight="85.0" prefWidth="64.0" text="X" fx:id="x2">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X" fx:id="x2">
                <font>
                   <Font size="52.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="217.0" layoutY="11.0" prefHeight="85.0" prefWidth="64.0" text="X" fx:id="x3">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="222.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X" fx:id="x3">
                <font>
                   <Font size="52.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="284.0" layoutY="11.0" prefHeight="85.0" prefWidth="64.0" text="X" fx:id="x4">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X" fx:id="x4">
                <font>
                   <Font size="52.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="361.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" text="X" fx:id="x5">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="363.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X" fx:id="x5">
                <font>
                   <Font size="52.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="sliderPane" layoutX="23.0" layoutY="232.0" prefHeight="125.0" prefWidth="159.0">
+      <Pane fx:id="sliderPane" layoutX="23.0" layoutY="232.0" prefHeight="125.0" prefWidth="159.0" visible="false">
          <children>
             <Slider fx:id="s" layoutX="12.0" layoutY="17.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
             <Slider fx:id="s5" layoutX="131.0" layoutY="16.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
@@ -160,16 +160,20 @@
             <Font size="37.0" />
          </font>
       </Label>
-      <ImageView fx:id="paper" fitHeight="341.0" fitWidth="342.0" layoutX="76.0" layoutY="130.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/paper.png" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="riddle" layoutX="111.0" layoutY="163.0" prefHeight="277.0" prefWidth="275.0" promptText="TESTING" visible="false">
-         <font>
-            <Font name="Anonymous Pro Bold" size="25.0" />
-         </font>
-      </TextArea>
+      <Pane fx:id="riddlePane" layoutX="71.0" layoutY="114.0" prefHeight="358.0" prefWidth="345.0" visible="false">
+         <children>
+            <ImageView fx:id="paper" fitHeight="341.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/paper.png" />
+               </image>
+            </ImageView>
+            <TextArea fx:id="riddle" editable="false" layoutX="35.0" layoutY="32.0" prefHeight="277.0" prefWidth="275.0" promptText="TESTING " styleClass="encrypted" stylesheets="@../css/styles.css">
+               <font>
+                  <Font name="Anonymous Pro Bold" size="25.0" />
+               </font>
+            </TextArea>
+         </children>
+      </Pane>
       <Button fx:id="decrypt" layoutX="287.0" layoutY="489.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="DECRYPT" />
       <ListView fx:id="output" layoutX="522.0" layoutY="96.0" prefHeight="245.0" prefWidth="226.0" />
    </children>

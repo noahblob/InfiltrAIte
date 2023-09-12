@@ -65,8 +65,6 @@
   -fx-border-width: 5px, 5px, 5px, 5px
 }
 
-
-
 .list-view {
   -fx-background-color: rgb(0, 0, 0);
   -fx-text-fill: #00FF00;
@@ -74,8 +72,6 @@
   -fx-border-color: #00FF00;
   -fx-border-width: 5px, 5px, 5px, 5px
 }
-
-
 
 .text-area .scroll-pane {
   -fx-background-color: transparent;
@@ -110,4 +106,19 @@
 /* Disables horizontal scroll bar in list view */
 .list-view .scroll-bar:horizontal {
   -fx-scale-x: 0;
+}
+
+/* LEFT ROOM CSS */
+
+.passcode {
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-border-color: rgb(122, 122, 122);
+  -fx-border-width: 2px;
+  -fx-text-fill: rgb(255, 255, 255);
+}
+
+.encrypted {
+  -fx-background-color: transparent;
+  -fx-border-color: transparent;
+  -fx-text-fill: black;
 }

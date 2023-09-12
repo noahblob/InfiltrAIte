@@ -50,6 +50,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Pane sliderPane;
   @FXML private Slider s, s1, s2, s3, s4, s5;
   @FXML private Pane passcodePane;
+  @FXML private Pane riddlePane;
   @FXML private Label x, x1, x2, x3, x4, x5;
   @FXML private Label lastDigits;
   @FXML private Label intel;
@@ -240,6 +241,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     decrypt.setVisible(false);
     riddleCode = generateEncrypted(100);
     riddle.appendText(riddleCode);
+    riddlePane.setVisible(false);
     riddle.setWrapText(true);
 
     // Individual popup items.
@@ -251,8 +253,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     tear.setVisible(false);
     lastDigits.setVisible(false);
     drawer1.setVisible(false);
-    riddle.setVisible(false);
-    paper.setVisible(false);
 
     back.setOnAction(
         event -> {
@@ -266,7 +266,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
           toggleSliders(false);
           toggleYear(false);
           openCabinet(false);
-          riddle.setVisible(false);
+          riddlePane.setVisible(false);
           decrypt.setVisible(false);
           comms1.setVisible(false);
         });
@@ -428,8 +428,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
         openCabinet(true);
         break;
       case MID:
-        showPopup(paper);
-        riddle.setVisible(true);
+        riddlePane.setVisible(true);
         decrypt.setVisible(true);
       default:
         break;
