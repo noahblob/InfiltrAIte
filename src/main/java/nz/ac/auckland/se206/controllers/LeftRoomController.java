@@ -61,7 +61,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
   private List<Slider> sliders;
-  private Map<Integer,Character> sliderMap;
+  private List<Label> passcode;
+  private Map<Integer,String> sliderMap;
   private int lastNumbers;
   private String riddleCode;
 
@@ -307,16 +308,24 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private void setSliders() {
     toggleSliders(false);
-    this.sliders = new ArrayList<>();
+    sliders = new ArrayList<>();
     sliders.add(s);
     sliders.add(s1);
     sliders.add(s2);
     sliders.add(s3);
     sliders.add(s4);
     sliders.add(s5);
+    passcode = new ArrayList<>();
+    passcode.add(x);
+    passcode.add(x1);
+    passcode.add(x2);
+    passcode.add(x3);
+    passcode.add(x4);
+    passcode.add(x5);
 
     for (int i = 0; i < sliders.size(); i++) {
       Slider s = sliders.get(i);
+      Label digit = passcode.get(i);
 
         // Set the major and minor tick unit values to 1
         s.setMajorTickUnit(1);
@@ -332,7 +341,11 @@ public class LeftRoomController extends Commander implements TimerObserver {
                 // Convert the value to an integer
                 int intValue = newValue.intValue();
                 s.setValue(intValue); // Update the slider value to the nearest integer
-                System.out.println("Slider Value: " + intValue);
+
+                // Get the respective character from slider map.
+                String code = sliderMap.get(intValue);
+                // Update respective label.
+                digit.setText(code);
             }
         });
 
@@ -342,15 +355,17 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private void createSliderMap() {
     sliderMap = new HashMap<>();
-    sliderMap.put(1,'+');
-    sliderMap.put(2,'-');
-    sliderMap.put(3,'*');
-    sliderMap.put(4,'&');
-    sliderMap.put(5,'^');
-    sliderMap.put(6,'%');
-    sliderMap.put(7,'$');
-    sliderMap.put(8,'#');
-    sliderMap.put(9,'@');
+    sliderMap.put(0,"!");
+    sliderMap.put(1,"+");
+    sliderMap.put(2,"-");
+    sliderMap.put(3,"*");
+    sliderMap.put(4,"&");
+    sliderMap.put(5,"^");
+    sliderMap.put(6,"%");
+    sliderMap.put(7,"$");
+    sliderMap.put(8,"#");
+    sliderMap.put(9,"@");
+    sliderMap.put(10,"?");
   }
 
   private void openCabinet(Boolean flag) {
