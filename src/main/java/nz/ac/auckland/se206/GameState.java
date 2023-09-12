@@ -46,6 +46,9 @@ public class GameState {
   /** Indicates whether the player has found intel in the cabinet */
   public static boolean cabinetIntelfound = false;
 
+  /** Indicates whether the player has solved communication puzzle */
+  public static boolean isSlidersSolved = false;
+
   public static String getRandomWord() {
     // Create an ArrayList to hold the keys (words)
     ArrayList<String> keys = new ArrayList<>(riddleAnswers);

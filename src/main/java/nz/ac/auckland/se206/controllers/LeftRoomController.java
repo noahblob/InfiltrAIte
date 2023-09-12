@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -62,9 +63,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private List<ImageView> visiblePopups;
   private List<Slider> sliders;
   private List<Label> passcode;
-  private Map<Integer,String> sliderMap;
+  private char[] code;
+  private char[] answer;
+  private Map<Integer,Character> sliderMap;
   private int lastNumbers;
   private String riddleCode;
+  
 
   private enum Object {
     COMMS, DRAWER, PAINT, PAINT1, PAINT2, DOOR, DESK, NEWS, BOT, MID, TOP
@@ -81,6 +85,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
     super.initialize();
     objective.setText("This is the LEFT ROOM");
+
+    // Hardcoding answer to slider puzzle for now.
+    answer = new char[] {'#','%','^','*','@','+'};
 
     createRoom();
     setPopups();
@@ -261,6 +268,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
           openCabinet(false);
           riddle.setVisible(false);
           decrypt.setVisible(false);
+          comms1.setVisible(false);
         });
 
     decrypt.setOnAction(
@@ -308,6 +316,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private void setSliders() {
     toggleSliders(false);
+    code = new char[6];
     sliders = new ArrayList<>();
     sliders.add(s);
     sliders.add(s1);
@@ -324,49 +333,58 @@ public class LeftRoomController extends Commander implements TimerObserver {
     passcode.add(x5);
 
     for (int i = 0; i < sliders.size(); i++) {
-      Slider s = sliders.get(i);
-      Label digit = passcode.get(i);
-
-        // Set the major and minor tick unit values to 1
-        s.setMajorTickUnit(1);
-        s.setMinorTickCount(0);
-        s.setBlockIncrement(1);
-
-        // Enable snapping to tick marks
-        s.setSnapToTicks(true);
-
-        s.valueProperty().addListener(new ChangeListener<Number>() {
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                // Convert the value to an integer
-                int intValue = newValue.intValue();
-                s.setValue(intValue); // Update the slider value to the nearest integer
-
-                // Get the respective character from slider map.
-                String code = sliderMap.get(intValue);
-                // Update respective label.
-                digit.setText(code);
-            }
-        });
-
-      // s.setSkin(new CustomSliderSkin(s));
+        setupSlider(sliders.get(i), passcode.get(i), i);
     }
+      // s.setSkin(new CustomSliderSkin(s));
   }
 
   private void createSliderMap() {
     sliderMap = new HashMap<>();
-    sliderMap.put(0,"!");
-    sliderMap.put(1,"+");
-    sliderMap.put(2,"-");
-    sliderMap.put(3,"*");
-    sliderMap.put(4,"&");
-    sliderMap.put(5,"^");
-    sliderMap.put(6,"%");
-    sliderMap.put(7,"$");
-    sliderMap.put(8,"#");
-    sliderMap.put(9,"@");
-    sliderMap.put(10,"?");
+    sliderMap.put(0,'!');
+    sliderMap.put(1,'+');
+    sliderMap.put(2,'-');
+    sliderMap.put(3,'*');
+    sliderMap.put(4,'&');
+    sliderMap.put(5,'^');
+    sliderMap.put(6,'%');
+    sliderMap.put(7,'$');
+    sliderMap.put(8,'#');
+    sliderMap.put(9,'@');
+    sliderMap.put(10,'?');
   }
+
+  // Helper function for sliders.
+  private void setupSlider(Slider s, Label digit, int index) {
+    s.setMajorTickUnit(1);
+    s.setMinorTickCount(0);
+    s.setBlockIncrement(1);
+    s.setSnapToTicks(true);
+
+    s.valueProperty().addListener(new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            int intValue = newValue.intValue();
+            s.setValue(intValue); // Update the slider value to the nearest integer
+
+            // Get the respective character from slider map.
+            char codeValue = sliderMap.get(intValue);
+            
+            // Update the actual code array.
+            code[index] = codeValue;
+            // Update respective label.
+            digit.setText(String.valueOf(codeValue));
+            if (Arrays.equals(code,answer)) {
+              // Update game state and show sine wave.
+              GameState.isSlidersSolved = true;
+              comms1.setVisible(true);
+              // Disable slider game.
+              for (Slider s : sliders) {
+                s.setDisable(true);
+              }
+            }
+        }
+    });
+}
 
   private void openCabinet(Boolean flag) {
     topDrawer.setVisible(flag);
@@ -396,7 +414,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
         break;
       case COMMS:
         showPopup(comms);
-        showPopup(comms1);
+        if (GameState.isSlidersSolved) {
+          showPopup(comms1);
+        }
         toggleSliders(true);
         break;
       case DESK:

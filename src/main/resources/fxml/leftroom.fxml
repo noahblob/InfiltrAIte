@@ -170,7 +170,7 @@
             <Font name="Anonymous Pro Bold" size="25.0" />
          </font>
       </TextArea>
-      <Button fx:id="decrypt" layoutX="298.0" layoutY="489.0" mnemonicParsing="false" text="Decrypt" />
+      <Button fx:id="decrypt" layoutX="287.0" layoutY="489.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="DECRYPT" />
       <ListView fx:id="output" layoutX="522.0" layoutY="96.0" prefHeight="245.0" prefWidth="226.0" />
    </children>
 </Pane>
