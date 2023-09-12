@@ -9,6 +9,8 @@ import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +19,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -43,7 +46,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Polygon painting2, door, desk, newspaper;
   @FXML private ImageView p, p1, p2;
   @FXML private ImageView comms, comms1, tear, drawer1;
+  @FXML private Pane sliderPane;
   @FXML private Slider s, s1, s2, s3, s4, s5;
+  @FXML private Pane passcodePane;
+  @FXML private Label x, x1, x2, x3, x4, x5;
   @FXML private Label lastDigits;
   @FXML private Label intel;
   @FXML private ImageView paper;
@@ -55,11 +61,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
   private List<Slider> sliders;
+  private Map<Integer,Character> sliderMap;
   private int lastNumbers;
   private String riddleCode;
 
   private enum Object {
-    COMMS, DRAWER, PAINT, PAINT1,PAINT2,DOOR, DESK, NEWS, BOT, MID, TOP
+    COMMS, DRAWER, PAINT, PAINT1, PAINT2, DOOR, DESK, NEWS, BOT, MID, TOP
   }
 
   /**
@@ -78,6 +85,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     setPopups();
     setHoverEvents();
     setSliders();
+    createSliderMap();
     generateYear();
     openCabinet(false);
     TimerClass.add(this);
@@ -209,9 +217,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void toggleSliders(Boolean flag) {
-    for (Slider s : sliders) {
-      s.setVisible(flag);
-    }
+    passcodePane.setVisible(flag);
+    sliderPane.setVisible(flag);
   }
 
   private void toggleYear(Boolean flag) {
@@ -299,6 +306,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void setSliders() {
+    toggleSliders(false);
     this.sliders = new ArrayList<>();
     sliders.add(s);
     sliders.add(s1);
@@ -309,9 +317,40 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
     for (int i = 0; i < sliders.size(); i++) {
       Slider s = sliders.get(i);
-      s.setVisible(false);
-      s.setSkin(new CustomSliderSkin(s));
+
+        // Set the major and minor tick unit values to 1
+        s.setMajorTickUnit(1);
+        s.setMinorTickCount(0);
+        s.setBlockIncrement(1);
+
+        // Enable snapping to tick marks
+        s.setSnapToTicks(true);
+
+        s.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                // Convert the value to an integer
+                int intValue = newValue.intValue();
+                s.setValue(intValue); // Update the slider value to the nearest integer
+                System.out.println("Slider Value: " + intValue);
+            }
+        });
+
+      // s.setSkin(new CustomSliderSkin(s));
     }
+  }
+
+  private void createSliderMap() {
+    sliderMap = new HashMap<>();
+    sliderMap.put(1,'+');
+    sliderMap.put(2,'-');
+    sliderMap.put(3,'*');
+    sliderMap.put(4,'&');
+    sliderMap.put(5,'^');
+    sliderMap.put(6,'%');
+    sliderMap.put(7,'$');
+    sliderMap.put(8,'#');
+    sliderMap.put(9,'@');
   }
 
   private void openCabinet(Boolean flag) {
