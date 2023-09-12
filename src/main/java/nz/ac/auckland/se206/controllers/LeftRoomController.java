@@ -2,6 +2,7 @@ package nz.ac.auckland.se206.controllers;
 
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,8 @@ import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +20,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
@@ -43,7 +47,11 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Polygon painting2, door, desk, newspaper;
   @FXML private ImageView p, p1, p2;
   @FXML private ImageView comms, comms1, tear, drawer1;
+  @FXML private Pane sliderPane;
   @FXML private Slider s, s1, s2, s3, s4, s5;
+  @FXML private Pane passcodePane;
+  @FXML private Pane riddlePane;
+  @FXML private Label x, x1, x2, x3, x4, x5;
   @FXML private Label lastDigits;
   @FXML private Label intel;
   @FXML private ImageView paper;
@@ -55,11 +63,16 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
   private List<Slider> sliders;
+  private List<Label> passcode;
+  private char[] code;
+  private char[] answer;
+  private Map<Integer,Character> sliderMap;
   private int lastNumbers;
   private String riddleCode;
+  
 
   private enum Object {
-    COMMS, DRAWER, PAINT, PAINT1,PAINT2,DOOR, DESK, NEWS, BOT, MID, TOP
+    COMMS, DRAWER, PAINT, PAINT1, PAINT2, DOOR, DESK, NEWS, BOT, MID, TOP
   }
 
   /**
@@ -74,10 +87,14 @@ public class LeftRoomController extends Commander implements TimerObserver {
     super.initialize();
     objective.setText("This is the LEFT ROOM");
 
+    // Hardcoding answer to slider puzzle for now.
+    answer = new char[] {'#','%','^','*','@','+'};
+
     createRoom();
     setPopups();
     setHoverEvents();
     setSliders();
+    createSliderMap();
     generateYear();
     openCabinet(false);
     TimerClass.add(this);
@@ -209,9 +226,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void toggleSliders(Boolean flag) {
-    for (Slider s : sliders) {
-      s.setVisible(flag);
-    }
+    passcodePane.setVisible(flag);
+    sliderPane.setVisible(flag);
   }
 
   private void toggleYear(Boolean flag) {
@@ -225,6 +241,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     decrypt.setVisible(false);
     riddleCode = generateEncrypted(100);
     riddle.appendText(riddleCode);
+    riddlePane.setVisible(false);
     riddle.setWrapText(true);
 
     // Individual popup items.
@@ -236,8 +253,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     tear.setVisible(false);
     lastDigits.setVisible(false);
     drawer1.setVisible(false);
-    riddle.setVisible(false);
-    paper.setVisible(false);
 
     back.setOnAction(
         event -> {
@@ -251,8 +266,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
           toggleSliders(false);
           toggleYear(false);
           openCabinet(false);
-          riddle.setVisible(false);
+          riddlePane.setVisible(false);
           decrypt.setVisible(false);
+          comms1.setVisible(false);
         });
 
     decrypt.setOnAction(
@@ -299,20 +315,76 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void setSliders() {
-    this.sliders = new ArrayList<>();
+    toggleSliders(false);
+    code = new char[6];
+    sliders = new ArrayList<>();
     sliders.add(s);
     sliders.add(s1);
     sliders.add(s2);
     sliders.add(s3);
     sliders.add(s4);
     sliders.add(s5);
+    passcode = new ArrayList<>();
+    passcode.add(x);
+    passcode.add(x1);
+    passcode.add(x2);
+    passcode.add(x3);
+    passcode.add(x4);
+    passcode.add(x5);
 
     for (int i = 0; i < sliders.size(); i++) {
-      Slider s = sliders.get(i);
-      s.setVisible(false);
-      s.setSkin(new CustomSliderSkin(s));
+        setupSlider(sliders.get(i), passcode.get(i), i);
     }
+      // s.setSkin(new CustomSliderSkin(s));
   }
+
+  private void createSliderMap() {
+    sliderMap = new HashMap<>();
+    sliderMap.put(0,'!');
+    sliderMap.put(1,'+');
+    sliderMap.put(2,'-');
+    sliderMap.put(3,'*');
+    sliderMap.put(4,'&');
+    sliderMap.put(5,'^');
+    sliderMap.put(6,'%');
+    sliderMap.put(7,'$');
+    sliderMap.put(8,'#');
+    sliderMap.put(9,'@');
+    sliderMap.put(10,'?');
+  }
+
+  // Helper function for sliders.
+  private void setupSlider(Slider s, Label digit, int index) {
+    s.setMajorTickUnit(1);
+    s.setMinorTickCount(0);
+    s.setBlockIncrement(1);
+    s.setSnapToTicks(true);
+
+    s.valueProperty().addListener(new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            int intValue = newValue.intValue();
+            s.setValue(intValue); // Update the slider value to the nearest integer
+
+            // Get the respective character from slider map.
+            char codeValue = sliderMap.get(intValue);
+            
+            // Update the actual code array.
+            code[index] = codeValue;
+            // Update respective label.
+            digit.setText(String.valueOf(codeValue));
+            if (Arrays.equals(code,answer)) {
+              // Update game state and show sine wave.
+              GameState.isSlidersSolved = true;
+              comms1.setVisible(true);
+              // Disable slider game.
+              for (Slider s : sliders) {
+                s.setDisable(true);
+              }
+            }
+        }
+    });
+}
 
   private void openCabinet(Boolean flag) {
     topDrawer.setVisible(flag);
@@ -342,7 +414,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
         break;
       case COMMS:
         showPopup(comms);
-        showPopup(comms1);
+        if (GameState.isSlidersSolved) {
+          showPopup(comms1);
+        }
         toggleSliders(true);
         break;
       case DESK:
@@ -354,8 +428,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
         openCabinet(true);
         break;
       case MID:
-        showPopup(paper);
-        riddle.setVisible(true);
+        riddlePane.setVisible(true);
         decrypt.setVisible(true);
       default:
         break;
