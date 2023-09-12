@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -21,7 +22,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 /** Controller class for the room view. */
 public class BlackBoardController extends Commander implements TimerObserver {
 
-  @FXML private Label objective;
+  @FXML private TextArea objective;
   @FXML private Text timer;
   @FXML private Label mon;
   @FXML private Label tues;
@@ -49,6 +50,7 @@ public class BlackBoardController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
+   *
    * @throws Exception
    */
   public void initialize() throws Exception {

@@ -19,6 +19,11 @@
             <Image url="@../images/rightroom.png" />
          </image>
       </ImageView>
+      <ImageView fitHeight="395.0" fitWidth="379.0" layoutX="44.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/books.png" />
+         </image>
+      </ImageView>
       <ImageView fx:id="actual5" fitHeight="401.0" fitWidth="431.0" layoutX="38.0" layoutY="92.0" pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/Book.png" />
@@ -63,11 +68,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="objective" alignment="CENTER" layoutX="7.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/phone%20cropped.png" />
@@ -75,27 +75,27 @@
       </ImageView>
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
-      <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="36.0" layoutY="241.0" onMouseClicked="#checkBook" stroke="BLACK" strokeType="INSIDE" width="63.0">
+      <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="55.0" layoutY="116.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="118.0" layoutY="241.0" onMouseClicked="#checkBook" stroke="BLACK" strokeType="INSIDE" width="63.0">
+      <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="127.0" layoutY="115.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="70.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="201.0" layoutY="241.0" onMouseClicked="#checkBook" stroke="BLACK" strokeType="INSIDE" width="63.0">
+      <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="202.0" layoutY="115.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="282.0" layoutY="241.0" onMouseClicked="#checkBook" stroke="BLACK" strokeType="INSIDE" width="63.0">
+      <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="270.0" layoutY="115.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="111.0" layoutX="357.0" layoutY="241.0" onMouseClicked="#checkBook" stroke="BLACK" strokeType="INSIDE" width="63.0">
+      <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="348.0" layoutX="342.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="81.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -121,5 +121,16 @@
          </font>
       </Label>
       <ListView fx:id="output" layoutX="522.0" layoutY="92.0" prefHeight="247.0" prefWidth="226.0" />
+      <TextArea fx:id="objective" layoutX="6.0" layoutY="8.0" prefHeight="50.0" prefWidth="386.0" />
+      <Text fx:id="description1" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
+      <Text fx:id="title1" layoutX="65.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
+      <Text fx:id="description2" layoutX="241.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
+      <Text fx:id="description3" layoutX="241.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
+      <Text fx:id="description4" layoutX="241.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
+      <Text fx:id="description5" layoutX="241.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
+      <Text fx:id="title2" layoutX="75.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
+      <Text fx:id="title3" layoutX="75.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
+      <Text fx:id="title4" layoutX="75.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
+      <Text fx:id="title5" layoutX="75.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
    </children>
 </Pane>

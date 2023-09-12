@@ -4,9 +4,10 @@ import java.io.IOException;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -19,12 +20,15 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 /** Controller class for the room view. */
 public class LockerController extends Commander implements TimerObserver {
 
-  @FXML private Label objective;
+  @FXML private TextArea objective;
   @FXML private Label first;
   @FXML private Label second;
   @FXML private Label third;
   @FXML private Label fourth;
   @FXML private Label intel;
+  @FXML private ImageView intelFile;
+  @FXML private ImageView roomimage;
+  @FXML private Button checkAns;
 
   private int one;
   private int two;
@@ -35,6 +39,7 @@ public class LockerController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
+   *
    * @throws Exception
    */
   public void initialize() throws Exception {
@@ -72,21 +77,6 @@ public class LockerController extends Commander implements TimerObserver {
   }
 
   /**
-   * Displays a dialog box with the given title, header text, and message.
-   *
-   * @param title the title of the dialog box
-   * @param headerText the header text of the dialog box
-   * @param message the message content of the dialog box
-   */
-  private void showDialog(String title, String headerText, String message) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(message);
-    alert.showAndWait();
-  }
-
-  /**
    * Handles the click event on the door.
    *
    * @param event the mouse event
@@ -113,6 +103,10 @@ public class LockerController extends Commander implements TimerObserver {
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
         isIntelGathered = true;
+        intelFile.setDisable(false);
+        intelFile.setVisible(true);
+        roomimage.setVisible(false);
+        checkAns.setVisible(false);
         GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
 
       } else System.out.println("Incorrect");

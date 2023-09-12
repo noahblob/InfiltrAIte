@@ -34,11 +34,6 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Label fx:id="objectiveRight" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/phone%20cropped.png" />
@@ -71,5 +66,6 @@
          </font>
       </Label>
       <ListView fx:id="output" layoutX="522.0" layoutY="95.0" prefHeight="245.0" prefWidth="226.0" />
+      <TextArea fx:id="objectiveRight" layoutX="7.0" layoutY="5.0" prefHeight="54.0" prefWidth="384.0" />
    </children>
 </Pane>

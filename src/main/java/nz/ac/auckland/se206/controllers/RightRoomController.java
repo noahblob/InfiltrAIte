@@ -5,8 +5,8 @@ import java.util.Random;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
@@ -20,7 +20,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 /** Controller class for the room view. */
 public class RightRoomController extends Commander implements TimerObserver {
 
-  @FXML private Label objectiveRight;
+  @FXML private TextArea objectiveRight;
   @FXML private Polygon riddle;
   @FXML private Polygon blackboard;
   @FXML private Label intel;
@@ -35,6 +35,7 @@ public class RightRoomController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
+   *
    * @throws Exception
    */
   public void initialize() throws Exception {
