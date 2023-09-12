@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,7 +22,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 /** Controller class for the room view. */
 public class MainRoomController extends Commander implements TimerObserver {
 
-  @FXML private Label objectiveMiddle;
+  @FXML private TextArea objective;
   @FXML private Button back;
   @FXML private Button cabinetButton;
   @FXML private Polygon leftDoor;
@@ -39,13 +40,14 @@ public class MainRoomController extends Commander implements TimerObserver {
 
   /**
    * Initializes the room view, it is called when the room loads.
+   *
    * @throws Exception
    */
   public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
-    objectiveMiddle.setText("This is the MAIN ROOM");
+    objective.setText("Find 3 pieces of intel and escape!");
     // set timer
     TimerClass.add(this);
 
@@ -130,7 +132,7 @@ public class MainRoomController extends Commander implements TimerObserver {
           if (GameState.numOfIntel.get() < 3) {
             commander.updateDialogueBox(
                 "Don't forget, there is still "
-                    + (GameState.difficulty - GameState.numOfIntel.get())
+                    + (3 - GameState.numOfIntel.get())
                     + " more intel to find!");
           } else {
             commander.updateDialogueBox("You have found all required intel, time to escape!");

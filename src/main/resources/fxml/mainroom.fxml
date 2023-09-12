@@ -38,17 +38,12 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <TextArea fx:id="input" layoutX="533.0" layoutY="344.0" prefHeight="38.0" prefWidth="226.0" />
+      <TextArea fx:id="input" layoutX="533.0" layoutY="344.0" onKeyPressed="#onEnterPressed" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="716.0" layoutY="483.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
       <Rectangle fx:id="cabinet" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="88.0" layoutX="330.0" layoutY="300.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Label fx:id="objectiveMiddle" alignment="CENTER" layoutX="6.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
       <Rectangle fx:id="keyPad" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="45.0" layoutX="147.0" layoutY="278.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="26.0">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -65,11 +60,11 @@
          </image>
       </ImageView>
       <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#clickBack" text="RETURN" visible="false" />
-      <Polygon fx:id="leftDoor" fill="#fffa9680" layoutX="82.0" layoutY="242.0" opacity="0.0" points="-50.00000762939453, 192.66665649414062, -24.000011444091797, 180.66665649414062, -24.000011444091797, -49.33332824707031, -50.00000762939453, -60.0" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fx:id="rightDoor" fill="#fffa9680" layoutX="412.0" layoutY="319.0" opacity="0.0" points="2.66668701171875, 110.33331298828125, 31.33331298828125, 127.0, 31.33331298828125, -141.66665649414062, 2.66668701171875, -127.66665649414062" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="125.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="210.0" />
-      <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="232.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="210.0" />
-      <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="342.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="210.0" />
+      <Polygon fx:id="leftDoor" fill="#fffa9680" layoutX="82.0" layoutY="242.0" opacity="0.0" points="-50.00000762939453, 192.66665649414062, -24.000011444091797, 180.66665649414062, -24.000011444091797, -49.33332824707031, -50.00000762939453, -60.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Polygon fx:id="rightDoor" fill="#fffa9680" layoutX="412.0" layoutY="319.0" opacity="0.0" points="2.66668701171875, 110.33331298828125, 31.33331298828125, 127.0, 31.33331298828125, -141.66665649414062, 2.66668701171875, -127.66665649414062" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="125.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="210.0" />
+      <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="232.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="210.0" />
+      <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="342.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="210.0" />
       <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
@@ -92,5 +87,6 @@
       </ImageView>
       <Button fx:id="cabinetButton" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#clickBack" text="CABINET" visible="false" />
       <ListView fx:id="output" layoutX="533.0" layoutY="101.0" prefHeight="245.0" prefWidth="226.0" />
+      <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
    </children>
 </Pane>

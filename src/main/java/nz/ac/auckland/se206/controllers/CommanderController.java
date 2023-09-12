@@ -8,6 +8,7 @@ import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
@@ -103,6 +104,13 @@ public class CommanderController {
 
   // For TextArea input
   public void onSendMessage(MouseEvent event, TextArea inputText) throws Exception {
+    String message = inputText.getText();
+    handleSendMessage(message);
+    inputText.clear();
+  }
+
+  // For when user presses enter
+  public void onSendMessage(KeyEvent event, TextArea inputText) throws Exception {
     String message = inputText.getText();
     handleSendMessage(message);
     inputText.clear();

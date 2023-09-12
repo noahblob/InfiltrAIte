@@ -39,15 +39,15 @@
       </ImageView>
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
-      <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="47.0" />
-      <Polygon fx:id="door" fill="#fffa96" layoutX="313.0" layoutY="318.0" onMouseClicked="#onClick" opacity="0.0" points="-19.0, 93.0, 5.25, 79.0, 5.25, -67.5, -19.0, -77.5" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fx:id="desk" fill="#fffa96" layoutX="385.0" layoutY="320.0" onMouseClicked="#onClick" opacity="0.0" points="14.0, 38.0, 39.66668701171875, 38.0, 23.0, 27.0, 0.0, 27.0" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="painting1" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="41.0" layoutX="220.0" layoutY="261.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="49.0" />
-      <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" onMouseClicked="#onClick" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" />
-      <Polygon fx:id="painting2" fill="#fffa96" layoutX="23.0" layoutY="252.0" opacity="0.0" points="-10.666666984558105, 83.66665649414062, 39.66666793823242, 79.66665649414062, 39.66666793823242, -20.333328247070312, -10.666666984558105, -41.66667175292969" stroke="BLACK" strokeType="INSIDE" />
-      <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
-      <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="40.0" />
-      <Rectangle fx:id="popUpBackGround" arcHeight="5.0" arcWidth="5.0" height="466.0" layoutX="7.0" layoutY="68.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" visible="false" width="466.0" />
+      <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="47.0" />
+      <Polygon fx:id="door" fill="#fffa96" layoutX="313.0" layoutY="318.0" onMouseClicked="#onClick" opacity="0.0" points="-19.0, 93.0, 5.25, 79.0, 5.25, -67.5, -19.0, -77.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Polygon fx:id="desk" fill="#fffa96" layoutX="385.0" layoutY="320.0" onMouseClicked="#onClick" opacity="0.0" points="14.0, 38.0, 39.66668701171875, 38.0, 23.0, 27.0, 0.0, 27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Rectangle fx:id="painting1" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="41.0" layoutX="220.0" layoutY="261.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="49.0" />
+      <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" onMouseClicked="#onClick" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Polygon fx:id="painting2" fill="#fffa96" layoutX="23.0" layoutY="252.0" opacity="0.0" points="-10.666666984558105, 83.66665649414062, 39.66666793823242, 79.66665649414062, 39.66666793823242, -20.333328247070312, -10.666666984558105, -41.66667175292969" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+      <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="91.0" />
+      <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="40.0" />
+      <Rectangle fx:id="popUpBackGround" arcHeight="5.0" arcWidth="5.0" height="466.0" layoutX="7.0" layoutY="68.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="466.0" />
       <ImageView fx:id="p1" fitHeight="358.0" fitWidth="406.0" layoutX="40.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/paint1%20(2).png" />
@@ -83,15 +83,15 @@
             <Image url="@../images/drawer.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="69.0" layoutX="157.0" layoutY="218.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0">
+      <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="69.0" layoutX="157.0" layoutY="218.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="150.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="57.0" layoutX="157.0" layoutY="142.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0">
+      <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="57.0" layoutX="157.0" layoutY="142.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="150.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
-      <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="155.0" layoutX="157.0" layoutY="304.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="150.0">
+      <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="155.0" layoutX="157.0" layoutY="304.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="150.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>

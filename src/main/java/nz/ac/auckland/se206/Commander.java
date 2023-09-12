@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -39,5 +40,13 @@ public abstract class Commander {
   protected void onSendMessage(MouseEvent event) throws Exception {
     // Send the message to the commander controller.
     CommanderController.getInstance().onSendMessage(event, input);
+  }
+
+  @FXML
+  protected void onEnterPressed(KeyEvent event) throws Exception {
+    // if the user tries to send message using enter, send message to commander controller
+    if (event.getCode().toString().equals("ENTER")) {
+      CommanderController.getInstance().onSendMessage(event, input);
+    }
   }
 }

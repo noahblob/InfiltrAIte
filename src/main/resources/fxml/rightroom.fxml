@@ -30,7 +30,7 @@
          </image>
       </ImageView>
       <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="247.0" />
-      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="153.0" layoutX="150.0" layoutY="239.0" onMouseClicked="#clickDoor" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0">
+      <Rectangle fx:id="door" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="153.0" layoutX="150.0" layoutY="239.0" onMouseClicked="#clickDoor" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="73.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Rectangle>
@@ -46,11 +46,11 @@
       </ImageView>
       <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
       <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
-      <Polygon fx:id="riddle" fill="#fffa9680" layoutX="316.0" layoutY="452.0" onMouseClicked="#clickRiddle" opacity="0.0" points="2.0, -47.0, 36.0, -12.0, 36.0, -86.0, 2.0, -104.0" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="riddle" fill="#fffa9680" layoutX="316.0" layoutY="452.0" onMouseClicked="#clickRiddle" opacity="0.0" points="2.0, -47.0, 36.0, -12.0, 36.0, -86.0, 2.0, -104.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Polygon>
-      <Rectangle fx:id="book" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="38.0" layoutX="244.0" layoutY="359.0" onMouseClicked="#clickBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="73.0" />
+      <Rectangle fx:id="book" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="38.0" layoutX="244.0" layoutY="359.0" onMouseClicked="#clickBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="73.0" />
       <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
@@ -61,7 +61,7 @@
             <Image url="@../images/intel%20(1).png" />
          </image>
       </ImageView>
-      <Polygon fx:id="blackboard" fill="#fffa9680" layoutX="38.0" layoutY="328.0" onMouseClicked="#clickBlackBoard" opacity="0.0" points="-5.0, -4.0, 52.0, -4.0, 52.0, -86.0, -5.0, -105.0" stroke="BLACK" strokeType="INSIDE">
+      <Polygon fx:id="blackboard" fill="#fffa9680" layoutX="38.0" layoutY="328.0" onMouseClicked="#clickBlackBoard" opacity="0.0" points="-5.0, -4.0, 52.0, -4.0, 52.0, -86.0, -5.0, -105.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Polygon>
