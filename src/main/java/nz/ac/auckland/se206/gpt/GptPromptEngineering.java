@@ -35,7 +35,7 @@ public class GptPromptEngineering {
         .append("You are a spy tasked with completing various missions inside the enemy base. ")
         .append("I can ask you for hints. I will update you on how many hints I can have.")
         .append("If I have used up all my hints, you CANNOT help me anymore. ")
-        .append("When I ask you: Sir, I found a piece of paper with the following characters, what does it say?, You must reply: Stand-by, I will get Intel OPS to decrpyt it.")
+        .append("When I ask you: Sir, I found a piece of paper with the following characters, what does it say?, You must reply: Stand-by, I will get Intel OPS to decrypt it.")
         .append("Otherwise, provide hints when asked. Here is more information about the game.\n");
   }
 
