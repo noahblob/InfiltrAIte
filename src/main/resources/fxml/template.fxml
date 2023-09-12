@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.MainRoomController">
+   <children>
+      <ImageView fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/start.png" />
+         </image></ImageView>
+      <Text fx:id="timer" layoutX="390.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="7.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/commander.png" />
+         </image>
+      </ImageView>
+      <TextArea layoutX="478.0" layoutY="251.0" onKeyPressed="#onEnterPressed" prefHeight="40.0" prefWidth="273.0" />
+      <Button layoutX="751.0" layoutY="251.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="40.0" prefWidth="43.0" text="send" />
+      <TextArea layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="408.0">
+         <font>
+            <Font name="Courier New" size="12.0" />
+         </font>
+      </TextArea>
+      <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="478.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Key.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="65.0" fitWidth="58.0" layoutX="542.0" layoutY="534.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/intel%20(1).png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="600.0" layoutY="540.0" prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#f80303">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <ListView layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" />
+      <TextArea layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
+      <TextArea layoutX="478.0" layoutY="296.0" prefHeight="236.0" prefWidth="316.0" promptText="NOTES" />
+   </children>
+</Pane>
