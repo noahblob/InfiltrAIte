@@ -19,14 +19,6 @@
             <Image url="@../images/rightroom.png" />
          </image>
       </ImageView>
-      <Button fx:id="checkAns" layoutX="244.0" layoutY="480.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" text="CHECK ANSWER">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <ImageView fx:id="roomimage" fitHeight="378.0" fitWidth="489.0" layoutX="1.0" layoutY="66.0" pickOnBounds="true">
          <image>
             <Image url="@../images/best-puzzles-that-make-an-escape-room-more-challenging.png" />
@@ -55,19 +47,6 @@
       <Label fx:id="second" alignment="CENTER" layoutX="201.0" layoutY="292.0" opacity="0.8" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
-         </font>
-      </Label>
-      <Button fx:id="goBack" layoutX="14.0" layoutY="482.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" text="RETURN">
-         <font>
-            <Font size="18.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <Label fx:id="objective" alignment="CENTER" layoutX="7.0" layoutY="5.0" prefHeight="52.0" prefWidth="379.0" style="-fx-border-color: black; -fx-padding: 10px; -fx-background-color: white;" text="Objective" textAlignment="CENTER">
-         <font>
-            <Font size="20.0" />
          </font>
       </Label>
       <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
@@ -137,6 +116,14 @@
             <Font size="37.0" />
          </font>
       </Label>
+      <Button fx:id="checkAns" layoutX="244.0" layoutY="480.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" text="CHECK ANSWER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <Rectangle fx:id="upOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="156.0" layoutY="221.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -171,6 +158,20 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
+      <ImageView fx:id="intelFile" disable="true" fitHeight="478.0" fitWidth="332.0" layoutX="82.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/intel%20(1).png" />
+         </image>
+      </ImageView>
+      <Button fx:id="goBack" layoutX="14.0" layoutY="482.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" text="RETURN">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <ListView fx:id="output" layoutX="522.0" layoutY="95.0" prefHeight="245.0" prefWidth="226.0" />
+      <TextArea fx:id="objective" layoutX="4.0" layoutY="6.0" prefHeight="52.0" prefWidth="385.0" />
    </children>
 </Pane>
