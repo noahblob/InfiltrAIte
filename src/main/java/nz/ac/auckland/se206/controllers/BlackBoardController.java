@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +13,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
-import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
@@ -54,7 +52,6 @@ public class BlackBoardController extends Commander implements TimerObserver {
    * @throws Exception
    */
   public void initialize() throws Exception {
-    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     Font.loadFont(getClass().getResourceAsStream("/fonts/Chalkduster.ttf"), 12);
 
     super.initialize();

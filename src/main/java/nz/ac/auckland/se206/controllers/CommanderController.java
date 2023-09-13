@@ -1,7 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
@@ -42,6 +45,8 @@ public class CommanderController {
   private StringProperty notesProperty = new SimpleStringProperty("");
   private StringProperty lastInputTextProperty = new SimpleStringProperty("");
   private boolean scroll = false;
+  private final Queue<String> messageQueue = new LinkedList<>();
+  private boolean isRolling = false;
 
   private CommanderController() throws Exception {
 
@@ -290,39 +295,51 @@ public class CommanderController {
 
   // Method to update commander's dialogue.
   public void updateDialogueBox(String textToRollOut) {
+    messageQueue.offer(textToRollOut);
+    if (!isRolling) {
+      dequeueAndRoll();
+    }
+  }
+
+  private void dequeueAndRoll() {
+    if (messageQueue.isEmpty() || messageQueue.size() > 1) {
+      messageQueue.clear();
+      return;
+    }
+    if (isRolling) {
+        return;
+    }
+
+    String nextMessage = messageQueue.poll();
+    isRolling = true;
+
+    // Assume dialogues is some List<TextArea>
     for (TextArea dialogue : dialogues) {
-      textRollout(textToRollOut, dialogue);
+      textRollout(nextMessage, dialogue);
     }
   }
 
   // Method to generate commander text roll out on each screen.
   public void textRollout(String message, TextArea dialogue) {
-
     char[] chars = message.toCharArray();
     Timeline timeline = new Timeline();
     Duration timepoint = Duration.ZERO;
 
     for (char ch : chars) {
-      timepoint = timepoint.add(Duration.millis(20));
-      final char finalChar = ch; // Make a final local copy of the character
-      KeyFrame keyFrame =
-          new KeyFrame(
-              timepoint,
-              e -> {
-                dialogue.appendText(String.valueOf(finalChar));
-              });
-      timeline.getKeyFrames().add(keyFrame);
+        timepoint = timepoint.add(Duration.millis(20));
+        final char finalChar = ch;
+        KeyFrame keyFrame = new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
+        timeline.getKeyFrames().add(keyFrame);
     }
 
-    // Clear the text after the dialogue
-    KeyFrame clearKeyFrame =
-        new KeyFrame(
-            timepoint.add(Duration.millis(2000)),
-            e -> {
-              if (dialogue != null) {
-                dialogue.clear();
-              }
-            });
+    KeyFrame clearKeyFrame = new KeyFrame(timepoint.add(Duration.millis(2000)), e -> {
+        if (dialogue != null) {
+            dialogue.clear();
+        }
+        isRolling = false;
+        dequeueAndRoll();  // Check if there is another message in the queue
+    });
+
     timeline.getKeyFrames().add(clearKeyFrame);
     timeline.play();
   }

@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers;
 
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +24,6 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private TextArea dialogue;
   @FXML private TextArea objective;
   @FXML private Rectangle one, two, three, four, five, six, seven, eight, nine, zero;
-  @FXML private Label intel;
 
   /**
    * Initializes the keypad view, it is called when the keypad loads.
@@ -33,7 +31,6 @@ public class KeyPadController extends Commander implements TimerObserver {
    * @throws Exception
    */
   public void initialize() throws Exception {
-    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
     objective.setText("Figure out the combination!");

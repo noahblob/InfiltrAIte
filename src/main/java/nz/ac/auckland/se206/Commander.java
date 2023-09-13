@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206;
 
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
@@ -19,11 +21,18 @@ public abstract class Commander {
   @FXML protected TextArea dialogue;
   @FXML protected TextArea notes;
   @FXML protected Text timer;
+  @FXML protected Label intel;
 
   @FXML
   protected void initialize() throws Exception {
+    
+    
+    
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
+
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+
     if (notes != null) {
       CommanderController.getInstance().addNotes(notes);
     } else {
