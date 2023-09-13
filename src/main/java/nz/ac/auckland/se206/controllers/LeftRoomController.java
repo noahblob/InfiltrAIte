@@ -8,9 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import javafx.animation.KeyFrame;
-import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -73,6 +71,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private int lastNumbers;
   private String riddleCode;
   private boolean isDialogueUpdated = false;
+  private boolean isIntelCollected = false;
   
   private enum Object {
     COMMS, DRAWER, PAINT, PAINT1, PAINT2, DOOR, DESK, NEWS, BOT, MID, TOP
@@ -83,7 +82,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
    * @throws Exception
    */
   public void initialize() throws Exception {
-    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     System.out.println(GameState.getRandomWord());
 
@@ -99,7 +97,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     setSliders();
     createSliderMap();
     generateYear();
-    openCabinet(false);
+
     TimerClass.add(this);
   }
 
@@ -247,6 +245,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
     riddlePane.setVisible(false);
     riddle.setWrapText(true);
     intelligence.setVisible(false);
+    drawer1.setVisible(false);
+    openCabinet(false);
 
     // Individual popup items.
     p.setVisible(false);
@@ -256,7 +256,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     comms1.setVisible(false);
     tear.setVisible(false);
     lastDigits.setVisible(false);
-    drawer1.setVisible(false);
 
     back.setOnAction(
         event -> {
@@ -280,9 +279,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
         event -> {
           // send the encrypted message to GPT.
           System.out.println("TEST PRESS");
-          String dialogue =
-              "Sir, I found a piece of paper with the following characters, what does it say? "
-                  + riddleCode;
+          String dialogue = Dialogue.FOUNDENCRYPTED.toString() + riddleCode;
           try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
 
@@ -405,8 +402,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
           }
   }
 
-
-  private void openCabinet(Boolean flag) {
+  private void openCabinet(Boolean flag) {    
     topDrawer.setVisible(flag);
     midDrawer.setVisible(flag);
     botDrawer.setVisible(flag);
@@ -448,10 +444,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
         openCabinet(true);
         break;
       case TOP:
-        if (GameState.isSlidersSolved) {
+        if (GameState.isSlidersSolved && !isIntelCollected) {
           showPopup(intelligence);
-        } else {
+        } else if (!GameState.isSlidersSolved) {
           CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETLOCK.toString());
+        } else {
+          CommanderController.getInstance().updateDialogueBox(Dialogue.EMPTY.toString());
         }
         break;
       case MID:
@@ -461,6 +459,20 @@ public class LeftRoomController extends Commander implements TimerObserver {
       default:
         break;
     }
+  }
+
+  @FXML
+  public void onCollect(MouseEvent event) {
+    // return back to main room.
+    openCabinet(false);
+    drawer1.setVisible(false);
+    back.setVisible(false);
+    popUpBackGround.setVisible(false);
+    intelligence.setVisible(false);
+
+    // Update game states.
+    isIntelCollected = true;
+    GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
   }
 
   private String generateEncrypted(int length) {

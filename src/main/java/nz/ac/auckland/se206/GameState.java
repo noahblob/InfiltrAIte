@@ -39,7 +39,6 @@ public class GameState {
   /** Indicates amount of intelligence gathered */
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
 
-
   /** Indeicates the number of hints allowed */
   public static String numHints = "0";
 

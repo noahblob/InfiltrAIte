@@ -1,11 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.Random;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -34,7 +32,6 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle botDrawer;
   @FXML private ImageView filingCabinet;
   @FXML private ImageView intelFile;
-  @FXML private Label intel;
 
   Random random = new Random();
 
@@ -44,8 +41,6 @@ public class MainRoomController extends Commander implements TimerObserver {
    * @throws Exception
    */
   public void initialize() throws Exception {
-    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
-
     super.initialize();
     objective.setText("Find 3 pieces of intel and escape!");
     // set timer

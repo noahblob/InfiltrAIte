@@ -13,7 +13,9 @@ public enum Dialogue {
           + " your actions. Good luck, Agent."),
   INITIAL("Agent, good job on infiltrating the base. Go get the intel and get out of there!"),
   CABINETLOCK("This drawer seems to be locked..."),
-  CABINETUNLOCK("I just heard a click somewhere...");
+  EMPTY("There's nothing there..."),
+  CABINETUNLOCK("I just heard a click somewhere..."),
+  FOUNDENCRYPTED("Sir, I found a piece of paper with the following characters, what does it say? ");
 
   private final String msg;
 
