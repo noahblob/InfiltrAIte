@@ -165,5 +165,16 @@
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
   -fx-padding: 7;
-  /* Adjust the padding to fit your image */
+}
+
+/*Chatbox styling*/
+.list-cell {
+  -fx-padding: 10px;
+  -fx-border-radius: 5px;
+  -fx-background-radius: 5px;
+}
+
+.list-view {
+  -fx-control-inner-background: #f4f4f4;
+  /* Changing the inner background of the listview */
 }
