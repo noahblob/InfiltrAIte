@@ -287,8 +287,12 @@ public class CommanderController {
   }
 
   private void dequeueAndRoll() {
-    if (messageQueue.isEmpty()) {
+    if (messageQueue.isEmpty() || messageQueue.size() > 1) {
+      messageQueue.clear();
       return;
+    }
+    if (isRolling) {
+        return;
     }
 
     String nextMessage = messageQueue.poll();
@@ -307,19 +311,18 @@ public class CommanderController {
     Duration timepoint = Duration.ZERO;
 
     for (char ch : chars) {
-      timepoint = timepoint.add(Duration.millis(20));
-      final char finalChar = ch;
-      KeyFrame keyFrame = new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
-      timeline.getKeyFrames().add(keyFrame);
+        timepoint = timepoint.add(Duration.millis(20));
+        final char finalChar = ch;
+        KeyFrame keyFrame = new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
+        timeline.getKeyFrames().add(keyFrame);
     }
 
-    // Clear the text after the dialogue and handle queue
     KeyFrame clearKeyFrame = new KeyFrame(timepoint.add(Duration.millis(2000)), e -> {
-      if (dialogue != null) {
-        dialogue.clear();
-      }
-      isRolling = false;
-      dequeueAndRoll(); // Check if there is another message in the queue
+        if (dialogue != null) {
+            dialogue.clear();
+        }
+        isRolling = false;
+        dequeueAndRoll();  // Check if there is another message in the queue
     });
 
     timeline.getKeyFrames().add(clearKeyFrame);

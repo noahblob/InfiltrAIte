@@ -15,8 +15,12 @@ public enum Dialogue {
   CABINETLOCK("This drawer seems to be locked..."),
   EMPTY("There's nothing there..."),
   CABINETUNLOCK("I just heard a click somewhere..."),
-  FOUNDENCRYPTED("Sir, I found a piece of paper with the following characters, what does it say? ");
-
+  FOUNDENCRYPTED("Sir, I found a piece of paper with the following characters, what does it say? "),
+  KEYNEEDED("Looks like you need a key to open this drawer"),
+  INTELFOUND("Nice! You found some intelligence!"),
+  INTELALREADYFOUND("You already found the intel in this drawer!"),
+  SOLVEKEYPAD("You need to solve the keypad first!"),
+  FOUNDALLINTEL("You have found all required intel, time to escape!");
   private final String msg;
 
   private Dialogue(final String msg) {

@@ -12,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
@@ -130,10 +131,10 @@ public class MainRoomController extends Commander implements TimerObserver {
                     + (3 - GameState.numOfIntel.get())
                     + " more intel to find!");
           } else {
-            commander.updateDialogueBox("You have found all required intel, time to escape!");
+            commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
           }
         } else {
-          commander.updateDialogueBox("You need to solve the keypad first!");
+          commander.updateDialogueBox(Dialogue.SOLVEKEYPAD.toString());
         }
         break;
       case ("keyPad"):
@@ -196,16 +197,16 @@ public class MainRoomController extends Commander implements TimerObserver {
           if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
             cabinetButton.setVisible(true);
-            commander.updateDialogueBox("You found some intel!");
+            commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
           } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
-            commander.updateDialogueBox("You already found the intel in this drawer!");
+            commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
           } else {
-            commander.updateDialogueBox("Looks like you need a key to open this drawer");
+            commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
           }
         } else {
-          commander.updateDialogueBox("Doesn't look like anything is here...");
+          commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
         break;
       case ("midDrawer"):
@@ -213,16 +214,16 @@ public class MainRoomController extends Commander implements TimerObserver {
           if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
             cabinetButton.setVisible(true);
-            commander.updateDialogueBox("You found some intel!");
+            commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
           } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
-            commander.updateDialogueBox("You already found the intel in this drawer!");
+            commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
           } else {
-            commander.updateDialogueBox("Looks like you need a key to open this drawer");
+            commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
           }
         } else {
-          commander.updateDialogueBox("Doesn't look like anything is here...");
+          commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
         break;
       case ("botDrawer"):
@@ -232,16 +233,16 @@ public class MainRoomController extends Commander implements TimerObserver {
           if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
             cabinetButton.setVisible(true);
-            commander.updateDialogueBox("You found some intel!");
+            commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
           } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
-            commander.updateDialogueBox("You already found the intel in this drawer!");
+            commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
           } else {
-            commander.updateDialogueBox("Looks like you need a key to open this drawer");
+            commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
           }
         } else {
-          commander.updateDialogueBox("Doesn't look like anything is here...");
+          commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
         break;
       default:
