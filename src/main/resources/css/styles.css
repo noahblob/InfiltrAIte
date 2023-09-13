@@ -178,3 +178,58 @@
   -fx-control-inner-background: #f4f4f4;
   /* Changing the inner background of the listview */
 }
+
+
+/*TESTING TEMPLATE UI*/
+
+.uiTextAreainventory {
+  -fx-background-color: rgb(53, 53, 53);
+  -fx-text-fill: #000000;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #afafaf;
+  -fx-border-width: 3px;
+}
+
+.uiTextAreaChat {
+  -fx-background-color: rgb(53, 53, 53);
+  -fx-text-fill: #000000;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #afafaf;
+  -fx-border-width: 3px;
+}
+
+.uiTextAreaCommander {
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #000000;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #0bb443;
+  -fx-border-width: 3px;
+}
+
+.uiNotePad {
+  -fx-background-radius: 10, 10, 10, 10;
+  -fx-background-color: rgb(92, 92, 92);
+  -fx-text-fill: #000000;
+  -fx-font-smoothing-type: rgb(0, 0, 0);
+  -fx-border-color: #afafaf;
+  -fx-border-width: 3px;
+}
+
+/* First custom button style */
+.send {
+  -fx-background-color: rgb(53, 53, 53);
+  -fx-text-fill: #00FF00;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #afafaf;
+  -fx-border-width: 3px;
+}
+
+.send:hover {
+  -fx-background-color: #00FF00;
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
+.send:pressed {
+  -fx-background-color: rgb(121, 231, 121);
+  -fx-text-fill: rgb(0, 0, 0);
+}
