@@ -27,7 +27,6 @@ import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.Items.CustomSliderSkin;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
@@ -335,7 +334,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     for (int i = 0; i < sliders.size(); i++) {
         setupSlider(sliders.get(i), passcode.get(i), i);
     }
-      // s.setSkin(new CustomSliderSkin(s));
   }
 
   private void createSliderMap() {
