@@ -41,9 +41,9 @@
             <Image url="@../images/keypad.png" />
          </image>
       </ImageView>
-      <Button fx:id="clearButton" layoutX="265.0" layoutY="260.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="26.0" prefWidth="75.0" styleClass="keypad-button" text="CLEAR" />
-      <Button fx:id="submitButton" layoutX="265.0" layoutY="301.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="26.0" prefWidth="75.0" styleClass="keypad-button" text="SUBMIT" />
-      <Button fx:id="exitButton" layoutX="265.0" layoutY="428.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="26.0" prefWidth="75.0" styleClass="keypad-button" text="EXIT" />
+      <Button fx:id="clearButton" layoutX="262.0" layoutY="259.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="76.0" styleClass="keypad-button" text="CLEAR" />
+      <Button fx:id="submitButton" layoutX="262.0" layoutY="300.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="76.0" styleClass="keypad-button" text="SUBMIT" />
+      <Button fx:id="exitButton" layoutX="262.0" layoutY="425.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="76.0" styleClass="keypad-button" text="EXIT" />
       <Label fx:id="numberLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="139.0" prefHeight="60.0" prefWidth="206.0" textFill="#ff8500">
          <font>
             <Font size="50.0" />
