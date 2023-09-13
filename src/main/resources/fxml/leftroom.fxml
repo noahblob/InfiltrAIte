@@ -137,12 +137,12 @@
       </Pane>
       <Pane fx:id="sliderPane" layoutX="23.0" layoutY="232.0" prefHeight="125.0" prefWidth="159.0" visible="false">
          <children>
-            <Slider fx:id="s" layoutX="12.0" layoutY="17.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
-            <Slider fx:id="s5" layoutX="131.0" layoutY="16.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
-            <Slider fx:id="s4" layoutX="106.0" layoutY="16.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
-            <Slider fx:id="s3" layoutX="82.0" layoutY="16.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
-            <Slider fx:id="s1" layoutX="35.0" layoutY="16.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
-            <Slider fx:id="s2" layoutX="59.0" layoutY="16.0" max="10" min="0" orientation="VERTICAL" prefHeight="97.0" prefWidth="14.0" value="5" />
+            <Slider fx:id="s" layoutX="4.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="s5" layoutX="124.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="s4" layoutX="99.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="s3" layoutX="74.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="s1" layoutX="27.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="s2" layoutX="51.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
          </children>
       </Pane>
       <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
