@@ -21,21 +21,22 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Button clearButton;
   @FXML private Button submitButton;
   @FXML private Button exitButton;
-  @FXML private Label objectiveMiddle;
   @FXML private Label numberLabel;
   @FXML private TextArea dialogue;
+  @FXML private TextArea objective;
   @FXML private Rectangle one, two, three, four, five, six, seven, eight, nine, zero;
   @FXML private Label intel;
 
   /**
    * Initializes the keypad view, it is called when the keypad loads.
+   *
    * @throws Exception
    */
   public void initialize() throws Exception {
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     super.initialize();
-    objectiveMiddle.setText("Figure out the combination!");
+    objective.setText("Figure out the combination!");
     numberLabel.setText("");
     TimerClass.add(this);
   }
@@ -73,6 +74,11 @@ public class KeyPadController extends Commander implements TimerObserver {
         break;
       case "submitButton":
         CommanderController commander = CommanderController.getInstance();
+        // Check if the user has added anything
+        if (numberLabel.getText().equals("")) {
+          commander.updateDialogueBox("You haven't entered anything!");
+          break;
+        }
         // Check if user has typed in the correct value to the keypad
         if (Integer.parseInt(numberLabel.getText()) == BlackBoardController.getKeypadAns()) {
           GameState.isKeypadSolved = true;
