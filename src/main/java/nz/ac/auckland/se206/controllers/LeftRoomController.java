@@ -8,7 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import javafx.animation.KeyFrame;
+import javafx.animation.PauseTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -26,6 +28,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
@@ -55,6 +58,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Label intel;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
+  @FXML private ImageView intelligence;
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
@@ -68,8 +72,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private Map<Integer,Character> sliderMap;
   private int lastNumbers;
   private String riddleCode;
+  private boolean isDialogueUpdated = false;
   
-
   private enum Object {
     COMMS, DRAWER, PAINT, PAINT1, PAINT2, DOOR, DESK, NEWS, BOT, MID, TOP
   }
@@ -242,6 +246,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     riddle.appendText(riddleCode);
     riddlePane.setVisible(false);
     riddle.setWrapText(true);
+    intelligence.setVisible(false);
 
     // Individual popup items.
     p.setVisible(false);
@@ -268,6 +273,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
           riddlePane.setVisible(false);
           decrypt.setVisible(false);
           comms1.setVisible(false);
+          intelligence.setVisible(false);
         });
 
     decrypt.setOnAction(
@@ -353,36 +359,52 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   // Helper function for sliders.
   private void setupSlider(Slider s, Label digit, int index) {
-    s.setMajorTickUnit(1);
-    s.setMinorTickCount(0);
-    s.setBlockIncrement(1);
-    s.setSnapToTicks(true);
+      s.setMajorTickUnit(1);
+      s.setMinorTickCount(0);
+      s.setBlockIncrement(1);
+      s.setSnapToTicks(true);
 
-    s.valueProperty().addListener(new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-            int intValue = newValue.intValue();
-            s.setValue(intValue); // Update the slider value to the nearest integer
+      s.valueProperty().addListener(new ChangeListener<Number>() {
+          @Override
+          public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+              int intValue = newValue.intValue();
+              s.setValue(intValue); // Update the slider value to the nearest integer
 
-            // Get the respective character from slider map.
-            char codeValue = sliderMap.get(intValue);
-            
-            // Update the actual code array.
-            code[index] = codeValue;
-            // Update respective label.
-            digit.setText(String.valueOf(codeValue));
-            if (Arrays.equals(code,answer)) {
-              // Update game state and show sine wave.
-              GameState.isSlidersSolved = true;
-              comms1.setVisible(true);
-              // Disable slider game.
-              for (Slider s : sliders) {
-                s.setDisable(true);
+              // Get the respective character from slider map.
+              char codeValue = sliderMap.get(intValue);
+              
+              // Update the actual code array.
+              code[index] = codeValue;
+              // Update respective label.
+              digit.setText(String.valueOf(codeValue));
+
+              try {
+                checkSlidersSolved();
+              } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
               }
-            }
-        }
-    });
-}
+              
+  }});
+  }
+
+  private void checkSlidersSolved() throws Exception {
+    if (Arrays.equals(code, answer) && !isDialogueUpdated) {
+      isDialogueUpdated = true;
+                // Update game state and show sine wave.
+                GameState.isSlidersSolved = true;
+                comms1.setVisible(true);
+                // Disable slider game.
+                for (Slider slider : sliders) {
+                  slider.setDisable(true);
+                }
+
+              CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETUNLOCK.toString());
+                  
+              
+          }
+  }
+
 
   private void openCabinet(Boolean flag) {
     topDrawer.setVisible(flag);
@@ -391,7 +413,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   @FXML
-  public void onClick(MouseEvent event) {
+  public void onClick(MouseEvent event) throws Exception {
 
     Shape clickedObject = (Shape) event.getSource();
     Object type = objects.get(clickedObject);
@@ -425,9 +447,17 @@ public class LeftRoomController extends Commander implements TimerObserver {
         showPopup(drawer1);
         openCabinet(true);
         break;
+      case TOP:
+        if (GameState.isSlidersSolved) {
+          showPopup(intelligence);
+        } else {
+          CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETLOCK.toString());
+        }
+        break;
       case MID:
         riddlePane.setVisible(true);
         decrypt.setVisible(true);
+        break;
       default:
         break;
     }

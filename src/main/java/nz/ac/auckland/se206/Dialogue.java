@@ -11,7 +11,9 @@ public enum Dialogue {
           + " problem solving to complete the mission.\n"
           + "Remember, should you be caught or killed, the agency will disavow any knowledge of"
           + " your actions. Good luck, Agent."),
-  INITIAL("Agent, good job on infiltrating the base. Go get the intel and get out of there!");
+  INITIAL("Agent, good job on infiltrating the base. Go get the intel and get out of there!"),
+  CABINETLOCK("This drawer seems to be locked..."),
+  CABINETUNLOCK("I just heard a click somewhere...");
 
   private final String msg;
 
