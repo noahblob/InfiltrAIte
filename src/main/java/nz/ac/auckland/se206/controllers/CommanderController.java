@@ -39,6 +39,7 @@ public class CommanderController {
   private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> dialogues;
   private List<TextArea> notes;
+  private StringProperty notesProperty = new SimpleStringProperty("");
   private StringProperty lastInputTextProperty = new SimpleStringProperty("");
   private boolean scroll = false;
 
@@ -254,6 +255,20 @@ public class CommanderController {
 
   public StringProperty lastInputTextProperty() {
     return lastInputTextProperty;
+  }
+
+  // Helper method which keeps track of what is written in the notes text are so that it can be kept
+  // through different scenes
+  public String getNotes() {
+    return notesProperty.get();
+  }
+
+  public void setNotes(String text) {
+    this.notesProperty.set(text);
+  }
+
+  public StringProperty notesProperty() {
+    return notesProperty;
   }
 
   // Helper method to add text areas from different scenes to the controller.

@@ -83,6 +83,6 @@
       <Button fx:id="cabinetButton" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#clickBack" text="CABINET" visible="false" />
       <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" />
       <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
-      <TextArea fx:id="notes" layoutX="478.0" layoutY="296.0" onKeyPressed="#onNoteTyped" prefHeight="236.0" prefWidth="316.0" promptText="NOTES" />
+      <TextArea fx:id="notes" layoutX="478.0" layoutY="296.0" prefHeight="236.0" prefWidth="316.0" promptText="NOTES" />
    </children>
 </Pane>
