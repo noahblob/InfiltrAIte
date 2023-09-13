@@ -30,6 +30,7 @@ public abstract class Commander {
       notes = new TextArea();
       CommanderController.getInstance().addNotes(notes);
     }
+    notes.textProperty().bindBidirectional(CommanderController.getInstance().notesProperty());
     input
         .textProperty()
         .bindBidirectional(CommanderController.getInstance().lastInputTextProperty());
