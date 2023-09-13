@@ -17,12 +17,19 @@ public abstract class Commander {
   @FXML protected ListView<ChatMessage> output;
   @FXML protected Button send;
   @FXML protected TextArea dialogue;
+  @FXML protected TextArea notes;
   @FXML protected Text timer;
 
   @FXML
   protected void initialize() throws Exception {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
+    if (notes != null) {
+      CommanderController.getInstance().addNotes(notes);
+    } else {
+      notes = new TextArea();
+      CommanderController.getInstance().addNotes(notes);
+    }
     input
         .textProperty()
         .bindBidirectional(CommanderController.getInstance().lastInputTextProperty());

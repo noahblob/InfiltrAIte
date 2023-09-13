@@ -38,6 +38,7 @@ public class CommanderController {
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> dialogues;
+  private List<TextArea> notes;
   private StringProperty lastInputTextProperty = new SimpleStringProperty("");
   private boolean scroll = false;
 
@@ -45,6 +46,7 @@ public class CommanderController {
 
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
+    notes = new ArrayList<>();
     messages =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     updateGPT(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
@@ -257,6 +259,18 @@ public class CommanderController {
   // Helper method to add text areas from different scenes to the controller.
   public void addDialogueBox(TextArea textArea) {
     dialogues.add(textArea);
+  }
+
+  /**
+   * Helper method to add notes text area from different scenes to the controller.
+   *
+   * @param textArea the text area to add
+   */
+  public void addNotes(TextArea textArea) {
+    notes.add(textArea);
+    for (TextArea note : notes) {
+      textArea.appendText(note.getText());
+    }
   }
 
   // Method to update commander's dialogue.
