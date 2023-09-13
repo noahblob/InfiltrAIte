@@ -25,8 +25,8 @@ public class ChatCell extends ListCell<ChatMessage> {
 
     // Set up the portrait ImageView
     portrait = new ImageView();
-    portrait.setFitHeight(50);
-    portrait.setFitWidth(50);
+    portrait.setFitHeight(25);
+    portrait.setFitWidth(25);
 
     // Set up the message label
     messageText = new Text();
@@ -50,7 +50,7 @@ public class ChatCell extends ListCell<ChatMessage> {
       setGraphic(null);
     } else {
       if (item.getRole().equals("user")) {
-        portrait.setImage(new Image("/images/commander.png")); // CHANGE
+        portrait.setImage(new Image("/images/user.png"));
         chatHBox.getChildren().clear();
         chatHBox.getChildren().addAll(messageText, portrait);
         messageText.setTextAlignment(TextAlignment.RIGHT);
