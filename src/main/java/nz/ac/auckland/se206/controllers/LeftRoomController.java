@@ -501,6 +501,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
     popUpBackGround.setVisible(false);
     intelligence.setVisible(false);
 
+    // Update text rollout.
+    try {
+      CommanderController.getInstance().updateDialogueBox(Dialogue.INTELFOUND.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
     // Update game states.
     isIntelCollected = true;
     GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
