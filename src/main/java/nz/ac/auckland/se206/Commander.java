@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
@@ -22,15 +23,15 @@ public abstract class Commander {
   @FXML protected TextArea notes;
   @FXML protected Text timer;
   @FXML protected Label intel;
+  @FXML protected ImageView key;
 
   @FXML
   protected void initialize() throws Exception {
     
-    
-    
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
 
+    key.visibleProperty().bind(GameState.isKeyFound);
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     if (notes != null) {

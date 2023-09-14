@@ -44,23 +44,17 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML
   private Rectangle communications, drawer, painting, painting1, topDrawer, midDrawer, botDrawer;
   @FXML private Polygon painting2, door, desk, newspaper;
-  @FXML private ImageView p, p1, p2;
-  @FXML private ImageView comms, comms1, tear, drawer1;
+  @FXML private ImageView p, p1, p2 ,comms, comms1, tear, drawer1;
   @FXML private Pane sliderPane;
   @FXML private Slider s, s1, s2, s3, s4, s5;
-  @FXML private Pane passcodePane;
-  @FXML private Pane riddlePane;
-  @FXML private Pane riddleDrawer;
+  @FXML private Pane passcodePane, riddlePane, riddleDrawer;
   @FXML private Label x, x1, x2, x3, x4, x5;
-  @FXML private Label lastDigits;
-  @FXML private Label intel;
+  @FXML private Label lastDigits, intel;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
   @FXML private ImageView intelligence;
   @FXML private TextArea riddleBox;
   @FXML private Button check;
-  @FXML private Label enterPasscode;
-
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
@@ -309,6 +303,28 @@ public class LeftRoomController extends Commander implements TimerObserver {
             e.printStackTrace();
           }
         });
+
+    check.setOnAction(event -> {
+      String attempt = riddleBox.getText();
+      String message = "";
+      
+      // If the user inputs the correct answer, then unlock the drawer.
+      if (attempt.toLowerCase().equals(GameState.riddleAnswer)) {
+        riddleDrawer.setVisible(false);
+        // Update game state.
+        GameState.isRiddleResolved = true;
+        message = Dialogue.DRAWERUNLOCK.toString();
+      } else {
+        message = Dialogue.INCORRECT.toString();
+      }
+      // Update the dialogue Correctly.
+      try {
+          CommanderController.getInstance().updateDialogueBox(message);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+
+    });
   }
 
   private void generateYear() {
@@ -463,7 +479,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
         decrypt.setVisible(true);
         break;
       case BOT:
-        riddleDrawer.setVisible(true);
+        if (GameState.isRiddleResolved) {
+          GameState.isKeyFound.set(true);
+          CommanderController.getInstance().updateDialogueBox(Dialogue.KEYFOUND.toString());
+        } else {
+          riddleDrawer.setVisible(true);
+        }
+        
         break;
       default:
         break;
