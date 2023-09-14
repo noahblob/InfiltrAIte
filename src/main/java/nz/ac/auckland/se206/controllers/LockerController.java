@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.io.IOException;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +24,6 @@ public class LockerController extends Commander implements TimerObserver {
   @FXML private Label second;
   @FXML private Label third;
   @FXML private Label fourth;
-  @FXML private Label intel;
   @FXML private ImageView intelFile;
   @FXML private ImageView roomimage;
   @FXML private Button checkAns;
@@ -43,7 +41,6 @@ public class LockerController extends Commander implements TimerObserver {
    * @throws Exception
    */
   public void initialize() throws Exception {
-    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     super.initialize();
     one = two = three = four = 0;
     objective.setText("Whats the correct combination?");

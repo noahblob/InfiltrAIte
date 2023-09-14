@@ -92,7 +92,7 @@
       <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="125.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="210.0" />
       <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="232.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="210.0" />
       <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="99.0" layoutX="133.0" layoutY="342.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="210.0" />
-      <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="478.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="478.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
          </image>

@@ -46,7 +46,7 @@
             <Cursor fx:constant="HAND" />
          </cursor></Polygon>
       <Rectangle fx:id="book" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="38.0" layoutX="244.0" layoutY="359.0" onMouseClicked="#clickBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="73.0" />
-      <ImageView fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
          </image>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -14,31 +16,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LeftRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LeftRoomController">
    <children>
-      <ImageView fx:id="room" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+      <TextArea layoutX="5.0" layoutY="68.0" prefHeight="466.0" prefWidth="465.0" styleClass="uiTextArea" stylesheets="@../css/styles.css">
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
+      <ImageView fx:id="room" fitHeight="461.0" fitWidth="462.0" layoutX="7.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/testroom.gif" />
          </image></ImageView>
-      <Text fx:id="timer" layoutX="381.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
-      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="7.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/commander.png" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="dialogue" layoutX="65.0" layoutY="540.0" prefHeight="50.0" prefWidth="247.0" />
-      <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" text="OBJECTIVE" />
-      <ImageView fitHeight="574.0" fitWidth="317.0" layoutX="477.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/phone%20cropped.png" />
-         </image>
-      </ImageView>
-      <TextArea fx:id="input" layoutX="522.0" layoutY="340.0" prefHeight="38.0" prefWidth="226.0" />
-      <Button fx:id="send" layoutX="705.0" layoutY="445.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="38.0" prefWidth="43.0" text="send" />
       <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="47.0" />
       <Polygon fx:id="door" fill="#fffa96" layoutX="313.0" layoutY="318.0" onMouseClicked="#onClick" opacity="0.0" points="-19.0, 93.0, 5.25, 79.0, 5.25, -67.5, -19.0, -77.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
       <Polygon fx:id="desk" fill="#fffa96" layoutX="385.0" layoutY="320.0" onMouseClicked="#onClick" opacity="0.0" points="14.0, 38.0, 39.66668701171875, 38.0, 23.0, 27.0, 0.0, 27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
@@ -100,7 +88,7 @@
             <Font name="Anonymous Pro Bold" size="30.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" text="RETURN" />
+      <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" />
       <Pane fx:id="passcodePane" layoutX="18.0" layoutY="114.0" prefHeight="98.0" prefWidth="444.0" visible="false">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X" fx:id="x">
@@ -145,21 +133,6 @@
             <Slider fx:id="s2" layoutX="51.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
          </children>
       </Pane>
-      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="314.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Key.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="65.0" fitWidth="58.0" layoutX="362.0" layoutY="535.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/intel%20(1).png" />
-         </image>
-      </ImageView>
-      <Label fx:id="intel" alignment="CENTER" layoutX="417.0" layoutY="540.0" prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#f80303">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
       <Pane fx:id="riddlePane" layoutX="71.0" layoutY="114.0" prefHeight="358.0" prefWidth="345.0" visible="false">
          <children>
             <ImageView fx:id="paper" fitHeight="341.0" fitWidth="342.0" pickOnBounds="true" preserveRatio="true">
@@ -174,7 +147,134 @@
             </TextArea>
          </children>
       </Pane>
-      <Button fx:id="decrypt" layoutX="287.0" layoutY="489.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="DECRYPT" />
-      <ListView fx:id="output" layoutX="522.0" layoutY="96.0" prefHeight="245.0" prefWidth="226.0" />
+      <Button fx:id="decrypt" layoutX="287.0" layoutY="489.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" styleClass="send" stylesheets="@../css/styles.css" text="DECRYPT" />
+      <TextArea fx:id="objective" layoutX="5.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
+      <ListView fx:id="output" layoutX="477.0" layoutY="7.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreaChat" />
+         </styleClass>
+      </ListView>
+      <TextArea fx:id="input" layoutX="477.0" layoutY="256.0" onKeyPressed="#onEnterPressed" prefHeight="42.0" prefWidth="268.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreaChat" />
+         </styleClass>
+      </TextArea>
+      <Button fx:id="send" layoutX="748.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="44.0" prefWidth="42.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
+         <font>
+            <Font size="9.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </Button>
+      <TextArea layoutX="383.0" layoutY="6.0" prefHeight="57.0" prefWidth="86.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
+      <Text fx:id="timer" fill="#909090" layoutX="385.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      <TextArea layoutX="5.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
+      <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="10.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/commander.png" />
+         </image>
+      </ImageView>
+      <TextArea fx:id="dialogue" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="406.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+         <font>
+            <Font name="Courier New" size="12.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
+      <TextArea layoutX="478.0" layoutY="538.0" prefHeight="58.0" prefWidth="57.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass>
+      </TextArea>
+      <TextArea layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
+      <TextArea layoutX="700.0" layoutY="538.0" prefHeight="58.0" prefWidth="94.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass>
+      </TextArea>
+      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="481.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/Key.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="710.0" layoutY="545.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/intel%20(1).png" />
+         </image>
+      </ImageView>
+      <Label fx:id="intel" alignment="CENTER" layoutX="746.0" layoutY="537.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#aeaeae">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="537.0" layoutY="538.0" prefHeight="58.0" prefWidth="59.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass>
+      </TextArea>
+      <TextArea layoutX="598.0" layoutY="538.0" prefHeight="58.0" prefWidth="100.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass>
+      </TextArea>
+      <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="598.0" layoutY="544.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/pngwing.com.png" />
+         </image>
+      </ImageView>
+      <Label alignment="CENTER" layoutX="647.0" layoutY="537.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#a4a4a4">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="intelligence" fitHeight="314.0" fitWidth="326.0" layoutX="120.0" layoutY="147.0" onMouseClicked="#onCollect" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/intel%20(1).png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="548.0" layoutY="546.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/newphone.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="riddleDrawer" layoutX="127.0" layoutY="249.0" prefHeight="93.0" prefWidth="231.0" visible="false">
+         <children>
+            <TextArea fx:id="riddleBox" layoutX="8.0" layoutY="39.0" prefHeight="46.0" prefWidth="150.0" styleClass="uiTextAreaChat" stylesheets="@../css/styles.css" />
+            <Button fx:id="check" layoutX="162.0" layoutY="39.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="59.0" styleClass="send" stylesheets="@../css/styles.css" text="CHECK" />
+            <Label alignment="CENTER" layoutX="8.0" layoutY="-3.0" prefHeight="36.0" prefWidth="212.0" styleClass="passcodelabel" stylesheets="@../css/styles.css" text="ENTER PASSCODE:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
    </children>
 </Pane>

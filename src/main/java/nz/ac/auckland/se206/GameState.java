@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
+
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 /** Represents the state of the game. */
@@ -25,12 +28,12 @@ public class GameState {
   public static boolean isRiddleResolved = false;
 
   /** Indicates whether the key to the cabinet has been found. */
-  public static boolean isKeyFound = true;
+  public static BooleanProperty isKeyFound = new SimpleBooleanProperty(false);
 
-  /** Indicates whether the keypad has had the correct digits input */
+  /** Indicates whether the keypad has had the correct digits input. */
   public static boolean isKeypadSolved = false;
 
-  /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD */
+  /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD. */
   public static int difficulty = 0;
 
   /** Indicates current country we are infiltrating */
@@ -39,16 +42,19 @@ public class GameState {
   /** Indicates amount of intelligence gathered */
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
 
-
-  /** Indeicates the number of hints allowed */
+  /** Indeicates the number of hints allowed. */
   public static String numHints = "0";
 
-  /** Indicates whether the player has found intel in the cabinet */
+  /** Indicates whether the player has found intel in the cabinet. */
   public static boolean cabinetIntelfound = false;
 
-  /** Indicates whether the player has solved communication puzzle */
+  /** Indicates whether the player has solved communication puzzle. */
   public static boolean isSlidersSolved = false;
 
+  /** Indicates the answer to the riddle for the current game.*/ 
+  public static String riddleAnswer = "";
+  
+  /** Method to create random riddle for current game. */ 
   public static String getRandomWord() {
     // Create an ArrayList to hold the keys (words)
     ArrayList<String> keys = new ArrayList<>(riddleAnswers);
@@ -59,7 +65,8 @@ public class GameState {
     // Get a random index from 0 to size-1
     int randomIndex = random.nextInt(keys.size());
 
-    // Return a random word from the ArrayList of keys
-    return keys.get(randomIndex);
+    // Update the answer to the riddle for current game, and return.
+    GameState.riddleAnswer = keys.get(randomIndex);
+    return GameState.riddleAnswer;
   }
 }
