@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -13,6 +15,26 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.KeyPadController">
    <children>
+      <TextArea layoutX="537.0" layoutY="538.0" prefHeight="58.0" prefWidth="59.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass></TextArea>
+      <TextArea layoutX="598.0" layoutY="538.0" prefHeight="58.0" prefWidth="100.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass></TextArea>
+      <TextArea layoutX="700.0" layoutY="538.0" prefHeight="58.0" prefWidth="94.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass></TextArea>
+      <TextArea layoutX="478.0" layoutY="538.0" prefHeight="58.0" prefWidth="57.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass></TextArea>
       <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/start.png" />
@@ -64,7 +86,7 @@
             <Image url="@../images/Key.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="65.0" fitWidth="58.0" layoutX="542.0" layoutY="535.0" pickOnBounds="true">
+      <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="710.0" layoutY="545.0" pickOnBounds="true">
          <image>
             <Image url="@../images/intel%20(1).png" />
          </image>

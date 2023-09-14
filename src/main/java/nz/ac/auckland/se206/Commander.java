@@ -24,11 +24,8 @@ public abstract class Commander {
   protected void initialize() throws Exception {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
-    if (notes != null) {
-      CommanderController.getInstance().addNotes(notes);
-    } else {
+    if (notes == null) {
       notes = new TextArea();
-      CommanderController.getInstance().addNotes(notes);
     }
     notes.textProperty().bindBidirectional(CommanderController.getInstance().notesProperty());
     input
