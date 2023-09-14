@@ -27,18 +27,14 @@ public abstract class Commander {
 
   @FXML
   protected void initialize() throws Exception {
-    
+
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
 
     key.visibleProperty().bind(GameState.isKeyFound);
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
-
-    if (notes != null) {
-      CommanderController.getInstance().addNotes(notes);
-    } else {
+    if (notes == null) {
       notes = new TextArea();
-      CommanderController.getInstance().addNotes(notes);
     }
     notes.textProperty().bindBidirectional(CommanderController.getInstance().notesProperty());
     input
