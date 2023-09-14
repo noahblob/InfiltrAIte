@@ -167,6 +167,14 @@
   -fx-padding: 7;
 }
 
+.passcodelabel {
+  -fx-background-color: rgb(53, 53, 53);
+  -fx-text-fill: #00FF00;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #afafaf;
+  -fx-border-width: 3px;
+}
+
 /*Chatbox styling*/
 .list-cell {
   -fx-padding: 10px;
@@ -178,7 +186,6 @@
   -fx-control-inner-background: #f4f4f4;
   /* Changing the inner background of the listview */
 }
-
 
 /*TESTING TEMPLATE UI*/
 

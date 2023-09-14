@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -51,12 +50,17 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Slider s, s1, s2, s3, s4, s5;
   @FXML private Pane passcodePane;
   @FXML private Pane riddlePane;
+  @FXML private Pane riddleDrawer;
   @FXML private Label x, x1, x2, x3, x4, x5;
   @FXML private Label lastDigits;
   @FXML private Label intel;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
   @FXML private ImageView intelligence;
+  @FXML private TextArea riddleBox;
+  @FXML private Button check;
+  @FXML private Label enterPasscode;
+
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
@@ -247,6 +251,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     intelligence.setVisible(false);
     drawer1.setVisible(false);
     openCabinet(false);
+    riddleDrawer.setVisible(false);
 
     // Individual popup items.
     p.setVisible(false);
@@ -273,6 +278,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
           decrypt.setVisible(false);
           comms1.setVisible(false);
           intelligence.setVisible(false);
+          riddleDrawer.setVisible(false);
         });
 
     decrypt.setOnAction(
@@ -455,6 +461,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
       case MID:
         riddlePane.setVisible(true);
         decrypt.setVisible(true);
+        break;
+      case BOT:
+        riddleDrawer.setVisible(true);
         break;
       default:
         break;
