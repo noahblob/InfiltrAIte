@@ -194,13 +194,13 @@ public class MainRoomController extends Commander implements TimerObserver {
     switch (drawer.getId()) {
       case ("topDrawer"):
         if (randomDrawer == 1) {
-          if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
+          if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
             cabinetButton.setVisible(true);
             commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
-          } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
+          } else if (GameState.isKeyFound.get() && GameState.cabinetIntelfound) {
             commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
           } else {
             commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
@@ -211,13 +211,13 @@ public class MainRoomController extends Commander implements TimerObserver {
         break;
       case ("midDrawer"):
         if (randomDrawer == 2) {
-          if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
+          if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
             cabinetButton.setVisible(true);
             commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
-          } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
+          } else if (GameState.isKeyFound.get() && GameState.cabinetIntelfound) {
             commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
           } else {
             commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
@@ -230,13 +230,13 @@ public class MainRoomController extends Commander implements TimerObserver {
         // if user has key to cabinet and intel in the cabinet has been found, show intel file and
         // update intel accordingly
         if (randomDrawer == 3) {
-          if (GameState.isKeyFound && !GameState.cabinetIntelfound) {
+          if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
             cabinetButton.setVisible(true);
             commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
-          } else if (GameState.isKeyFound && GameState.cabinetIntelfound) {
+          } else if (GameState.isKeyFound.get() && GameState.cabinetIntelfound) {
             commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
           } else {
             commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
