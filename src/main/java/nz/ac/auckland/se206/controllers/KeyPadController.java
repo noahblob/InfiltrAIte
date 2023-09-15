@@ -31,7 +31,6 @@ public class KeyPadController extends Commander implements TimerObserver {
    * @throws Exception
    */
   public void initialize() throws Exception {
-
     super.initialize();
     objective.setText("Figure out the combination!");
     numberLabel.setText("");
