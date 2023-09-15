@@ -99,48 +99,17 @@ public class KeyPadController extends Commander implements TimerObserver {
    */
   @FXML
   public void clickNum(MouseEvent event) {
-    Rectangle number = (Rectangle) event.getSource();
-    String currentText = numberLabel.getText();
+    Rectangle button = (Rectangle) event.getSource();
+    StringBuilder currentText = new StringBuilder(numberLabel.getText());
+    int number = (int) button.getStrokeWidth();
     // Limit the user to typing only 3 numbers at a time
     if (currentText.length() >= 3) {
       return;
     } else {
-      // Update text to new number after user has pressed a number button
-      switch (number.getId()) {
-        case ("one"):
-          currentText = currentText + "1";
-          break;
-        case ("two"):
-          currentText = currentText + "2";
-          break;
-        case ("three"):
-          currentText = currentText + "3";
-          break;
-        case ("four"):
-          currentText = currentText + "4";
-          break;
-        case ("five"):
-          currentText = currentText + "5";
-          break;
-        case ("six"):
-          currentText = currentText + "6";
-          break;
-        case ("seven"):
-          currentText = currentText + "7";
-          break;
-        case ("eight"):
-          currentText = currentText + "8";
-          break;
-        case ("nine"):
-          currentText = currentText + "9";
-          break;
-        case ("zero"):
-          currentText = currentText + "0";
-          break;
-        default:
-          break;
-      }
+      // update current Text with the number clicked
+      currentText.append(String.valueOf(number));
     }
-    numberLabel.setText(currentText);
+    String newText = currentText.toString();
+    numberLabel.setText(newText);
   }
 }
