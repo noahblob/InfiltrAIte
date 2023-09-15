@@ -45,7 +45,8 @@ public class App extends Application {
    */
   @Override
   public void start(final Stage stage) throws IOException {
-
+    // Initialise all scenes using SceneManager so upon game start, they can all be accessed without
+    // having to load new elements.
     SceneManager.addUserInterface(AppUI.START, loadFxml("start"));
     SceneManager.addUserInterface(AppUI.TITLE, loadFxml("title"));
     SceneManager.addUserInterface(AppUI.WATCH, loadFxml("time"));
@@ -57,6 +58,7 @@ public class App extends Application {
     SceneManager.addUserInterface(AppUI.BOOKSHELF, loadFxml("bookshelf"));
     SceneManager.addUserInterface(AppUI.BLACKBOARD, loadFxml("blackboard"));
 
+    // Set the scene for start screen and show it
     scene = new Scene(SceneManager.getuserInterface(AppUI.START), 800, 600);
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     stage.setResizable(false);

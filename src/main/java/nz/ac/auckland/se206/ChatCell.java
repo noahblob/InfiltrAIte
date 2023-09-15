@@ -9,12 +9,14 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
+/** Custom list cell for the chat. */
 public class ChatCell extends ListCell<ChatMessage> {
-
+  // Relevant FXML elements
   private HBox chatHBox;
   private ImageView portrait;
   private Text messageText;
 
+  /** Constructor for the ChatCell. */
   public ChatCell() {
 
     super();
@@ -54,7 +56,6 @@ public class ChatCell extends ListCell<ChatMessage> {
         chatHBox.getChildren().clear();
         chatHBox.getChildren().addAll(messageText, portrait);
         messageText.setTextAlignment(TextAlignment.RIGHT);
-
       } else {
         portrait.setImage(new Image(getClass().getResource("/images/commander.png").toString()));
         chatHBox.getChildren().clear();
