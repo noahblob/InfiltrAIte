@@ -31,7 +31,6 @@ public class KeyPadController extends Commander implements TimerObserver {
    * @throws Exception
    */
   public void initialize() throws Exception {
-
     super.initialize();
     objective.setText("Figure out the combination!");
     numberLabel.setText("");
@@ -101,13 +100,13 @@ public class KeyPadController extends Commander implements TimerObserver {
   public void clickNum(MouseEvent event) {
     Rectangle button = (Rectangle) event.getSource();
     StringBuilder currentText = new StringBuilder(numberLabel.getText());
-    int number = (int) button.getStrokeWidth();
+    String number = button.getAccessibleText();
     // Limit the user to typing only 3 numbers at a time
     if (currentText.length() >= 3) {
       return;
     } else {
       // update current Text with the number clicked
-      currentText.append(String.valueOf(number));
+      currentText.append(number);
     }
     String newText = currentText.toString();
     numberLabel.setText(newText);

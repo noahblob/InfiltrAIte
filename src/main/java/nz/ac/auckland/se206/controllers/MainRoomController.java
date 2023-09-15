@@ -124,22 +124,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     // switch case for each rectangle, including the middle door, keypad and cabinet
     switch (rectangle.getId()) {
       case ("middleDoor"):
-        CommanderController commander = CommanderController.getInstance();
-        if (GameState.isKeypadSolved) {
-          // set commander message based on how much intel needs to be found
-          if (GameState.numOfIntel.get() < 3) {
-            commander.updateDialogueBox(
-                "Don't forget, there is still "
-                    + (3 - GameState.numOfIntel.get())
-                    + " more intel to find!");
-          } else {
-            // if user has found all intel, set commander message to found all intel
-            commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
-          }
-        } else {
-          // if keypad is yet to be solved
-          commander.updateDialogueBox(Dialogue.SOLVEKEYPAD.toString());
-        }
+        doorCheck();
         break;
       case ("keyPad"):
         rectangleScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
@@ -150,6 +135,30 @@ public class MainRoomController extends Commander implements TimerObserver {
         break;
       default:
         break;
+    }
+  }
+
+  /**
+   * Checks if keypad has been solved and how much intel has been found to exit room.
+   *
+   * @throws Exception if the scene cannot be loaded
+   */
+  public void doorCheck() throws Exception {
+    CommanderController commander = CommanderController.getInstance();
+    if (GameState.isKeypadSolved) {
+      // set commander message based on how much intel needs to be found
+      if (GameState.numOfIntel.get() < 3) {
+        commander.updateDialogueBox(
+            "Don't forget, there is still "
+                + (3 - GameState.numOfIntel.get())
+                + " more intel to find!");
+      } else {
+        // if user has found all intel, set commander message to found all intel
+        commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
+      }
+    } else {
+      // if keypad is yet to be solved
+      commander.updateDialogueBox(Dialogue.SOLVEKEYPAD.toString());
     }
   }
 

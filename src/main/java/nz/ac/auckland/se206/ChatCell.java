@@ -52,15 +52,9 @@ public class ChatCell extends ListCell<ChatMessage> {
       setGraphic(null);
     } else {
       if (item.getRole().equals("user")) {
-        portrait.setImage(new Image("/images/user.png"));
-        chatHBox.getChildren().clear();
-        chatHBox.getChildren().addAll(messageText, portrait);
-        messageText.setTextAlignment(TextAlignment.RIGHT);
+        updateChatBox("/images/user.png");
       } else {
-        portrait.setImage(new Image(getClass().getResource("/images/commander.png").toString()));
-        chatHBox.getChildren().clear();
-        chatHBox.getChildren().addAll(portrait, messageText);
-        messageText.setTextAlignment(TextAlignment.LEFT);
+        updateChatBox("/images/commander.png");
       }
 
       // Update message label text
@@ -68,6 +62,23 @@ public class ChatCell extends ListCell<ChatMessage> {
 
       // Display the chat HBox
       setGraphic(chatHBox);
+    }
+  }
+
+  /**
+   * Updates the chat box with the correct image and text based on what was in previous scene.
+   *
+   * @param imageSource The image source to be used
+   */
+  protected void updateChatBox(String imageSource) {
+    // Update portrait image, all chat cells and text alignment
+    portrait.setImage(new Image(getClass().getResource(imageSource).toString()));
+    chatHBox.getChildren().clear();
+    chatHBox.getChildren().addAll(portrait, messageText);
+    if (imageSource.equals("/images/user.png")) {
+      messageText.setTextAlignment(TextAlignment.RIGHT);
+    } else {
+      messageText.setTextAlignment(TextAlignment.LEFT);
     }
   }
 }
