@@ -21,6 +21,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 /** Controller class for the room view. */
 public class MainRoomController extends Commander implements TimerObserver {
 
+  // FXML objects in room
   @FXML private TextArea objective;
   @FXML private Button back;
   @FXML private Button cabinetButton;
@@ -33,8 +34,9 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle botDrawer;
   @FXML private ImageView filingCabinet;
   @FXML private ImageView intelFile;
-
-  Random random = new Random();
+  // Initialize a random drawer to contain intel
+  private Random random = new Random();
+  private int randomDrawer = 1 + random.nextInt(2);
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -77,7 +79,7 @@ public class MainRoomController extends Commander implements TimerObserver {
 
   /** Handles the click and hover effects for left and right door in main room. */
   public void setDoorEvents() {
-    // set click functionaltiy for left and right door
+    // set click functionaltiy for left and right door, this will take the player to relative rooms
     leftDoor.setOnMouseClicked(
         event -> {
           Polygon object = (Polygon) event.getSource();
@@ -113,7 +115,7 @@ public class MainRoomController extends Commander implements TimerObserver {
    * Handles the onClick event for all rectangles in the middle room.
    *
    * @param event the mouse event
-   * @throws Exception
+   * @throws Exception if the scene cannot be loaded
    */
   @FXML
   public void onClick(MouseEvent event) throws Exception {
@@ -131,9 +133,11 @@ public class MainRoomController extends Commander implements TimerObserver {
                     + (3 - GameState.numOfIntel.get())
                     + " more intel to find!");
           } else {
+            // if user has found all intel, set commander message to found all intel
             commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
           }
         } else {
+          // if keypad is yet to be solved
           commander.updateDialogueBox(Dialogue.SOLVEKEYPAD.toString());
         }
         break;
@@ -164,6 +168,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     Button button = (Button) event.getSource();
     switch (button.getId()) {
       case ("back"):
+        // Set visibility of filing cabinet and background to false to return to room
         filingCabinet.setVisible(false);
         background.setVisible(false);
         back.setVisible(false);
@@ -172,6 +177,7 @@ public class MainRoomController extends Commander implements TimerObserver {
         botDrawer.setVisible(false);
         break;
       case ("cabinetButton"):
+        // Return to cabinet after finding intel
         cabinetButton.setVisible(false);
         intelFile.setVisible(false);
         break;
@@ -184,16 +190,18 @@ public class MainRoomController extends Commander implements TimerObserver {
    * Handles the click event on the cabinet drawers.
    *
    * @param event the mouse event
-   * @throws Exception
+   * @throws Exception if the scene cannot be loaded
    */
   @FXML
   public void clickDrawer(MouseEvent event) throws Exception {
     Rectangle drawer = (Rectangle) event.getSource();
     CommanderController commander = CommanderController.getInstance();
-    int randomDrawer = 1 + random.nextInt(2);
+    // check which drawer the user has pressed
     switch (drawer.getId()) {
       case ("topDrawer"):
         if (randomDrawer == 1) {
+          // if top drawer is the random drawer and user has key and has not found intel, give the
+          // user intel
           if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
             cabinetButton.setVisible(true);
@@ -201,8 +209,10 @@ public class MainRoomController extends Commander implements TimerObserver {
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
           } else if (GameState.isKeyFound.get() && GameState.cabinetIntelfound) {
+            // otherwise if the user has already found the intel, tell the user they already have it
             commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
           } else {
+            // otherwise remind the user they require a key to open the drawer
             commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
           }
         } else {
@@ -210,6 +220,7 @@ public class MainRoomController extends Commander implements TimerObserver {
         }
         break;
       case ("midDrawer"):
+        // same case for top drawer but for middle
         if (randomDrawer == 2) {
           if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);
@@ -227,8 +238,7 @@ public class MainRoomController extends Commander implements TimerObserver {
         }
         break;
       case ("botDrawer"):
-        // if user has key to cabinet and intel in the cabinet has been found, show intel file and
-        // update intel accordingly
+        // same case for top and middle drawer but for bottom drawer
         if (randomDrawer == 3) {
           if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
             intelFile.setVisible(true);

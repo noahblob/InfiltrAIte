@@ -14,8 +14,9 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
+/** Abstract class representing the commander */
 public abstract class Commander {
-
+  // Relevant FXML elements accessed across all scenes by commander
   @FXML protected TextArea input;
   @FXML protected ListView<ChatMessage> output;
   @FXML protected Button send;
@@ -25,6 +26,12 @@ public abstract class Commander {
   @FXML protected Label intel;
   @FXML protected ImageView key;
 
+  /**
+   * Initializes the commander for each room and stores all relevant information to be passed
+   * through each room.
+   *
+   * @throws Exception if the commander fails to initialize
+   */
   @FXML
   protected void initialize() throws Exception {
 

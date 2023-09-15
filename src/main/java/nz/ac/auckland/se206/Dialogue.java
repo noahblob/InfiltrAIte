@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206;
 
+/** enum to store relevant dialogue to gameplay. */
 public enum Dialogue {
 
   // Add more dialogue and use as game progresses. Will try to tie this to GPT in the future.
@@ -26,13 +27,25 @@ public enum Dialogue {
   FOUNDALLINTEL("You have found all required intel, time to escape!");
   private final String msg;
 
+  /**
+   * Constructor for Dialogue.
+   * 
+   * @param msg The message to be stored
+   */
   private Dialogue(final String msg) {
     this.msg = msg;
   }
 
+  /**
+   * Returns the message with the arguments inserted.
+   * 
+   * @param args The arguments to be inserted
+   * @return The message with the arguments inserted
+   */
   public String getMessage(final String... args) {
     String tmpMessage = msg;
 
+    // Replace all %s with the arguments
     for (final String arg : args) {
       tmpMessage = tmpMessage.replaceFirst("%s", arg);
     }
@@ -40,6 +53,11 @@ public enum Dialogue {
     return tmpMessage;
   }
 
+  /**
+   * Prints the message to the console with the arguments inserted.
+   * 
+   * @param args The arguments to be inserted
+   */
   public void printMessage(final String... args) {
     System.out.println(getMessage(args));
   }
