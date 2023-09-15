@@ -14,8 +14,9 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
+/** Abstract class representing the commander */
 public abstract class Commander {
-
+  // Relevant FXML elements accessed across all scenes by commander
   @FXML protected TextArea input;
   @FXML protected ListView<ChatMessage> output;
   @FXML protected Button send;
@@ -25,12 +26,21 @@ public abstract class Commander {
   @FXML protected Label intel;
   @FXML protected ImageView key;
 
+  /**
+   * Initializes the commander for each room and stores all relevant information to be passed
+   * through each room.
+   *
+   * @throws Exception if the commander fails to initialize
+   */
   @FXML
   protected void initialize() throws Exception {
 
+    // Add the relevant FXML elements to the commander controller
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
 
+    // Bind key, intel, notes, input and output elements to commander controller to be passed
+    // through rooms
     key.visibleProperty().bind(GameState.isKeyFound);
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     if (notes == null) {
@@ -43,6 +53,7 @@ public abstract class Commander {
 
     output.scrollTo(output.getItems().size() - 1);
 
+    // Set dialogue box to be uneditable and wrap text
     if (dialogue != null) {
       dialogue.setEditable(false);
       dialogue.setWrapText(true);
@@ -50,17 +61,30 @@ public abstract class Commander {
     updateTimerFont();
   }
 
+  /** Updates styling for timer to correct font and size upon game launch. */
   protected void updateTimerFont() {
     Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
     timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
   }
 
+  /**
+   * Handles the event of user clicking send message button to commander.
+   *
+   * @param event The mouse event
+   * @throws Exception if the message fails to send
+   */
   @FXML
   protected void onSendMessage(MouseEvent event) throws Exception {
     // Send the message to the commander controller.
     CommanderController.getInstance().onSendMessage(event, input);
   }
 
+  /**
+   * Handles the event of user pressing enter to send message to commander.
+   *
+   * @param event The key event
+   * @throws Exception if the message fails to send
+   */
   @FXML
   protected void onEnterPressed(KeyEvent event) throws Exception {
     // if the user tries to send message using enter, send message to commander controller
