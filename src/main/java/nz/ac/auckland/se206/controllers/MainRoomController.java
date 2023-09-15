@@ -146,12 +146,7 @@ public class MainRoomController extends Commander implements TimerObserver {
         break;
       case ("cabinet"):
         // set visibility of the filing cabinet and background
-        filingCabinet.setVisible(true);
-        background.setVisible(true);
-        back.setVisible(true);
-        topDrawer.setVisible(true);
-        midDrawer.setVisible(true);
-        botDrawer.setVisible(true);
+        cabinetVisibility(true);
         break;
       default:
         break;
@@ -169,12 +164,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     switch (button.getId()) {
       case ("back"):
         // Set visibility of filing cabinet and background to false to return to room
-        filingCabinet.setVisible(false);
-        background.setVisible(false);
-        back.setVisible(false);
-        topDrawer.setVisible(false);
-        midDrawer.setVisible(false);
-        botDrawer.setVisible(false);
+        cabinetVisibility(false);
         break;
       case ("cabinetButton"):
         // Return to cabinet after finding intel
@@ -184,6 +174,21 @@ public class MainRoomController extends Commander implements TimerObserver {
       default:
         break;
     }
+  }
+
+  /**
+   * Sets the visibility of the filing cabinet and background.
+   *
+   * @param visible true if the cabinet should be visible, false otherwise
+   */
+  public void cabinetVisibility(boolean visible) {
+    // set visibility of filing cabinet and background
+    filingCabinet.setVisible(visible);
+    background.setVisible(visible);
+    back.setVisible(visible);
+    topDrawer.setVisible(visible);
+    midDrawer.setVisible(visible);
+    botDrawer.setVisible(visible);
   }
 
   /**
@@ -200,21 +205,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     switch (drawer.getId()) {
       case ("topDrawer"):
         if (randomDrawer == 1) {
-          // if top drawer is the random drawer and user has key and has not found intel, give the
-          // user intel
-          if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
-            intelFile.setVisible(true);
-            cabinetButton.setVisible(true);
-            commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
-            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-            GameState.cabinetIntelfound = true;
-          } else if (GameState.isKeyFound.get() && GameState.cabinetIntelfound) {
-            // otherwise if the user has already found the intel, tell the user they already have it
-            commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
-          } else {
-            // otherwise remind the user they require a key to open the drawer
-            commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
-          }
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -222,17 +213,7 @@ public class MainRoomController extends Commander implements TimerObserver {
       case ("midDrawer"):
         // same case for top drawer but for middle
         if (randomDrawer == 2) {
-          if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
-            intelFile.setVisible(true);
-            cabinetButton.setVisible(true);
-            commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
-            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-            GameState.cabinetIntelfound = true;
-          } else if (GameState.isKeyFound.get() && GameState.cabinetIntelfound) {
-            commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
-          } else {
-            commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
-          }
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -240,23 +221,38 @@ public class MainRoomController extends Commander implements TimerObserver {
       case ("botDrawer"):
         // same case for top and middle drawer but for bottom drawer
         if (randomDrawer == 3) {
-          if (GameState.isKeyFound.get() && !GameState.cabinetIntelfound) {
-            intelFile.setVisible(true);
-            cabinetButton.setVisible(true);
-            commander.updateDialogueBox(Dialogue.INTELFOUND.toString());
-            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-            GameState.cabinetIntelfound = true;
-          } else if (GameState.isKeyFound.get() && GameState.cabinetIntelfound) {
-            commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
-          } else {
-            commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
-          }
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
         break;
       default:
         break;
+    }
+  }
+
+  /**
+   * Checks if the user has found the key and cabinet intel.
+   *
+   * @param isKeyFound true if the key has been found, false otherwise
+   * @param cabinetIntelFound true if the cabinet intel has been found, false otherwise
+   * @throws Exception if the scene cannot be loaded
+   */
+  public void checkDrawer(boolean isKeyFound, boolean cabinetIntelFound) throws Exception {
+    CommanderController commander = CommanderController.getInstance();
+    if (isKeyFound && !cabinetIntelFound) {
+      // if key for cabinet has been found and cabinet intel has not yet been found, update cabinet
+      // intel to being found
+      intelFile.setVisible(true);
+      cabinetButton.setVisible(true);
+      GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+      GameState.cabinetIntelfound = true;
+    } else if (isKeyFound && cabinetIntelFound) {
+      // user has already found cabinet intel
+      commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
+    } else {
+      // user is missing key to cabinet
+      commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
     }
   }
 
