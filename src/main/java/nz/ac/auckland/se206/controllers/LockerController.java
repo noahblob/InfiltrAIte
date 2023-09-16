@@ -11,6 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
@@ -92,13 +93,17 @@ public class LockerController extends Commander implements TimerObserver {
    * Checks the answer
    *
    * @param event
+   * @throws Exception
    */
   @FXML
-  public void onCheckAns(MouseEvent event) {
+  public void onCheckAns(MouseEvent event) throws Exception {
+    CommanderController commander = CommanderController.getInstance();
+
     if (!isIntelGathered) {
       int answer = LeftRoomController.year;
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
+        commander.updateDialogueBox(Dialogue.CORRECTYEAR.toString());
         isIntelGathered = true;
         intelFile.setDisable(false);
         intelFile.setVisible(true);
@@ -106,7 +111,7 @@ public class LockerController extends Commander implements TimerObserver {
         checkAns.setVisible(false);
         GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
 
-      } else System.out.println("Incorrect");
+      } else commander.updateDialogueBox(Dialogue.WRONGYEAR.toString());
     }
   }
 

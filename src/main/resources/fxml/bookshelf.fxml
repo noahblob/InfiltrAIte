@@ -137,7 +137,7 @@
             </Label>
          </children>
       </Pane>
-      <ImageView fx:id="roomimage" fitHeight="466.0" fitWidth="477.0" layoutX="-4.0" layoutY="57.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomimage" fitHeight="450.0" fitWidth="450.0" layoutX="12.0" layoutY="73.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightroom.png" />
          </image>
@@ -172,7 +172,7 @@
             <Image url="@../images/Book.png" />
          </image>
       </ImageView>
-      <Button fx:id="goBack" layoutX="18.0" layoutY="461.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" text="RETURN TO ROOM">
+      <Button fx:id="goBack" layoutX="27.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN TO ROOM">
          <font>
             <Font size="18.0" />
          </font>
@@ -205,7 +205,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Button fx:id="back" disable="true" layoutX="236.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#onGoBackShelf" prefHeight="44.0" prefWidth="191.0" text="BOOKSHELF" visible="false">
+      <Button fx:id="back" disable="true" layoutX="236.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#onGoBackShelf" prefHeight="45.0" prefWidth="214.0" styleClass="send" stylesheets="@../css/styles.css" text="BOOKSHELF" visible="false">
          <font>
             <Font size="18.0" />
          </font>

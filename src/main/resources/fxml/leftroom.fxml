@@ -207,7 +207,7 @@
             <String fx:value="uiTextAreainventory" />
          </styleClass>
       </TextArea>
-      <TextArea layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+      <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
          <effect>
             <Bloom />
          </effect>

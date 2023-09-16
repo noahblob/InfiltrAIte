@@ -59,6 +59,8 @@ public abstract class Commander {
       dialogue.setWrapText(true);
     }
     updateTimerFont();
+
+    notes.setPromptText("NOTEPAD!! Write your notes here!!");
   }
 
   /** Updates styling for timer to correct font and size upon game launch. */
