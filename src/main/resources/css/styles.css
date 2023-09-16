@@ -97,6 +97,11 @@
   -fx-text-fill: #ffffff
 }
 
+.lose {
+  -fx-alignment: center;
+  -fx-text-fill: #ff0000
+}
+
 .titlerings {
   -fx-fill: transparent;
   -fx-stroke: rgb(255, 0, 0);

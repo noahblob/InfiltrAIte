@@ -77,7 +77,8 @@ public class KeyPadController extends Commander implements TimerObserver {
         }
         // Check if user has typed in the correct value to the keypad
         if (Integer.parseInt(numberLabel.getText()) == BlackBoardController.getKeypadAns()) {
-          GameState.isKeypadSolved = true;
+          // Update the game state (keypad is solved)
+          GameState.setKeypadSolved(true);
           commander.updateDialogueBox("Nice work, you cracked the code to the door!");
         } else {
           commander.updateDialogueBox("That's not the right code, try again!");

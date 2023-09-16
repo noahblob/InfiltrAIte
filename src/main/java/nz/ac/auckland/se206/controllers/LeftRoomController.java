@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.stream.IntStream;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -87,7 +89,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     objective.setText("This is the LEFT ROOM");
 
     // Hardcoding answer to slider puzzle for now.
-    answer = new char[] {'#','%','^','*','@','+'};
+    answer = new char[] {'!','!','!','!','!','!'};
 
     createRoom();
     setPopups();
@@ -126,97 +128,23 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void setHoverEvents() {
-    door.setOnMouseEntered(
-        event -> {
-          door.setOpacity(0.5);
-        });
-    door.setOnMouseExited(
-        event -> {
-          door.setOpacity(0);
-        });
-    painting.setOnMouseEntered(
-        event -> {
-          painting.setOpacity(0.5);
-        });
-    painting.setOnMouseExited(
-        event -> {
-          painting.setOpacity(0);
-        });
-    painting1.setOnMouseEntered(
-        event -> {
-          painting1.setOpacity(0.5);
-        });
-    painting1.setOnMouseExited(
-        event -> {
-          painting1.setOpacity(0);
-        });
-    painting2.setOnMouseEntered(
-        event -> {
-          painting2.setOpacity(0.5);
-        });
-    painting2.setOnMouseExited(
-        event -> {
-          painting2.setOpacity(0);
-        });
-    newspaper.setOnMouseEntered(
-        event -> {
-          newspaper.setOpacity(0.5);
-        });
-    newspaper.setOnMouseExited(
-        event -> {
-          newspaper.setOpacity(0);
-        });
-    drawer.setOnMouseEntered(
-        event -> {
-          drawer.setOpacity(0.5);
-        });
-    drawer.setOnMouseExited(
-        event -> {
-          drawer.setOpacity(0);
-        });
-    communications.setOnMouseEntered(
-        event -> {
-          communications.setOpacity(0.5);
-        });
-    communications.setOnMouseExited(
-        event -> {
-          communications.setOpacity(0);
-        });
-    desk.setOnMouseEntered(
-        event -> {
-          desk.setOpacity(0.5);
-        });
-    desk.setOnMouseExited(
-        event -> {
-          desk.setOpacity(0);
-        });
-
-    topDrawer.setOnMouseEntered(
-        event -> {
-          topDrawer.setOpacity(0.5);
-        });
-    topDrawer.setOnMouseExited(
-        event -> {
-          topDrawer.setOpacity(0);
-        });
-    midDrawer.setOnMouseEntered(
-        event -> {
-          midDrawer.setOpacity(0.5);
-        });
-    midDrawer.setOnMouseExited(
-        event -> {
-          midDrawer.setOpacity(0);
-        });
-    botDrawer.setOnMouseEntered(
-        event -> {
-          botDrawer.setOpacity(0.5);
-        });
-    botDrawer.setOnMouseExited(
-        event -> {
-          botDrawer.setOpacity(0);
-        });
+    setOpacityOnHover(door);
+    setOpacityOnHover(painting);
+    setOpacityOnHover(painting1);
+    setOpacityOnHover(painting2);
+    setOpacityOnHover(newspaper);
+    setOpacityOnHover(drawer);
+    setOpacityOnHover(communications);
+    setOpacityOnHover(desk);
+    setOpacityOnHover(topDrawer);
+    setOpacityOnHover(midDrawer);
+    setOpacityOnHover(botDrawer);
   }
-
+  
+  private void setOpacityOnHover(Shape shape) {
+    shape.setOnMouseEntered(event -> shape.setOpacity(0.5));
+    shape.setOnMouseExited(event -> shape.setOpacity(0));
+  }
   private void showPopup(ImageView popup) {
     popup.setVisible(true);
     popUpBackGround.setVisible(true);
@@ -309,7 +237,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
       String message = "";
       
       // If the user inputs the correct answer, then unlock the drawer.
-      if (attempt.toLowerCase().equals(GameState.riddleAnswer)) {
+      if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {
         riddleDrawer.setVisible(false);
         // Update game state.
         GameState.isRiddleResolved = true;
@@ -339,26 +267,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void setSliders() {
-    toggleSliders(false);
-    code = new char[6];
-    sliders = new ArrayList<>();
-    sliders.add(s);
-    sliders.add(s1);
-    sliders.add(s2);
-    sliders.add(s3);
-    sliders.add(s4);
-    sliders.add(s5);
-    passcode = new ArrayList<>();
-    passcode.add(x);
-    passcode.add(x1);
-    passcode.add(x2);
-    passcode.add(x3);
-    passcode.add(x4);
-    passcode.add(x5);
+      toggleSliders(false);
+      code = new char[6];
+      sliders = List.of(s, s1, s2, s3, s4, s5);
+      passcode = List.of(x, x1, x2, x3, x4, x5);
 
-    for (int i = 0; i < sliders.size(); i++) {
-        setupSlider(sliders.get(i), passcode.get(i), i);
-    }
+      IntStream.range(0, sliders.size())
+              .forEach(i -> setupSlider(sliders.get(i), passcode.get(i), i));
   }
 
   private void createSliderMap() {
@@ -400,10 +315,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
               try {
                 checkSlidersSolved();
               } catch (Exception e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
-              }
-              
+              }           
   }});
   }
 
@@ -485,7 +398,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
         } else {
           riddleDrawer.setVisible(true);
         }
-        
         break;
       default:
         break;

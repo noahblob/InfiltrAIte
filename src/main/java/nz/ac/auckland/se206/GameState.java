@@ -8,6 +8,8 @@ import java.util.Set;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -22,10 +24,16 @@ public class GameState {
     riddleAnswers.add("banana");
     riddleAnswers.add("book");
     // Add more words and definitions here
+
+    // setUp listeners to check if game is won or not.
+    setupWinListeners();
   }
 
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
+
+  /** Indicates whether game has been won or not. */
+  public static BooleanProperty isGameWon = new SimpleBooleanProperty(false);
 
   /** Indicates whether the key to the cabinet has been found. */
   public static BooleanProperty isKeyFound = new SimpleBooleanProperty(false);
@@ -68,5 +76,28 @@ public class GameState {
     // Update the answer to the riddle for current game, and return.
     GameState.riddleAnswer = keys.get(randomIndex);
     return GameState.riddleAnswer;
+  }
+
+  private static void setupWinListeners() {
+      if (numOfIntel == null) {
+          numOfIntel = new SimpleIntegerProperty(0);
+      }
+      // Listen for changes to numOfIntel
+      numOfIntel.addListener(new ChangeListener<Number>() {
+          @Override
+          public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+              checkIsGameWon();
+          }
+      });
+  }
+
+  // Method to update if game has been won
+  public static void setKeypadSolved(boolean solved) {
+      isKeypadSolved = solved;
+      checkIsGameWon();
+  }
+
+  private static void checkIsGameWon() {
+    isGameWon.set(isKeypadSolved && numOfIntel.get() == 3);
   }
 }
