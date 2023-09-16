@@ -37,7 +37,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 public class LeftRoomController extends Commander implements TimerObserver {
 
   private enum Object {
-    COMMS,
+    RADIO,
     DRAWER,
     PAINT,
     PAINT1,
@@ -71,26 +71,11 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private ImageView poster;
   @FXML private ImageView poster1;
   @FXML private ImageView poster2;
-  @FXML private ImageView comms;
-  @FXML private ImageView comms1;
   @FXML private ImageView tear;
   @FXML private ImageView drawer1;
-  @FXML private Pane sliderPane;
-  @FXML private Slider slider;
-  @FXML private Slider slider1;
-  @FXML private Slider slider2;
-  @FXML private Slider slider3;
-  @FXML private Slider slider4;
-  @FXML private Slider slider5;
   @FXML private Pane passcodePane;
   @FXML private Pane riddlePane;
   @FXML private Pane riddleDrawer;
-  @FXML private Label label;
-  @FXML private Label label1;
-  @FXML private Label label2;
-  @FXML private Label label3;
-  @FXML private Label label4;
-  @FXML private Label label5;
   @FXML private Label lastDigits;
   @FXML private Label intel;
   @FXML private ImageView paper;
@@ -104,14 +89,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
-  private List<Slider> sliders;
-  private List<Label> passcode;
-  private char[] code;
-  private char[] answer = GameState.setSliders();
-  private Map<Integer, Character> sliderMap;
   private int lastNumbers;
   private String riddleCode;
-  private boolean isDialogueUpdated = false;
   private boolean isIntelCollected = false;
 
   /**
@@ -129,8 +108,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     createRoom();
     setPopups();
     setHoverEvents();
-    setSliders();
-    createSliderMap();
     generateYear();
 
     TimerClass.add(this);
@@ -149,7 +126,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private void createRoom() {
     objects = new HashMap<>();
-    objects.put(communications, Object.COMMS);
+    objects.put(communications, Object.RADIO);
     objects.put(drawer, Object.DRAWER);
     objects.put(painting, Object.PAINT);
     objects.put(painting1, Object.PAINT1);
@@ -188,11 +165,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     back.setVisible(true);
   }
 
-  private void toggleSliders(Boolean flag) {
-    passcodePane.setVisible(flag);
-    sliderPane.setVisible(flag);
-  }
-
   private void toggleYear(Boolean flag) {
     this.lastDigits.setVisible(flag);
   }
@@ -215,8 +187,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     poster.setVisible(false);
     poster1.setVisible(false);
     poster2.setVisible(false);
-    comms.setVisible(false);
-    comms1.setVisible(false);
     tear.setVisible(false);
     lastDigits.setVisible(false);
 
@@ -229,12 +199,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
           back.setVisible(false);
           popUpBackGround.setVisible(false);
           // Disables sliders & last digits.
-          toggleSliders(false);
           toggleYear(false);
           openCabinet(false);
           riddlePane.setVisible(false);
           decrypt.setVisible(false);
-          comms1.setVisible(false);
           intelligence.setVisible(false);
           riddleDrawer.setVisible(false);
         });
@@ -305,78 +273,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     lastDigits.setText(String.valueOf(lastNumbers));
   }
 
-  private void setSliders() {
-    toggleSliders(false);
-    code = new char[6];
-    sliders = List.of(slider, slider1, slider2, slider3, slider4, slider5);
-    passcode = List.of(label, label1, label2, label3, label4, label5);
-
-    IntStream.range(0, sliders.size()).forEach(i -> setSlider(sliders.get(i), passcode.get(i), i));
-  }
-
-  private void createSliderMap() {
-    sliderMap = new HashMap<>();
-    sliderMap.put(0, '!');
-    sliderMap.put(1, '+');
-    sliderMap.put(2, '-');
-    sliderMap.put(3, '*');
-    sliderMap.put(4, '&');
-    sliderMap.put(5, '^');
-    sliderMap.put(6, '%');
-    sliderMap.put(7, '$');
-    sliderMap.put(8, '#');
-    sliderMap.put(9, '@');
-    sliderMap.put(10, '?');
-  }
-
-  // Helper function for sliders.
-  private void setSlider(Slider s, Label digit, int index) {
-    s.setMajorTickUnit(1);
-    s.setMinorTickCount(0);
-    s.setBlockIncrement(1);
-    s.setSnapToTicks(true);
-
-    s.valueProperty()
-        .addListener(
-            new ChangeListener<Number>() {
-              @Override
-              public void changed(
-                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                int intValue = newValue.intValue();
-                s.setValue(intValue); // Update the slider value to the nearest integer
-
-                // Get the respective character from slider map.
-                char codeValue = sliderMap.get(intValue);
-
-                // Update the actual code array.
-                code[index] = codeValue;
-                // Update respective label.
-                digit.setText(String.valueOf(codeValue));
-
-                try {
-                  checkSlidersSolved();
-                } catch (Exception e) {
-                  e.printStackTrace();
-                }
-              }
-            });
-  }
-
-  private void checkSlidersSolved() throws Exception {
-    if (Arrays.equals(code, answer) && !isDialogueUpdated) {
-      isDialogueUpdated = true;
-      // Update game state and show sine wave.
-      GameState.isSlidersSolved = true;
-      comms1.setVisible(true);
-      // Disable slider game.
-      for (Slider slider : sliders) {
-        slider.setDisable(true);
-      }
-
-      CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETUNLOCK.toString());
-    }
-  }
-
   private void openCabinet(Boolean flag) {
     topDrawer.setVisible(flag);
     midDrawer.setVisible(flag);
@@ -404,7 +300,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
       case NEWS:
         showPopup(poster2);
         break;
-      case COMMS:
+      case RADIO:
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.RADIO));
         System.out.println("switched to radio");
         break;
