@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
@@ -218,9 +219,13 @@ public class BookController extends Commander implements TimerObserver {
     timer.setText(timerText.getTimerLeft());
   }
 
-  /** Handles the popup of books. */
+  /**
+   * Handles the popup of books.
+   *
+   * @throws Exception
+   */
   @FXML
-  private void showBook() {
+  private void showBook() throws Exception {
     back.setVisible(true);
     back.setDisable(false);
     book.setVisible(true);
@@ -239,6 +244,8 @@ public class BookController extends Commander implements TimerObserver {
 
       titleMap.get(bookID).setVisible(true);
       descriptionMap.get(bookID).setVisible(true);
+
+      CommanderController.getInstance().updateDialogueBox(Dialogue.CORRECTBOOK.toString());
     } else {
       titleMap.get(bookID).setVisible(true);
       descriptionMap.get(bookID).setVisible(true);
@@ -269,9 +276,10 @@ public class BookController extends Commander implements TimerObserver {
    * Handles the clicking of book type
    *
    * @param click the mouse event
+   * @throws Exception
    */
   @FXML
-  public void checkBook(MouseEvent click) {
+  public void checkBook(MouseEvent click) throws Exception {
 
     Rectangle selectedBook = (Rectangle) click.getSource();
     bookID = selectedBook.getId();

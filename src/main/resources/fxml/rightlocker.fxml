@@ -206,7 +206,7 @@
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <Button fx:id="checkAns" layoutX="266.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" text="CHECK ANSWER">
+      <Button fx:id="checkAns" layoutX="266.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="CHECK ANSWER">
          <font>
             <Font size="18.0" />
          </font>
@@ -253,7 +253,7 @@
             <Image url="@../images/intel%20(1).png" />
          </image>
       </ImageView>
-      <Button fx:id="goBack" layoutX="36.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" text="RETURN">
+      <Button fx:id="goBack" layoutX="36.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN">
          <font>
             <Font size="18.0" />
          </font>

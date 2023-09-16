@@ -25,13 +25,17 @@ public enum Dialogue {
   SOLVEKEYPAD("You need to solve the keypad first!"),
   INCORRECT("I don't think that was the right code..."),
   FOUNDALLINTEL("You have found all required intel, time to escape!"),
-  WINDIALOGUE("Good work, Agent. You've done your country proud. Meet for extraction at the rendezvous point.");
-  
+  CORRECTBOOK("This book seems like it has important information"),
+  WINDIALOGUE(
+      "Good work, Agent. You've done your country proud. Meet for extraction at the rendezvous"
+          + " point."),
+  CORRECTYEAR("Well done soldier you found one of the enemies intelligence"),
+  WRONGYEAR("That doesnt seem to be the correct passcode");
   private final String msg;
 
   /**
    * Constructor for Dialogue.
-   * 
+   *
    * @param msg The message to be stored
    */
   private Dialogue(final String msg) {
@@ -40,7 +44,7 @@ public enum Dialogue {
 
   /**
    * Returns the message with the arguments inserted.
-   * 
+   *
    * @param args The arguments to be inserted
    * @return The message with the arguments inserted
    */
@@ -57,7 +61,7 @@ public enum Dialogue {
 
   /**
    * Prints the message to the console with the arguments inserted.
-   * 
+   *
    * @param args The arguments to be inserted
    */
   public void printMessage(final String... args) {
