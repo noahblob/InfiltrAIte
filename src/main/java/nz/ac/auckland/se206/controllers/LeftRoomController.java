@@ -387,6 +387,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   public void onClick(MouseEvent event) throws Exception {
 
     Shape clickedObject = (Shape) event.getSource();
+    Scene currentScene = clickedObject.getScene();
     Object type = objects.get(clickedObject);
 
     // Add more items that can be clicked on.
@@ -404,11 +405,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
         showPopup(poster2);
         break;
       case COMMS:
-        showPopup(comms);
-        if (GameState.isSlidersSolved) {
-          showPopup(comms1);
-        }
-        toggleSliders(true);
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.RADIO));
+        System.out.println("switched to radio");
         break;
       case DESK:
         showPopup(tear);

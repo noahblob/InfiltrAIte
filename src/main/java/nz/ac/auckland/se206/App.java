@@ -47,19 +47,20 @@ public class App extends Application {
   public void start(final Stage stage) throws IOException {
     // Initialise all scenes using SceneManager so upon game start, they can all be accessed without
     // having to load new elements.
-    SceneManager.addUserInterface(AppUi.START, loadFxml("start"));
-    SceneManager.addUserInterface(AppUi.TITLE, loadFxml("title"));
-    SceneManager.addUserInterface(AppUi.WATCH, loadFxml("time"));
-    SceneManager.addUserInterface(AppUi.MAIN, loadFxml("mainroom"));
-    SceneManager.addUserInterface(AppUi.RIGHT, loadFxml("rightroom"));
+    // SceneManager.addUserInterface(AppUi.START, loadFxml("start"));
+    // SceneManager.addUserInterface(AppUi.TITLE, loadFxml("title"));
+    // SceneManager.addUserInterface(AppUi.WATCH, loadFxml("time"));
+    // SceneManager.addUserInterface(AppUi.MAIN, loadFxml("mainroom"));
+    // SceneManager.addUserInterface(AppUi.RIGHT, loadFxml("rightroom"));
     SceneManager.addUserInterface(AppUi.LEFT, loadFxml("leftroom"));
-    SceneManager.addUserInterface(AppUi.LOCKER, loadFxml("rightlocker"));
-    SceneManager.addUserInterface(AppUi.KEYPAD, loadFxml("keypad"));
-    SceneManager.addUserInterface(AppUi.BOOKSHELF, loadFxml("bookshelf"));
-    SceneManager.addUserInterface(AppUi.BLACKBOARD, loadFxml("blackboard"));
+    SceneManager.addUserInterface(AppUi.RADIO, loadFxml("radio"));
+    // SceneManager.addUserInterface(AppUi.LOCKER, loadFxml("rightlocker"));
+    // SceneManager.addUserInterface(AppUi.KEYPAD, loadFxml("keypad"));
+    // SceneManager.addUserInterface(AppUi.BOOKSHELF, loadFxml("bookshelf"));
+    // SceneManager.addUserInterface(AppUi.BLACKBOARD, loadFxml("blackboard"));
 
     // Set the scene for start screen and show it
-    scene = new Scene(SceneManager.getuserInterface(AppUi.START), 800, 600);
+    scene = new Scene(SceneManager.getuserInterface(AppUi.LEFT), 800, 600);
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     stage.setResizable(false);
     stage.setScene(scene);

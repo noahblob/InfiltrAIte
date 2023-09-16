@@ -12,6 +12,7 @@ public class SceneManager {
     WATCH,
     MAIN,
     LEFT,
+    RADIO,
     RIGHT,
     LOCKER,
     KEYPAD,
