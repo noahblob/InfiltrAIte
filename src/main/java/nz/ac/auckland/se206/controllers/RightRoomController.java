@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
@@ -24,7 +23,6 @@ public class RightRoomController extends Commander implements TimerObserver {
 
   static NumberGroup answer;
 
-  @FXML private TextArea objective;
   @FXML private Polygon riddle;
   @FXML private Polygon blackboard;
 

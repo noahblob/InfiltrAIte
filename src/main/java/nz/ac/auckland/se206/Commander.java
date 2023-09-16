@@ -16,7 +16,9 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Abstract class representing the commander */
 public abstract class Commander {
+  
   // Relevant FXML elements accessed across all scenes by commander
+  @FXML protected TextArea objective;
   @FXML protected TextArea input;
   @FXML protected ListView<ChatMessage> output;
   @FXML protected Button send;
@@ -38,6 +40,7 @@ public abstract class Commander {
     // Add the relevant FXML elements to the commander controller
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
+    objective.setEditable(false);
 
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms

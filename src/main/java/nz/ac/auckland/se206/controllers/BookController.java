@@ -10,8 +10,6 @@ import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
@@ -26,8 +24,6 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class BookController extends Commander implements TimerObserver {
 
-  @FXML private TextArea objective;
-  @FXML private Text timer;
 
   @FXML private Rectangle book1;
   @FXML private Rectangle book2;
@@ -41,7 +37,6 @@ public class BookController extends Commander implements TimerObserver {
   @FXML private ImageView actual5;
   @FXML private Button back;
   @FXML private Button goBack;
-  @FXML private Label intel;
   @FXML private Text title1;
   @FXML private Text title2;
   @FXML private Text title3;

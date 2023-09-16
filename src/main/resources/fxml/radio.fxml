@@ -4,61 +4,83 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Polygon?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.LeftRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.RadioController">
    <children>
       <TextArea layoutX="5.0" layoutY="68.0" prefHeight="466.0" prefWidth="465.0" styleClass="uiTextArea" stylesheets="@../css/styles.css">
          <effect>
             <Bloom />
          </effect>
       </TextArea>
-      <ImageView fitHeight="461.0" fitWidth="462.0" layoutX="7.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="room" fitHeight="461.0" fitWidth="462.0" layoutX="7.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/testroom.gif" />
          </image></ImageView>
-      <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="47.0" />
-      <Polygon fx:id="door" fill="#fffa96" layoutX="313.0" layoutY="318.0" onMouseClicked="#onClick" opacity="0.0" points="-19.0, 93.0, 5.25, 79.0, 5.25, -67.5, -19.0, -77.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Polygon fx:id="desk" fill="#fffa96" layoutX="385.0" layoutY="320.0" onMouseClicked="#onClick" opacity="0.0" points="14.0, 38.0, 39.66668701171875, 38.0, 23.0, 27.0, 0.0, 27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle fx:id="painting1" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="41.0" layoutX="220.0" layoutY="261.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="49.0" />
-      <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" onMouseClicked="#onClick" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Polygon fx:id="painting2" fill="#fffa96" layoutX="23.0" layoutY="252.0" opacity="0.0" points="-10.666666984558105, 83.66665649414062, 39.66666793823242, 79.66665649414062, 39.66666793823242, -20.333328247070312, -10.666666984558105, -41.66667175292969" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="91.0" />
-      <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="40.0" />
-      <Rectangle fx:id="popUpBackGround" arcHeight="5.0" arcWidth="5.0" height="466.0" layoutX="7.0" layoutY="68.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="466.0" />
-      <ImageView fx:id="poster1" fitHeight="358.0" fitWidth="406.0" layoutX="40.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="466.0" layoutX="6.0" layoutY="69.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="466.0" />
+      <ImageView fx:id="comms" fitHeight="489.0" fitWidth="560.0" layoutX="-40.0" layoutY="66.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/paint1%20(2).png" />
+            <Image url="@../images/newcomms.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="poster" fitHeight="358.0" fitWidth="406.0" layoutX="50.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="sineWave" fitHeight="24.0" fitWidth="63.0" layoutX="207.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/FP%20new.png" />
+            <Image url="@../images/output-onlinegiftools.gif" />
          </image>
       </ImageView>
-      <ImageView fx:id="poster2" fitHeight="358.0" fitWidth="406.0" layoutX="45.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/news.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="tear" fitHeight="186.0" fitWidth="171.0" layoutX="163.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/corner.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="lastDigits" layoutX="264.0" layoutY="267.0" prefHeight="57.0" prefWidth="60.0" text="XX" visible="false">
-         <font>
-            <Font name="Anonymous Pro Bold" size="30.0" />
-         </font>
-      </Label>
+      <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#onReturn" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" />
+      <Pane fx:id="passcodePane" layoutX="18.0" layoutY="114.0" prefHeight="98.0" prefWidth="444.0">
+         <children>
+            <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" layoutX="11.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X">
+               <font>
+                  <Font size="52.0" />
+               </font>
+            </Label>
+            <Label fx:id="label1" alignment="CENTER" contentDisplay="CENTER" layoutX="81.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X">
+               <font>
+                  <Font size="52.0" />
+               </font>
+            </Label>
+            <Label fx:id="label2" alignment="CENTER" contentDisplay="CENTER" layoutX="152.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X">
+               <font>
+                  <Font size="52.0" />
+               </font>
+            </Label>
+            <Label fx:id="label3" alignment="CENTER" contentDisplay="CENTER" layoutX="222.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X">
+               <font>
+                  <Font size="52.0" />
+               </font>
+            </Label>
+            <Label fx:id="label4" alignment="CENTER" contentDisplay="CENTER" layoutX="292.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X">
+               <font>
+                  <Font size="52.0" />
+               </font>
+            </Label>
+            <Label fx:id="label5" alignment="CENTER" contentDisplay="CENTER" layoutX="363.0" layoutY="9.0" prefHeight="85.0" prefWidth="64.0" styleClass="passcode" stylesheets="@../css/styles.css" text="X">
+               <font>
+                  <Font size="52.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="sliderPane" layoutX="23.0" layoutY="232.0" prefHeight="125.0" prefWidth="159.0">
+         <children>
+            <Slider fx:id="slider" layoutX="4.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" styleClass="thumb" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="slider5" layoutX="124.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="slider4" layoutX="99.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="slider3" layoutX="74.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="slider1" layoutX="27.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+            <Slider fx:id="slider2" layoutX="51.0" layoutY="6.0" max="10" min="0" orientation="VERTICAL" prefHeight="119.0" prefWidth="30.0" stylesheets="@../css/styles.css" value="5" />
+         </children>
+      </Pane>
       <TextArea fx:id="objective" layoutX="5.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
          <effect>
             <Bloom />
@@ -171,6 +193,5 @@
             <Image url="@../images/newphone.png" />
          </image>
       </ImageView>
-      <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" />
    </children>
 </Pane>
