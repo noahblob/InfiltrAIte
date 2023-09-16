@@ -110,7 +110,6 @@ public class DrawerController extends Commander implements TimerObserver {
     decrypt.setOnAction(
         event -> {
           // send the encrypted message to GPT.
-          System.out.println("TEST PRESS");
           String dialogue = Dialogue.FOUNDENCRYPTED.toString() + riddleCode;
           try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
@@ -183,11 +182,10 @@ public class DrawerController extends Commander implements TimerObserver {
         decrypt.setVisible(true);
         break;
       case "botDrawer":
-        
-        if (GameState.isRiddleResolved) {
+        if (GameState.isRiddleResolved && !GameState.isKeyFound.get()) {
           GameState.isKeyFound.set(true);
           CommanderController.getInstance().updateDialogueBox(Dialogue.KEYFOUND.toString());
-        } else {
+        } else if (!GameState.isKeyFound.get()) {
           keyDrawer.setVisible(true);
         }
         break;
