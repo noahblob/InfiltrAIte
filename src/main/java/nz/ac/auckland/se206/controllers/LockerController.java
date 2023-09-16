@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
@@ -15,7 +14,7 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class LockerController extends Commander implements TimerObserver {
@@ -55,26 +54,6 @@ public class LockerController extends Commander implements TimerObserver {
   }
 
   /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
-  }
-
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
-  }
-
-  /**
    * Handles the click event on the door.
    *
    * @param event the mouse event
@@ -86,7 +65,7 @@ public class LockerController extends Commander implements TimerObserver {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
   }
 
   /**
@@ -125,26 +104,38 @@ public class LockerController extends Commander implements TimerObserver {
     Rectangle rect = (Rectangle) event.getSource();
     switch (rect.getId()) {
       case "upOne":
-        if (one == 9) one = 0;
-        else one++;
+        if (one == 9) {
+          one = 0;
+        } else {
+          one++;
+        }
         first.setText(String.valueOf(one));
         break;
 
       case "upTwo":
-        if (two == 9) two = 0;
-        else two++;
+        if (two == 9) {
+          two = 0;
+        } else {
+          two++;
+        }
         second.setText(String.valueOf(two));
         break;
 
       case "upThree":
-        if (three == 9) three = 0;
-        else three++;
+        if (three == 9) {
+          three = 0;
+        } else {
+          three++;
+        }
         third.setText(String.valueOf(three));
         break;
 
       case "upFour":
-        if (four == 9) four = 0;
-        else four++;
+        if (four == 9) {
+          four = 0;
+        } else {
+          four++;
+        }
         fourth.setText(String.valueOf(four));
         break;
       default:
@@ -162,26 +153,38 @@ public class LockerController extends Commander implements TimerObserver {
     Rectangle rect = (Rectangle) event.getSource();
     switch (rect.getId()) {
       case "downOne":
-        if (one == 0) one = 9;
-        else one--;
+        if (one == 0) {
+          one = 9;
+        } else {
+          one--;
+        }
         first.setText(String.valueOf(one));
         break;
 
       case "downTwo":
-        if (two == 0) two = 9;
-        else two--;
+        if (two == 0) {
+          two = 9;
+        } else {
+          two--;
+        }
         second.setText(String.valueOf(two));
         break;
 
       case "downThree":
-        if (three == 0) three = 9;
-        else three--;
+        if (three == 0) {
+          three = 9;
+        } else {
+          three--;
+        }
         third.setText(String.valueOf(three));
         break;
 
       case "downFour":
-        if (four == 0) four = 9;
-        else four--;
+        if (four == 0) {
+          four = 9;
+        } else {
+          four--;
+        }
         fourth.setText(String.valueOf(four));
         break;
       default:
@@ -199,6 +202,6 @@ public class LockerController extends Commander implements TimerObserver {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the right room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }
 }

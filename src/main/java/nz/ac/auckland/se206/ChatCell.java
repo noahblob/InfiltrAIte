@@ -12,7 +12,7 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 /** Custom list cell for the chat. */
 public class ChatCell extends ListCell<ChatMessage> {
   // Relevant FXML elements
-  private HBox chatHBox;
+  private HBox chatHorizontalBox;
   private ImageView portrait;
   private Text messageText;
 
@@ -22,8 +22,8 @@ public class ChatCell extends ListCell<ChatMessage> {
     super();
 
     // Set up the chat bubble (HBox for horizontal layout)
-    chatHBox = new HBox(10);
-    chatHBox.setMaxWidth(200);
+    chatHorizontalBox = new HBox(10);
+    chatHorizontalBox.setMaxWidth(200);
 
     // Set up the portrait ImageView
     portrait = new ImageView();
@@ -36,8 +36,8 @@ public class ChatCell extends ListCell<ChatMessage> {
     messageText.setStyle(" -fx-word-break: break-all;");
 
     // Finally, set the chat HBox as the graphic for the list cell
-    setGraphic(chatHBox);
-    HBox.setHgrow(chatHBox, Priority.ALWAYS);
+    setGraphic(chatHorizontalBox);
+    HBox.setHgrow(chatHorizontalBox, Priority.ALWAYS);
   }
 
   @Override
@@ -58,7 +58,7 @@ public class ChatCell extends ListCell<ChatMessage> {
       messageText.setText(item.getContent());
 
       // Display the chat HBox
-      setGraphic(chatHBox);
+      setGraphic(chatHorizontalBox);
     }
   }
 
@@ -70,12 +70,12 @@ public class ChatCell extends ListCell<ChatMessage> {
   protected void updateChatBox(String imageSource) {
     // Update portrait image, all chat cells and text alignment
     portrait.setImage(new Image(getClass().getResource(imageSource).toString()));
-    chatHBox.getChildren().clear();
+    chatHorizontalBox.getChildren().clear();
     if (imageSource.equals("/images/user.png")) {
-      chatHBox.getChildren().addAll(messageText, portrait);
+      chatHorizontalBox.getChildren().addAll(messageText, portrait);
       messageText.setTextAlignment(TextAlignment.RIGHT);
     } else {
-      chatHBox.getChildren().addAll(portrait, messageText);
+      chatHorizontalBox.getChildren().addAll(portrait, messageText);
       messageText.setTextAlignment(TextAlignment.LEFT);
     }
   }

@@ -5,14 +5,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the keypad view. */
 public class KeyPadController extends Commander implements TimerObserver {
@@ -23,7 +22,16 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Label numberLabel;
   @FXML private TextArea dialogue;
   @FXML private TextArea objective;
-  @FXML private Rectangle one, two, three, four, five, six, seven, eight, nine, zero;
+  @FXML private Rectangle one;
+  @FXML private Rectangle two;
+  @FXML private Rectangle three;
+  @FXML private Rectangle four;
+  @FXML private Rectangle five;
+  @FXML private Rectangle six;
+  @FXML private Rectangle seven;
+  @FXML private Rectangle eight;
+  @FXML private Rectangle nine;
+  @FXML private Rectangle zero;
 
   /**
    * Initializes the keypad view, it is called when the keypad loads.
@@ -41,16 +49,6 @@ public class KeyPadController extends Commander implements TimerObserver {
   public void timerStart() {
     TimerClass timerText = TimerClass.getInstance();
     timer.setText(timerText.getTimerLeft());
-  }
-
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
   }
 
   /**
@@ -85,7 +83,7 @@ public class KeyPadController extends Commander implements TimerObserver {
         }
         break;
       case "exitButton":
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
         break;
       default:
         break;

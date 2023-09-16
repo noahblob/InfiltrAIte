@@ -14,54 +14,69 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.BookController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+   prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1"
+   xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="nz.ac.auckland.se206.controllers.BookController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+         prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;">
          <children>
-            <TextArea editable="false" layoutX="700.0" layoutY="538.0" prefHeight="58.0" prefWidth="94.0" stylesheets="@../css/styles.css">
+            <TextArea editable="false" layoutX="700.0" layoutY="538.0" prefHeight="58.0"
+               prefWidth="94.0" stylesheets="@../css/styles.css">
                <styleClass>
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreainventory" />
                </styleClass>
             </TextArea>
-            <TextArea editable="false" layoutX="478.0" layoutY="538.0" prefHeight="58.0" prefWidth="57.0" stylesheets="@../css/styles.css">
+            <TextArea editable="false" layoutX="478.0" layoutY="538.0" prefHeight="58.0"
+               prefWidth="57.0" stylesheets="@../css/styles.css">
                <styleClass>
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreainventory" />
                </styleClass>
             </TextArea>
-            <TextArea editable="false" layoutX="5.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+            <TextArea editable="false" layoutX="5.0" layoutY="539.0" prefHeight="57.0"
+               prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
                <effect>
                   <Bloom />
                </effect>
             </TextArea>
-            <TextArea editable="false" layoutX="6.0" layoutY="67.0" prefHeight="466.0" prefWidth="465.0" styleClass="uiTextArea" stylesheets="@../css/styles.css">
+            <TextArea editable="false" layoutX="6.0" layoutY="67.0" prefHeight="466.0"
+               prefWidth="465.0" styleClass="uiTextArea" stylesheets="@../css/styles.css">
                <effect>
                   <Bloom />
                </effect>
             </TextArea>
-            <TextArea editable="false" layoutX="385.0" layoutY="6.0" prefHeight="57.0" prefWidth="86.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+            <TextArea editable="false" layoutX="385.0" layoutY="6.0" prefHeight="57.0"
+               prefWidth="86.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
                <effect>
                   <Bloom />
                </effect>
             </TextArea>
-            <Text fx:id="timer" fill="#909090" layoutX="387.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
+            <Text fx:id="timer" fill="#909090" layoutX="387.0" layoutY="43.0" strokeType="OUTSIDE"
+               strokeWidth="0.0" text="TIMER" textAlignment="CENTER"
+               wrappingWidth="81.3333740234375">
                <font>
                   <Font size="25.0" />
                </font>
             </Text>
-            <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="10.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="10.0" layoutY="545.0"
+               pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/commander.png" />
                </image>
             </ImageView>
-            <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="42.0" prefWidth="268.0" stylesheets="@../css/styles.css">
+            <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed"
+               prefHeight="42.0" prefWidth="268.0" stylesheets="@../css/styles.css">
                <styleClass>
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreaChat" />
                </styleClass>
             </TextArea>
-            <TextArea fx:id="dialogue" editable="false" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="408.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+            <TextArea fx:id="dialogue" editable="false" layoutX="64.0" layoutY="539.0"
+               prefHeight="57.0" prefWidth="408.0" styleClass="uiTextAreaCommander"
+               stylesheets="@../css/styles.css">
                <font>
                   <Font name="Courier New" size="12.0" />
                </font>
@@ -69,33 +84,41 @@
                   <Bloom />
                </effect>
             </TextArea>
-            <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="478.0" layoutY="540.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="478.0" layoutY="540.0"
+               pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Key.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="710.0" layoutY="545.0" pickOnBounds="true">
+            <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="710.0" layoutY="545.0"
+               pickOnBounds="true">
                <image>
                   <Image url="@../images/intel%20(1).png" />
                </image>
             </ImageView>
-            <Label fx:id="intel" alignment="CENTER" layoutX="746.0" layoutY="537.0" prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#aeaeae">
+            <Label fx:id="intel" alignment="CENTER" layoutX="746.0" layoutY="537.0"
+               prefHeight="52.0" prefWidth="50.0" text="x0" textFill="#aeaeae">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
-            <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
+            <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0"
+               prefWidth="316.0" stylesheets="@../css/styles.css">
                <styleClass>
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreaChat" />
                </styleClass>
             </ListView>
-            <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
+            <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="6.0"
+               prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander"
+               stylesheets="@../css/styles.css" text="OBJECTIVE">
                <effect>
                   <Bloom />
                </effect>
             </TextArea>
-            <Button fx:id="send" layoutX="751.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="43.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
+            <Button fx:id="send" layoutX="751.0" layoutY="255.0" mnemonicParsing="false"
+               onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="43.0" styleClass="send"
+               stylesheets="@../css/styles.css" text="SEND">
                <font>
                   <Font size="9.0" />
                </font>
@@ -103,76 +126,92 @@
                   <Bloom />
                </effect>
             </Button>
-            <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+            <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0"
+               prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad"
+               stylesheets="@../css/styles.css">
                <effect>
                   <Bloom />
                </effect>
             </TextArea>
-            <TextArea editable="false" layoutX="537.0" layoutY="538.0" prefHeight="58.0" prefWidth="59.0" stylesheets="@../css/styles.css">
+            <TextArea editable="false" layoutX="537.0" layoutY="538.0" prefHeight="58.0"
+               prefWidth="59.0" stylesheets="@../css/styles.css">
                <styleClass>
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreainventory" />
                </styleClass>
             </TextArea>
-            <TextArea editable="false" layoutX="598.0" layoutY="538.0" prefHeight="58.0" prefWidth="100.0" stylesheets="@../css/styles.css">
+            <TextArea editable="false" layoutX="598.0" layoutY="538.0" prefHeight="58.0"
+               prefWidth="100.0" stylesheets="@../css/styles.css">
                <styleClass>
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreainventory" />
                </styleClass>
             </TextArea>
-            <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="548.0" layoutY="546.0" pickOnBounds="true">
+            <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="548.0" layoutY="546.0"
+               pickOnBounds="true">
                <image>
                   <Image url="@../images/newphone.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="598.0" layoutY="544.0" pickOnBounds="true">
+            <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="598.0" layoutY="544.0"
+               pickOnBounds="true">
                <image>
                   <Image url="@../images/pngwing.com.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="648.0" layoutY="537.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#a4a4a4">
+            <Label alignment="CENTER" layoutX="648.0" layoutY="537.0" prefHeight="54.0"
+               prefWidth="43.0" text="x0" textFill="#a4a4a4">
                <font>
                   <Font size="37.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <ImageView fx:id="roomimage" fitHeight="450.0" fitWidth="450.0" layoutX="12.0" layoutY="73.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomimage" fitHeight="450.0" fitWidth="450.0" layoutX="12.0" layoutY="73.0"
+         opacity="0.34" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/rightroom.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="395.0" fitWidth="379.0" layoutX="34.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="395.0" fitWidth="379.0" layoutX="34.0" layoutY="74.0"
+         pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/books.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="actual5" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="actual5" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0"
+         pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/Book.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="actual4" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="actual4" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0"
+         pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/Book.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="actual3" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="actual3" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0"
+         pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/Book.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="actual2" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="actual2" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0"
+         pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/Book.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="actual1" fitHeight="401.0" fitWidth="431.0" layoutX="18.0" layoutY="72.0" pickOnBounds="true" visible="false">
+      <ImageView fx:id="actual1" fitHeight="401.0" fitWidth="431.0" layoutX="18.0" layoutY="72.0"
+         pickOnBounds="true" visible="false">
          <image>
             <Image url="@../images/Book.png" />
          </image>
       </ImageView>
-      <Button fx:id="goBack" layoutX="27.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN TO ROOM">
+      <Button fx:id="goBack" layoutX="27.0" layoutY="463.0" mnemonicParsing="false"
+         onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send"
+         stylesheets="@../css/styles.css" text="RETURN TO ROOM">
          <font>
             <Font size="18.0" />
          </font>
@@ -180,45 +219,87 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="45.0" layoutY="106.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
+      <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0"
+         layoutX="45.0" layoutY="106.0" onMouseClicked="#checkBook" onMouseEntered="#onHover"
+         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
+         strokeWidth="0.0" width="63.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="117.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="70.0">
+      <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0"
+         layoutX="117.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover"
+         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
+         strokeWidth="0.0" width="70.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="192.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
+      <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0"
+         layoutX="192.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover"
+         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
+         strokeWidth="0.0" width="63.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="260.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
+      <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0"
+         layoutX="260.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover"
+         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
+         strokeWidth="0.0" width="63.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="348.0" layoutX="332.0" layoutY="95.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="81.0">
+      <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="348.0"
+         layoutX="332.0" layoutY="95.0" onMouseClicked="#checkBook" onMouseEntered="#onHover"
+         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
+         strokeWidth="0.0" width="81.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Button fx:id="back" disable="true" layoutX="236.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#onGoBackShelf" prefHeight="45.0" prefWidth="214.0" styleClass="send" stylesheets="@../css/styles.css" text="BOOKSHELF" visible="false">
+      <Button fx:id="back" disable="true" layoutX="236.0" layoutY="463.0" mnemonicParsing="false"
+         onMouseClicked="#onGoBackShelf" prefHeight="45.0" prefWidth="214.0" styleClass="send"
+         stylesheets="@../css/styles.css" text="BOOKSHELF" visible="false">
          <font>
             <Font size="18.0" />
          </font>
       </Button>
-      <Text fx:id="description1" layoutX="221.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="title1" layoutX="55.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="description2" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="description3" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="description4" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="description5" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="title2" layoutX="65.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="title3" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="title4" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="title5" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
+      <Text fx:id="description1" layoutX="221.0" layoutY="111.0" strokeType="OUTSIDE"
+         strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="191.0" />
+      <Text fx:id="title1" layoutX="55.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="138.0" />
+      <Text fx:id="description2" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE"
+         strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="191.0" />
+      <Text fx:id="description3" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE"
+         strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="191.0" />
+      <Text fx:id="description4" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE"
+         strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="191.0" />
+      <Text fx:id="description5" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE"
+         strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="191.0" />
+      <Text fx:id="title2" layoutX="65.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="138.0" />
+      <Text fx:id="title3" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="138.0" />
+      <Text fx:id="title4" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="138.0" />
+      <Text fx:id="title5" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0"
+         text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96"
+         visible="false" wrappingWidth="138.0" />
    </children>
 </Pane>

@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class TitleController {
@@ -95,7 +95,7 @@ public class TitleController {
     }
     Scene currentScene = image.getScene();
     // Update the scene to the watch.
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.WATCH));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.WATCH));
   }
 
   private void changeImage(MouseEvent event, String country, Boolean flag) {

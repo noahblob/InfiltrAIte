@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -22,7 +21,7 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class BookController extends Commander implements TimerObserver {
@@ -60,10 +59,8 @@ public class BookController extends Commander implements TimerObserver {
   private List<Rectangle> bookButtons;
 
   private String bookID;
-  private boolean goodBook = false;
 
   private ImageView book;
-  private String bookContent;
 
   private Map<String, ImageView> bookMap = new HashMap<>();
   private Map<String, Boolean> content = new HashMap<>();
@@ -71,7 +68,7 @@ public class BookController extends Commander implements TimerObserver {
   private Map<String, Text> descriptionMap = new HashMap<>();
   private String goodTitle = "Where our intelligence is stored";
 
-  private String pattern = new String(GameState.setupSliders());
+  private String pattern = new String(GameState.setSliders());
   private String goodDesc =
       "One of the intelligence can be found in the left room, make sure to use the sliders"
           + " properly!!\r\n"
@@ -299,27 +296,7 @@ public class BookController extends Commander implements TimerObserver {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the right room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
-  }
-
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
-  }
-
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }
 
   /**

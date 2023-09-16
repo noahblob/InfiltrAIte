@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 
 public class SceneManager {
 
-  public enum AppUI {
+  public enum AppUi {
     START,
     TITLE,
     WATCH,
@@ -21,13 +21,13 @@ public class SceneManager {
     END
   }
 
-  private static Map<AppUI, Parent> sceneMap = new HashMap<>();
+  private static Map<AppUi, Parent> sceneMap = new HashMap<>();
 
-  public static void addUserInterface(AppUI appUserInterface, Parent root) {
+  public static void addUserInterface(AppUi appUserInterface, Parent root) {
     sceneMap.put(appUserInterface, root);
   }
 
-  public static Parent getuserInterface(AppUI ui) {
+  public static Parent getuserInterface(AppUi ui) {
     return sceneMap.get(ui);
   }
 }

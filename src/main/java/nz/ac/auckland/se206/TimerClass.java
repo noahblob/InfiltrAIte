@@ -26,7 +26,9 @@ public class TimerClass {
       for (TimerObserver observer : observe) {
         observer.timerStart();
       }
-    } else throw new IllegalStateException("There already is a timer instance!!");
+    } else {
+      throw new IllegalStateException("There already is a timer instance!!");
+    }
   }
 
   /**
@@ -40,7 +42,9 @@ public class TimerClass {
 
   // Returns this timer instance
   public static TimerClass getInstance() {
-    if (instance == null) throw new IllegalStateException("No timer exists");
+    if (instance == null) {
+      throw new IllegalStateException("No timer exists");
+    }
     return instance;
   }
 

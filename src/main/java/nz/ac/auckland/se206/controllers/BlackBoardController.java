@@ -9,20 +9,31 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class BlackBoardController extends Commander implements TimerObserver {
 
+  private static int ans;
+
+  /**
+   * Returns the correct answer for keypad
+   *
+   * @return Correct answer for keypad
+   */
+  public static int getKeypadAns() {
+    return ans;
+  }
+
   @FXML private TextArea objective;
   @FXML private Text timer;
+  @FXML private Label intel;
   @FXML private Label mon;
   @FXML private Label tues;
   @FXML private Label wed;
@@ -30,7 +41,6 @@ public class BlackBoardController extends Commander implements TimerObserver {
   @FXML private Label fr;
   @FXML private Label sat;
   @FXML private Label sun;
-  @FXML private Label intel;
 
   private int monday;
   private int tuesday;
@@ -40,12 +50,11 @@ public class BlackBoardController extends Commander implements TimerObserver {
   private int saturday;
   private int sunday;
   private int day;
-  private static int ans;
   private LocalDate currentDate;
 
-  Map<Integer, Integer> hashmap = new HashMap<>();
+  private Map<Integer, Integer> hashmap = new HashMap<>();
 
-  Random random = new Random();
+  private Random random = new Random();
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -113,15 +122,6 @@ public class BlackBoardController extends Commander implements TimerObserver {
   }
 
   /**
-   * Returns the correct answer for keypad
-   *
-   * @return Correct answer for keypad
-   */
-  public static int getKeypadAns() {
-    return ans;
-  }
-
-  /**
    * Handles the return event
    *
    * @param event the mouse event
@@ -131,26 +131,6 @@ public class BlackBoardController extends Commander implements TimerObserver {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the right room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
-  }
-
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
-  }
-
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }
 }

@@ -79,7 +79,7 @@ public class GameState {
   }
 
   /** Method to create random slider combination for the current game */
-  public static char[] setupSliders() {
+  public static char[] setSliders() {
     if (sliderAnswer != null) {
       return sliderAnswer;
     }

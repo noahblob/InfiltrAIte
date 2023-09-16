@@ -30,47 +30,11 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class LeftRoomController extends Commander implements TimerObserver {
-
-  public static int year;
-
-  @FXML private TextArea objective;
-  @FXML private ImageView room;
-  @FXML private Rectangle popUpBackGround;
-  @FXML private Button back, decrypt;
-  @FXML
-  private Rectangle communications, drawer, painting, painting1, topDrawer, midDrawer, botDrawer;
-  @FXML private Polygon painting2, door, desk, newspaper;
-  @FXML private ImageView p, p1, p2, comms, comms1, tear, drawer1;
-  @FXML private Pane sliderPane;
-  @FXML private Slider s, s1, s2, s3, s4, s5;
-  @FXML private Pane passcodePane, riddlePane, riddleDrawer;
-  @FXML private Label x, x1, x2, x3, x4, x5;
-  @FXML private Label lastDigits, intel;
-  @FXML private ImageView paper;
-  @FXML private TextArea riddle;
-  @FXML private ImageView intelligence;
-  @FXML private TextArea riddleBox;
-  @FXML private Button check;
-
-  /** The key in the inventory box. It is currently set to visible. */
-  @FXML private ImageView key;
-
-  private Map<Shape, Object> objects;
-  private List<ImageView> visiblePopups;
-  private List<Slider> sliders;
-  private List<Label> passcode;
-  private char[] code;
-  private char[] answer = GameState.setupSliders();
-  private Map<Integer, Character> sliderMap;
-  private int lastNumbers;
-  private String riddleCode;
-  private boolean isDialogueUpdated = false;
-  private boolean isIntelCollected = false;
 
   private enum Object {
     COMMS,
@@ -85,6 +49,70 @@ public class LeftRoomController extends Commander implements TimerObserver {
     MID,
     TOP
   }
+
+  public static int year;
+
+  @FXML private TextArea objective;
+  @FXML private ImageView room;
+  @FXML private Rectangle popUpBackGround;
+  @FXML private Button back;
+  @FXML private Button decrypt;
+  @FXML private Rectangle communications;
+  @FXML private Rectangle drawer;
+  @FXML private Rectangle painting;
+  @FXML private Rectangle painting1;
+  @FXML private Rectangle topDrawer;
+  @FXML private Rectangle midDrawer;
+  @FXML private Rectangle botDrawer;
+  @FXML private Polygon painting2;
+  @FXML private Polygon door;
+  @FXML private Polygon desk;
+  @FXML private Polygon newspaper;
+  @FXML private ImageView poster;
+  @FXML private ImageView poster1;
+  @FXML private ImageView poster2;
+  @FXML private ImageView comms;
+  @FXML private ImageView comms1;
+  @FXML private ImageView tear;
+  @FXML private ImageView drawer1;
+  @FXML private Pane sliderPane;
+  @FXML private Slider slider;
+  @FXML private Slider slider1;
+  @FXML private Slider slider2;
+  @FXML private Slider slider3;
+  @FXML private Slider slider4;
+  @FXML private Slider slider5;
+  @FXML private Pane passcodePane;
+  @FXML private Pane riddlePane;
+  @FXML private Pane riddleDrawer;
+  @FXML private Label label;
+  @FXML private Label label1;
+  @FXML private Label label2;
+  @FXML private Label label3;
+  @FXML private Label label4;
+  @FXML private Label label5;
+  @FXML private Label lastDigits;
+  @FXML private Label intel;
+  @FXML private ImageView paper;
+  @FXML private TextArea riddle;
+  @FXML private ImageView intelligence;
+  @FXML private TextArea riddleBox;
+  @FXML private Button check;
+
+  /** The key in the inventory box. It is currently set to visible. */
+  @FXML private ImageView key;
+
+  private Map<Shape, Object> objects;
+  private List<ImageView> visiblePopups;
+  private List<Slider> sliders;
+  private List<Label> passcode;
+  private char[] code;
+  private char[] answer = GameState.setSliders();
+  private Map<Integer, Character> sliderMap;
+  private int lastNumbers;
+  private String riddleCode;
+  private boolean isDialogueUpdated = false;
+  private boolean isIntelCollected = false;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -116,7 +144,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private void clickDoor() {
     Scene currentScene = door.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
   }
 
   private void createRoom() {
@@ -184,9 +212,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
     riddleDrawer.setVisible(false);
 
     // Individual popup items.
-    p.setVisible(false);
-    p1.setVisible(false);
-    p2.setVisible(false);
+    poster.setVisible(false);
+    poster1.setVisible(false);
+    poster2.setVisible(false);
     comms.setVisible(false);
     comms1.setVisible(false);
     tear.setVisible(false);
@@ -246,7 +274,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     check.setOnAction(
         event -> {
           String attempt = riddleBox.getText();
-          String message = "";
+          String message;
 
           // If the user inputs the correct answer, then unlock the drawer.
           if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {
@@ -280,11 +308,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private void setSliders() {
     toggleSliders(false);
     code = new char[6];
-    sliders = List.of(s, s1, s2, s3, s4, s5);
-    passcode = List.of(x, x1, x2, x3, x4, x5);
+    sliders = List.of(slider, slider1, slider2, slider3, slider4, slider5);
+    passcode = List.of(label, label1, label2, label3, label4, label5);
 
-    IntStream.range(0, sliders.size())
-        .forEach(i -> setupSlider(sliders.get(i), passcode.get(i), i));
+    IntStream.range(0, sliders.size()).forEach(i -> setSlider(sliders.get(i), passcode.get(i), i));
   }
 
   private void createSliderMap() {
@@ -303,7 +330,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   // Helper function for sliders.
-  private void setupSlider(Slider s, Label digit, int index) {
+  private void setSlider(Slider s, Label digit, int index) {
     s.setMajorTickUnit(1);
     s.setMinorTickCount(0);
     s.setBlockIncrement(1);
@@ -368,13 +395,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
         clickDoor();
         break;
       case PAINT1:
-        showPopup(p1);
+        showPopup(poster1);
         break;
       case PAINT:
-        showPopup(p);
+        showPopup(poster);
         break;
       case NEWS:
-        showPopup(p2);
+        showPopup(poster2);
         break;
       case COMMS:
         showPopup(comms);

@@ -17,7 +17,7 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class MainRoomController extends Commander implements TimerObserver {
@@ -72,9 +72,9 @@ public class MainRoomController extends Commander implements TimerObserver {
     Scene currentScene = pane.getScene();
     // switch rooms upon arrow key press
     if (event.getCode().toString().equals(("LEFT"))) {
-      currentScene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
+      currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
     } else if (event.getCode().toString().equals("RIGHT")) {
-      currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+      currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
     }
   }
 
@@ -86,15 +86,15 @@ public class MainRoomController extends Commander implements TimerObserver {
           Polygon object = (Polygon) event.getSource();
           Scene scene = object.getScene();
           // if cabinet is on the screen, make it not visible when switching rooms
-          cabinetVisibility(false);
-          scene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
+          setCabinetVisibility(false);
+          scene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
         });
     rightDoor.setOnMouseClicked(
         event -> {
           Polygon object = (Polygon) event.getSource();
           Scene scene = object.getScene();
-          cabinetVisibility(false);
-          scene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+          setCabinetVisibility(false);
+          scene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
         });
     // set hover effects for left door and right door
     leftDoor.setOnMouseEntered(
@@ -131,11 +131,11 @@ public class MainRoomController extends Commander implements TimerObserver {
         doorCheck(currentScene);
         break;
       case ("keyPad"):
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.KEYPAD));
         break;
       case ("cabinet"):
         // set visibility of the filing cabinet and background
-        cabinetVisibility(true);
+        setCabinetVisibility(true);
         break;
       default:
         break;
@@ -161,8 +161,8 @@ public class MainRoomController extends Commander implements TimerObserver {
         commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
 
         // Switch to game over screen.
-        SceneManager.addUserInterface(AppUI.END, App.loadFxml("escape"));
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.END));
+        SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
       }
     } else {
       // if keypad is yet to be solved
@@ -181,7 +181,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     switch (button.getId()) {
       case ("back"):
         // Set visibility of filing cabinet and background to false to return to room
-        cabinetVisibility(false);
+        setCabinetVisibility(false);
         break;
       case ("cabinetButton"):
         // Return to cabinet after finding intel
@@ -198,7 +198,7 @@ public class MainRoomController extends Commander implements TimerObserver {
    *
    * @param visible true if the cabinet should be visible, false otherwise
    */
-  public void cabinetVisibility(boolean visible) {
+  public void setCabinetVisibility(boolean visible) {
     // set visibility of filing cabinet and background
     filingCabinet.setVisible(visible);
     background.setVisible(visible);
