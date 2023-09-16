@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.stream.IntStream;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -46,7 +45,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML
   private Rectangle communications, drawer, painting, painting1, topDrawer, midDrawer, botDrawer;
   @FXML private Polygon painting2, door, desk, newspaper;
-  @FXML private ImageView p, p1, p2 ,comms, comms1, tear, drawer1;
+  @FXML private ImageView p, p1, p2, comms, comms1, tear, drawer1;
   @FXML private Pane sliderPane;
   @FXML private Slider s, s1, s2, s3, s4, s5;
   @FXML private Pane passcodePane, riddlePane, riddleDrawer;
@@ -66,19 +65,30 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private List<Slider> sliders;
   private List<Label> passcode;
   private char[] code;
-  private char[] answer;
-  private Map<Integer,Character> sliderMap;
+  private char[] answer = GameState.setupSliders();
+  private Map<Integer, Character> sliderMap;
   private int lastNumbers;
   private String riddleCode;
   private boolean isDialogueUpdated = false;
   private boolean isIntelCollected = false;
-  
+
   private enum Object {
-    COMMS, DRAWER, PAINT, PAINT1, PAINT2, DOOR, DESK, NEWS, BOT, MID, TOP
+    COMMS,
+    DRAWER,
+    PAINT,
+    PAINT1,
+    PAINT2,
+    DOOR,
+    DESK,
+    NEWS,
+    BOT,
+    MID,
+    TOP
   }
 
   /**
    * Initializes the room view, it is called when the room loads.
+   *
    * @throws Exception
    */
   public void initialize() throws Exception {
@@ -87,9 +97,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
     super.initialize();
     objective.setText("This is the LEFT ROOM");
-
-    // Hardcoding answer to slider puzzle for now.
-    answer = new char[] {'!','!','!','!','!','!'};
 
     createRoom();
     setPopups();
@@ -140,11 +147,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
     setOpacityOnHover(midDrawer);
     setOpacityOnHover(botDrawer);
   }
-  
+
   private void setOpacityOnHover(Shape shape) {
     shape.setOnMouseEntered(event -> shape.setOpacity(0.5));
     shape.setOnMouseExited(event -> shape.setOpacity(0));
   }
+
   private void showPopup(ImageView popup) {
     popup.setVisible(true);
     popUpBackGround.setVisible(true);
@@ -218,7 +226,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
                         Duration.millis(10000),
                         ae -> {
                           try {
-                            CommanderController.getInstance().sendForUser(GptPromptEngineering.getRiddleWithGivenWord(GameState.getRandomWord()));
+                            CommanderController.getInstance()
+                                .sendForUser(
+                                    GptPromptEngineering.getRiddleWithGivenWord(
+                                        GameState.getRandomWord()));
                           } catch (Exception e) {
                             e.printStackTrace();
                           }
@@ -232,27 +243,27 @@ public class LeftRoomController extends Commander implements TimerObserver {
           }
         });
 
-    check.setOnAction(event -> {
-      String attempt = riddleBox.getText();
-      String message = "";
-      
-      // If the user inputs the correct answer, then unlock the drawer.
-      if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {
-        riddleDrawer.setVisible(false);
-        // Update game state.
-        GameState.isRiddleResolved = true;
-        message = Dialogue.DRAWERUNLOCK.toString();
-      } else {
-        message = Dialogue.INCORRECT.toString();
-      }
-      // Update the dialogue Correctly.
-      try {
-          CommanderController.getInstance().updateDialogueBox(message);
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+    check.setOnAction(
+        event -> {
+          String attempt = riddleBox.getText();
+          String message = "";
 
-    });
+          // If the user inputs the correct answer, then unlock the drawer.
+          if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {
+            riddleDrawer.setVisible(false);
+            // Update game state.
+            GameState.isRiddleResolved = true;
+            message = Dialogue.DRAWERUNLOCK.toString();
+          } else {
+            message = Dialogue.INCORRECT.toString();
+          }
+          // Update the dialogue Correctly.
+          try {
+            CommanderController.getInstance().updateDialogueBox(message);
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        });
   }
 
   private void generateYear() {
@@ -267,77 +278,79 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   private void setSliders() {
-      toggleSliders(false);
-      code = new char[6];
-      sliders = List.of(s, s1, s2, s3, s4, s5);
-      passcode = List.of(x, x1, x2, x3, x4, x5);
+    toggleSliders(false);
+    code = new char[6];
+    sliders = List.of(s, s1, s2, s3, s4, s5);
+    passcode = List.of(x, x1, x2, x3, x4, x5);
 
-      IntStream.range(0, sliders.size())
-              .forEach(i -> setupSlider(sliders.get(i), passcode.get(i), i));
+    IntStream.range(0, sliders.size())
+        .forEach(i -> setupSlider(sliders.get(i), passcode.get(i), i));
   }
 
   private void createSliderMap() {
     sliderMap = new HashMap<>();
-    sliderMap.put(0,'!');
-    sliderMap.put(1,'+');
-    sliderMap.put(2,'-');
-    sliderMap.put(3,'*');
-    sliderMap.put(4,'&');
-    sliderMap.put(5,'^');
-    sliderMap.put(6,'%');
-    sliderMap.put(7,'$');
-    sliderMap.put(8,'#');
-    sliderMap.put(9,'@');
-    sliderMap.put(10,'?');
+    sliderMap.put(0, '!');
+    sliderMap.put(1, '+');
+    sliderMap.put(2, '-');
+    sliderMap.put(3, '*');
+    sliderMap.put(4, '&');
+    sliderMap.put(5, '^');
+    sliderMap.put(6, '%');
+    sliderMap.put(7, '$');
+    sliderMap.put(8, '#');
+    sliderMap.put(9, '@');
+    sliderMap.put(10, '?');
   }
 
   // Helper function for sliders.
   private void setupSlider(Slider s, Label digit, int index) {
-      s.setMajorTickUnit(1);
-      s.setMinorTickCount(0);
-      s.setBlockIncrement(1);
-      s.setSnapToTicks(true);
+    s.setMajorTickUnit(1);
+    s.setMinorTickCount(0);
+    s.setBlockIncrement(1);
+    s.setSnapToTicks(true);
 
-      s.valueProperty().addListener(new ChangeListener<Number>() {
-          @Override
-          public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-              int intValue = newValue.intValue();
-              s.setValue(intValue); // Update the slider value to the nearest integer
+    s.valueProperty()
+        .addListener(
+            new ChangeListener<Number>() {
+              @Override
+              public void changed(
+                  ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                int intValue = newValue.intValue();
+                s.setValue(intValue); // Update the slider value to the nearest integer
 
-              // Get the respective character from slider map.
-              char codeValue = sliderMap.get(intValue);
-              
-              // Update the actual code array.
-              code[index] = codeValue;
-              // Update respective label.
-              digit.setText(String.valueOf(codeValue));
+                // Get the respective character from slider map.
+                char codeValue = sliderMap.get(intValue);
 
-              try {
-                checkSlidersSolved();
-              } catch (Exception e) {
-                e.printStackTrace();
-              }           
-  }});
+                // Update the actual code array.
+                code[index] = codeValue;
+                // Update respective label.
+                digit.setText(String.valueOf(codeValue));
+
+                try {
+                  checkSlidersSolved();
+                } catch (Exception e) {
+                  e.printStackTrace();
+                }
+              }
+            });
   }
 
   private void checkSlidersSolved() throws Exception {
     if (Arrays.equals(code, answer) && !isDialogueUpdated) {
       isDialogueUpdated = true;
-                // Update game state and show sine wave.
-                GameState.isSlidersSolved = true;
-                comms1.setVisible(true);
-                // Disable slider game.
-                for (Slider slider : sliders) {
-                  slider.setDisable(true);
-                }
+      // Update game state and show sine wave.
+      GameState.isSlidersSolved = true;
+      comms1.setVisible(true);
+      // Disable slider game.
+      for (Slider slider : sliders) {
+        slider.setDisable(true);
+      }
 
-              CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETUNLOCK.toString());
-                  
-              
-          }
+      CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETUNLOCK.toString());
+    }
   }
 
-  private void openCabinet(Boolean flag) {    
+  private void openCabinet(Boolean flag) {
     topDrawer.setVisible(flag);
     midDrawer.setVisible(flag);
     botDrawer.setVisible(flag);

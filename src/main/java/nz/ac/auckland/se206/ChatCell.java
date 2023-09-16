@@ -32,11 +32,8 @@ public class ChatCell extends ListCell<ChatMessage> {
 
     // Set up the message label
     messageText = new Text();
-    messageText.setWrappingWidth(130);
+    messageText.setWrappingWidth(250);
     messageText.setStyle(" -fx-word-break: break-all;");
-
-    // Add the portrait and message label to the chat HBox
-    chatHBox.getChildren().addAll(portrait, messageText);
 
     // Finally, set the chat HBox as the graphic for the list cell
     setGraphic(chatHBox);
@@ -74,10 +71,11 @@ public class ChatCell extends ListCell<ChatMessage> {
     // Update portrait image, all chat cells and text alignment
     portrait.setImage(new Image(getClass().getResource(imageSource).toString()));
     chatHBox.getChildren().clear();
-    chatHBox.getChildren().addAll(portrait, messageText);
     if (imageSource.equals("/images/user.png")) {
+      chatHBox.getChildren().addAll(messageText, portrait);
       messageText.setTextAlignment(TextAlignment.RIGHT);
     } else {
+      chatHBox.getChildren().addAll(portrait, messageText);
       messageText.setTextAlignment(TextAlignment.LEFT);
     }
   }

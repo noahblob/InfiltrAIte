@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
-
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -15,6 +14,7 @@ import javafx.beans.value.ObservableValue;
 public class GameState {
 
   private static final Set<String> riddleAnswers = new HashSet<>();
+  private static char[] sliderAnswer = null;
 
   // Create riddle answers
   static {
@@ -59,10 +59,10 @@ public class GameState {
   /** Indicates whether the player has solved communication puzzle. */
   public static boolean isSlidersSolved = false;
 
-  /** Indicates the answer to the riddle for the current game.*/ 
+  /** Indicates the answer to the riddle for the current game. */
   public static String riddleAnswer = "";
-  
-  /** Method to create random riddle for current game. */ 
+
+  /** Method to create random riddle for current game. */
   public static String getRandomWord() {
     // Create an ArrayList to hold the keys (words)
     ArrayList<String> keys = new ArrayList<>(riddleAnswers);
@@ -78,23 +78,44 @@ public class GameState {
     return GameState.riddleAnswer;
   }
 
+  /** Method to create random slider combination for the current game */
+  public static char[] setupSliders() {
+    if (sliderAnswer != null) {
+      return sliderAnswer;
+    }
+    // Create an array of chars to hold the slider answer
+    char[] answer = new char[6];
+    Random random = new Random();
+    // Possible char[] list of answer;
+    char[] symbols = {'+', '-', '*', '^', '%', '$', '#', '@', '?'};
+
+    for (int i = 0; i < 6; i++) {
+      int index = random.nextInt(symbols.length);
+      answer[i] = symbols[index];
+    }
+    sliderAnswer = answer;
+    return answer;
+  }
+
   private static void setupWinListeners() {
-      if (numOfIntel == null) {
-          numOfIntel = new SimpleIntegerProperty(0);
-      }
-      // Listen for changes to numOfIntel
-      numOfIntel.addListener(new ChangeListener<Number>() {
+    if (numOfIntel == null) {
+      numOfIntel = new SimpleIntegerProperty(0);
+    }
+    // Listen for changes to numOfIntel
+    numOfIntel.addListener(
+        new ChangeListener<Number>() {
           @Override
-          public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-              checkIsGameWon();
+          public void changed(
+              ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+            checkIsGameWon();
           }
-      });
+        });
   }
 
   // Method to update if game has been won
   public static void setKeypadSolved(boolean solved) {
-      isKeypadSolved = solved;
-      checkIsGameWon();
+    isKeypadSolved = solved;
+    checkIsGameWon();
   }
 
   private static void checkIsGameWon() {

@@ -17,7 +17,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
 /** Controller class for the room view. */
 public class RightRoomController extends Commander implements TimerObserver {
 
-  @FXML private TextArea objectiveRight;
+  @FXML private TextArea objective;
   @FXML private Polygon riddle;
   @FXML private Polygon blackboard;
 
@@ -38,7 +38,7 @@ public class RightRoomController extends Commander implements TimerObserver {
 
     // Initialise phone.
     super.initialize();
-    objectiveRight.setText("You must find the clue!!");
+    objective.setText("You must find the clue!!");
     TimerClass.add(this);
     final NumberGroup[] answerGroup = NumberGroup.values();
     // Randomnly select a number group
