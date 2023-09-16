@@ -89,7 +89,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     objective.setText("This is the LEFT ROOM");
 
     // Hardcoding answer to slider puzzle for now.
-    answer = new char[] {'-','-','-','-','-','-'};
+    answer = new char[] {'!','!','!','!','!','!'};
 
     createRoom();
     setPopups();
@@ -237,7 +237,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
       String message = "";
       
       // If the user inputs the correct answer, then unlock the drawer.
-      if (attempt.toLowerCase().equals(GameState.riddleAnswer)) {
+      if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {
         riddleDrawer.setVisible(false);
         // Update game state.
         GameState.isRiddleResolved = true;
@@ -398,7 +398,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
         } else {
           riddleDrawer.setVisible(true);
         }
-        
         break;
       default:
         break;

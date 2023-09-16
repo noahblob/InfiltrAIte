@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -159,7 +160,8 @@ public class MainRoomController extends Commander implements TimerObserver {
         commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
         
         // Switch to game over screen.
-        Platform.runLater(() -> {currentScene.setRoot(SceneManager.getuserInterface(AppUI.END));});
+        SceneManager.addUserInterface(AppUI.END, App.loadFxml("escape"));
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.END));
       }
     } else {
       // if keypad is yet to be solved

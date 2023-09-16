@@ -24,7 +24,9 @@ public enum Dialogue {
   INTELALREADYFOUND("You already found the intel in this drawer!"),
   SOLVEKEYPAD("You need to solve the keypad first!"),
   INCORRECT("I don't think that was the right code..."),
-  FOUNDALLINTEL("You have found all required intel, time to escape!");
+  FOUNDALLINTEL("You have found all required intel, time to escape!"),
+  WINDIALOGUE("Good work, Agent. You've done your country proud. Meet for extraction at the rendezvous point.");
+  
   private final String msg;
 
   /**

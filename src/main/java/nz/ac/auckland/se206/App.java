@@ -33,7 +33,7 @@ public class App extends Application {
    * @return The node of the input file.
    * @throws IOException If the file is not found.
    */
-  private static Parent loadFxml(final String fxml) throws IOException {
+  public static Parent loadFxml(final String fxml) throws IOException {
     return new FXMLLoader(App.class.getResource("/fxml/" + fxml + ".fxml")).load();
   }
 
@@ -57,7 +57,7 @@ public class App extends Application {
     SceneManager.addUserInterface(AppUI.KEYPAD, loadFxml("keypad"));
     SceneManager.addUserInterface(AppUI.BOOKSHELF, loadFxml("bookshelf"));
     SceneManager.addUserInterface(AppUI.BLACKBOARD, loadFxml("blackboard"));
-    SceneManager.addUserInterface(AppUI.END, loadFxml("escape"));
+    
 
     // Set the scene for start screen and show it
     scene = new Scene(SceneManager.getuserInterface(AppUI.START), 800, 600);
