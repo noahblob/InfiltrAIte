@@ -12,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -47,8 +46,6 @@ public class RadioController extends Commander implements TimerObserver {
   @FXML private Label label5;
 
   /** The key in the inventory box. It is currently set to visible. */
-  @FXML private ImageView key;
-
   private List<Slider> sliders;
   private List<Label> passcode;
   private char[] code;

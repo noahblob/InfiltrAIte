@@ -25,7 +25,6 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 /** Controller class for the room view. */
 public class DrawerController extends Commander implements TimerObserver {
 
-  @FXML private TextArea objective;
   @FXML private Button back;
   @FXML private Button decrypt;
   @FXML private Rectangle topDrawer;
@@ -34,7 +33,6 @@ public class DrawerController extends Commander implements TimerObserver {
   @FXML private Pane riddlePane;
   @FXML private Pane keyDrawer;
   @FXML private Label lastDigits;
-  @FXML private Label intel;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
   @FXML private ImageView intelligence;
