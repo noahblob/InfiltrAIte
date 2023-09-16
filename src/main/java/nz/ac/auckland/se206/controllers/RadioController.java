@@ -16,7 +16,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -30,8 +29,6 @@ public class RadioController extends Commander implements TimerObserver {
   public static int year;
 
   @FXML private TextArea objective;
-  @FXML private ImageView room;
-  @FXML private Rectangle popUpBackGround;
   @FXML private Button back;
   @FXML private ImageView comms;
   @FXML private ImageView comms1;

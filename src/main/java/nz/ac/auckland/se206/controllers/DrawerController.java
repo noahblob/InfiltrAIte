@@ -1,11 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -16,7 +11,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import javafx.util.Duration;
@@ -29,48 +23,16 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
-public class LeftRoomController extends Commander implements TimerObserver {
-
-  private enum Object {
-    RADIO,
-    DRAWER,
-    PAINT,
-    PAINT1,
-    PAINT2,
-    DOOR,
-    DESK,
-    NEWS,
-    BOT,
-    MID,
-    TOP
-  }
-
-  public static int year;
+public class DrawerController extends Commander implements TimerObserver {
 
   @FXML private TextArea objective;
-  @FXML private ImageView room;
-  @FXML private Rectangle popUpBackGround;
   @FXML private Button back;
   @FXML private Button decrypt;
-  @FXML private Rectangle communications;
-  @FXML private Rectangle drawer;
-  @FXML private Rectangle painting;
-  @FXML private Rectangle painting1;
   @FXML private Rectangle topDrawer;
   @FXML private Rectangle midDrawer;
   @FXML private Rectangle botDrawer;
-  @FXML private Polygon painting2;
-  @FXML private Polygon door;
-  @FXML private Polygon desk;
-  @FXML private Polygon newspaper;
-  @FXML private ImageView poster;
-  @FXML private ImageView poster1;
-  @FXML private ImageView poster2;
-  @FXML private ImageView tear;
-  @FXML private ImageView drawer1;
-  @FXML private Pane passcodePane;
   @FXML private Pane riddlePane;
-  @FXML private Pane riddleDrawer;
+  @FXML private Pane keyDrawer;
   @FXML private Label lastDigits;
   @FXML private Label intel;
   @FXML private ImageView paper;
@@ -81,12 +43,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
-
-  private Map<Shape, Object> objects;
-  private List<ImageView> visiblePopups;
-  private int lastNumbers;
   private String riddleCode;
-  private boolean isIntelCollected = false;
+  private boolean isIntelCollected;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -98,12 +56,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
     System.out.println(GameState.getRandomWord());
 
     super.initialize();
-    objective.setText("This is the LEFT ROOM");
+    objective.setText("I wonder whats inside...");
 
-    createRoom();
-    setPopups();
+    configureButtons();
     setHoverEvents();
-    generateYear();
+  configureRiddle();
+    isIntelCollected = false;
 
     TimerClass.add(this);
   }
@@ -114,35 +72,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     timer.setText(timerText.getTimerLeft());
   }
 
-  private void clickDoor() {
-    Scene currentScene = door.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
-  }
-
-  private void createRoom() {
-    objects = new HashMap<>();
-    objects.put(communications, Object.RADIO);
-    objects.put(drawer, Object.DRAWER);
-    objects.put(painting, Object.PAINT);
-    objects.put(painting1, Object.PAINT1);
-    objects.put(painting2, Object.PAINT2);
-    objects.put(door, Object.DOOR);
-    objects.put(newspaper, Object.NEWS);
-    objects.put(desk, Object.DESK);
-    objects.put(topDrawer, Object.TOP);
-    objects.put(midDrawer, Object.MID);
-    objects.put(botDrawer, Object.BOT);
-  }
-
   private void setHoverEvents() {
-    setOpacityOnHover(door);
-    setOpacityOnHover(painting);
-    setOpacityOnHover(painting1);
-    setOpacityOnHover(painting2);
-    setOpacityOnHover(newspaper);
-    setOpacityOnHover(drawer);
-    setOpacityOnHover(communications);
-    setOpacityOnHover(desk);
     setOpacityOnHover(topDrawer);
     setOpacityOnHover(midDrawer);
     setOpacityOnHover(botDrawer);
@@ -153,54 +83,29 @@ public class LeftRoomController extends Commander implements TimerObserver {
     shape.setOnMouseExited(event -> shape.setOpacity(0));
   }
 
-  private void showPopup(ImageView popup) {
-    popup.setVisible(true);
-    popUpBackGround.setVisible(true);
-    visiblePopups.add(popup);
-    back.setVisible(true);
-  }
-
-  private void toggleYear(Boolean flag) {
-    this.lastDigits.setVisible(flag);
-  }
-
-  private void setPopups() {
-    visiblePopups = new ArrayList<>();
-    popUpBackGround.setVisible(false);
-    back.setVisible(false);
-    decrypt.setVisible(false);
-    riddleCode = generateEncrypted(100);
-    riddle.appendText(riddleCode);
+  private void configureRiddle() {
     riddlePane.setVisible(false);
+    riddleCode = generateEncrypted(100);
     riddle.setWrapText(true);
-    intelligence.setVisible(false);
-    drawer1.setVisible(false);
-    openCabinet(false);
-    riddleDrawer.setVisible(false);
+    riddle.appendText(riddleCode);
+  }
 
-    // Individual popup items.
-    poster.setVisible(false);
-    poster1.setVisible(false);
-    poster2.setVisible(false);
-    tear.setVisible(false);
-    lastDigits.setVisible(false);
+  private void configureButtons() {
 
-    back.setOnAction(
-        event -> {
-          for (ImageView popup : visiblePopups) {
-            popup.setVisible(false);
-          }
-          visiblePopups.clear();
-          back.setVisible(false);
-          popUpBackGround.setVisible(false);
-          // Disables sliders & last digits.
-          toggleYear(false);
-          openCabinet(false);
-          riddlePane.setVisible(false);
-          decrypt.setVisible(false);
-          intelligence.setVisible(false);
-          riddleDrawer.setVisible(false);
-        });
+    decrypt.setVisible(false);
+
+    back.setOnAction(event -> {
+    
+    if (riddlePane.isVisible()) {
+      riddlePane.setVisible(false);     
+      decrypt.setVisible(false);
+    } else if (keyDrawer.isVisible()) {
+      keyDrawer.setVisible(false);
+    } else {
+      Scene currentScene = keyDrawer.getScene();
+      currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
+    }
+  });
 
     decrypt.setOnAction(
         event -> {
@@ -241,7 +146,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
           // If the user inputs the correct answer, then unlock the drawer.
           if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {
-            riddleDrawer.setVisible(false);
+            keyDrawer.setVisible(false);
             // Update game state.
             GameState.isRiddleResolved = true;
             message = Dialogue.DRAWERUNLOCK.toString();
@@ -257,74 +162,33 @@ public class LeftRoomController extends Commander implements TimerObserver {
         });
   }
 
-  private void generateYear() {
-
-    Random random = new Random();
-    lastNumbers = random.nextInt(41) + 20; // Generates number between 20 and 60
-
-    // Update the year passcode: 19XX
-    LeftRoomController.year = 1900 + lastNumbers;
-    // Update the tear piece to show the last digits.
-    lastDigits.setText(String.valueOf(lastNumbers));
-  }
-
-  private void openCabinet(Boolean flag) {
-    topDrawer.setVisible(flag);
-    midDrawer.setVisible(flag);
-    botDrawer.setVisible(flag);
-  }
-
   @FXML
   public void onClick(MouseEvent event) throws Exception {
 
-    Shape clickedObject = (Shape) event.getSource();
-    Scene currentScene = clickedObject.getScene();
-    Object type = objects.get(clickedObject);
+    Rectangle clickedObject = (Rectangle) event.getSource();
+    String drawer = clickedObject.getId();
 
-    // Add more items that can be clicked on.
-    switch (type) {
-      case DOOR:
-        clickDoor();
-        break;
-      case PAINT1:
-        showPopup(poster1);
-        break;
-      case PAINT:
-        showPopup(poster);
-        break;
-      case NEWS:
-        showPopup(poster2);
-        break;
-      case RADIO:
-        currentScene.setRoot(SceneManager.getuserInterface(AppUi.RADIO));
-        System.out.println("switched to radio");
-        break;
-      case DESK:
-        showPopup(tear);
-        toggleYear(true);
-        break;
-      case DRAWER:
-        currentScene.setRoot(SceneManager.getuserInterface(AppUi.DRAWER));
-        break;
-      case TOP:
+    switch (drawer) {
+      case "topDrawer":
         if (GameState.isSlidersSolved && !isIntelCollected) {
-          showPopup(intelligence);
+          intelligence.setVisible(true);;
         } else if (!GameState.isSlidersSolved) {
           CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETLOCK.toString());
         } else {
           CommanderController.getInstance().updateDialogueBox(Dialogue.EMPTY.toString());
         }
         break;
-      case MID:
+      case "midDrawer":
         riddlePane.setVisible(true);
         decrypt.setVisible(true);
         break;
-      case BOT:
+      case "botDrawer":
+        
         if (GameState.isRiddleResolved) {
           GameState.isKeyFound.set(true);
           CommanderController.getInstance().updateDialogueBox(Dialogue.KEYFOUND.toString());
         } else {
-          riddleDrawer.setVisible(true);
+          keyDrawer.setVisible(true);
         }
         break;
       default:
@@ -335,11 +199,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML
   public void onCollect(MouseEvent event) {
     // return back to main room.
-    openCabinet(false);
-    drawer1.setVisible(false);
-    back.setVisible(false);
-    popUpBackGround.setVisible(false);
+    ImageView intel = (ImageView) event.getSource();
+    Scene currentScene = intel.getScene();
+
+    // Set the intelligence to invisible
     intelligence.setVisible(false);
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
+    
 
     // Update text rollout.
     try {

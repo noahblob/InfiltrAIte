@@ -53,6 +53,7 @@ public class App extends Application {
     // SceneManager.addUserInterface(AppUi.MAIN, loadFxml("mainroom"));
     // SceneManager.addUserInterface(AppUi.RIGHT, loadFxml("rightroom"));
     SceneManager.addUserInterface(AppUi.LEFT, loadFxml("leftroom"));
+    SceneManager.addUserInterface(AppUi.DRAWER, loadFxml("drawer"));
     SceneManager.addUserInterface(AppUi.RADIO, loadFxml("radio"));
     // SceneManager.addUserInterface(AppUi.LOCKER, loadFxml("rightlocker"));
     // SceneManager.addUserInterface(AppUi.KEYPAD, loadFxml("keypad"));

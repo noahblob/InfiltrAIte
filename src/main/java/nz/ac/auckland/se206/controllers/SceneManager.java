@@ -13,6 +13,7 @@ public class SceneManager {
     MAIN,
     LEFT,
     RADIO,
+    DRAWER,
     RIGHT,
     LOCKER,
     KEYPAD,
