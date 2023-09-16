@@ -22,7 +22,16 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Label numberLabel;
   @FXML private TextArea dialogue;
   @FXML private TextArea objective;
-  @FXML private Rectangle one, two, three, four, five, six, seven, eight, nine, zero;
+  @FXML private Rectangle one;
+  @FXML private Rectangle two;
+  @FXML private Rectangle three;
+  @FXML private Rectangle four;
+  @FXML private Rectangle five;
+  @FXML private Rectangle six;
+  @FXML private Rectangle seven;
+  @FXML private Rectangle eight;
+  @FXML private Rectangle nine;
+  @FXML private Rectangle zero;
 
   /**
    * Initializes the keypad view, it is called when the keypad loads.
