@@ -246,7 +246,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     check.setOnAction(
         event -> {
           String attempt = riddleBox.getText();
-          String message = "";
+          String message;
 
           // If the user inputs the correct answer, then unlock the drawer.
           if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {

@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -60,10 +59,8 @@ public class BookController extends Commander implements TimerObserver {
   private List<Rectangle> bookButtons;
 
   private String bookID;
-  private boolean goodBook = false;
 
   private ImageView book;
-  private String bookContent;
 
   private Map<String, ImageView> bookMap = new HashMap<>();
   private Map<String, Boolean> content = new HashMap<>();
@@ -300,26 +297,6 @@ public class BookController extends Commander implements TimerObserver {
     Scene currentScene = rectangle.getScene();
     // Update the scene to the right room
     currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
-  }
-
-  /**
-   * Handles the key pressed event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyPressed(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " pressed");
-  }
-
-  /**
-   * Handles the key released event.
-   *
-   * @param event the key event
-   */
-  @FXML
-  public void onKeyReleased(KeyEvent event) {
-    System.out.println("key " + event.getCode() + " released");
   }
 
   /**
