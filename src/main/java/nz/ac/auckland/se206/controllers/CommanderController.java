@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.SimpleStringProperty;
@@ -293,7 +292,7 @@ public class CommanderController {
       return;
     }
     if (isRolling) {
-        return;
+      return;
     }
 
     String nextMessage = messageQueue.poll();
@@ -312,19 +311,23 @@ public class CommanderController {
     Duration timepoint = Duration.ZERO;
 
     for (char ch : chars) {
-        timepoint = timepoint.add(Duration.millis(20));
-        final char finalChar = ch;
-        KeyFrame keyFrame = new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
-        timeline.getKeyFrames().add(keyFrame);
+      timepoint = timepoint.add(Duration.millis(20));
+      final char finalChar = ch;
+      KeyFrame keyFrame =
+          new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
+      timeline.getKeyFrames().add(keyFrame);
     }
 
-    KeyFrame clearKeyFrame = new KeyFrame(timepoint.add(Duration.millis(1000)), e -> {
-        if (dialogue != null) {
-            dialogue.clear();
-        }
-        isRolling = false;
-        dequeueAndRoll();  // Check if there is another message in the queue
-    });
+    KeyFrame clearKeyFrame =
+        new KeyFrame(
+            timepoint.add(Duration.millis(1000)),
+            e -> {
+              if (dialogue != null) {
+                dialogue.clear();
+              }
+              isRolling = false;
+              dequeueAndRoll(); // Check if there is another message in the queue
+            });
 
     timeline.getKeyFrames().add(clearKeyFrame);
     timeline.play();

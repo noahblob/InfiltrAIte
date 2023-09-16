@@ -30,11 +30,25 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
 public class LeftRoomController extends Commander implements TimerObserver {
+
+  private enum Object {
+    COMMS,
+    DRAWER,
+    PAINT,
+    PAINT1,
+    PAINT2,
+    DOOR,
+    DESK,
+    NEWS,
+    BOT,
+    MID,
+    TOP
+  }
 
   public static int year;
 
@@ -72,20 +86,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private boolean isDialogueUpdated = false;
   private boolean isIntelCollected = false;
 
-  private enum Object {
-    COMMS,
-    DRAWER,
-    PAINT,
-    PAINT1,
-    PAINT2,
-    DOOR,
-    DESK,
-    NEWS,
-    BOT,
-    MID,
-    TOP
-  }
-
   /**
    * Initializes the room view, it is called when the room loads.
    *
@@ -116,7 +116,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private void clickDoor() {
     Scene currentScene = door.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi
+.MAIN));
   }
 
   private void createRoom() {

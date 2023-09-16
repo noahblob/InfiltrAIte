@@ -14,7 +14,7 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class LockerController extends Commander implements TimerObserver {
@@ -65,7 +65,7 @@ public class LockerController extends Commander implements TimerObserver {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
   }
 
   /**
@@ -178,6 +178,6 @@ public class LockerController extends Commander implements TimerObserver {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the right room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }
 }

@@ -21,7 +21,7 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class BookController extends Commander implements TimerObserver {
@@ -296,7 +296,7 @@ public class BookController extends Commander implements TimerObserver {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the right room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }
 
   /**

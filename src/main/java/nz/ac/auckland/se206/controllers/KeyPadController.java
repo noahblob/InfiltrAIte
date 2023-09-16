@@ -11,7 +11,7 @@ import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the keypad view. */
 public class KeyPadController extends Commander implements TimerObserver {
@@ -74,7 +74,7 @@ public class KeyPadController extends Commander implements TimerObserver {
         }
         break;
       case "exitButton":
-        currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
         break;
       default:
         break;

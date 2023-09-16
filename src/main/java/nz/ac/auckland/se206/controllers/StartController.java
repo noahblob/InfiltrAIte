@@ -8,7 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.TextRollout;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 public class StartController extends TextRollout {
 
@@ -27,7 +27,7 @@ public class StartController extends TextRollout {
 
     if (whichButton.getId().equals("accept")) {
       Scene currentScene = whichButton.getScene();
-      currentScene.setRoot(SceneManager.getuserInterface(AppUI.TITLE));
+      currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
     } else {
       System.exit(0);
     }

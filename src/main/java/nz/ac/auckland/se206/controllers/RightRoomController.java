@@ -11,22 +11,22 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUI;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
 public class RightRoomController extends Commander implements TimerObserver {
-
-  @FXML private TextArea objective;
-  @FXML private Polygon riddle;
-  @FXML private Polygon blackboard;
-
-  static NumberGroup answer;
 
   public enum NumberGroup {
     ANS1,
     ANS2,
     ANS3,
   }
+
+  static NumberGroup answer;
+
+  @FXML private TextArea objective;
+  @FXML private Polygon riddle;
+  @FXML private Polygon blackboard;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -80,7 +80,7 @@ public class RightRoomController extends Commander implements TimerObserver {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.MAIN));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
   }
 
   /**
@@ -94,7 +94,7 @@ public class RightRoomController extends Commander implements TimerObserver {
     Polygon rectangle = (Polygon) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.LOCKER));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.LOCKER));
   }
 
   /**
@@ -107,7 +107,7 @@ public class RightRoomController extends Commander implements TimerObserver {
     Polygon poly = (Polygon) event.getSource();
     Scene currentScene = poly.getScene();
     // Update the scene to the blackboard
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.BLACKBOARD));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.BLACKBOARD));
   }
 
   /**
@@ -142,6 +142,6 @@ public class RightRoomController extends Commander implements TimerObserver {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main game.
-    currentScene.setRoot(SceneManager.getuserInterface(AppUI.BOOKSHELF));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.BOOKSHELF));
   }
 }
