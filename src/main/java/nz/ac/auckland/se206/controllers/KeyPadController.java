@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
@@ -20,8 +19,6 @@ public class KeyPadController extends Commander implements TimerObserver {
   @FXML private Button submitButton;
   @FXML private Button exitButton;
   @FXML private Label numberLabel;
-  @FXML private TextArea dialogue;
-  @FXML private TextArea objective;
   @FXML private Rectangle one;
   @FXML private Rectangle two;
   @FXML private Rectangle three;

@@ -28,10 +28,9 @@ public class RadioController extends Commander implements TimerObserver {
 
   public static int year;
 
-  @FXML private TextArea objective;
   @FXML private Button back;
   @FXML private ImageView comms;
-  @FXML private ImageView comms1;
+  @FXML private ImageView sineWave;
   @FXML private Pane sliderPane;
   @FXML private Slider slider;
   @FXML private Slider slider1;
@@ -70,7 +69,7 @@ public class RadioController extends Commander implements TimerObserver {
     super.initialize();
     objective.setText("Hmm I wonder what this does...");
 
-    comms1.setVisible(false);
+    sineWave.setVisible(false);
     answer = GameState.setSliders();
     isDialogueUpdated = false;
     setSliders();
@@ -153,7 +152,7 @@ public class RadioController extends Commander implements TimerObserver {
       isDialogueUpdated = true;
       // Update game state and show sine wave.
       GameState.isSlidersSolved = true;
-      comms1.setVisible(true);
+      sineWave.setVisible(true);
       // Disable slider game.
       for (Slider slider : sliders) {
         slider.setDisable(true);

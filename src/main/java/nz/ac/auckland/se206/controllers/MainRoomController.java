@@ -23,7 +23,6 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 public class MainRoomController extends Commander implements TimerObserver {
 
   // FXML objects in room
-  @FXML private TextArea objective;
   @FXML private Button back;
   @FXML private Button cabinetButton;
   @FXML private Polygon leftDoor;

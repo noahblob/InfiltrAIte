@@ -8,10 +8,8 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
@@ -30,10 +28,7 @@ public class BlackBoardController extends Commander implements TimerObserver {
   public static int getKeypadAns() {
     return ans;
   }
-
-  @FXML private TextArea objective;
-  @FXML private Text timer;
-  @FXML private Label intel;
+  
   @FXML private Label mon;
   @FXML private Label tues;
   @FXML private Label wed;

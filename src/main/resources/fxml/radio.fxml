@@ -31,7 +31,7 @@
             <Image url="@../images/newcomms.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="comms1" fitHeight="24.0" fitWidth="63.0" layoutX="207.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="sineWave" fitHeight="24.0" fitWidth="63.0" layoutX="207.0" layoutY="272.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/output-onlinegiftools.gif" />
          </image>

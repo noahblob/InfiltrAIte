@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
@@ -36,7 +36,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   public static int year;
 
-  @FXML private TextArea objective;
   @FXML private Rectangle popUpBackGround;
   @FXML private Rectangle communications;
   @FXML private Rectangle drawer;
@@ -52,6 +51,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private ImageView tear;
   @FXML private Label lastDigits;
   @FXML private Label intel;
+  @FXML private Button back;
 
   /** The key in the inventory box. It is currently set to visible. */
   @FXML private ImageView key;
@@ -66,23 +66,14 @@ public class LeftRoomController extends Commander implements TimerObserver {
    */
   public void initialize() throws Exception {
 
-    System.out.println(GameState.getRandomWord());
-
     super.initialize();
     objective.setText("This is the LEFT ROOM");
-
+    System.out.println(GameState.getRandomWord());
     createRoom();
     setPopups();
     setHoverEvents();
     generateYear();
-
     TimerClass.add(this);
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 
   private void clickDoor() {
@@ -121,6 +112,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private void showPopup(ImageView popup) {
     popup.setVisible(true);
     popUpBackGround.setVisible(true);
+    back.setVisible(true);
     visiblePopups.add(popup);
   }
 
@@ -138,6 +130,15 @@ public class LeftRoomController extends Commander implements TimerObserver {
     poster2.setVisible(false);
     tear.setVisible(false);
     lastDigits.setVisible(false);
+
+    back.setOnAction(event -> {
+      for (ImageView popUp : visiblePopups) {
+        popUp.setVisible(false);
+      }
+      popUpBackGround.setVisible(false);
+      back.setVisible(false);
+      lastDigits.setVisible(false);
+    });
 
   }
 
@@ -189,4 +190,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
     }
   }
 
+  @Override
+  public void timerStart() {
+    TimerClass timerText = TimerClass.getInstance();
+    timer.setText(timerText.getTimerLeft());
+  }
 }
