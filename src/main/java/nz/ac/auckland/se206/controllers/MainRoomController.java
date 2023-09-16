@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.Random;
+
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -120,14 +122,14 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML
   public void onClick(MouseEvent event) throws Exception {
     Rectangle rectangle = (Rectangle) event.getSource();
-    Scene rectangleScene = rectangle.getScene();
+    Scene currentScene = rectangle.getScene();
     // switch case for each rectangle, including the middle door, keypad and cabinet
     switch (rectangle.getId()) {
       case ("middleDoor"):
-        doorCheck();
+        doorCheck(currentScene);
         break;
       case ("keyPad"):
-        rectangleScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
+        currentScene.setRoot(SceneManager.getuserInterface(AppUI.KEYPAD));
         break;
       case ("cabinet"):
         // set visibility of the filing cabinet and background
@@ -143,7 +145,7 @@ public class MainRoomController extends Commander implements TimerObserver {
    *
    * @throws Exception if the scene cannot be loaded
    */
-  public void doorCheck() throws Exception {
+  public void doorCheck(Scene currentScene) throws Exception {
     CommanderController commander = CommanderController.getInstance();
     if (GameState.isKeypadSolved) {
       // set commander message based on how much intel needs to be found
@@ -155,6 +157,9 @@ public class MainRoomController extends Commander implements TimerObserver {
       } else {
         // if user has found all intel, set commander message to found all intel
         commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
+        
+        // Switch to game over screen.
+        Platform.runLater(() -> {currentScene.setRoot(SceneManager.getuserInterface(AppUI.END));});
       }
     } else {
       // if keypad is yet to be solved

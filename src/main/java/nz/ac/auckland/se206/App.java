@@ -57,6 +57,7 @@ public class App extends Application {
     SceneManager.addUserInterface(AppUI.KEYPAD, loadFxml("keypad"));
     SceneManager.addUserInterface(AppUI.BOOKSHELF, loadFxml("bookshelf"));
     SceneManager.addUserInterface(AppUI.BLACKBOARD, loadFxml("blackboard"));
+    SceneManager.addUserInterface(AppUI.END, loadFxml("escape"));
 
     // Set the scene for start screen and show it
     scene = new Scene(SceneManager.getuserInterface(AppUI.START), 800, 600);

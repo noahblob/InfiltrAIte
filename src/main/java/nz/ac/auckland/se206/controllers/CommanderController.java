@@ -318,7 +318,7 @@ public class CommanderController {
         timeline.getKeyFrames().add(keyFrame);
     }
 
-    KeyFrame clearKeyFrame = new KeyFrame(timepoint.add(Duration.millis(2000)), e -> {
+    KeyFrame clearKeyFrame = new KeyFrame(timepoint.add(Duration.millis(1000)), e -> {
         if (dialogue != null) {
             dialogue.clear();
         }
