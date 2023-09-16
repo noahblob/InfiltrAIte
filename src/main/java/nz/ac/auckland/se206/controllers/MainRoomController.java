@@ -1,8 +1,6 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.Random;
-
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -87,12 +85,15 @@ public class MainRoomController extends Commander implements TimerObserver {
         event -> {
           Polygon object = (Polygon) event.getSource();
           Scene scene = object.getScene();
+          // if cabinet is on the screen, make it not visible when switching rooms
+          cabinetVisibility(false);
           scene.setRoot(SceneManager.getuserInterface(AppUI.LEFT));
         });
     rightDoor.setOnMouseClicked(
         event -> {
           Polygon object = (Polygon) event.getSource();
           Scene scene = object.getScene();
+          cabinetVisibility(false);
           scene.setRoot(SceneManager.getuserInterface(AppUI.RIGHT));
         });
     // set hover effects for left door and right door
@@ -158,7 +159,7 @@ public class MainRoomController extends Commander implements TimerObserver {
       } else {
         // if user has found all intel, set commander message to found all intel
         commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
-        
+
         // Switch to game over screen.
         SceneManager.addUserInterface(AppUI.END, App.loadFxml("escape"));
         currentScene.setRoot(SceneManager.getuserInterface(AppUI.END));
