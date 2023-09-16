@@ -86,14 +86,14 @@ public class MainRoomController extends Commander implements TimerObserver {
           Polygon object = (Polygon) event.getSource();
           Scene scene = object.getScene();
           // if cabinet is on the screen, make it not visible when switching rooms
-          cabinetVisibility(false);
+          setCabinetVisibility(false);
           scene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
         });
     rightDoor.setOnMouseClicked(
         event -> {
           Polygon object = (Polygon) event.getSource();
           Scene scene = object.getScene();
-          cabinetVisibility(false);
+          setCabinetVisibility(false);
           scene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
         });
     // set hover effects for left door and right door
@@ -135,7 +135,7 @@ public class MainRoomController extends Commander implements TimerObserver {
         break;
       case ("cabinet"):
         // set visibility of the filing cabinet and background
-        cabinetVisibility(true);
+        setCabinetVisibility(true);
         break;
       default:
         break;
@@ -181,7 +181,7 @@ public class MainRoomController extends Commander implements TimerObserver {
     switch (button.getId()) {
       case ("back"):
         // Set visibility of filing cabinet and background to false to return to room
-        cabinetVisibility(false);
+        setCabinetVisibility(false);
         break;
       case ("cabinetButton"):
         // Return to cabinet after finding intel
@@ -198,7 +198,7 @@ public class MainRoomController extends Commander implements TimerObserver {
    *
    * @param visible true if the cabinet should be visible, false otherwise
    */
-  public void cabinetVisibility(boolean visible) {
+  public void setCabinetVisibility(boolean visible) {
     // set visibility of filing cabinet and background
     filingCabinet.setVisible(visible);
     background.setVisible(visible);

@@ -59,11 +59,11 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML
   private Rectangle communications, drawer, painting, painting1, topDrawer, midDrawer, botDrawer;
   @FXML private Polygon painting2, door, desk, newspaper;
-  @FXML private ImageView p, p1, p2, comms, comms1, tear, drawer1;
+  @FXML private ImageView poster, poster1, poster2, comms, comms1, tear, drawer1;
   @FXML private Pane sliderPane;
-  @FXML private Slider s, s1, s2, s3, s4, s5;
+  @FXML private Slider slider, slider1, slider2, slider3, slider4, slider5;
   @FXML private Pane passcodePane, riddlePane, riddleDrawer;
-  @FXML private Label x, x1, x2, x3, x4, x5;
+  @FXML private Label label, label1, label2, label3, label4, label5;
   @FXML private Label lastDigits, intel;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
@@ -79,7 +79,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private List<Slider> sliders;
   private List<Label> passcode;
   private char[] code;
-  private char[] answer = GameState.setupSliders();
+  private char[] answer = GameState.setSliders();
   private Map<Integer, Character> sliderMap;
   private int lastNumbers;
   private String riddleCode;
@@ -116,8 +116,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   private void clickDoor() {
     Scene currentScene = door.getScene();
-    currentScene.setRoot(SceneManager.getuserInterface(AppUi
-.MAIN));
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
   }
 
   private void createRoom() {
@@ -185,9 +184,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
     riddleDrawer.setVisible(false);
 
     // Individual popup items.
-    p.setVisible(false);
-    p1.setVisible(false);
-    p2.setVisible(false);
+    poster.setVisible(false);
+    poster1.setVisible(false);
+    poster2.setVisible(false);
     comms.setVisible(false);
     comms1.setVisible(false);
     tear.setVisible(false);
@@ -281,11 +280,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
   private void setSliders() {
     toggleSliders(false);
     code = new char[6];
-    sliders = List.of(s, s1, s2, s3, s4, s5);
-    passcode = List.of(x, x1, x2, x3, x4, x5);
+    sliders = List.of(slider, slider1, slider2, slider3, slider4, slider5);
+    passcode = List.of(label, label1, label2, label3, label4, label5);
 
-    IntStream.range(0, sliders.size())
-        .forEach(i -> setupSlider(sliders.get(i), passcode.get(i), i));
+    IntStream.range(0, sliders.size()).forEach(i -> setSlider(sliders.get(i), passcode.get(i), i));
   }
 
   private void createSliderMap() {
@@ -304,7 +302,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   }
 
   // Helper function for sliders.
-  private void setupSlider(Slider s, Label digit, int index) {
+  private void setSlider(Slider s, Label digit, int index) {
     s.setMajorTickUnit(1);
     s.setMinorTickCount(0);
     s.setBlockIncrement(1);
@@ -369,13 +367,13 @@ public class LeftRoomController extends Commander implements TimerObserver {
         clickDoor();
         break;
       case PAINT1:
-        showPopup(p1);
+        showPopup(poster1);
         break;
       case PAINT:
-        showPopup(p);
+        showPopup(poster);
         break;
       case NEWS:
-        showPopup(p2);
+        showPopup(poster2);
         break;
       case COMMS:
         showPopup(comms);

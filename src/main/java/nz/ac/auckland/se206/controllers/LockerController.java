@@ -104,26 +104,38 @@ public class LockerController extends Commander implements TimerObserver {
     Rectangle rect = (Rectangle) event.getSource();
     switch (rect.getId()) {
       case "upOne":
-        if (one == 9) one = 0;
-        else one++;
+        if (one == 9) {
+          one = 0;
+        } else {
+          one++;
+        }
         first.setText(String.valueOf(one));
         break;
 
       case "upTwo":
-        if (two == 9) two = 0;
-        else two++;
+        if (two == 9) {
+          two = 0;
+        } else {
+          two++;
+        }
         second.setText(String.valueOf(two));
         break;
 
       case "upThree":
-        if (three == 9) three = 0;
-        else three++;
+        if (three == 9) {
+          three = 0;
+        } else {
+          three++;
+        }
         third.setText(String.valueOf(three));
         break;
 
       case "upFour":
-        if (four == 9) four = 0;
-        else four++;
+        if (four == 9) {
+          four = 0;
+        } else {
+          four++;
+        }
         fourth.setText(String.valueOf(four));
         break;
       default:
@@ -141,26 +153,38 @@ public class LockerController extends Commander implements TimerObserver {
     Rectangle rect = (Rectangle) event.getSource();
     switch (rect.getId()) {
       case "downOne":
-        if (one == 0) one = 9;
-        else one--;
+        if (one == 0) {
+          one = 9;
+        } else {
+          one--;
+        }
         first.setText(String.valueOf(one));
         break;
 
       case "downTwo":
-        if (two == 0) two = 9;
-        else two--;
+        if (two == 0) {
+          two = 9;
+        } else {
+          two--;
+        }
         second.setText(String.valueOf(two));
         break;
 
       case "downThree":
-        if (three == 0) three = 9;
-        else three--;
+        if (three == 0) {
+          three = 9;
+        } else {
+          three--;
+        }
         third.setText(String.valueOf(three));
         break;
 
       case "downFour":
-        if (four == 0) four = 9;
-        else four--;
+        if (four == 0) {
+          four = 9;
+        } else {
+          four--;
+        }
         fourth.setText(String.valueOf(four));
         break;
       default:
