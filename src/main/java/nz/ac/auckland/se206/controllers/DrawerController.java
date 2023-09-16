@@ -1,6 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.security.SecureRandom;
+
+import javax.sound.midi.SysexMessage;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -40,8 +43,8 @@ public class DrawerController extends Commander implements TimerObserver {
   @FXML private Button check;
 
   /** The key in the inventory box. It is currently set to visible. */
-  @FXML private ImageView key;
   private String riddleCode;
+  private String riddleAnswer;
   private boolean isIntelCollected;
 
   /**
@@ -51,14 +54,15 @@ public class DrawerController extends Commander implements TimerObserver {
    */
   public void initialize() throws Exception {
 
-    System.out.println(GameState.getRandomWord());
-
     super.initialize();
     objective.setText("I wonder whats inside...");
 
+    riddleAnswer = GameState.getRandomWord();
+    System.out.print(riddleAnswer);
+
     configureButtons();
     setHoverEvents();
-  configureRiddle();
+    configureRiddle();
     isIntelCollected = false;
 
     TimerClass.add(this);
@@ -121,8 +125,7 @@ public class DrawerController extends Commander implements TimerObserver {
                           try {
                             CommanderController.getInstance()
                                 .sendForUser(
-                                    GptPromptEngineering.getRiddleWithGivenWord(
-                                        GameState.getRandomWord()));
+                                    GptPromptEngineering.getRiddleWithGivenWord(riddleAnswer));
                           } catch (Exception e) {
                             e.printStackTrace();
                           }
@@ -130,6 +133,9 @@ public class DrawerController extends Commander implements TimerObserver {
 
             // Play the Timeline
             timeline.play();
+
+            // Disable the button.
+            decrypt.setDisable(true);
 
           } catch (Exception e) {
             e.printStackTrace();

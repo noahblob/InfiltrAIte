@@ -54,7 +54,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Button back;
 
   /** The key in the inventory box. It is currently set to visible. */
-  @FXML private ImageView key;
   private Map<Shape, Object> objects;
   private List<ImageView> visiblePopups;
   private int lastNumbers;
@@ -68,7 +67,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
     super.initialize();
     objective.setText("This is the LEFT ROOM");
-    System.out.println(GameState.getRandomWord());
     createRoom();
     setPopups();
     setHoverEvents();

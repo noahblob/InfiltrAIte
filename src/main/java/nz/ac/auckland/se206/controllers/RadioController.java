@@ -60,7 +60,6 @@ public class RadioController extends Commander implements TimerObserver {
    */
   public void initialize() throws Exception {
 
-    System.out.println(GameState.getRandomWord());
     System.out.println(String.valueOf(GameState.setSliders()));
 
     super.initialize();
