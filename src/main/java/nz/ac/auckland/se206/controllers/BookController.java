@@ -69,11 +69,13 @@ public class BookController extends Commander implements TimerObserver {
   private Map<String, Text> titleMap = new HashMap<>();
   private Map<String, Text> descriptionMap = new HashMap<>();
   private String goodTitle = "Where our intelligence is stored";
+
+  private String pattern = new String(GameState.setupSliders());
   private String goodDesc =
       "One of the intelligence can be found in the left room, make sure to use the sliders"
           + " properly!!\r\n"
           + "\r\n"
-          + "% ^ $ & #";
+          + pattern;
 
   private Map<String, String> titleToDescription =
       new HashMap<>() {
