@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.effect.Bloom?>
@@ -17,6 +18,9 @@
          <effect>
             <Bloom />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <TextArea editable="false" layoutX="14.0" layoutY="201.0" prefHeight="164.0" prefWidth="172.0" promptText="TESTING" stylesheets="@../css/styles.css" wrapText="true">
          <font>
@@ -46,6 +50,9 @@
          <effect>
             <Bloom />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </AnchorPane>

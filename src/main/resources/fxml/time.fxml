@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -23,16 +24,25 @@
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button fx:id="set" layoutX="647.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="136.0" styleClass="accept" stylesheets="@../css/styles.css" text="SET">
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Button fx:id="decrease" alignment="CENTER" layoutX="647.0" layoutY="375.0" mnemonicParsing="false" prefHeight="56.0" prefWidth="136.0" styleClass="accept" stylesheets="@../css/styles.css" text="DECREASE">
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Label alignment="CENTER" layoutX="133.0" layoutY="14.0" stylesheets="@../css/styles.css" text="SELECT MISSION TIME">
          <font>

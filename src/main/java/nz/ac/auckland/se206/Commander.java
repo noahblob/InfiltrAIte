@@ -26,6 +26,7 @@ public abstract class Commander {
   @FXML protected TextArea notes;
   @FXML protected Text timer;
   @FXML protected Label intel;
+   @FXML protected Label hints;
   @FXML protected ImageView key;
 
   /**
