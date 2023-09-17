@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.right;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
@@ -13,7 +13,10 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.left.LeftRoomController;
 
 /** Controller class for the room view. */
 public class LockerController extends Commander implements TimerObserver {

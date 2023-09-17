@@ -51,7 +51,7 @@ public class GameState {
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
 
   /** Indeicates the number of hints allowed. */
-  public static String numHints = "0";
+  public static SimpleIntegerProperty numHints = new SimpleIntegerProperty(0);
 
   /** Indicates whether the player has found intel in the cabinet. */
   public static boolean cabinetIntelfound = false;

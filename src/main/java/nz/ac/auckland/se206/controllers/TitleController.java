@@ -83,16 +83,19 @@ public class TitleController {
     if (image.equals(elbonia)) {
       GameState.difficulty = 1;
       GameState.country = "Elbonia";
-      GameState.numHints = "Unlimited";
+      GameState.numHints.set(100);
     } else if (image.equals(genovia)) {
       GameState.difficulty = 2;
       GameState.country = "Genovia";
-      GameState.numHints = "5";
+      GameState.numHints.set(5);
     } else if (image.equals(sanescobar)) {
       GameState.difficulty = 3;
       GameState.country = "Sanescobar";
-      GameState.numHints = "no";
+      GameState.numHints.set(0);
     }
+
+    System.out.println(GameState.numHints);
+
     Scene currentScene = image.getScene();
     // Update the scene to the watch.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.WATCH));

@@ -60,8 +60,11 @@ public class TimeController {
 
     // Update game master with number of hints I have.
     try {
+      String gptHints = "";
+      int hints = GameState.numHints.get();
+      gptHints = (hints == 0) ? "No" : (hints == 100) ? "Unlimited" : "5";
       CommanderController.getInstance()
-          .updateGPT(GptPromptEngineering.updateNumberOfHints(GameState.numHints));
+          .updateGPT(GptPromptEngineering.updateNumberOfHints(gptHints));
     } catch (Exception e) {
       e.printStackTrace();
     }

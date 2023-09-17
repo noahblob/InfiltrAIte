@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.main;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
@@ -10,7 +10,10 @@ import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.right.BlackBoardController;
 
 /** Controller class for the keypad view. */
 public class KeyPadController extends Commander implements TimerObserver {
