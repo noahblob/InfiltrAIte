@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +27,7 @@ public abstract class Commander {
   @FXML protected TextArea notes;
   @FXML protected Text timer;
   @FXML protected Label intel;
-   @FXML protected Label hints;
+  @FXML protected Label hints;
   @FXML protected ImageView key;
 
   /**

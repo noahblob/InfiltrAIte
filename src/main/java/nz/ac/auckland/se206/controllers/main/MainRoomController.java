@@ -262,8 +262,14 @@ public class MainRoomController extends Commander implements TimerObserver {
       // intel to being found
       intelFile.setVisible(true);
       cabinetButton.setVisible(true);
-      GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-      GameState.cabinetIntelfound = true;
+
+      // Once user has collected intel, make it invisible and update number of intel collected.
+      intelFile.setOnMouseClicked(event -> {
+        intelFile.setVisible(false);
+        GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+        GameState.cabinetIntelfound = true;
+      });
+      
     } else if (isKeyFound && cabinetIntelFound) {
       // user has already found cabinet intel
       commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
