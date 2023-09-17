@@ -15,7 +15,7 @@ public enum Dialogue {
   INITIAL("Agent, good job on infiltrating the base. Go get the intel and get out of there!"),
   CABINETLOCK("This drawer seems to be locked..."),
   EMPTY("There's nothing there..."),
-  CABINETUNLOCK("I just heard a click somewhere..."),
+  CABINETUNLOCK("I just heard the cabinet click..."),
   DRAWERUNLOCK("You unlocked this drawer!"),
   FOUNDENCRYPTED("Sir, I found a piece of paper with the following characters, what does it say? "),
   KEYNEEDED("Looks like you need a key to open this drawer"),

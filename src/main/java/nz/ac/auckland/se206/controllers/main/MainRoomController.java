@@ -149,7 +149,7 @@ public class MainRoomController extends Commander implements TimerObserver {
    */
   public void doorCheck(Scene currentScene) throws Exception {
     CommanderController commander = CommanderController.getInstance();
-    if (GameState.isKeypadSolved) {
+    if (GameState.isKeypadSolved.get()) {
       // set commander message based on how much intel needs to be found
       if (GameState.numOfIntel.get() < 3) {
         commander.updateDialogueBox(
