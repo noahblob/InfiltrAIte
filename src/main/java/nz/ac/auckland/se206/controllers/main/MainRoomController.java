@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.main;
 
 import java.util.Random;
 import javafx.fxml.FXML;
@@ -16,6 +16,8 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
@@ -147,7 +149,7 @@ public class MainRoomController extends Commander implements TimerObserver {
    */
   public void doorCheck(Scene currentScene) throws Exception {
     CommanderController commander = CommanderController.getInstance();
-    if (GameState.isKeypadSolved) {
+    if (GameState.isKeypadSolved.get()) {
       // set commander message based on how much intel needs to be found
       if (GameState.numOfIntel.get() < 3) {
         commander.updateDialogueBox(
@@ -260,8 +262,14 @@ public class MainRoomController extends Commander implements TimerObserver {
       // intel to being found
       intelFile.setVisible(true);
       cabinetButton.setVisible(true);
-      GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-      GameState.cabinetIntelfound = true;
+
+      // Once user has collected intel, make it invisible and update number of intel collected.
+      intelFile.setOnMouseClicked(event -> {
+        intelFile.setVisible(false);
+        GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+        GameState.cabinetIntelfound = true;
+      });
+      
     } else if (isKeyFound && cabinetIntelFound) {
       // user has already found cabinet intel
       commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());

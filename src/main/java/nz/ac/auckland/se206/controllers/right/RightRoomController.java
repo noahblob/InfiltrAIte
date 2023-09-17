@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.right;
 
 import java.io.IOException;
 import java.util.Random;
@@ -10,6 +10,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */

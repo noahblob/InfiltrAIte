@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.left;
 
 import java.security.SecureRandom;
 
@@ -21,6 +21,8 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 

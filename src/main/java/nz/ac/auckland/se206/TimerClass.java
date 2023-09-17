@@ -75,6 +75,7 @@ public class TimerClass {
           public void run() {
             if (shouldRun && timeLeft > 0) {
               timeLeft--;
+              
               for (TimerObserver observer : observe) {
                 observer.timerStart(); // Notify observer to update the display
               }

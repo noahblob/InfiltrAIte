@@ -306,6 +306,10 @@ public class CommanderController {
 
   // Method to generate commander text roll out on each screen.
   public void textRollout(String message, TextArea dialogue) {
+
+    //Clear existing dialogue (in case of spam clicks)
+    dialogue.clear();
+
     char[] chars = message.toCharArray();
     Timeline timeline = new Timeline();
     Duration timepoint = Duration.ZERO;

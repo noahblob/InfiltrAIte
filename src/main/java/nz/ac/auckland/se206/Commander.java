@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,7 +27,7 @@ public abstract class Commander {
   @FXML protected TextArea notes;
   @FXML protected Text timer;
   @FXML protected Label intel;
-   @FXML protected Label hints;
+  @FXML protected Label hints;
   @FXML protected ImageView key;
 
   /**
@@ -46,6 +47,9 @@ public abstract class Commander {
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
     key.visibleProperty().bind(GameState.isKeyFound);
+
+    // Bind the hints text property to the number of hints, based on the difficulty chosen.
+    hints.textProperty().bind(Bindings.concat("x", GameState.numHints.asString()));
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     if (notes == null) {
       notes = new TextArea();

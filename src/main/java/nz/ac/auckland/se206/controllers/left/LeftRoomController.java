@@ -1,4 +1,4 @@
-package nz.ac.auckland.se206.controllers;
+package nz.ac.auckland.se206.controllers.left;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +17,7 @@ import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
