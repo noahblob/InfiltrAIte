@@ -61,6 +61,9 @@
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreaChat" />
                </styleClass>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
             </TextArea>
             <TextArea fx:id="dialogue" editable="false" layoutX="65.0" layoutY="539.0" prefHeight="57.0" prefWidth="407.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
                <font>
@@ -103,11 +106,14 @@
                <effect>
                   <Bloom />
                </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <TextArea fx:id="notes" layoutX="479.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
-               <effect>
-                  <Bloom />
-               </effect>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
             </TextArea>
             <TextArea editable="false" layoutX="538.0" layoutY="538.0" prefHeight="58.0" prefWidth="59.0" stylesheets="@../css/styles.css">
                <styleClass>

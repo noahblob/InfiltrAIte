@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -25,14 +26,38 @@
          <image>
             <Image url="@../images/testroom.gif" />
          </image></ImageView>
-      <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="47.0" />
-      <Polygon fx:id="door" fill="#fffa96" layoutX="313.0" layoutY="318.0" onMouseClicked="#onClick" opacity="0.0" points="-19.0, 93.0, 5.25, 79.0, 5.25, -67.5, -19.0, -77.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Polygon fx:id="desk" fill="#fffa96" layoutX="385.0" layoutY="320.0" onMouseClicked="#onClick" opacity="0.0" points="14.0, 38.0, 39.66668701171875, 38.0, 23.0, 27.0, 0.0, 27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle fx:id="painting1" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="41.0" layoutX="220.0" layoutY="261.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="49.0" />
-      <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" onMouseClicked="#onClick" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Polygon fx:id="painting2" fill="#fffa96" layoutX="23.0" layoutY="252.0" opacity="0.0" points="-10.666666984558105, 83.66665649414062, 39.66666793823242, 79.66665649414062, 39.66666793823242, -20.333328247070312, -10.666666984558105, -41.66667175292969" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="91.0" />
-      <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="40.0" />
+      <Rectangle fx:id="painting" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="43.0" layoutX="149.0" layoutY="265.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="47.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Polygon fx:id="door" fill="#fffa96" layoutX="312.0" layoutY="318.0" onMouseClicked="#onClick" opacity="0.0" points="-19.0, 93.0, 5.25, 79.0, 5.25, -67.5, -19.0, -77.5" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Polygon>
+      <Polygon fx:id="desk" fill="#fffa96" layoutX="384.0" layoutY="320.0" onMouseClicked="#onClick" opacity="0.0" points="14.0, 38.0, 39.66668701171875, 38.0, 23.0, 27.0, 0.0, 27.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Polygon>
+      <Rectangle fx:id="painting1" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="41.0" layoutX="220.0" layoutY="262.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="49.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Polygon fx:id="newspaper" fill="#fffa96" layoutX="88.0" layoutY="298.0" onMouseClicked="#onClick" opacity="0.0" points="-10.666664123535156, 19.333343505859375, 5.25, 19.333343505859375, 5.25, -43.33332824707031, -10.666664123535156, -49.33332824707031" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Polygon>
+      <Polygon fx:id="painting2" fill="#fffa96" layoutX="23.0" layoutY="252.0" opacity="0.0" points="-10.666666984558105, 83.66665649414062, 39.66666793823242, 79.66665649414062, 39.66666793823242, -20.333328247070312, -10.666666984558105, -41.66667175292969" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Polygon>
+      <Rectangle fx:id="communications" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="123.0" layoutY="333.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="91.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
+      <Rectangle fx:id="drawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="75.0" layoutX="224.0" layoutY="332.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="40.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
       <Rectangle fx:id="popUpBackGround" arcHeight="5.0" arcWidth="5.0" height="466.0" layoutX="7.0" layoutY="68.0" opacity="0.8" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="466.0" />
       <ImageView fx:id="poster1" fitHeight="358.0" fitWidth="406.0" layoutX="40.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
@@ -75,6 +100,9 @@
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
          </styleClass>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </TextArea>
       <TextArea layoutX="385.0" layoutY="6.0" prefHeight="57.0" prefWidth="86.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <effect>
@@ -110,10 +138,10 @@
             <String fx:value="uiTextAreainventory" />
          </styleClass>
       </TextArea>
-      <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
-         <effect>
-            <Bloom />
-         </effect>
+      <TextArea fx:id="notes" editable="false" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
       </TextArea>
       <TextArea layoutX="700.0" layoutY="538.0" prefHeight="58.0" prefWidth="94.0" stylesheets="@../css/styles.css">
          <styleClass>
@@ -163,7 +191,10 @@
             <Image url="@../images/newphone.png" />
          </image>
       </ImageView>
-      <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" />
+      <Button fx:id="back" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" visible="false">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Button fx:id="send" layoutX="751.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="43.0" prefWidth="43.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
          <font>
             <Font size="9.0" />
@@ -171,6 +202,9 @@
          <effect>
             <Bloom />
          </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
    </children>
 </Pane>
