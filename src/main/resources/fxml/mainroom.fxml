@@ -198,5 +198,6 @@
          </font>
       </Label>
       <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="31.0" layoutX="333.0" layoutY="260.0" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#517d63" height="46.0" layoutX="147.0" layoutY="278.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="29.0" />
    </children>
 </Pane>
