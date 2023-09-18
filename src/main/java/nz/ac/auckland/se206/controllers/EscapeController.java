@@ -21,7 +21,7 @@ public class EscapeController extends TextRollout {
   public void initialize() {
 
     System.out.println(GameState.isGameWon.get());
-
+    
     if (GameState.isGameWon.get()) {
       winPane.setVisible(true);
       losePane.setVisible(false);
@@ -29,7 +29,13 @@ public class EscapeController extends TextRollout {
       // Intel COLLECTED)
       Platform.runLater(
           () -> {
-            textRollout(Dialogue.WINDIALOGUE.toString());
+            if (GameState.numOfIntel.get() == 1) {
+              textRollout(Dialogue.WINDIALOGUE1.toString());
+            } else if (GameState.numOfIntel.get() == 2) {
+              textRollout(Dialogue.WINDIALOGUE2.toString());
+            } else if (GameState.numOfIntel.get() == 3) {
+              textRollout(Dialogue.WINDIALOGUE3.toString());
+            }
           });
     } else {
       losePane.setVisible(true);

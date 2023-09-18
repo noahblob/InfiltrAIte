@@ -139,7 +139,6 @@
             <Image url="@../images/intel%20(1).png" />
          </image>
       </ImageView>
-      <Button fx:id="cabinetButton" layoutX="362.0" layoutY="489.0" mnemonicParsing="false" onMouseClicked="#clickBack" styleClass="send" stylesheets="@../css/styles.css" text="CABINET" visible="false" />
       <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
