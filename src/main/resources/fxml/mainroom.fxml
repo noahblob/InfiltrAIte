@@ -45,6 +45,12 @@
             <Image url="@../images/start.png" />
          </image>
       </ImageView>
+      <Rectangle fx:id="keyPad" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="45.0" layoutX="147.0" layoutY="278.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="26.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
+      <Rectangle fx:id="keypadCover" arcHeight="5.0" arcWidth="5.0" fill="#517d63" height="46.0" layoutX="147.0" layoutY="278.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="29.0" />
       <TextArea editable="false" layoutX="385.0" layoutY="6.0" prefHeight="57.0" prefWidth="86.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <effect>
             <Bloom />
@@ -75,11 +81,6 @@
          </cursor>
       </TextArea>
       <Rectangle fx:id="cabinet" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="88.0" layoutX="330.0" layoutY="300.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="50.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Rectangle>
-      <Rectangle fx:id="keyPad" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="45.0" layoutX="147.0" layoutY="278.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="26.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
@@ -196,5 +197,6 @@
             <Font size="37.0" />
          </font>
       </Label>
+      <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="31.0" layoutX="333.0" layoutY="260.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0" />
    </children>
 </Pane>
