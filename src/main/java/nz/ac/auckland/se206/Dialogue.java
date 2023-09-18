@@ -43,7 +43,11 @@ public enum Dialogue {
   SLIDERSOLVED("Whats this now?"),
   DEADEND("Dang, theres nothing in here but cake..."),
   TORNHINT("This portait is torn... I wonder what year the war was..."),
-  WRONGYEAR("That doesnt seem to be the correct passcode");
+  NOTHINGTHERE("Theres nothing there..."),
+  WRONGYEAR("That doesnt seem to be the correct passcode"),
+  WRONGPASSCODE("That's not the right password, try again!"),
+  CORRECTPASSCODE("You cracked the passcode! Something else in the room may have been revealed..."),
+  ALREADYSOLVED("You already solved this puzzle!");
   private final String msg;
 
   /**

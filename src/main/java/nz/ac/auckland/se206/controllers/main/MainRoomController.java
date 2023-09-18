@@ -24,9 +24,11 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 public class MainRoomController extends Commander implements TimerObserver {
 
   // FXML objects in room
+  @FXML private Rectangle keypadCover;
   @FXML private Button back;
   @FXML private Polygon leftDoor;
   @FXML private Polygon rightDoor;
+  @FXML private Rectangle computer;
   @FXML private Rectangle middleDoor;
   @FXML private Rectangle background;
   @FXML private Rectangle topDrawer;
@@ -113,6 +115,14 @@ public class MainRoomController extends Commander implements TimerObserver {
         event -> {
           rightDoor.setOpacity(0);
         });
+
+    // if password has been solved, when user hovers over keypad, it will be visible
+    keypadCover.setOnMouseEntered(
+        event -> {
+          if (GameState.isPasswordSolved) {
+            keypadCover.setVisible(false);
+          }
+        });
   }
 
   /**
@@ -136,6 +146,9 @@ public class MainRoomController extends Commander implements TimerObserver {
       case ("cabinet"):
         // set visibility of the filing cabinet and background
         setCabinetVisibility(true);
+        break;
+      case ("computer"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.COMPUTER));
         break;
       default:
         break;
@@ -265,7 +278,6 @@ public class MainRoomController extends Commander implements TimerObserver {
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetIntelfound = true;
           });
-
     } else if (isKeyFound && cabinetIntelFound) {
       // user has already found cabinet intel
       commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());

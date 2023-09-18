@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
@@ -97,7 +98,7 @@ public abstract class Commander {
   @FXML
   protected void onEnterPressed(KeyEvent event) throws Exception {
     // if the user tries to send message using enter, send message to commander controller
-    if (event.getCode().toString().equals("ENTER")) {
+    if (event.getCode() == KeyCode.ENTER) {
       CommanderController.getInstance().onSendMessage(event, input);
     }
   }

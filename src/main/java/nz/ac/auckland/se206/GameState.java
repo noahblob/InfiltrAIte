@@ -14,8 +14,6 @@ public class GameState {
   private static final Set<String> riddleAnswers = new HashSet<>();
   private static char[] sliderAnswer = null;
 
-
-
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
 
@@ -23,7 +21,7 @@ public class GameState {
   public static BooleanProperty isKeyFound = new SimpleBooleanProperty(false);
 
   /** Indicates whether the keypad has had the correct digits input. */
-  public static BooleanProperty isKeypadSolved =  new SimpleBooleanProperty(false);
+  public static BooleanProperty isKeypadSolved = new SimpleBooleanProperty(false);
 
   /** Indicates whether game has been won or not. */
   public static BooleanProperty isGameWon = new SimpleBooleanProperty(false);
@@ -46,6 +44,12 @@ public class GameState {
   /** Indicates whether the player has solved communication puzzle. */
   public static boolean isSlidersSolved = false;
 
+  /**
+   * Indicates whether the player has solved the password to the computer, giving them access to the
+   * keypad.
+   */
+  public static boolean isPasswordSolved = false;
+
   /** Indicates the answer to the riddle for the current game. */
   public static String riddleAnswer = "";
 
@@ -61,7 +65,6 @@ public class GameState {
     // setUp listeners to check if game is won or not.
     setupWinListeners();
   }
-
 
   /** Method to create random riddle for current game. */
   public static String getRandomWord() {
@@ -98,14 +101,14 @@ public class GameState {
     return answer;
   }
 
-    // Add listeners to isKeyPadSolved and numOfIntel to update isGameWon.
-    private static void setupWinListeners() {
-        // Listen for changes to isKeyPadSolved
-        isKeypadSolved.addListener((observable, oldValue, newValue) -> checkIsGameWon());
+  // Add listeners to isKeyPadSolved and numOfIntel to update isGameWon.
+  private static void setupWinListeners() {
+    // Listen for changes to isKeyPadSolved
+    isKeypadSolved.addListener((observable, oldValue, newValue) -> checkIsGameWon());
 
-        // Listen for changes to numOfIntel
-        numOfIntel.addListener((observable, oldValue, newValue) -> checkIsGameWon());
-    }
+    // Listen for changes to numOfIntel
+    numOfIntel.addListener((observable, oldValue, newValue) -> checkIsGameWon());
+  }
 
   // Method to update if game has been won
   private static void checkIsGameWon() {
