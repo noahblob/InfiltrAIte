@@ -115,6 +115,14 @@ public class MainRoomController extends Commander implements TimerObserver {
         event -> {
           rightDoor.setOpacity(0);
         });
+
+    // if password has been solved, when user hovers over keypad, it will be visible
+    keypadCover.setOnMouseEntered(
+        event -> {
+          if (GameState.isPasswordSolved) {
+            keypadCover.setVisible(false);
+          }
+        });
   }
 
   /**

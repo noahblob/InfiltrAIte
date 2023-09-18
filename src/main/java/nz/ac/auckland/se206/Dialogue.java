@@ -38,7 +38,7 @@ public enum Dialogue {
   NOTHINGTHERE("Theres nothing there..."),
   WRONGYEAR("That doesnt seem to be the correct passcode"),
   WRONGPASSCODE("That's not the right password, try again!"),
-  CORRECTPASSCODE("You cracked the passcode! It sounds like something moved in the room..."),
+  CORRECTPASSCODE("You cracked the passcode! Something else in the room may have been revealed..."),
   ALREADYSOLVED("You already solved this puzzle!");
   private final String msg;
 
