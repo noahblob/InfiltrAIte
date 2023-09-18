@@ -191,8 +191,7 @@ public class DrawerController extends Commander implements TimerObserver {
         break;
       case "botDrawer":
         if (GameState.isRiddleResolved && !GameState.isKeyFound.get()) {
-          GameState.isKeyFound.set(true);
-          updateDialogue(Dialogue.KEYFOUND);
+          // Removed key fromt his drawer.
         } else if (!GameState.isKeyFound.get()) {
           keyDrawer.setVisible(true);
         }
