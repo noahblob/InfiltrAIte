@@ -19,6 +19,7 @@ public class TitleController {
 
   @FXML private Label difficulty;
   @FXML private TextArea description;
+  @FXML private Label country;
 
   @FXML private Circle ring;
   @FXML private ImageView elbonia;
@@ -62,6 +63,7 @@ public class TitleController {
           difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText(about);
           description.setStyle("-fx-text-alignment: center;");
+          this.country.setText(country);
         });
 
     image.setOnMouseExited(
@@ -70,6 +72,7 @@ public class TitleController {
           difficulty.setText("DIFFICULTY");
           difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText("");
+          this.country.setText("");
           description.setStyle("-fx-text-alignment: center;");
         });
   }
