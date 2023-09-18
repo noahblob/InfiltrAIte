@@ -37,15 +37,12 @@ public class DrawerController extends Commander implements TimerObserver {
   @FXML private Label lastDigits;
   @FXML private ImageView paper;
   @FXML private TextArea riddle;
-  @FXML private ImageView intelligence;
   @FXML private TextArea riddleBox;
   @FXML private Button check;
 
   /** The key in the inventory box. It is currently set to visible. */
   private String riddleCode;
-
   private String riddleAnswer;
-  private boolean isIntelCollected;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -63,7 +60,6 @@ public class DrawerController extends Commander implements TimerObserver {
     configureButtons();
     setHoverEvents();
     configureRiddle();
-    isIntelCollected = false;
 
     TimerClass.add(this);
   }
@@ -107,6 +103,7 @@ public class DrawerController extends Commander implements TimerObserver {
             Scene currentScene = keyDrawer.getScene();
             currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
           }
+          toggleDrawers(true);
         });
 
     decrypt.setOnAction(
@@ -153,6 +150,7 @@ public class DrawerController extends Commander implements TimerObserver {
             // Update game state.
             GameState.isRiddleResolved = true;
             message = Dialogue.DRAWERUNLOCK.toString();
+            toggleDrawers(true);
           } else {
             message = Dialogue.INCORRECT.toString();
           }
@@ -173,54 +171,26 @@ public class DrawerController extends Commander implements TimerObserver {
 
     switch (drawer) {
       case "topDrawer":
-        if (GameState.isSlidersSolved && !isIntelCollected) {
-          intelligence.setVisible(true);
-        } else if (!GameState.isSlidersSolved) {
-          if (GameState.isKeyFound.get()) {
-            updateDialogue(Dialogue.WRONGKEY);
-          } else {
-            updateDialogue(Dialogue.CABINETLOCK);
-          }
-        } else {
-          updateDialogue(Dialogue.EMPTY);
-        }
+        updateDialogue(Dialogue.EMPTY);
         break;
       case "midDrawer":
         riddlePane.setVisible(true);
         decrypt.setVisible(true);
+        toggleDrawers(false);
+
         break;
       case "botDrawer":
-        if (GameState.isRiddleResolved && !GameState.isKeyFound.get()) {
-          // Removed key fromt his drawer.
+        if (GameState.isRiddleResolved) {
+          updateDialogue(Dialogue.DEADEND);
+          objective.setText("At least I get a snack...");
         } else if (!GameState.isKeyFound.get()) {
           keyDrawer.setVisible(true);
+          toggleDrawers(false);
         }
         break;
       default:
         break;
     }
-  }
-
-  @FXML
-  public void onCollect(MouseEvent event) {
-    // return back to main room.
-    ImageView intel = (ImageView) event.getSource();
-    Scene currentScene = intel.getScene();
-
-    // Set the intelligence to invisible
-    intelligence.setVisible(false);
-    currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
-
-    // Update text rollout.
-    try {
-      updateDialogue(Dialogue.INTELFOUND);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-
-    // Update game states.
-    isIntelCollected = true;
-    GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
   }
 
   private String generateEncrypted(int length) {
@@ -240,5 +210,11 @@ public class DrawerController extends Commander implements TimerObserver {
       count++;
     }
     return encryptedText.toString();
+  }
+
+  private void toggleDrawers(Boolean flag) {
+    topDrawer.setVisible(flag);
+    midDrawer.setVisible(flag);
+    botDrawer.setVisible(flag);
   }
 }

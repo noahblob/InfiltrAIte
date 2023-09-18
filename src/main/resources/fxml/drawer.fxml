@@ -178,11 +178,6 @@
             <Font size="37.0" />
          </font>
       </Label>
-      <ImageView fx:id="intelligence" fitHeight="314.0" fitWidth="326.0" layoutX="120.0" layoutY="147.0" onMouseClicked="#onCollect" pickOnBounds="true" preserveRatio="true" visible="false">
-         <image>
-            <Image url="@../images/intel%20(1).png" />
-         </image>
-      </ImageView>
       <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="548.0" layoutY="546.0" pickOnBounds="true">
          <image>
             <Image url="@../images/newphone.png" />
