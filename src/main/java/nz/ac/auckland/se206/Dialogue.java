@@ -40,6 +40,8 @@ public enum Dialogue {
           + " Meet for extraction at the rendezvous point."),
   CORRECTYEAR("Well done soldier you found one of the enemies intelligence"),
   SLIDERHINT("I wonder if moving the sliders around does anything?"),
+  SLIDERSOLVED("Whats this now?"),
+  DEADEND("Dang, theres nothing in here but cake..."),
   TORNHINT("This portait is torn... I wonder what year the war was..."),
   WRONGYEAR("That doesnt seem to be the correct passcode");
   private final String msg;

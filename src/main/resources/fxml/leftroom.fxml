@@ -206,5 +206,10 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
+      <Rectangle fx:id="hanger" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="37.0" layoutX="449.0" layoutY="253.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="16.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Rectangle>
    </children>
 </Pane>

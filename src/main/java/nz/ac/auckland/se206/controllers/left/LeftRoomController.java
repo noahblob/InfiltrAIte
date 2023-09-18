@@ -16,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
@@ -32,7 +33,8 @@ public class LeftRoomController extends Commander implements TimerObserver {
     PAINT2,
     DOOR,
     DESK,
-    NEWS
+    NEWS,
+    HANGER
   }
 
   public static int year;
@@ -42,6 +44,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   @FXML private Rectangle drawer;
   @FXML private Rectangle painting;
   @FXML private Rectangle painting1;
+  @FXML private Rectangle hanger;
   @FXML private Polygon painting2;
   @FXML private Polygon door;
   @FXML private Polygon desk;
@@ -92,6 +95,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     objects.put(door, Object.DOOR);
     objects.put(newspaper, Object.NEWS);
     objects.put(desk, Object.DESK);
+    objects.put(hanger, Object.HANGER);
   }
 
   private void setHoverEvents() {
@@ -103,6 +107,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
     setOpacityOnHover(drawer);
     setOpacityOnHover(communications);
     setOpacityOnHover(desk);
+    setOpacityOnHover(hanger);
   }
 
   private void setOpacityOnHover(Shape shape) {
@@ -189,6 +194,12 @@ public class LeftRoomController extends Commander implements TimerObserver {
         break;
       case DRAWER:
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.DRAWER));
+        break;
+      case HANGER:
+        // Find the key to main room drawer.
+          GameState.isKeyFound.set(true);
+          updateDialogue(Dialogue.KEYFOUND);
+          hanger.setDisable(true);
         break;
       default:
         updateDialogue(Dialogue.EMPTY);

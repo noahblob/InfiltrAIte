@@ -72,7 +72,7 @@ public class TitleController {
           difficulty.setText("DIFFICULTY");
           difficulty.setTextAlignment(TextAlignment.JUSTIFY);
           description.setText("");
-          this.country.setText("");
+          this.country.setText("SELECT COUNTRY");
           description.setStyle("-fx-text-alignment: center;");
         });
   }
