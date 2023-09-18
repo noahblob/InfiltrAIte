@@ -117,7 +117,7 @@ public class DrawerController extends Commander implements TimerObserver {
             Timeline timeline =
                 new Timeline(
                     new KeyFrame(
-                        Duration.millis(10000),
+                        Duration.millis(10),
                         ae -> {
                           try {
                             CommanderController.getInstance()
