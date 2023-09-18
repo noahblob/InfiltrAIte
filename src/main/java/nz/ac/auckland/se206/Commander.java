@@ -1,7 +1,6 @@
 package nz.ac.auckland.se206;
 
 import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,7 +16,7 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Abstract class representing the commander */
 public abstract class Commander {
-  
+
   // Relevant FXML elements accessed across all scenes by commander
   @FXML protected TextArea objective;
   @FXML protected TextArea input;
@@ -101,5 +100,11 @@ public abstract class Commander {
     if (event.getCode().toString().equals("ENTER")) {
       CommanderController.getInstance().onSendMessage(event, input);
     }
+  }
+
+  // Method to update the commander's dialogue box.
+  protected void updateDialogue(Dialogue dialogue) throws Exception {
+    String msg = dialogue.toString();
+    CommanderController.getInstance().updateDialogueBox(msg);
   }
 }

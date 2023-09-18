@@ -15,6 +15,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
@@ -55,8 +56,10 @@ public class LeftRoomController extends Commander implements TimerObserver {
 
   /** The key in the inventory box. It is currently set to visible. */
   private Map<Shape, Object> objects;
+
   private List<ImageView> visiblePopups;
   private int lastNumbers;
+  private boolean isRadioOpened = false;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -129,15 +132,15 @@ public class LeftRoomController extends Commander implements TimerObserver {
     tear.setVisible(false);
     lastDigits.setVisible(false);
 
-    back.setOnAction(event -> {
-      for (ImageView popUp : visiblePopups) {
-        popUp.setVisible(false);
-      }
-      popUpBackGround.setVisible(false);
-      back.setVisible(false);
-      lastDigits.setVisible(false);
-    });
-
+    back.setOnAction(
+        event -> {
+          for (ImageView popUp : visiblePopups) {
+            popUp.setVisible(false);
+          }
+          popUpBackGround.setVisible(false);
+          back.setVisible(false);
+          lastDigits.setVisible(false);
+        });
   }
 
   private void generateYear() {
@@ -168,13 +171,17 @@ public class LeftRoomController extends Commander implements TimerObserver {
         break;
       case PAINT:
         showPopup(poster);
+        updateDialogue(Dialogue.TORNHINT);
         break;
       case NEWS:
         showPopup(poster2);
         break;
       case RADIO:
+        if (!isRadioOpened) {
+          updateDialogue(Dialogue.SLIDERHINT);
+          isRadioOpened = true;
+        }
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.RADIO));
-        System.out.println("switched to radio");
         break;
       case DESK:
         showPopup(tear);
@@ -184,6 +191,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.DRAWER));
         break;
       default:
+        updateDialogue(Dialogue.NOTHINGTHERE);
         break;
     }
   }
