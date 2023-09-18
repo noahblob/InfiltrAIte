@@ -42,7 +42,6 @@ public class DrawerController extends Commander implements TimerObserver {
 
   /** The key in the inventory box. It is currently set to visible. */
   private String riddleCode;
-  private String riddleAnswer;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -53,9 +52,6 @@ public class DrawerController extends Commander implements TimerObserver {
 
     super.initialize();
     objective.setText("I wonder whats inside...");
-
-    riddleAnswer = GameState.getRandomWord();
-    System.out.print(riddleAnswer);
 
     configureButtons();
     setHoverEvents();
@@ -113,24 +109,14 @@ public class DrawerController extends Commander implements TimerObserver {
           try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
 
-            // Create a Timeline to wait for 10 seconds
-            Timeline timeline =
-                new Timeline(
-                    new KeyFrame(
-                        Duration.millis(10),
-                        ae -> {
+  
                           try {
                             CommanderController.getInstance()
                                 .sendForUser(
-                                    GptPromptEngineering.getRiddleWithGivenWord(riddleAnswer));
+                                    GptPromptEngineering.getRiddle());
                           } catch (Exception e) {
                             e.printStackTrace();
                           }
-                        }));
-
-            // Play the Timeline
-            timeline.play();
-
             // Disable the button.
             decrypt.setDisable(true);
 
@@ -145,7 +131,7 @@ public class DrawerController extends Commander implements TimerObserver {
           String message;
 
           // If the user inputs the correct answer, then unlock the drawer.
-          if (attempt.toLowerCase().contains(GameState.riddleAnswer)) {
+          if (attempt.toLowerCase().contains(GameState.leftRiddleAnswer)) {
             keyDrawer.setVisible(false);
             // Update game state.
             GameState.isRiddleResolved = true;

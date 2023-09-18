@@ -52,7 +52,7 @@ public class CommanderController {
     dialogues = new ArrayList<>();
     messages =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    updateGPT(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
+    // updateGPT(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
   }
 
   /**
