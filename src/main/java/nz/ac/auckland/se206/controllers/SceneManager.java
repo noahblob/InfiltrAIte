@@ -17,6 +17,7 @@ public class SceneManager {
     RIGHT,
     LOCKER,
     KEYPAD,
+    COMPUTER,
     BOOKSHELF,
     POPUP,
     BLACKBOARD,

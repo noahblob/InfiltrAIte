@@ -138,6 +138,9 @@ public class MainRoomController extends Commander implements TimerObserver {
         // set visibility of the filing cabinet and background
         setCabinetVisibility(true);
         break;
+      case ("computer"):
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.COMPUTER));
+        break;
       default:
         break;
     }
