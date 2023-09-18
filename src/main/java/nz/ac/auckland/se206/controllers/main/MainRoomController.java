@@ -28,6 +28,7 @@ public class MainRoomController extends Commander implements TimerObserver {
   @FXML private Button cabinetButton;
   @FXML private Polygon leftDoor;
   @FXML private Polygon rightDoor;
+  @FXML private Rectangle computer;
   @FXML private Rectangle middleDoor;
   @FXML private Rectangle background;
   @FXML private Rectangle topDrawer;
@@ -264,12 +265,13 @@ public class MainRoomController extends Commander implements TimerObserver {
       cabinetButton.setVisible(true);
 
       // Once user has collected intel, make it invisible and update number of intel collected.
-      intelFile.setOnMouseClicked(event -> {
-        intelFile.setVisible(false);
-        GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-        GameState.cabinetIntelfound = true;
-      });
-      
+      intelFile.setOnMouseClicked(
+          event -> {
+            intelFile.setVisible(false);
+            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+            GameState.cabinetIntelfound = true;
+          });
+
     } else if (isKeyFound && cabinetIntelFound) {
       // user has already found cabinet intel
       commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
