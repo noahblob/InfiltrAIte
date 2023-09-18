@@ -39,7 +39,7 @@ public class ComputerController extends Commander implements TimerObserver {
     // Create a chat completion request and run gpt to generate the password hint
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.getPasswordRiddle()));
+    runGpt(new ChatMessage("user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
   }
 
   @Override
@@ -140,7 +140,7 @@ public class ComputerController extends Commander implements TimerObserver {
    */
   public void checkPassword(String currentGuess) throws Exception {
     if (!GameState.isPasswordSolved) {
-      if (!currentGuess.equals("potato")) {
+      if (!currentGuess.equals(GameState.mainRiddleAnswer)) {
         updateDialogue(Dialogue.WRONGPASSCODE);
         computerPassword.clear();
       } else {

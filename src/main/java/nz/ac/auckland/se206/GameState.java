@@ -11,7 +11,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 /** Represents the state of the game. */
 public class GameState {
 
-  private static final Set<String> riddleAnswers = new HashSet<>();
+  private static final Set<String> riddleSetOne = new HashSet<>();
+    private static final Set<String> riddleSetTwo = new HashSet<>();
   private static char[] sliderAnswer = null;
 
   /** Indicates whether the riddle has been resolved. */
@@ -50,26 +51,41 @@ public class GameState {
    */
   public static boolean isPasswordSolved = false;
 
-  /** Indicates the answer to the riddle for the current game. */
-  public static String riddleAnswer = "";
+  /** Indicates the answer to the left room riddle for the current game. */
+  public static String leftRiddleAnswer = "";
 
-  // Create riddle answers
+  /** Indicates the answer to the computer riddle for the current game. */
+  public static String mainRiddleAnswer = "";
+
+  // Create riddle answers for drawer.
   static {
     // Decide what type of riddle answers we want later.
-    riddleAnswers.add("apple");
-    riddleAnswers.add("pear");
-    riddleAnswers.add("banana");
-    riddleAnswers.add("book");
-    // Add more words and definitions here
+    riddleSetOne.add("apple");
+    riddleSetOne.add("pear");
+    riddleSetOne.add("banana");
+    riddleSetOne.add("book");
+    
+    // Create riddle set for computer.
+    riddleSetTwo.add("potato");
+    riddleSetTwo.add("cheese");
+    // Add more words.
+
+    // Update GameState:
+    GameState.leftRiddleAnswer = getRandomWord(riddleSetOne);
+    System.out.println(GameState.leftRiddleAnswer);
+    
+    GameState.mainRiddleAnswer = getRandomWord(riddleSetTwo);
+    System.out.println(GameState.mainRiddleAnswer);
 
     // setUp listeners to check if game is won or not.
     setupWinListeners();
   }
 
+
   /** Method to create random riddle for current game. */
-  public static String getRandomWord() {
+  public static String getRandomWord(Set<String> set) {
     // Create an ArrayList to hold the keys (words)
-    ArrayList<String> keys = new ArrayList<>(riddleAnswers);
+    ArrayList<String> keys = new ArrayList<>(set);
 
     // Create a Random object
     Random random = new Random();
@@ -78,8 +94,8 @@ public class GameState {
     int randomIndex = random.nextInt(keys.size());
 
     // Update the answer to the riddle for current game, and return.
-    GameState.riddleAnswer = keys.get(randomIndex);
-    return GameState.riddleAnswer;
+    String riddle = keys.get(randomIndex);
+    return riddle;
   }
 
   /** Method to create random slider combination for the current game */

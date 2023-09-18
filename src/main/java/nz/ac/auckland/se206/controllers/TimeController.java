@@ -63,8 +63,8 @@ public class TimeController {
       String gptHints = "";
       int hints = GameState.numHints.get();
       gptHints = (hints == 0) ? "No" : (hints == 100) ? "Unlimited" : "5";
-      CommanderController.getInstance()
-          .updateGPT(GptPromptEngineering.updateNumberOfHints(gptHints));
+      // Tell GPT The game information.
+      CommanderController.getInstance().updateGPT(GptPromptEngineering.start(gptHints, GameState.leftRiddleAnswer, GameState.mainRiddleAnswer));
     } catch (Exception e) {
       e.printStackTrace();
     }
