@@ -38,6 +38,7 @@ public class MainRoomController extends Commander implements TimerObserver {
   // Initialize a random drawer to contain intel
   private Random random = new Random();
   private int randomDrawer = 1 + random.nextInt(2);
+  private int clickDoorCount = 0;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -152,10 +153,17 @@ public class MainRoomController extends Commander implements TimerObserver {
     if (GameState.isKeypadSolved.get()) {
       // set commander message based on how much intel needs to be found
       if (GameState.numOfIntel.get() < 3) {
-        commander.updateDialogueBox(
-            "Don't forget, there is still "
-                + (3 - GameState.numOfIntel.get())
-                + " more intel to find!");
+        if (clickDoorCount >= 1) {
+          // if user has clicked door more than once, allow them to leave room without all intel
+          SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
+        } else {
+          commander.updateDialogueBox(
+              "Don't forget, there is still "
+                  + (3 - GameState.numOfIntel.get())
+                  + " more intel to find!");
+        }
+        clickDoorCount++;
       } else {
         // if user has found all intel, set commander message to found all intel
         commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
@@ -264,12 +272,13 @@ public class MainRoomController extends Commander implements TimerObserver {
       cabinetButton.setVisible(true);
 
       // Once user has collected intel, make it invisible and update number of intel collected.
-      intelFile.setOnMouseClicked(event -> {
-        intelFile.setVisible(false);
-        GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-        GameState.cabinetIntelfound = true;
-      });
-      
+      intelFile.setOnMouseClicked(
+          event -> {
+            intelFile.setVisible(false);
+            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+            GameState.cabinetIntelfound = true;
+          });
+
     } else if (isKeyFound && cabinetIntelFound) {
       // user has already found cabinet intel
       commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
