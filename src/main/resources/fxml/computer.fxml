@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="timer" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.ComputerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.main.ComputerController">
    <children>
       <TextArea layoutX="6.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <effect>
@@ -43,12 +43,12 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="42.0" prefWidth="268.0" stylesheets="@../css/styles.css">
+      <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="42.0" prefWidth="268.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
          </styleClass></TextArea>
-      <Button layoutX="751.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="43.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
+      <Button fx:id="send" layoutX="751.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="43.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
          <font>
             <Font size="9.0" />
          </font>
@@ -68,7 +68,7 @@
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreainventory" />
          </styleClass></TextArea>
-      <TextArea layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css" />
+      <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css" />
       <TextArea layoutX="700.0" layoutY="538.0" prefHeight="58.0" prefWidth="94.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
@@ -89,12 +89,12 @@
             <Font size="37.0" />
          </font>
       </Label>
-      <ListView layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
+      <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
          </styleClass></ListView>
-      <TextArea layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
+      <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
          <effect>
             <Bloom />
          </effect></TextArea>
@@ -113,7 +113,7 @@
             <Image url="@../images/pngwing.com.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" layoutX="647.0" layoutY="537.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#a4a4a4">
+      <Label fx:id="hints" alignment="CENTER" layoutX="647.0" layoutY="537.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
          </font>

@@ -39,7 +39,7 @@ public enum Dialogue {
   WRONGYEAR("That doesnt seem to be the correct passcode"),
   WRONGPASSCODE("That's not the right password, try again!"),
   CORRECTPASSCODE("You cracked the passcode! It sounds like something moved in the room..."),
-  ALREADYSOLVED("You already solved this puzzle!,");
+  ALREADYSOLVED("You already solved this puzzle!");
   private final String msg;
 
   /**

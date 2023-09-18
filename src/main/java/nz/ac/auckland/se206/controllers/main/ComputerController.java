@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -26,7 +26,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 public class ComputerController extends Commander implements TimerObserver {
 
   @FXML private Label passwordHint;
-  @FXML private TextArea computerPassword;
+  @FXML private TextField computerPassword;
   @FXML private Button back;
   @FXML private Button submitButton;
   private ChatCompletionRequest chatCompletionRequest;
@@ -109,7 +109,7 @@ public class ComputerController extends Commander implements TimerObserver {
       case ("back"):
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
         break;
-      case ("submit"):
+      case ("submitButton"):
         String currentGuess = computerPassword.getText().toLowerCase();
         checkPassword(currentGuess);
         break;
