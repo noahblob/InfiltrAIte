@@ -36,7 +36,10 @@ public enum Dialogue {
   SLIDERHINT("I wonder if moving the sliders around does anything?"),
   TORNHINT("This portait is torn... I wonder what year the war was..."),
   NOTHINGTHERE("Theres nothing there..."),
-  WRONGYEAR("That doesnt seem to be the correct passcode");
+  WRONGYEAR("That doesnt seem to be the correct passcode"),
+  WRONGPASSCODE("That's not the right password, try again!"),
+  CORRECTPASSCODE("You cracked the passcode! It sounds like something moved in the room..."),
+  ALREADYSOLVED("You already solved this puzzle!,");
   private final String msg;
 
   /**
