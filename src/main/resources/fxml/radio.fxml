@@ -221,5 +221,11 @@
             <Image url="@../images/newphone.png" />
          </image>
       </ImageView>
+      <ImageView fx:id="intelligence" fitHeight="314.0" fitWidth="326.0" layoutX="130.0" layoutY="157.0" onMouseClicked="#onCollect" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/intel%20(1).png" />
+         </image>
+      </ImageView>
+      <Rectangle fx:id="pigeonhole" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="98.0" layoutX="378.0" layoutY="270.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
    </children>
 </Pane>

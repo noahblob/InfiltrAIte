@@ -12,9 +12,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -32,6 +34,7 @@ public class RadioController extends Commander implements TimerObserver {
   @FXML private Button back;
   @FXML private ImageView comms;
   @FXML private ImageView sineWave;
+  @FXML private ImageView intelligence;
   @FXML private Pane sliderPane;
   @FXML private Slider slider;
   @FXML private Slider slider1;
@@ -46,6 +49,7 @@ public class RadioController extends Commander implements TimerObserver {
   @FXML private Label label3;
   @FXML private Label label4;
   @FXML private Label label5;
+  @FXML private Rectangle pigeonhole;
 
   /** The key in the inventory box. It is currently set to visible. */
   private List<Slider> sliders;
@@ -72,6 +76,7 @@ public class RadioController extends Commander implements TimerObserver {
     isDialogueUpdated = false;
     setSliders();
     createSliderMap();
+    setPigeonHole();
     TimerClass.add(this);
   }
 
@@ -110,6 +115,12 @@ public class RadioController extends Commander implements TimerObserver {
     sliderMap.put(8, '#');
     sliderMap.put(9, '@');
     sliderMap.put(10, '?');
+  }
+
+  private void setPigeonHole() {
+    pigeonhole.setVisible(false);
+    pigeonhole.setOnMouseEntered(event -> pigeonhole.setOpacity(0.5));
+    pigeonhole.setOnMouseExited(event -> pigeonhole.setOpacity(0));
   }
 
   // Helper function for sliders.
@@ -151,13 +162,44 @@ public class RadioController extends Commander implements TimerObserver {
       // Update game state and show sine wave.
       GameState.isSlidersSolved = true;
       sineWave.setVisible(true);
+      // Update the image of the radio.
+      comms.setImage(new Image("/images/commsNewF.png"));
+      pigeonhole.setVisible(true);
       // Disable slider game.
       for (Slider slider : sliders) {
         slider.setDisable(true);
       }
-
-      CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETUNLOCK.toString());
+      updateDialogue(Dialogue.SLIDERSOLVED);
     }
   }
 
+  @FXML
+  public void onClick(MouseEvent event) {
+    // Update the imageview and disable pigeonhole.
+    comms.setImage(new Image("/images/commsNewC.png"));
+    pigeonhole.setVisible(false);
+    intelligence.setVisible(true);
+    objective.setText("I cracked it!");
+  }
+
+  @FXML
+  public void onCollect(MouseEvent event) {
+    // return back to main room.
+    ImageView intel = (ImageView) event.getSource();
+    Scene currentScene = intel.getScene();
+
+    // Set the intelligence to invisible
+    intelligence.setVisible(false);
+    currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
+
+    // Update text rollout.
+    try {
+      updateDialogue(Dialogue.INTELFOUND);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    // Update game state.
+    GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+  }
 }

@@ -110,9 +110,6 @@
                </cursor>
             </Button>
             <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
-               <effect>
-                  <Bloom />
-               </effect>
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>

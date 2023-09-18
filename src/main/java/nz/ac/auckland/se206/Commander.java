@@ -17,7 +17,7 @@ import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Abstract class representing the commander */
 public abstract class Commander {
-
+  
   // Relevant FXML elements accessed across all scenes by commander
   @FXML protected TextArea objective;
   @FXML protected TextArea input;
@@ -108,4 +108,6 @@ public abstract class Commander {
     String msg = dialogue.toString();
     CommanderController.getInstance().updateDialogueBox(msg);
   }
+
+
 }

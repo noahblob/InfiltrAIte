@@ -112,6 +112,6 @@ public class GameState {
 
   // Method to update if game has been won
   private static void checkIsGameWon() {
-    isGameWon.set(isKeypadSolved.get() && numOfIntel.get() == 3);
+    isGameWon.set(isKeypadSolved.get() && numOfIntel.get() >= 1);
   }
 }

@@ -100,6 +100,14 @@
                   <Image url="@../images/countries/z1.png" />
                </image>
             </ImageView>
+            <Label fx:id="country" alignment="CENTER" contentDisplay="CENTER" layoutX="270.0" layoutY="454.0" prefHeight="58.0" prefWidth="262.0" styleClass="difficulty" stylesheets="@../css/styles.css" text="SELECT COUNTRY" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </Label>
          </children>
       </AnchorPane>
    </children>

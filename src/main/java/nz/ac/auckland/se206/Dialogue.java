@@ -29,11 +29,19 @@ public enum Dialogue {
   INCORRECT("I don't think that was the right code..."),
   FOUNDALLINTEL("You have found all required intel, time to escape!"),
   CORRECTBOOK("This book seems like it has important information"),
-  WINDIALOGUE(
-      "Good work, Agent. You've done your country proud. Meet for extraction at the rendezvous"
-          + " point."),
+  WINDIALOGUE1(
+      "Good work, Agent. You've done your country proud. You successfully escaped with 1 intel."
+          + " Meet for extraction at the rendezvous point."),
+  WINDIALOGUE2(
+      "Good work, Agent. You've done your country proud. You successfully escaped with 2 intel."
+          + " Meet for extraction at the rendezvous point."),
+  WINDIALOGUE3(
+      "Good work, Agent. You've done your country proud. You successfully escaped with 3 intel."
+          + " Meet for extraction at the rendezvous point."),
   CORRECTYEAR("Well done soldier you found one of the enemies intelligence"),
   SLIDERHINT("I wonder if moving the sliders around does anything?"),
+  SLIDERSOLVED("Whats this now?"),
+  DEADEND("Dang, theres nothing in here but cake..."),
   TORNHINT("This portait is torn... I wonder what year the war was..."),
   NOTHINGTHERE("Theres nothing there..."),
   WRONGYEAR("That doesnt seem to be the correct passcode"),

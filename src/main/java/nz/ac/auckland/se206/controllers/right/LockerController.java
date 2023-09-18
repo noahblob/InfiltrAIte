@@ -77,13 +77,12 @@ public class LockerController extends Commander implements TimerObserver {
    */
   @FXML
   public void onCheckAns(MouseEvent event) throws Exception {
-    CommanderController commander = CommanderController.getInstance();
 
     if (!isIntelGathered) {
       int answer = LeftRoomController.year;
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
-        commander.updateDialogueBox(Dialogue.CORRECTYEAR.toString());
+        updateDialogue(Dialogue.CORRECTYEAR);
         isIntelGathered = true;
         intelFile.setDisable(false);
         intelFile.setVisible(true);
@@ -91,7 +90,7 @@ public class LockerController extends Commander implements TimerObserver {
         checkAns.setVisible(false);
         GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
 
-      } else commander.updateDialogueBox(Dialogue.WRONGYEAR.toString());
+      } else updateDialogue(Dialogue.WRONGYEAR);
     }
   }
 
