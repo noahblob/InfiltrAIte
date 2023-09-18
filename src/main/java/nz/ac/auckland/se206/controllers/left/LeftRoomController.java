@@ -69,7 +69,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
   public void initialize() throws Exception {
 
     super.initialize();
-    objective.setText("This is the LEFT ROOM");
+    objective.setText("I wonder where the enemy would hide their intelligence...");
     createRoom();
     setPopups();
     setHoverEvents();
@@ -191,7 +191,7 @@ public class LeftRoomController extends Commander implements TimerObserver {
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.DRAWER));
         break;
       default:
-        updateDialogue(Dialogue.NOTHINGTHERE);
+        updateDialogue(Dialogue.EMPTY);
         break;
     }
   }

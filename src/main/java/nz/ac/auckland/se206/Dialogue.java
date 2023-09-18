@@ -35,7 +35,6 @@ public enum Dialogue {
   CORRECTYEAR("Well done soldier you found one of the enemies intelligence"),
   SLIDERHINT("I wonder if moving the sliders around does anything?"),
   TORNHINT("This portait is torn... I wonder what year the war was..."),
-  NOTHINGTHERE("Theres nothing there..."),
   WRONGYEAR("That doesnt seem to be the correct passcode");
   private final String msg;
 
