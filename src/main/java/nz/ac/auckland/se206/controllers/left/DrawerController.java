@@ -1,8 +1,6 @@
 package nz.ac.auckland.se206.controllers.left;
 
 import java.security.SecureRandom;
-
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
@@ -45,6 +43,7 @@ public class DrawerController extends Commander implements TimerObserver {
 
   /** The key in the inventory box. It is currently set to visible. */
   private String riddleCode;
+
   private String riddleAnswer;
   private boolean isIntelCollected;
 
@@ -97,18 +96,18 @@ public class DrawerController extends Commander implements TimerObserver {
 
     decrypt.setVisible(false);
 
-    back.setOnAction(event -> {
-    
-    if (riddlePane.isVisible()) {
-      riddlePane.setVisible(false);     
-      decrypt.setVisible(false);
-    } else if (keyDrawer.isVisible()) {
-      keyDrawer.setVisible(false);
-    } else {
-      Scene currentScene = keyDrawer.getScene();
-      currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
-    }
-  });
+    back.setOnAction(
+        event -> {
+          if (riddlePane.isVisible()) {
+            riddlePane.setVisible(false);
+            decrypt.setVisible(false);
+          } else if (keyDrawer.isVisible()) {
+            keyDrawer.setVisible(false);
+          } else {
+            Scene currentScene = keyDrawer.getScene();
+            currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
+          }
+        });
 
     decrypt.setOnAction(
         event -> {
@@ -175,11 +174,15 @@ public class DrawerController extends Commander implements TimerObserver {
     switch (drawer) {
       case "topDrawer":
         if (GameState.isSlidersSolved && !isIntelCollected) {
-          intelligence.setVisible(true);;
+          intelligence.setVisible(true);
         } else if (!GameState.isSlidersSolved) {
-          CommanderController.getInstance().updateDialogueBox(Dialogue.CABINETLOCK.toString());
+          if (GameState.isKeyFound.get()) {
+            updateDialogue(Dialogue.WRONGKEY);
+          } else {
+            updateDialogue(Dialogue.CABINETLOCK);
+          }
         } else {
-          CommanderController.getInstance().updateDialogueBox(Dialogue.EMPTY.toString());
+          updateDialogue(Dialogue.EMPTY);
         }
         break;
       case "midDrawer":
@@ -189,7 +192,7 @@ public class DrawerController extends Commander implements TimerObserver {
       case "botDrawer":
         if (GameState.isRiddleResolved && !GameState.isKeyFound.get()) {
           GameState.isKeyFound.set(true);
-          CommanderController.getInstance().updateDialogueBox(Dialogue.KEYFOUND.toString());
+          updateDialogue(Dialogue.KEYFOUND);
         } else if (!GameState.isKeyFound.get()) {
           keyDrawer.setVisible(true);
         }
@@ -208,11 +211,10 @@ public class DrawerController extends Commander implements TimerObserver {
     // Set the intelligence to invisible
     intelligence.setVisible(false);
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
-    
 
     // Update text rollout.
     try {
-      CommanderController.getInstance().updateDialogueBox(Dialogue.INTELFOUND.toString());
+      updateDialogue(Dialogue.INTELFOUND);
     } catch (Exception e) {
       e.printStackTrace();
     }
