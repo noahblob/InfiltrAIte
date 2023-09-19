@@ -12,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
@@ -23,7 +22,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
-public class ComputerController extends Commander implements TimerObserver {
+public class ComputerController extends Commander{
 
   @FXML private Label passwordHint;
   @FXML private TextField computerPassword;
@@ -34,7 +33,6 @@ public class ComputerController extends Commander implements TimerObserver {
   public void initialize() throws Exception {
     super.initialize();
     objective.setText("Figure out the combination!");
-    TimerClass.add(this);
 
     // Create a chat completion request and run gpt to generate the password hint
     chatCompletionRequest =
@@ -42,12 +40,6 @@ public class ComputerController extends Commander implements TimerObserver {
     runGpt(
         new ChatMessage(
             "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 
   /**

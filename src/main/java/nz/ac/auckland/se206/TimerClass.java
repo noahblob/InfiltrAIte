@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import javafx.application.Platform;
+import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.speech.TextToSpeech;
 
 /** Represents the timer for the game. */
 public class TimerClass {
@@ -13,6 +16,9 @@ public class TimerClass {
   private static TimerClass instance;
   // Observer List which contains the classes that should show the timer
   private static List<TimerObserver> observe = new ArrayList<>();
+
+  private Runnable finished;
+  private TextToSpeech tts = new TextToSpeech();
 
   /**
    * Initalize the timer with a time.
@@ -24,11 +30,15 @@ public class TimerClass {
     if (instance == null) {
       instance = new TimerClass(time);
       for (TimerObserver observer : observe) {
-        observer.timerStart();
+        observer.timerUpdated();
       }
     } else {
       throw new IllegalStateException("There already is a timer instance!!");
     }
+  }
+
+  public void setFinished(Runnable call) {
+    this.finished = call;
   }
 
   /**
@@ -73,11 +83,49 @@ public class TimerClass {
         new Runnable() {
           @Override
           public void run() {
-            if (shouldRun && timeLeft > 0) {
+
+            if (shouldRun) {
               timeLeft--;
-              
+
               for (TimerObserver observer : observe) {
-                observer.timerStart(); // Notify observer to update the display
+                observer.timerUpdated();
+              }
+
+              if (timeLeft == 30) {
+                Platform.runLater(
+                    new Runnable() {
+                      @Override
+                      public void run() {
+                        try {
+                          CommanderController.getInstance()
+                              .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
+
+                          new Thread(
+                                  new Runnable() {
+                                    @Override
+                                    public void run() {
+                                      tts.speak(
+                                          "ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR"
+                                              + " BASE!!");
+                                    }
+                                  })
+                              .start();
+
+                        } catch (Exception e) {
+                          e.printStackTrace();
+                        }
+                      }
+                    });
+              }
+
+              if (timeLeft == 0) {
+                shouldRun = false;
+
+                observe.get(0).timerFinished();
+
+                if (finished != null) {
+                  Platform.runLater(finished);
+                }
               }
             }
           }

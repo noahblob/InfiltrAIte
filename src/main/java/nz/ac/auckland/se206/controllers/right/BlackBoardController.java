@@ -11,13 +11,12 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import nz.ac.auckland.se206.Commander;
-import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class BlackBoardController extends Commander implements TimerObserver {
+public class BlackBoardController extends Commander{
 
   private static int ans;
 
@@ -29,7 +28,7 @@ public class BlackBoardController extends Commander implements TimerObserver {
   public static int getKeypadAns() {
     return ans;
   }
-  
+
   @FXML private Label mon;
   @FXML private Label tues;
   @FXML private Label wed;
@@ -62,14 +61,8 @@ public class BlackBoardController extends Commander implements TimerObserver {
 
     super.initialize();
     objective.setText("Hmm this seems pretty important");
-    TimerClass.add(this);
-    findDate();
-  }
 
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
+    findDate();
   }
 
   /**

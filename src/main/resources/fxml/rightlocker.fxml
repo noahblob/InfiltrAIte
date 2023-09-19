@@ -265,6 +265,9 @@
          <image>
             <Image url="@../images/intel%20(1).png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Button fx:id="goBack" layoutX="36.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN">
          <font>

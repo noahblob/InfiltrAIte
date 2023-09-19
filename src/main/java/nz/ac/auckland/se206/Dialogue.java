@@ -47,6 +47,9 @@ public enum Dialogue {
   WRONGYEAR("That doesnt seem to be the correct passcode"),
   WRONGPASSCODE("That's not the right password, try again!"),
   CORRECTPASSCODE("You cracked the passcode! Something else in the room may have been revealed..."),
+  ALREADYGOTLOCKER("You have already collected the intelligence"),
+  INTRUDERDETECED(
+      "Oh no it seems like they found out you're here! Quickly finish up and get out of there!!"),
   ALREADYSOLVED("You already solved this puzzle!");
   private final String msg;
 

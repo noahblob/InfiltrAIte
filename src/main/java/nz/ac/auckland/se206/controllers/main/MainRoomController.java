@@ -14,14 +14,12 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
-import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class MainRoomController extends Commander implements TimerObserver {
+public class MainRoomController extends Commander {
 
   // FXML objects in room
   @FXML private Rectangle keypadCover;
@@ -49,17 +47,9 @@ public class MainRoomController extends Commander implements TimerObserver {
   public void initialize() throws Exception {
     super.initialize();
     objective.setText("Find 3 pieces of intel and escape!");
-    // set timer
-    TimerClass.add(this);
 
     // separate method for left and right door hover and click events
     setDoorEvents();
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 
   /**

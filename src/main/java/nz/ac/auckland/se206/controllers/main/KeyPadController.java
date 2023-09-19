@@ -8,15 +8,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
-import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.right.BlackBoardController;
 
 /** Controller class for the keypad view. */
-public class KeyPadController extends Commander implements TimerObserver {
+public class KeyPadController extends Commander {
 
   @FXML private Button clearButton;
   @FXML private Button submitButton;
@@ -42,13 +40,6 @@ public class KeyPadController extends Commander implements TimerObserver {
     super.initialize();
     objective.setText("Figure out the combination!");
     numberLabel.setText("");
-    TimerClass.add(this);
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 
   /**

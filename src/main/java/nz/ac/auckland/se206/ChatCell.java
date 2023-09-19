@@ -50,8 +50,10 @@ public class ChatCell extends ListCell<ChatMessage> {
     } else {
       if (item.getRole().equals("user")) {
         updateChatBox("/images/user.png");
-      } else {
+      } else if (item.getRole().equals("assistant")) {
         updateChatBox("/images/commander.png");
+      } else {
+        updateTransmitting();
       }
 
       // Update message label text
@@ -78,5 +80,12 @@ public class ChatCell extends ListCell<ChatMessage> {
       chatHorizontalBox.getChildren().addAll(portrait, messageText);
       messageText.setTextAlignment(TextAlignment.LEFT);
     }
+  }
+
+  protected void updateTransmitting() {
+    chatHorizontalBox.getChildren().clear();
+    messageText.setText("Transmitting...");
+    messageText.setTextAlignment(TextAlignment.CENTER);
+    chatHorizontalBox.getChildren().addAll(messageText);
   }
 }
