@@ -28,7 +28,7 @@ public enum Dialogue {
   INTELALREADYFOUND("You already found the intel in this drawer!"),
   SOLVEKEYPAD("You need to solve the keypad first!"),
   INCORRECT("I don't think that was the right code..."),
-  FOUNDALLINTEL("You have found all required intel, time to escape!"),
+  NOINTELFOUND("Agent, you are yet to find any intel, keep looking!"),
   CORRECTBOOK("This book seems like it has important information"),
   PAPERSEEN("That encrypted piece of paper might be for this drawer..."),
   DOORLOCKED("How in the world do you open the door..."),

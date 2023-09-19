@@ -37,7 +37,6 @@ public class MainRoomController extends Commander {
   // Initialize a random drawer to contain intel
   private Random random = new Random();
   private int randomDrawer = 1 + random.nextInt(2);
-  private int clickDoorCount = 0;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -137,7 +136,6 @@ public class MainRoomController extends Commander {
         setCabinetVisibility(true);
         break;
       case ("computer"):
-
         updateDialogue(Dialogue.COMPUTERHINT);
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.COMPUTER));
         break;
@@ -152,27 +150,15 @@ public class MainRoomController extends Commander {
    * @throws Exception if the scene cannot be loaded
    */
   public void doorCheck(Scene currentScene) throws Exception {
-    CommanderController commander = CommanderController.getInstance();
     if (GameState.isKeypadSolved.get()) {
-      // set commander message based on how much intel needs to be found
-      if (GameState.numOfIntel.get() < 3) {
-        if (clickDoorCount >= 1) {
-          // if user has clicked door more than once, allow them to leave room without all intel
-          SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
-          currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
-        } else {
-          commander.updateDialogueBox(
-              "Don't forget, there is still "
-                  + (3 - GameState.numOfIntel.get())
-                  + " more intel to find! Although you can leave now, I will not be happy!");
-        }
-        clickDoorCount++;
-      } else {
-        // if user has found all intel, set commander message to found all intel
-        updateDialogue(Dialogue.FOUNDALLINTEL);
-        // Switch to game over screen.
+      // Change scene or dialogue based on how much intel user has found
+      if (GameState.numOfIntel.get() >= 1) {
+        // Allow user to leave room with any amount of intel
         SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
+      } else {
+        // if user has not found any intel, update them reminding them to find intel
+        updateDialogue(Dialogue.NOINTELFOUND);
       }
     } else if (GameState.isPasswordSolved) {
       // if keypad is yet to be solved
@@ -265,7 +251,7 @@ public class MainRoomController extends Commander {
       // Player uses key, so key disappears.
       GameState.doePlayerHaveKey.set(false);
 
-      //Update commander dialogue to prompt player that key has been used.
+      // Update commander dialogue to prompt player that key has been used.
       updateDialogue(Dialogue.KEYUSED);
 
       // Once user has collected intel, make it invisible and update number of intel collected.
