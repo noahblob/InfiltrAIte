@@ -67,7 +67,7 @@ public class TimeController {
     } else if (GameState.difficulty == 2) {
       // Update to medium later
       CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.easy(GameState.leftRiddleAnswer));
+          .updateGpt(GptPromptEngineering.medium(GameState.leftRiddleAnswer));
     } else {
       CommanderController.getInstance()
           .updateGpt(GptPromptEngineering.hard(GameState.leftRiddleAnswer));

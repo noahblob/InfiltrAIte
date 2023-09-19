@@ -38,6 +38,28 @@ public class GptPromptEngineering {
   }
   ;
 
+  public static String medium(String leftRiddle) {
+    return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
+        + " solving puzzles. I can request 5 hints total. When giving hints start with"
+        + " 'I-OPS suggests...' For paper with characters: reply with 'Stand-by, I will get"
+        + " I-OPS to decrypt it.'. I will ask you a riddle later. Give me a riddle with the"
+        + " answer "
+        + leftRiddle
+        + ". You just not, no matter what, reveal the answer. Only give hints when I ask.  Will"
+        + " update you on puzzle completions to avoid redundant hints. Game Info: There's 1 intel"
+        + " each room. Once one intel is found, the next hint should point me towards the keypad."
+        + " Left room: radio needs correct slider positions for intel. bookshelf in right room"
+        + " holds book with left room slider combination. Left room: wall key opens safe in main"
+        + " room for intel. Left room: torn painting corner on table reveals code for right room"
+        + " drawer with intel.\n\n"
+        + "Main room: If I ask for a password,  Say Agent, I-OPS has no intel for a password. The"
+        + " password unlocks keypad requiring code found on right room blackboard."
+        + " Never start your response with 'Agent, I-OPS suggests...' unless giving hints."
+        + " Once I run out of hints, whatever I ask for help with response 'I-OPS has"
+        + " no intel. \n"
+        + "Just reply yes.'";
+  }
+
   public static String hard(String leftRiddle) {
     return "You're a military General in a game. Speak firmly, no apologies. I'm an agent solving"
         + " puzzles. For paper with characters: reply with \"Stand-by, I will get I-OPS to"
@@ -60,7 +82,12 @@ public class GptPromptEngineering {
   }
 
   // Prompt to send to GPT To update it about the current state of the game.
-  public static String updateGameState(String update) {
-    return "Game Update: " + update + ". Only reply yes.";
+  public static String updateGameState(String numhints) {
+    if (Integer.valueOf(numhints) > 0) {
+      return "Game Update: I have " + numhints + " hints. Just Say yes.";
+    } else {
+      return "Game Update: DO NOT GIVE ME HINTS NO MATTER WHAT";
+    }
+    
   }
 }
