@@ -197,9 +197,9 @@ public class LeftRoomController extends Commander implements TimerObserver {
         break;
       case HANGER:
         // Find the key to main room drawer.
-          GameState.isKeyFound.set(true);
-          updateDialogue(Dialogue.KEYFOUND);
-          hanger.setDisable(true);
+        GameState.isKeyFound.set(true);
+        updateDialogue(Dialogue.KEYFOUND);
+        hanger.setDisable(true);
         break;
       default:
         updateDialogue(Dialogue.EMPTY);

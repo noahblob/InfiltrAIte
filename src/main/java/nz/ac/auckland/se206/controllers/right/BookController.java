@@ -26,7 +26,6 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class BookController extends Commander implements TimerObserver {
 
-
   @FXML private Rectangle book1;
   @FXML private Rectangle book2;
   @FXML private Rectangle book3;
@@ -55,7 +54,7 @@ public class BookController extends Commander implements TimerObserver {
 
   private List<Rectangle> bookButtons;
 
-  private String bookID;
+  private String bookId;
 
   private ImageView book;
 
@@ -65,6 +64,8 @@ public class BookController extends Commander implements TimerObserver {
   private Map<String, Text> descriptionMap = new HashMap<>();
   private String goodTitle = "Where our intelligence is stored";
 
+  private String fahrenheit = "\u00B0F";
+  private String celsius = "\u00B0C";
   private String pattern = new String(GameState.setSliders());
   private String goodDesc =
       "One of the intelligence can be found in the left room, make sure to use the sliders"
@@ -91,9 +92,13 @@ public class BookController extends Commander implements TimerObserver {
                   + "Pinch of salt\r\n"
                   + "\r\n"
                   + "Instructions:\r\n"
-                  + "Preheat the Oven: Set your oven to 350\u00B0F (175\u00B0C) and position a rack"
-                  + " in the middle. Lightly grease a 9x9 inch baking pan or line it with parchment"
-                  + " paper.\r\n");
+                  + "Preheat the Oven: Set your oven to 350"
+                  + fahrenheit
+                  + "(175"
+                  + celsius
+                  + ") and position a"
+                  + " rack in the middle. Lightly grease a 9x9 inch baking pan or line it with"
+                  + " parchment paper.\r\n");
           put(
               "The rain is never ending",
               "The small town of Riverview had seen rain before, but this was different."
@@ -121,9 +126,9 @@ public class BookController extends Commander implements TimerObserver {
                   + "\r\n"
                   + "There are two types of heaps based on the heap property:\r\n"
                   + "\r\n"
-                  + "Max Heap \u2013 In a max heap, the largest element is found at the root.\r\n"
+                  + "Max Heap - In a max heap, the largest element is found at the root.\r\n"
                   + "\r\n"
-                  + "Min Heap \u2013 In a min heap, the smallest element is located at the root.");
+                  + "Min Heap - In a min heap, the smallest element is located at the root.");
           put(
               "10 Programming tips even your grandma knows",
               "1- Always Save Your Work\r\n"
@@ -228,21 +233,21 @@ public class BookController extends Commander implements TimerObserver {
       bookInShelf.setVisible(false);
     }
 
-    if (content.get(bookID)) {
-      titleMap.get(bookID).setStyle("-fx-font-weight: bold; -fx-font-size: 25px;");
+    if (content.get(bookId)) {
+      titleMap.get(bookId).setStyle("-fx-font-weight: bold; -fx-font-size: 25px;");
 
-      descriptionMap.get(bookID).setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
+      descriptionMap.get(bookId).setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
 
-      titleMap.get(bookID).setText(goodTitle);
-      descriptionMap.get(bookID).setText(goodDesc);
+      titleMap.get(bookId).setText(goodTitle);
+      descriptionMap.get(bookId).setText(goodDesc);
 
-      titleMap.get(bookID).setVisible(true);
-      descriptionMap.get(bookID).setVisible(true);
+      titleMap.get(bookId).setVisible(true);
+      descriptionMap.get(bookId).setVisible(true);
 
       CommanderController.getInstance().updateDialogueBox(Dialogue.CORRECTBOOK.toString());
     } else {
-      titleMap.get(bookID).setVisible(true);
-      descriptionMap.get(bookID).setVisible(true);
+      titleMap.get(bookId).setVisible(true);
+      descriptionMap.get(bookId).setVisible(true);
     }
   }
 
@@ -276,9 +281,9 @@ public class BookController extends Commander implements TimerObserver {
   public void checkBook(MouseEvent click) throws Exception {
 
     Rectangle selectedBook = (Rectangle) click.getSource();
-    bookID = selectedBook.getId();
-    currentBook = bookID.toString();
-    book = bookMap.get(bookID);
+    bookId = selectedBook.getId();
+    currentBook = bookId.toString();
+    book = bookMap.get(bookId);
 
     showBook();
   }
