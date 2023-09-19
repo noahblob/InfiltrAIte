@@ -47,13 +47,12 @@ public abstract class Commander implements TimerObserver {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
     objective.setEditable(false);
+    output.setFixedCellSize(-1);
 
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
     key.visibleProperty().bind(GameState.isKeyFound);
 
-    // Bind the hints text property to the number of hints, based on the difficulty chosen.
-    hints.textProperty().bind(Bindings.concat("x", GameState.numHints.asString()));
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     if (notes == null) {
       notes = new TextArea();
@@ -64,6 +63,11 @@ public abstract class Commander implements TimerObserver {
         .bindBidirectional(CommanderController.getInstance().lastInputTextProperty());
 
     output.scrollTo(output.getItems().size() - 1);
+
+    GameState.difficulty.addListener(
+        (observable, oldValue, newValue) -> {
+          setupHints();
+        });
 
     // Set dialogue box to be uneditable and wrap text
     if (dialogue != null) {
@@ -139,5 +143,21 @@ public abstract class Commander implements TimerObserver {
   protected void updateDialogue(Dialogue dialogue) throws Exception {
     String msg = dialogue.toString();
     CommanderController.getInstance().updateDialogueBox(msg);
+  }
+
+  public void setupHints() {
+    switch (GameState.difficulty.get()) {
+      case 1:
+        hints.setText("\u221E");
+        break;
+      case 2:
+        hints.textProperty().bind(Bindings.concat("x", GameState.numHints.asString()));
+        break;
+      case 3:
+        hints.setText("x0");
+        break;
+      default:
+        break;
+    }
   }
 }

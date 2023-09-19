@@ -114,6 +114,16 @@ public class CommanderController {
             return runGpt(msg);
           }
         };
+
+    task.setOnSucceeded(
+        e -> {
+          ChatMessage gptMsg = task.getValue();
+          javafx.application.Platform.runLater(
+              () -> {
+                appendChatMessage(gptMsg);
+              });
+        });
+
     new Thread(task).start();
   }
 
@@ -174,7 +184,7 @@ public class CommanderController {
           if (gptResponse != null) {
 
             // Check if the response contains keywords determining if its a hint (Medium only).
-            if (GameState.difficulty == 2
+            if (GameState.difficulty.get() == 2
                 && gptResponse.getContent().contains("I-OPS suggests")
                 && gptResponse.getContent().contains("I-OPS suggests")) {
               int numHints = GameState.numHints.get();

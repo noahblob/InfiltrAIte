@@ -85,15 +85,15 @@ public class TitleController {
     System.out.println(image.getId());
     // Set difficulty of game
     if (image.equals(elbonia)) {
-      GameState.difficulty = 1;
+      GameState.difficulty.set(1);
       GameState.country = "Elbonia";
       GameState.numHints.set(100);
     } else if (image.equals(genovia)) {
-      GameState.difficulty = 2;
+      GameState.difficulty.set(2);
       GameState.country = "Genovia";
       GameState.numHints.set(5);
     } else if (image.equals(sanescobar)) {
-      GameState.difficulty = 3;
+      GameState.difficulty.set(3);
       GameState.country = "Sanescobar";
       GameState.numHints.set(0);
     }
