@@ -52,6 +52,7 @@ public class RadioController extends Commander implements TimerObserver {
 
   /** The key in the inventory box. It is currently set to visible. */
   private List<Slider> sliders;
+
   private List<Label> passcode;
   private char[] code;
   private char[] answer;
@@ -85,6 +86,11 @@ public class RadioController extends Commander implements TimerObserver {
     timer.setText(timerText.getTimerLeft());
   }
 
+  /**
+   * Handler for when user clicks on the back button.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onReturn(MouseEvent event) {
     Button button = (Button) event.getSource();
@@ -93,6 +99,7 @@ public class RadioController extends Commander implements TimerObserver {
     System.out.println("switched to left");
   }
 
+  /** Set the correct values of each slider relative to the value of the passcode in right room. */
   private void setSliders() {
     code = new char[6];
     sliders = List.of(slider, slider1, slider2, slider3, slider4, slider5);
@@ -101,8 +108,10 @@ public class RadioController extends Commander implements TimerObserver {
     IntStream.range(0, sliders.size()).forEach(i -> setSlider(sliders.get(i), passcode.get(i), i));
   }
 
+  /** Create a hash map of all the possible slider values. */
   private void createSliderMap() {
     sliderMap = new HashMap<>();
+    // Add all the possible slider values.
     sliderMap.put(0, '!');
     sliderMap.put(1, '+');
     sliderMap.put(2, '-');
@@ -116,6 +125,10 @@ public class RadioController extends Commander implements TimerObserver {
     sliderMap.put(10, '?');
   }
 
+  /**
+   * Set the hover event for pigeon hole, so when user hovers over, an indicator will become
+   * visible.
+   */
   private void setPigeonHole() {
     pigeonhole.setVisible(false);
     pigeonhole.setOnMouseEntered(event -> pigeonhole.setOpacity(0.5));

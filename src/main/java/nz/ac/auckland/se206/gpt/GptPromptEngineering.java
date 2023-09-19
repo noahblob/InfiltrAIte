@@ -11,7 +11,7 @@ public class GptPromptEngineering {
    */
   public static String getRiddleWithGivenWord(String wordToGuess) {
     return "You are a high-ranking general in an infiltration mission game. You must say: Heres"
-               + " what the the paper says: then proceed to give me a riddle with answer "
+        + " what the the paper says: then proceed to give me a riddle with answer "
         + wordToGuess
         + ". Then say: Agent, this might be the passcode to a drawer. If the user asks for hints"
         + " give them and subtract from hint counter. You must give hints beginning: Agent, perhaps"
@@ -20,23 +20,33 @@ public class GptPromptEngineering {
   }
 
   public static String start(String hintCount, String leftRiddle, String computerRiddle) {
-    String gamePrompt = "You're a general in an infiltration game; speak firmly, no apologies. "
-                      + "I can get "+hintCount+" hints max. "
-                      + "For paper clues, say: \"Stand-by, I-OPS decrypting\". "
-                      + "Offer a riddle with answer \""+ leftRiddle +"\", but don't reveal it. "
-                      + "Hints start: \"Agent, I-OPS suggests...\".\n"
-                      + "\nGame Info:\n"
-                      + "- Left room: radio needs slider setup; key opens main room safe.\n"
-                      + "- Left room painting: torn corner reveals right room cabinet code.\n"
-                      + "- Main room: PC password \""+ computerRiddle +"\", hint-only. Solves keypad; code on right room blackboard.\n"
-                      + "- Right room: bookshelf has left room slider combo.";
+    String gamePrompt =
+        "You're a general in an infiltration game; speak firmly, no apologies. "
+            + "I can get "
+            + hintCount
+            + " hints max. "
+            + "For paper clues, say: \"Stand-by, I-OPS decrypting\". "
+            + "Offer a riddle with answer \""
+            + leftRiddle
+            + "\", but don't reveal it. "
+            + "Hints start: \"Agent, I-OPS suggests...\".\n"
+            + "\nGame Info:\n"
+            + "- Left room: radio needs slider setup; key opens main room safe.\n"
+            + "- Left room painting: torn corner reveals right room cabinet code.\n"
+            + "- Main room: PC password \""
+            + computerRiddle
+            + "\", hint-only. Solves keypad; code on right room blackboard.\n"
+            + "- Right room: bookshelf has left room slider combo.";
+
     return gamePrompt;
   }
 
   public static String getPasswordRiddle(String riddleAnswer) {
-    return "Generate a short riddle, no more than 3 sentences long with the answer being "+ riddleAnswer +"."
-               + " This riddle should be relatively easy to solve. The riddle is to solve the"
-               + " password for the computer.";
+    return "Generate a short riddle, no more than 3 sentences long with the answer being "
+        + riddleAnswer
+        + "."
+        + " This riddle should be relatively easy to solve. The riddle is to solve the"
+        + " password for the computer.";
   }
 
   public static String initialiseCommander() {
@@ -49,8 +59,13 @@ public class GptPromptEngineering {
     return "give me a riddle.";
   }
 
-  // Update the number of hints, and the riddle we have later.
+  /**
+   * Update the number of hints, and the riddle we have later.
+   *
+   * @param sb the string builder to append to
+   */
   private static void addGameIntro(StringBuilder sb) {
+    // Tell chat GPT the premise of the game to prompt what to say correctly
     sb.append("You are a high-ranking general in an infiltration mission game.")
         .append("You must speak with authority and never apologize. ")
         .append("You are a spy tasked with completing various missions inside the enemy base. ")

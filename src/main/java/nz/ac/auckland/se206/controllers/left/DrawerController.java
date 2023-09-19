@@ -1,8 +1,6 @@
 package nz.ac.auckland.se206.controllers.left;
 
 import java.security.SecureRandom;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -109,14 +106,11 @@ public class DrawerController extends Commander implements TimerObserver {
           try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
 
-  
-                          try {
-                            CommanderController.getInstance()
-                                .sendForUser(
-                                    GptPromptEngineering.getRiddle());
-                          } catch (Exception e) {
-                            e.printStackTrace();
-                          }
+            try {
+              CommanderController.getInstance().sendForUser(GptPromptEngineering.getRiddle());
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
             // Disable the button.
             decrypt.setDisable(true);
 

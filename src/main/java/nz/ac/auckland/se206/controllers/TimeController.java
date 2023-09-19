@@ -64,7 +64,10 @@ public class TimeController {
       int hints = GameState.numHints.get();
       gptHints = (hints == 0) ? "No" : (hints == 100) ? "Unlimited" : "5";
       // Tell GPT The game information.
-      CommanderController.getInstance().updateGPT(GptPromptEngineering.start(gptHints, GameState.leftRiddleAnswer, GameState.mainRiddleAnswer));
+      CommanderController.getInstance()
+          .updateGpt(
+              GptPromptEngineering.start(
+                  gptHints, GameState.leftRiddleAnswer, GameState.mainRiddleAnswer));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -78,13 +81,14 @@ public class TimeController {
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
 
     // TO SHOW HOW TEXT ROLL OUT WORKS, CAN DELETE LATER
-    Platform.runLater(() -> {
-      try {
-        CommanderController.getInstance().updateDialogueBox(Dialogue.INITIAL.toString());
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    });
+    Platform.runLater(
+        () -> {
+          try {
+            CommanderController.getInstance().updateDialogueBox(Dialogue.INITIAL.toString());
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+        });
   }
 
   private void updateTime() {

@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 public class GameState {
 
   private static final Set<String> riddleSetOne = new HashSet<>();
-    private static final Set<String> riddleSetTwo = new HashSet<>();
+  private static final Set<String> riddleSetTwo = new HashSet<>();
   private static char[] sliderAnswer = null;
 
   /** Indicates whether the riddle has been resolved. */
@@ -64,7 +64,7 @@ public class GameState {
     riddleSetOne.add("pear");
     riddleSetOne.add("banana");
     riddleSetOne.add("book");
-    
+
     // Create riddle set for computer.
     riddleSetTwo.add("potato");
     riddleSetTwo.add("cheese");
@@ -73,14 +73,13 @@ public class GameState {
     // Update GameState:
     GameState.leftRiddleAnswer = getRandomWord(riddleSetOne);
     System.out.println(GameState.leftRiddleAnswer);
-    
+
     GameState.mainRiddleAnswer = getRandomWord(riddleSetTwo);
     System.out.println(GameState.mainRiddleAnswer);
 
     // setUp listeners to check if game is won or not.
     setupWinListeners();
   }
-
 
   /** Method to create random riddle for current game. */
   public static String getRandomWord(Set<String> set) {

@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
-import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.left.LeftRoomController;
@@ -90,7 +89,9 @@ public class LockerController extends Commander implements TimerObserver {
         checkAns.setVisible(false);
         GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
 
-      } else updateDialogue(Dialogue.WRONGYEAR);
+      } else {
+        updateDialogue(Dialogue.WRONGYEAR);
+      }
     }
   }
 

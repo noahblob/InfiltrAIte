@@ -39,7 +39,9 @@ public class ComputerController extends Commander implements TimerObserver {
     // Create a chat completion request and run gpt to generate the password hint
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    runGpt(new ChatMessage("user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
+    runGpt(
+        new ChatMessage(
+            "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
   }
 
   @Override
@@ -62,6 +64,7 @@ public class ComputerController extends Commander implements TimerObserver {
         new Task<>() {
           @Override
           protected ChatMessage call() {
+            // Add the message to the chat completion request, and generate a response from chatGPT
             chatCompletionRequest.addMessage(msg);
             try {
               ChatCompletionResult chatCompletionResult = chatCompletionRequest.execute();

@@ -28,6 +28,7 @@ public class TitleController {
   @FXML private ImageView zubrowka;
 
   private final Map<String, String> countryImageMap = new HashMap<>();
+  private String infinity = "\u221E";
 
   public void initialize() {
     ring.getStyleClass().add("titlerings");
@@ -48,7 +49,7 @@ public class TitleController {
   }
 
   private void initialiseCountries() {
-    setImageHover(elbonia, "EASY", "\u221E hints provided", "Elbonia");
+    setImageHover(elbonia, "EASY", infinity + " hints provided", "Elbonia");
     setImageHover(genovia, "MEDIUM", "Five hints provided", "Genovia");
     setImageHover(sanescobar, "HARD", "No Hints provided", "Sanescobar");
     setImageHover(zubrowka, "???", "???", "Zubrowka");

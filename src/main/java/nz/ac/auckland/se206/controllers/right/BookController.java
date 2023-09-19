@@ -26,7 +26,6 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class BookController extends Commander implements TimerObserver {
 
-
   @FXML private Rectangle book1;
   @FXML private Rectangle book2;
   @FXML private Rectangle book3;
@@ -65,6 +64,8 @@ public class BookController extends Commander implements TimerObserver {
   private Map<String, Text> descriptionMap = new HashMap<>();
   private String goodTitle = "Where our intelligence is stored";
 
+  private String fahrenheit = "\u00B0F";
+  private String celsius = "\u00B0C";
   private String pattern = new String(GameState.setSliders());
   private String goodDesc =
       "One of the intelligence can be found in the left room, make sure to use the sliders"
@@ -91,9 +92,13 @@ public class BookController extends Commander implements TimerObserver {
                   + "Pinch of salt\r\n"
                   + "\r\n"
                   + "Instructions:\r\n"
-                  + "Preheat the Oven: Set your oven to 350\u00B0F (175\u00B0C) and position a rack"
-                  + " in the middle. Lightly grease a 9x9 inch baking pan or line it with parchment"
-                  + " paper.\r\n");
+                  + "Preheat the Oven: Set your oven to 350"
+                  + fahrenheit
+                  + "(175"
+                  + celsius
+                  + ") and position a"
+                  + " rack in the middle. Lightly grease a 9x9 inch baking pan or line it with"
+                  + " parchment paper.\r\n");
           put(
               "The rain is never ending",
               "The small town of Riverview had seen rain before, but this was different."
@@ -121,9 +126,9 @@ public class BookController extends Commander implements TimerObserver {
                   + "\r\n"
                   + "There are two types of heaps based on the heap property:\r\n"
                   + "\r\n"
-                  + "Max Heap \u2013 In a max heap, the largest element is found at the root.\r\n"
+                  + "Max Heap - In a max heap, the largest element is found at the root.\r\n"
                   + "\r\n"
-                  + "Min Heap \u2013 In a min heap, the smallest element is located at the root.");
+                  + "Min Heap - In a min heap, the smallest element is located at the root.");
           put(
               "10 Programming tips even your grandma knows",
               "1- Always Save Your Work\r\n"

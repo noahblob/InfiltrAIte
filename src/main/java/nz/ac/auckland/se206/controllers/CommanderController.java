@@ -18,6 +18,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
@@ -51,7 +52,7 @@ public class CommanderController {
     dialogues = new ArrayList<>();
     messages =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    // updateGPT(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
+    updateGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
   }
 
   /**
@@ -144,13 +145,13 @@ public class CommanderController {
     new Thread(task).start();
   }
 
-  public void updateGPT(String messageContent) throws Exception {
+  public void updateGpt(String messageContent) throws Exception {
     ChatMessage msg = new ChatMessage("user", messageContent);
-    updateGPT(msg);
+    updateGpt(msg);
   }
 
   // Method to update GPT's information without any output.
-  public void updateGPT(ChatMessage msg) throws Exception {
+  public void updateGpt(ChatMessage msg) throws Exception {
 
     // Create new Task (Thread) to handle calling chatGPT.
     Task<ChatMessage> task =
@@ -224,7 +225,9 @@ public class CommanderController {
         .addListener(
             (ListChangeListener<ChatMessage>)
                 c -> {
-                  if (scroll) return;
+                  if (scroll) {
+                    return;
+                  }
                   while (c.next()) {
                     if (c.wasAdded()) {
                       scrollToBottom(textArea);
@@ -306,7 +309,7 @@ public class CommanderController {
   // Method to generate commander text roll out on each screen.
   public void textRollout(String message, TextArea dialogue) {
 
-    //Clear existing dialogue (in case of spam clicks)
+    // Clear existing dialogue (in case of spam clicks)
     dialogue.clear();
 
     char[] chars = message.toCharArray();
