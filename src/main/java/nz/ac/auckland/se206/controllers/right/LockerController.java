@@ -66,7 +66,7 @@ public class LockerController extends Commander {
   @FXML
   public void onCheckAns(MouseEvent event) throws Exception {
 
-    if (!GameState.cabinetIntelfound) {
+    if (!GameState.cabinetRightIntelfound) {
       int answer = LeftRoomController.year;
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
@@ -87,10 +87,10 @@ public class LockerController extends Commander {
   private void showIntel() {
     intelFile.setOnMouseClicked(
         event -> {
-          if (!GameState.cabinetIntelfound)
+          if (!GameState.cabinetRightIntelfound)
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
           Scene currentScene = input.getScene();
-          GameState.cabinetIntelfound = true;
+          GameState.cabinetRightIntelfound = true;
           currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
         });
   }

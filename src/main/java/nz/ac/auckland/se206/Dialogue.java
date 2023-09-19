@@ -39,7 +39,7 @@ public enum Dialogue {
   WINDIALOGUE3(
       "Good work, Agent. You've done your country proud. You successfully escaped with 3 intel."
           + " Meet for extraction at the rendezvous point."),
-  CORRECTYEAR("Well done soldier you found one of the enemies intelligence"),
+  CORRECTYEAR("Well done soldier you found one of the enemy's intelligence"),
   SLIDERHINT("I wonder if moving the sliders around does anything?"),
   SLIDERSOLVED("Whats this now?"),
   DEADEND("Dang, theres nothing in here but cake..."),

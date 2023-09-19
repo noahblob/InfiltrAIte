@@ -85,7 +85,7 @@ public class RightRoomController extends Commander {
    */
   @FXML
   public void clickRiddle(MouseEvent event) throws Exception {
-    if (GameState.cabinetIntelfound)
+    if (GameState.cabinetRightIntelfound)
       CommanderController.getInstance().updateDialogueBox(Dialogue.ALREADYGOTLOCKER.toString());
 
     Polygon rectangle = (Polygon) event.getSource();
