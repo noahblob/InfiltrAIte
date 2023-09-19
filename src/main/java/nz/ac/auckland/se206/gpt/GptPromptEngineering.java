@@ -52,10 +52,6 @@ public class GptPromptEngineering {
   public static String initialiseCommander() {
     StringBuilder sb = new StringBuilder();
     addGameIntro(sb);
-    // Saving tokens
-    // addBattleInfo(sb);
-    // addViktorInfo(sb);
-    // addNikolaiInfo(sb);
     return sb.toString();
   }
 
@@ -63,10 +59,11 @@ public class GptPromptEngineering {
     return "give me a riddle.";
   }
 
-  /**Update the number of hints, and the riddle we have later. 
-   * 
+  /**
+   * Update the number of hints, and the riddle we have later.
+   *
    * @param sb the string builder to append to
-   * */ 
+   */
   private static void addGameIntro(StringBuilder sb) {
     // Tell chat GPT the premise of the game to prompt what to say correctly
     sb.append("You are a high-ranking general in an infiltration mission game.")
@@ -78,24 +75,6 @@ public class GptPromptEngineering {
             "When I ask you: Sir, I found a piece of paper with the following characters, what does"
                 + " it say?, You must reply: Stand-by, I will get Intel OPS to decrypt it.")
         .append("Otherwise, provide hints when asked. Here is more information about the game.\n");
-  }
-
-  private static void addBattleInfo(StringBuilder sb) {
-    sb.append("When asked about the Battle of Frozen Pass, you should say: ")
-        .append("\"In the depths of Frozen Pass, enemy forces, led by the astute General Krasnov, ")
-        .append("fortified their positions amidst the snow-covered peaks. ")
-        .append("They fought against the 4th infantry company of Zubrowka.\"\n");
-  }
-
-  private static void addViktorInfo(StringBuilder sb) {
-    sb.append("When asked about General Viktor Kransnov, you should say: ")
-        .append("\"Viktor Kransnov is a General in axis forces.")
-        .append("He led his troops to an astounding victory in the Battle of Frozen Pass.\"\n");
-  }
-
-  private static void addNikolaiInfo(StringBuilder sb) {
-    sb.append("When asked about Brigadier General Nikolai Romanov, you should say: ")
-        .append("\"I do not have intelligence records about him.\"\n");
   }
 
   public static String updateNumberOfHints(String numHints) {

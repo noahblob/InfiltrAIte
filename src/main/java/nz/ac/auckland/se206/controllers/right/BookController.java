@@ -54,7 +54,7 @@ public class BookController extends Commander implements TimerObserver {
 
   private List<Rectangle> bookButtons;
 
-  private String bookId;
+  private String bookCode;
 
   private ImageView book;
 
@@ -233,21 +233,21 @@ public class BookController extends Commander implements TimerObserver {
       bookInShelf.setVisible(false);
     }
 
-    if (content.get(bookId)) {
-      titleMap.get(bookId).setStyle("-fx-font-weight: bold; -fx-font-size: 25px;");
+    if (content.get(bookCode)) {
+      titleMap.get(bookCode).setStyle("-fx-font-weight: bold; -fx-font-size: 25px;");
 
-      descriptionMap.get(bookId).setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
+      descriptionMap.get(bookCode).setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
 
-      titleMap.get(bookId).setText(goodTitle);
-      descriptionMap.get(bookId).setText(goodDesc);
+      titleMap.get(bookCode).setText(goodTitle);
+      descriptionMap.get(bookCode).setText(goodDesc);
 
-      titleMap.get(bookId).setVisible(true);
-      descriptionMap.get(bookId).setVisible(true);
+      titleMap.get(bookCode).setVisible(true);
+      descriptionMap.get(bookCode).setVisible(true);
 
       CommanderController.getInstance().updateDialogueBox(Dialogue.CORRECTBOOK.toString());
     } else {
-      titleMap.get(bookId).setVisible(true);
-      descriptionMap.get(bookId).setVisible(true);
+      titleMap.get(bookCode).setVisible(true);
+      descriptionMap.get(bookCode).setVisible(true);
     }
   }
 
@@ -281,9 +281,9 @@ public class BookController extends Commander implements TimerObserver {
   public void checkBook(MouseEvent click) throws Exception {
 
     Rectangle selectedBook = (Rectangle) click.getSource();
-    bookId = selectedBook.getId();
-    currentBook = bookId.toString();
-    book = bookMap.get(bookId);
+    bookCode = selectedBook.getId();
+    currentBook = bookCode.toString();
+    book = bookMap.get(bookCode);
 
     showBook();
   }
