@@ -1,6 +1,8 @@
 package nz.ac.auckland.se206.controllers.left;
 
 import java.security.SecureRandom;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -39,6 +42,8 @@ public class DrawerController extends Commander{
   /** The key in the inventory box. It is currently set to visible. */
   private String riddleCode;
 
+  private boolean isPaperSeen;
+
   /**
    * Initializes the room view, it is called when the room loads.
    *
@@ -48,7 +53,7 @@ public class DrawerController extends Commander{
 
     super.initialize();
     objective.setText("I wonder whats inside...");
-
+    isPaperSeen = false;
     configureButtons();
     setHoverEvents();
     configureRiddle();
@@ -67,7 +72,7 @@ public class DrawerController extends Commander{
 
   private void configureRiddle() {
     riddlePane.setVisible(false);
-    riddleCode = generateEncrypted(100);
+    riddleCode = generateEncrypted(60);
     riddle.setWrapText(true);
     riddle.appendText(riddleCode);
   }
@@ -97,11 +102,23 @@ public class DrawerController extends Commander{
           try {
             CommanderController.getInstance().onSendMessage(event, dialogue);
 
-            try {
-              CommanderController.getInstance().sendForUser(GptPromptEngineering.getRiddle());
-            } catch (Exception e) {
-              e.printStackTrace();
-            }
+            // Create a Timeline to wait for 3 seconds
+            Timeline timeline =
+                new Timeline(
+                    new KeyFrame(
+                        Duration.millis(3000),
+                        ae -> {
+                          try {
+                            CommanderController.getInstance()
+                                .sendForUser(
+                                    GptPromptEngineering.getRiddle(GameState.leftRiddleAnswer));
+                          } catch (Exception e) {
+                            e.printStackTrace();
+                          }
+                        }));
+            // Play the Timeline
+            timeline.play();
+
             // Disable the button.
             decrypt.setDisable(true);
 
@@ -145,6 +162,9 @@ public class DrawerController extends Commander{
         updateDialogue(Dialogue.EMPTY);
         break;
       case "midDrawer":
+        if (!isPaperSeen) {
+          isPaperSeen = true;
+        }
         riddlePane.setVisible(true);
         decrypt.setVisible(true);
         toggleDrawers(false);
@@ -155,6 +175,11 @@ public class DrawerController extends Commander{
           updateDialogue(Dialogue.DEADEND);
           objective.setText("At least I get a snack...");
         } else if (!GameState.isKeyFound.get()) {
+
+          if (isPaperSeen) {
+            updateDialogue(Dialogue.PAPERSEEN);
+          }
+
           keyDrawer.setVisible(true);
           toggleDrawers(false);
         }

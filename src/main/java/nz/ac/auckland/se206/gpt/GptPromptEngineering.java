@@ -19,27 +19,24 @@ public class GptPromptEngineering {
         + " asks for it. Even if player gives up, do not give the answer.";
   }
 
-  public static String start(String hintCount, String leftRiddle, String computerRiddle) {
-    String gamePrompt =
-        "You're a general in an infiltration game; speak firmly, no apologies. "
-            + "I can get "
-            + hintCount
-            + " hints max. "
-            + "For paper clues, say: \"Stand-by, I-OPS decrypting\". "
-            + "Offer a riddle with answer \""
-            + leftRiddle
-            + "\", but don't reveal it. "
-            + "Hints start: \"Agent, I-OPS suggests...\".\n"
-            + "\nGame Info:\n"
-            + "- Left room: radio needs slider setup; key opens main room safe.\n"
-            + "- Left room painting: torn corner reveals right room cabinet code.\n"
-            + "- Main room: PC password \""
-            + computerRiddle
-            + "\", hint-only. Solves keypad; code on right room blackboard.\n"
-            + "- Right room: bookshelf has left room slider combo.";
-
-    return gamePrompt;
+  public static String easy(String leftRiddle) {
+    return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
+        + " solving puzzles. I can request unlimited hints. When I say Sir I found a piece"
+        + " of paper: reply with \"Stand-by, I will get I-OPS to decrypt it.\" I will ask"
+        + " you a riddle later. Give me a riddle with the answer \""
+        + leftRiddle
+        + "\". You just not, no matter what, reveal the answer. Only give hints when I ask. Will"
+        + " update you on puzzle completions to avoid redundant hints. Game Info: There's 1 intel"
+        + " each room. Once one intel is found, the next hint should point me towards the keypad."
+        + " Left room: radio needs correct slider positions for intel. bookshelf in right room"
+        + " holds book with left room slider combination. Left room: wall key opens safe in main"
+        + " room for intel. Left room: torn painting corner on table reveals code for right room"
+        + " drawer with intel. Main room: If I ask for a password, you must say I-OPS has no"
+        + " intel for this, Agent. The password unlocks keypad requiring code found on right"
+        + " room blackboard. For hints or any sort of help about the game, you MUST begin: \"Agent,"
+        + " I-OPS suggests…\";";
   }
+  ;
 
   public static String getPasswordRiddle(String riddleAnswer) {
     return "Generate a short riddle, no more than 3 sentences long with the answer being "
@@ -49,40 +46,12 @@ public class GptPromptEngineering {
         + " password for the computer.";
   }
 
-  public static String initialiseCommander() {
-    StringBuilder sb = new StringBuilder();
-    addGameIntro(sb);
-    return sb.toString();
-  }
-
-  public static String getRiddle() {
-    return "give me a riddle.";
-  }
-
-  /**
-   * Update the number of hints, and the riddle we have later.
-   *
-   * @param sb the string builder to append to
-   */
-  private static void addGameIntro(StringBuilder sb) {
-    // Tell chat GPT the premise of the game to prompt what to say correctly
-    sb.append("You are a high-ranking general in an infiltration mission game.")
-        .append("You must speak with authority and never apologize. ")
-        .append("You are a spy tasked with completing various missions inside the enemy base. ")
-        .append("I can ask you for hints. I will update you on how many hints I can have.")
-        .append("If I have used up all my hints, you CANNOT help me anymore. ")
-        .append(
-            "When I ask you: Sir, I found a piece of paper with the following characters, what does"
-                + " it say?, You must reply: Stand-by, I will get Intel OPS to decrypt it.")
-        .append("Otherwise, provide hints when asked. Here is more information about the game.\n");
-  }
-
-  public static String updateNumberOfHints(String numHints) {
-    return "I can ask you for " + numHints + " hints.";
+  public static String getRiddle(String leftRiddle) {
+    return "Game Update: Reply beginning This is what the paper says: with the riddle here";
   }
 
   // Prompt to send to GPT To update it about the current state of the game.
-  public static String updateGameState() {
-    return null;
+  public static String updateGameState(String update) {
+    return "Game Update: " + update + ". Only reply yes.";
   }
 }

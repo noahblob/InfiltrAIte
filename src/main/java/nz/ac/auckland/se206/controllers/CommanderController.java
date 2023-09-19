@@ -19,7 +19,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
 import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
@@ -51,9 +50,7 @@ public class CommanderController {
 
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
-    messages =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    updateGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
+    messages = new ChatCompletionRequest().setN(1).setTemperature(0.1).setTopP(0.5).setMaxTokens(100);
   }
 
   /**

@@ -12,7 +12,6 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -22,7 +21,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
-public class ComputerController extends Commander{
+public class ComputerController extends Commander {
 
   @FXML private Label passwordHint;
   @FXML private TextField computerPassword;
@@ -34,7 +33,7 @@ public class ComputerController extends Commander{
     super.initialize();
     objective.setText("Figure out the combination!");
 
-    // Create a chat completion request and run gpt to generate the password hint
+    /// Create a chat completion request and run gpt to generate the password hint
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     runGpt(

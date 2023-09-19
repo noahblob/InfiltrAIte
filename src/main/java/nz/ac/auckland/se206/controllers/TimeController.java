@@ -60,14 +60,9 @@ public class TimeController {
 
     // Update game master with number of hints I have.
     try {
-      String gptHints = "";
-      int hints = GameState.numHints.get();
-      gptHints = (hints == 0) ? "No" : (hints == 100) ? "Unlimited" : "5";
-      // Tell GPT The game information.
-      CommanderController.getInstance()
-          .updateGpt(
-              GptPromptEngineering.start(
-                  gptHints, GameState.leftRiddleAnswer, GameState.mainRiddleAnswer));
+      // Check if Easy, medium or hard and update prompt accordingly.
+
+      CommanderController.getInstance().updateGpt(GptPromptEngineering.easy(GameState.leftRiddleAnswer));
     } catch (Exception e) {
       e.printStackTrace();
     }
@@ -80,7 +75,6 @@ public class TimeController {
     // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
 
-    // TO SHOW HOW TEXT ROLL OUT WORKS, CAN DELETE LATER
     Platform.runLater(
         () -> {
           try {
