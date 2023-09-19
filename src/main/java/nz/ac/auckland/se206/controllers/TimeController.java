@@ -61,13 +61,13 @@ public class TimeController {
 
     // Check if Easy, medium or hard and update prompt accordingly.
 
-    if (GameState.difficulty == 1) {
+    if (GameState.difficulty.get() == 1) {
       CommanderController.getInstance()
           .updateGpt(GptPromptEngineering.easy(GameState.leftRiddleAnswer));
-    } else if (GameState.difficulty == 2) {
+    } else if (GameState.difficulty.get() == 2) {
       // Update to medium later
       CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.medium(GameState.leftRiddleAnswer,5));
+          .updateGpt(GptPromptEngineering.medium(GameState.leftRiddleAnswer, 5));
     } else {
       CommanderController.getInstance()
           .updateGpt(GptPromptEngineering.hard(GameState.leftRiddleAnswer));

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -28,7 +29,7 @@ public class GameState {
   public static BooleanProperty isGameWon = new SimpleBooleanProperty(false);
 
   /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD. */
-  public static int difficulty = 0;
+  public static IntegerProperty difficulty = new SimpleIntegerProperty();
 
   /** Indicates current country we are infiltrating */
   public static String country = null;
