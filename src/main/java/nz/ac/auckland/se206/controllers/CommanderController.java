@@ -184,7 +184,6 @@ public class CommanderController {
 
             // Check if the response contains keywords determining if its a hint (Medium only).
             if (GameState.difficulty.get() == 2
-                && gptResponse.getContent().contains("I-OPS suggests")
                 && gptResponse.getContent().contains("I-OPS suggests")) {
               int numHints = GameState.numHints.get();
               numHints--;

@@ -51,7 +51,7 @@ public abstract class Commander implements TimerObserver {
 
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
-    key.visibleProperty().bind(GameState.isKeyFound);
+    key.visibleProperty().bind(GameState.doePlayerHaveKey);
 
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     if (notes == null) {
@@ -87,12 +87,14 @@ public abstract class Commander implements TimerObserver {
   }
 
   protected void setupTimerAction() {
+    // Get the timer label of the current scene.
+    Scene currentScene = this.send.getScene();
     TimerClass.getInstance()
         .setFinished(
             () -> {
               Platform.runLater(
                   () -> {
-                    Scene currentScene = input.getScene();
+                    // Change to win/lose screen.
                     currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
                   });
             });

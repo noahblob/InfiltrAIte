@@ -173,7 +173,7 @@ public class DrawerController extends Commander {
         if (GameState.isRiddleResolved) {
           updateDialogue(Dialogue.DEADEND);
           objective.setText("At least I get a snack...");
-        } else if (!GameState.isKeyFound.get()) {
+        } else {
 
           if (isPaperSeen) {
             updateDialogue(Dialogue.PAPERSEEN);

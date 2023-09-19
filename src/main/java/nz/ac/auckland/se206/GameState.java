@@ -20,7 +20,7 @@ public class GameState {
   public static boolean isRiddleResolved = false;
 
   /** Indicates whether the key to the cabinet has been found. */
-  public static BooleanProperty isKeyFound = new SimpleBooleanProperty(false);
+  public static BooleanProperty doePlayerHaveKey = new SimpleBooleanProperty(false);
 
   /** Indicates whether the keypad has had the correct digits input. */
   public static BooleanProperty isKeypadSolved = new SimpleBooleanProperty(false);

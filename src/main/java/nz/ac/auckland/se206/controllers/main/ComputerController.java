@@ -31,7 +31,7 @@ public class ComputerController extends Commander {
 
   public void initialize() throws Exception {
     super.initialize();
-    objective.setText("Figure out the combination!");
+    objective.setText("I wonder what could be on the computer...");
 
     /// Create a chat completion request and run gpt to generate the password hint
     chatCompletionRequest =
