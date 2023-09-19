@@ -17,13 +17,12 @@ import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class LeftRoomController extends Commander implements TimerObserver {
+public class LeftRoomController extends Commander {
 
   private enum Object {
     RADIO,
@@ -77,7 +76,6 @@ public class LeftRoomController extends Commander implements TimerObserver {
     setPopups();
     setHoverEvents();
     generateYear();
-    TimerClass.add(this);
   }
 
   private void clickDoor() {
@@ -205,11 +203,5 @@ public class LeftRoomController extends Commander implements TimerObserver {
         updateDialogue(Dialogue.EMPTY);
         break;
     }
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 }

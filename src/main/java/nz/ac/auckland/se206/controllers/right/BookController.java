@@ -17,14 +17,12 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
-import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class BookController extends Commander implements TimerObserver {
+public class BookController extends Commander {
 
   @FXML private Rectangle book1;
   @FXML private Rectangle book2;
@@ -164,7 +162,6 @@ public class BookController extends Commander implements TimerObserver {
     // Initialise phone.
     super.initialize();
     objective.setText("Wonder which book can help me?");
-    TimerClass.add(this);
 
     bookMap.put("book1", actual1);
     bookMap.put("book2", actual2);
@@ -210,12 +207,6 @@ public class BookController extends Commander implements TimerObserver {
 
       availableBadTitles.remove(randomIndex);
     }
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 
   /**

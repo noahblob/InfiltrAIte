@@ -11,14 +11,12 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
-import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.left.LeftRoomController;
 
 /** Controller class for the room view. */
-public class LockerController extends Commander implements TimerObserver {
+public class LockerController extends Commander {
 
   @FXML private Label first;
   @FXML private Label second;
@@ -27,13 +25,12 @@ public class LockerController extends Commander implements TimerObserver {
   @FXML private ImageView intelFile;
   @FXML private ImageView roomimage;
   @FXML private Button checkAns;
+  @FXML private Button goBack;
 
   private int one;
   private int two;
   private int three;
   private int four;
-
-  private boolean isIntelGathered = false;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -44,13 +41,6 @@ public class LockerController extends Commander implements TimerObserver {
     super.initialize();
     one = two = three = four = 0;
     objective.setText("Whats the correct combination?");
-    TimerClass.add(this);
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 
   /**
@@ -61,7 +51,6 @@ public class LockerController extends Commander implements TimerObserver {
    */
   @FXML
   public void clickDoor(MouseEvent event) throws IOException {
-    System.out.println("door clicked");
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
@@ -77,22 +66,33 @@ public class LockerController extends Commander implements TimerObserver {
   @FXML
   public void onCheckAns(MouseEvent event) throws Exception {
 
-    if (!isIntelGathered) {
+    if (!GameState.cabinetIntelfound) {
       int answer = LeftRoomController.year;
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
         updateDialogue(Dialogue.CORRECTYEAR);
-        isIntelGathered = true;
         intelFile.setDisable(false);
         intelFile.setVisible(true);
         roomimage.setVisible(false);
         checkAns.setVisible(false);
-        GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+        goBack.setVisible(false);
+        showIntel();
 
       } else {
         updateDialogue(Dialogue.WRONGYEAR);
       }
     }
+  }
+
+  private void showIntel() {
+    intelFile.setOnMouseClicked(
+        event -> {
+          if (!GameState.cabinetIntelfound)
+            GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+          Scene currentScene = input.getScene();
+          GameState.cabinetIntelfound = true;
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
+        });
   }
 
   /**

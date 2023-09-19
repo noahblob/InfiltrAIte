@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Queue;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.ListChangeListener;
@@ -75,41 +76,12 @@ public class CommanderController {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  private ChatMessage runGpt(ChatMessage msg) {
-
-    // Create new Task (Thread) to handle calling chatGPT.
-    Task<ChatMessage> task =
-        new Task<>() {
-          @Override
-          protected ChatMessage call() throws Exception {
-            messages.addMessage(msg);
-            try {
-              ChatCompletionResult chatCompletionResult = messages.execute();
-              Choice result = chatCompletionResult.getChoices().iterator().next();
-
-              messages.addMessage(result.getChatMessage());
-              return result.getChatMessage();
-            } catch (ApiProxyException e) {
-              e.printStackTrace();
-              return null;
-            }
-          }
-        };
-    task.setOnSucceeded(
-        workerStateEvent -> {
-          ChatMessage result = task.getValue();
-          appendChatMessage(result);
-        });
-
-    // Optional: catch any exceptions thrown during the task execution.
-    task.setOnFailed(
-        workerStateEvent -> {
-          Throwable ex = task.getException();
-          ex.printStackTrace();
-        });
-
-    new Thread(task).start();
-    return msg;
+  private ChatMessage runGpt(ChatMessage msg) throws Exception {
+    messages.addMessage(msg);
+    ChatCompletionResult chatCompletionResult = messages.execute();
+    Choice result = chatCompletionResult.getChoices().iterator().next();
+    messages.addMessage(result.getChatMessage());
+    return result.getChatMessage();
   }
 
   // For TextArea input
@@ -184,8 +156,11 @@ public class CommanderController {
       return;
     }
     ChatMessage msg = new ChatMessage("user", message);
+    appendChatMessage(msg);
 
-    // Asynchronous task to get GPT response
+    ChatMessage transmittingMsg = new ChatMessage("commander", "Transmitting...");
+    appendChatMessage(transmittingMsg);
+
     Task<ChatMessage> task =
         new Task<>() {
           @Override
@@ -197,9 +172,14 @@ public class CommanderController {
         e -> {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
-            javafx.application.Platform.runLater(
+            Platform.runLater(
                 () -> {
-                  appendChatMessage(gptResponse);
+                  phoneScreens.forEach(
+                      screen ->
+                          screen
+                              .getItems()
+                              .remove(transmittingMsg)); // Remove "Transmitting..." message
+                  appendChatMessage(gptResponse); // Add GPT's response to the UI
                 });
           }
         });

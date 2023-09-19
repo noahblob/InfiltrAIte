@@ -1,7 +1,9 @@
 package nz.ac.auckland.se206;
 
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -13,11 +15,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.controllers.SceneManager;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Abstract class representing the commander */
-public abstract class Commander {
-  
+public abstract class Commander implements TimerObserver {
+
   // Relevant FXML elements accessed across all scenes by commander
   @FXML protected TextArea objective;
   @FXML protected TextArea input;
@@ -69,12 +73,25 @@ public abstract class Commander {
     updateTimerFont();
 
     notes.setPromptText("NOTEPAD!! Write your notes here!!");
+    TimerClass.add(this);
   }
 
   /** Updates styling for timer to correct font and size upon game launch. */
   protected void updateTimerFont() {
     Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
     timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
+  }
+
+  protected void setupTimerAction() {
+    TimerClass.getInstance()
+        .setFinished(
+            () -> {
+              Platform.runLater(
+                  () -> {
+                    Scene currentScene = input.getScene();
+                    currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
+                  });
+            });
   }
 
   /**
@@ -87,6 +104,21 @@ public abstract class Commander {
   protected void onSendMessage(MouseEvent event) throws Exception {
     // Send the message to the commander controller.
     CommanderController.getInstance().onSendMessage(event, input);
+  }
+
+  @Override
+  public void timerUpdated() {
+    TimerClass timerText = TimerClass.getInstance();
+    timer.setText(timerText.getTimerLeft());
+  }
+
+  @Override
+  public void timerFinished() {
+    Platform.runLater(
+        () -> {
+          Scene currentScene = input.getScene();
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
+        });
   }
 
   /**
@@ -108,6 +140,4 @@ public abstract class Commander {
     String msg = dialogue.toString();
     CommanderController.getInstance().updateDialogueBox(msg);
   }
-
-
 }

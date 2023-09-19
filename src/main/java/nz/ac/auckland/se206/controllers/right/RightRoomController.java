@@ -8,13 +8,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
-import nz.ac.auckland.se206.TimerClass;
-import nz.ac.auckland.se206.TimerObserver;
+import nz.ac.auckland.se206.Dialogue;
+import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class RightRoomController extends Commander implements TimerObserver {
+public class RightRoomController extends Commander {
 
   public enum NumberGroup {
     ANS1,
@@ -37,7 +38,7 @@ public class RightRoomController extends Commander implements TimerObserver {
     // Initialise phone.
     super.initialize();
     objective.setText("You must find the clue!!");
-    TimerClass.add(this);
+
     final NumberGroup[] answerGroup = NumberGroup.values();
     // Randomnly select a number group
     answer = answerGroup[new Random().nextInt(answerGroup.length)];
@@ -61,12 +62,6 @@ public class RightRoomController extends Commander implements TimerObserver {
         });
   }
 
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
-  }
-
   /**
    * Handles the click event on the door.
    *
@@ -83,12 +78,15 @@ public class RightRoomController extends Commander implements TimerObserver {
   }
 
   /**
-   * Handles the click event on the vase.
+   * Handles the click event on the locker
    *
    * @param event the mouse event
+   * @throws Exception
    */
   @FXML
-  public void clickRiddle(MouseEvent event) {
+  public void clickRiddle(MouseEvent event) throws Exception {
+    if (GameState.cabinetIntelfound)
+      CommanderController.getInstance().updateDialogueBox(Dialogue.ALREADYGOTLOCKER.toString());
 
     Polygon rectangle = (Polygon) event.getSource();
     Scene currentScene = rectangle.getScene();

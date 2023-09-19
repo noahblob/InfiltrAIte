@@ -20,13 +20,12 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class RadioController extends Commander implements TimerObserver {
+public class RadioController extends Commander {
 
   public static int year;
 
@@ -77,13 +76,6 @@ public class RadioController extends Commander implements TimerObserver {
     setSliders();
     createSliderMap();
     setPigeonHole();
-    TimerClass.add(this);
-  }
-
-  @Override
-  public void timerStart() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
   }
 
   /**
