@@ -23,6 +23,7 @@ public enum Dialogue {
   FOUNDENCRYPTED("Sir, I found a piece of paper with the following characters, what does it say? "),
   KEYNEEDED("Looks like you need a key to open this drawer"),
   KEYFOUND("You found a key! I wonder what its for..."),
+  KEYUSED("Look's like that key was useful!"),
   INTELFOUND("Nice! You found some intelligence!"),
   INTELALREADYFOUND("You already found the intel in this drawer!"),
   SOLVEKEYPAD("You need to solve the keypad first!"),

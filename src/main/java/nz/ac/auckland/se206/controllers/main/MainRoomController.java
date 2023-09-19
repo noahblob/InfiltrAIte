@@ -47,7 +47,6 @@ public class MainRoomController extends Commander {
   public void initialize() throws Exception {
     super.initialize();
     objective.setText("Find intel and escape!");
-
     // separate method for left and right door hover and click events
     setDoorEvents();
   }
@@ -224,7 +223,7 @@ public class MainRoomController extends Commander {
     switch (drawer.getId()) {
       case ("topDrawer"):
         if (randomDrawer == 1) {
-          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
+          checkDrawer(GameState.doePlayerHaveKey.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -232,7 +231,7 @@ public class MainRoomController extends Commander {
       case ("midDrawer"):
         // same case for top drawer but for middle
         if (randomDrawer == 2) {
-          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
+          checkDrawer(GameState.doePlayerHaveKey.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -240,7 +239,7 @@ public class MainRoomController extends Commander {
       case ("botDrawer"):
         // same case for top and middle drawer but for bottom drawer
         if (randomDrawer == 3) {
-          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
+          checkDrawer(GameState.doePlayerHaveKey.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -258,11 +257,16 @@ public class MainRoomController extends Commander {
    * @throws Exception if the scene cannot be loaded
    */
   public void checkDrawer(boolean isKeyFound, boolean cabinetIntelFound) throws Exception {
-    CommanderController commander = CommanderController.getInstance();
     if (isKeyFound && !cabinetIntelFound) {
       // if key for cabinet has been found and cabinet intel has not yet been found, update cabinet
       // intel to being found
       intelFile.setVisible(true);
+
+      // Player uses key, so key disappears.
+      GameState.doePlayerHaveKey.set(false);
+
+      //Update commander dialogue to prompt player that key has been used.
+      updateDialogue(Dialogue.KEYUSED);
 
       // Once user has collected intel, make it invisible and update number of intel collected.
       intelFile.setOnMouseClicked(
@@ -277,12 +281,12 @@ public class MainRoomController extends Commander {
               e.printStackTrace();
             }
           });
-    } else if (isKeyFound && cabinetIntelFound) {
+    } else if (!GameState.doePlayerHaveKey.get() && cabinetIntelFound) {
       // user has already found cabinet intel
-      commander.updateDialogueBox(Dialogue.INTELALREADYFOUND.toString());
-    } else {
+      updateDialogue(Dialogue.INTELALREADYFOUND);
+    } else if (!GameState.doePlayerHaveKey.get() && !cabinetIntelFound) {
       // user is missing key to cabinet
-      commander.updateDialogueBox(Dialogue.KEYNEEDED.toString());
+      updateDialogue(Dialogue.KEYNEEDED);
     }
   }
 
