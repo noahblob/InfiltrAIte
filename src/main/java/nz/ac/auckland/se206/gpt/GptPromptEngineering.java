@@ -30,7 +30,6 @@ public class GptPromptEngineering {
                       + "- Left room painting: torn corner reveals right room cabinet code.\n"
                       + "- Main room: PC password \""+ computerRiddle +"\", hint-only. Solves keypad; code on right room blackboard.\n"
                       + "- Right room: bookshelf has left room slider combo.";
-
     return gamePrompt;
   }
 
@@ -43,10 +42,6 @@ public class GptPromptEngineering {
   public static String initialiseCommander() {
     StringBuilder sb = new StringBuilder();
     addGameIntro(sb);
-    // Saving tokens
-    // addBattleInfo(sb);
-    // addViktorInfo(sb);
-    // addNikolaiInfo(sb);
     return sb.toString();
   }
 
@@ -67,30 +62,12 @@ public class GptPromptEngineering {
         .append("Otherwise, provide hints when asked. Here is more information about the game.\n");
   }
 
-  private static void addBattleInfo(StringBuilder sb) {
-    sb.append("When asked about the Battle of Frozen Pass, you should say: ")
-        .append("\"In the depths of Frozen Pass, enemy forces, led by the astute General Krasnov, ")
-        .append("fortified their positions amidst the snow-covered peaks. ")
-        .append("They fought against the 4th infantry company of Zubrowka.\"\n");
-  }
-
-  private static void addViktorInfo(StringBuilder sb) {
-    sb.append("When asked about General Viktor Kransnov, you should say: ")
-        .append("\"Viktor Kransnov is a General in axis forces.")
-        .append("He led his troops to an astounding victory in the Battle of Frozen Pass.\"\n");
-  }
-
-  private static void addNikolaiInfo(StringBuilder sb) {
-    sb.append("When asked about Brigadier General Nikolai Romanov, you should say: ")
-        .append("\"I do not have intelligence records about him.\"\n");
-  }
-
   public static String updateNumberOfHints(String numHints) {
     return "I can ask you for " + numHints + " hints.";
   }
 
   // Prompt to send to GPT To update it about the current state of the game.
-  public static String UpdateGameState() {
+  public static String updateGameState() {
     return null;
   }
 }
