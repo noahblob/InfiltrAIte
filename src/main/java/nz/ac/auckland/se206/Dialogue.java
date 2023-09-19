@@ -29,6 +29,7 @@ public enum Dialogue {
   INCORRECT("I don't think that was the right code..."),
   FOUNDALLINTEL("You have found all required intel, time to escape!"),
   CORRECTBOOK("This book seems like it has important information"),
+  PAPERSEEN("That encrypted piece of paper might be for this drawer..."),
   WINDIALOGUE1(
       "Good work, Agent. You've done your country proud. You successfully escaped with 1 intel."
           + " Meet for extraction at the rendezvous point."),

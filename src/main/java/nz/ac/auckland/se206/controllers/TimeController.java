@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
-import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 public class TimeController {
 
@@ -54,22 +53,24 @@ public class TimeController {
   }
 
   @FXML
-  private void onClick(MouseEvent event) throws ApiProxyException {
+  private void onClick(MouseEvent event) throws Exception {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
 
     // Update game master with number of hints I have.
-    try {
-      String gptHints = "";
-      int hints = GameState.numHints.get();
-      gptHints = (hints == 0) ? "No" : (hints == 100) ? "Unlimited" : "5";
-      // Tell GPT The game information.
+
+    // Check if Easy, medium or hard and update prompt accordingly.
+
+    if (GameState.difficulty == 1) {
       CommanderController.getInstance()
-          .updateGpt(
-              GptPromptEngineering.start(
-                  gptHints, GameState.leftRiddleAnswer, GameState.mainRiddleAnswer));
-    } catch (Exception e) {
-      e.printStackTrace();
+          .updateGpt(GptPromptEngineering.easy(GameState.leftRiddleAnswer));
+    } else if (GameState.difficulty == 2) {
+      // Update to medium later
+      CommanderController.getInstance()
+          .updateGpt(GptPromptEngineering.medium(GameState.leftRiddleAnswer));
+    } else {
+      CommanderController.getInstance()
+          .updateGpt(GptPromptEngineering.hard(GameState.leftRiddleAnswer));
     }
 
     // Sets the timer time and starts it
@@ -80,7 +81,6 @@ public class TimeController {
     // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
 
-    // TO SHOW HOW TEXT ROLL OUT WORKS, CAN DELETE LATER
     Platform.runLater(
         () -> {
           try {

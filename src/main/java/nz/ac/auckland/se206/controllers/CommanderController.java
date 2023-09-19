@@ -18,6 +18,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
+import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
@@ -53,7 +54,6 @@ public class CommanderController {
     dialogues = new ArrayList<>();
     messages =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    updateGpt(new ChatMessage("user", GptPromptEngineering.initialiseCommander()));
   }
 
   /**
@@ -172,6 +172,25 @@ public class CommanderController {
         e -> {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
+
+            // Check if the response contains keywords determining if its a hint (Medium only).
+            if (GameState.difficulty == 2
+                && gptResponse.getContent().contains("I-OPS suggests")
+                && gptResponse.getContent().contains("I-OPS suggests")) {
+              int numHints = GameState.numHints.get();
+              if (numHints > 0) {
+                try {
+                  updateGpt(GptPromptEngineering.updateGameState(String.valueOf(numHints)));
+                } catch (Exception e1) {
+                  e1.printStackTrace();
+                }
+                numHints--;
+                System.out.println(GameState.numHints.get());
+                GameState.numHints.set(numHints);
+                // Decrease number of hints.
+              }
+            }
+
             Platform.runLater(
                 () -> {
                   phoneScreens.forEach(
