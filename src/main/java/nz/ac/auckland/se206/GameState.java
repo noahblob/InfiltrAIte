@@ -39,8 +39,11 @@ public class GameState {
   /** Indeicates the number of hints allowed. */
   public static SimpleIntegerProperty numHints = new SimpleIntegerProperty(0);
 
-  /** Indicates whether the player has found intel in the cabinet. */
-  public static boolean cabinetIntelfound = false;
+  /** Indicates whether the player has found intel in the right room cabinet. */
+  public static boolean cabinetRightIntelfound = false;
+
+  /** Indicates whether the player has found intel in the middle room cabinet. */
+  public static boolean cabinetMiddleIntelfound = false;
 
   /** Indicates whether the player has solved communication puzzle. */
   public static boolean isSlidersSolved = false;

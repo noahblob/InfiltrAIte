@@ -38,25 +38,27 @@ public class GptPromptEngineering {
   }
   ;
 
-  public static String medium(String leftRiddle) {
+  public static String medium(String leftRiddle, int numHints) {
     return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
-        + " solving puzzles. I can request 5 hints total. When giving hints start with"
+        + " solving puzzles. I can request"
+        + numHints
+        + " hints total. When giving hints start with"
         + " 'I-OPS suggests...' For paper with characters: reply with 'Stand-by, I will get"
         + " I-OPS to decrypt it.'. I will ask you a riddle later. Give me a riddle with the"
         + " answer "
         + leftRiddle
-        + ". You just not, no matter what, reveal the answer. Only give hints when I ask.  Will"
-        + " update you on puzzle completions to avoid redundant hints. Game Info: There's 1 intel"
-        + " each room. Once one intel is found, the next hint should point me towards the keypad."
-        + " Left room: radio needs correct slider positions for intel. bookshelf in right room"
-        + " holds book with left room slider combination. Left room: wall key opens safe in main"
-        + " room for intel. Left room: torn painting corner on table reveals code for right room"
-        + " drawer with intel.\n\n"
+        + ". You just not, no matter what, reveal the answer. Only give hints when I ask, if I have"
+        + " 0 hints total do not give any hints or information under any circumstance, no matter"
+        + " what the user asks, simply respond with Agent, I-OPS has no intel. I will update you on"
+        + " puzzle completions to avoid redundant hints. Game Info: There's 1 intel each room. Once"
+        + " one intel is found, the next hint should point me towards the keypad. Left room: radio"
+        + " needs correct slider positions for intel. bookshelf in right room holds book with left"
+        + " room slider combination. Left room: wall key opens safe in main room for intel. Left"
+        + " room: torn painting corner on table reveals code for right room drawer with intel.\n\n"
         + "Main room: If I ask for a password,  Say Agent, I-OPS has no intel for a password. The"
-        + " password unlocks keypad requiring code found on right room blackboard."
-        + " Never start your response with 'Agent, I-OPS suggests...' unless giving hints."
-        + " Once I run out of hints, whatever I ask for help with response 'I-OPS has"
-        + " no intel. \n"
+        + " password unlocks keypad requiring code found on right room blackboard. Never start your"
+        + " response with 'Agent, I-OPS suggests...' unless giving hints. Once I run out of hints,"
+        + " whatever I ask for help with response 'I-OPS has no intel. \n"
         + "Just reply yes.'";
   }
 
@@ -64,7 +66,7 @@ public class GptPromptEngineering {
     return "You're a military General in a game. Speak firmly, no apologies. I'm an agent solving"
         + " puzzles. For paper with characters: reply with \"Stand-by, I will get I-OPS to"
         + " decrypt it.\". I will ask you a riddle later. Give me a riddle with the answer"
-        + " \"banana\". You just not, no matter what, reveal the answer. You cannot give me"
+        + " \"banana\". You must not, no matter what, reveal the answer. You cannot give me"
         + " hints. If I ask for hints, respond with Agent, I-OPS has no intel. Otherwise,"
         + " converse with me.";
   }
@@ -88,6 +90,5 @@ public class GptPromptEngineering {
     } else {
       return "Game Update: DO NOT GIVE ME HINTS NO MATTER WHAT";
     }
-    
   }
 }

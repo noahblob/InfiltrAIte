@@ -163,7 +163,7 @@ public class MainRoomController extends Commander {
           commander.updateDialogueBox(
               "Don't forget, there is still "
                   + (3 - GameState.numOfIntel.get())
-                  + " more intel to find!");
+                  + " more intel to find! Although you can leave now, I will not be happy!");
         }
         clickDoorCount++;
       } else {
@@ -220,7 +220,7 @@ public class MainRoomController extends Commander {
     switch (drawer.getId()) {
       case ("topDrawer"):
         if (randomDrawer == 1) {
-          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetIntelfound);
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -228,7 +228,7 @@ public class MainRoomController extends Commander {
       case ("midDrawer"):
         // same case for top drawer but for middle
         if (randomDrawer == 2) {
-          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetIntelfound);
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -236,7 +236,7 @@ public class MainRoomController extends Commander {
       case ("botDrawer"):
         // same case for top and middle drawer but for bottom drawer
         if (randomDrawer == 3) {
-          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetIntelfound);
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -266,7 +266,7 @@ public class MainRoomController extends Commander {
             intelFile.setVisible(false);
             setCabinetVisibility(false);
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-            GameState.cabinetIntelfound = true;
+            GameState.cabinetMiddleIntelfound = true;
           });
     } else if (isKeyFound && cabinetIntelFound) {
       // user has already found cabinet intel

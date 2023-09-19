@@ -180,7 +180,8 @@ public class CommanderController {
               int numHints = GameState.numHints.get();
               if (numHints > 0) {
                 try {
-                  updateGpt(GptPromptEngineering.updateGameState(String.valueOf(numHints)));
+                  // updateGpt(GptPromptEngineering.updateGameState(String.valueOf(numHints)));
+                  updateGpt(GptPromptEngineering.medium(GameState.leftRiddleAnswer, numHints));
                 } catch (Exception e1) {
                   e1.printStackTrace();
                 }
