@@ -38,6 +38,15 @@ public class GptPromptEngineering {
   }
   ;
 
+  public static String hard(String leftRiddle) {
+    return "You're a military General in a game. Speak firmly, no apologies. I'm an agent solving"
+        + " puzzles. For paper with characters: reply with \"Stand-by, I will get I-OPS to"
+        + " decrypt it.\". I will ask you a riddle later. Give me a riddle with the answer"
+        + " \"banana\". You just not, no matter what, reveal the answer. You cannot give me"
+        + " hints. If I ask for hints, respond with Agent, I-OPS has no intel. Otherwise,"
+        + " converse with me.";
+  }
+
   public static String getPasswordRiddle(String riddleAnswer) {
     return "Generate a short riddle, no more than 3 sentences long with the answer being "
         + riddleAnswer

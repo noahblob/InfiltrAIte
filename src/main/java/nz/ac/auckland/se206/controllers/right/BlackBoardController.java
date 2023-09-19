@@ -11,12 +11,11 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import nz.ac.auckland.se206.Commander;
-import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class BlackBoardController extends Commander{
+public class BlackBoardController extends Commander {
 
   private static int ans;
 

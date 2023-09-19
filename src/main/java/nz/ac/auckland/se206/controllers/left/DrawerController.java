@@ -17,14 +17,13 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.TimerObserver;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 /** Controller class for the room view. */
-public class DrawerController extends Commander{
+public class DrawerController extends Commander {
 
   @FXML private Button back;
   @FXML private Button decrypt;
