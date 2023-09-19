@@ -138,6 +138,8 @@ public class MainRoomController extends Commander {
         setCabinetVisibility(true);
         break;
       case ("computer"):
+
+        updateDialogue(Dialogue.COMPUTERHINT);
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.COMPUTER));
         break;
       default:
@@ -168,15 +170,17 @@ public class MainRoomController extends Commander {
         clickDoorCount++;
       } else {
         // if user has found all intel, set commander message to found all intel
-        commander.updateDialogueBox(Dialogue.FOUNDALLINTEL.toString());
-
+        updateDialogue(Dialogue.FOUNDALLINTEL);
         // Switch to game over screen.
         SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
       }
-    } else {
+    } else if (GameState.isPasswordSolved) {
       // if keypad is yet to be solved
-      commander.updateDialogueBox(Dialogue.SOLVEKEYPAD.toString());
+      updateDialogue(Dialogue.SOLVEKEYPAD);
+    } else {
+      // if the computer hasn't been opened yet.
+      updateDialogue(Dialogue.DOORLOCKED);
     }
   }
 
@@ -267,6 +271,11 @@ public class MainRoomController extends Commander {
             setCabinetVisibility(false);
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
             GameState.cabinetMiddleIntelfound = true;
+            try {
+              updateDialogue(Dialogue.INTELFOUND);
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
           });
     } else if (isKeyFound && cabinetIntelFound) {
       // user has already found cabinet intel

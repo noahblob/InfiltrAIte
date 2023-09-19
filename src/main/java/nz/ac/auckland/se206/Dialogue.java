@@ -30,6 +30,8 @@ public enum Dialogue {
   FOUNDALLINTEL("You have found all required intel, time to escape!"),
   CORRECTBOOK("This book seems like it has important information"),
   PAPERSEEN("That encrypted piece of paper might be for this drawer..."),
+  DOORLOCKED("How in the world do you open the door..."),
+  COMPUTERHINT("Maybe you can open the door with this computer..."),
   WINDIALOGUE1(
       "Good work, Agent. You've done your country proud. You successfully escaped with 1 intel."
           + " Meet for extraction at the rendezvous point."),

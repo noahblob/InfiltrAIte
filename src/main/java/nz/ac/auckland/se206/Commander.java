@@ -87,12 +87,14 @@ public abstract class Commander implements TimerObserver {
   }
 
   protected void setupTimerAction() {
+    // Get the timer label of the current scene.
+    Scene currentScene = this.send.getScene();
     TimerClass.getInstance()
         .setFinished(
             () -> {
               Platform.runLater(
                   () -> {
-                    Scene currentScene = input.getScene();
+                    // Change to win/lose screen.
                     currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
                   });
             });

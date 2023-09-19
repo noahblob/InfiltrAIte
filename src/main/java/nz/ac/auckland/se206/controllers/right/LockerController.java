@@ -70,7 +70,6 @@ public class LockerController extends Commander {
       int answer = LeftRoomController.year;
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
-        updateDialogue(Dialogue.CORRECTYEAR);
         intelFile.setDisable(false);
         intelFile.setVisible(true);
         roomimage.setVisible(false);
@@ -91,6 +90,11 @@ public class LockerController extends Commander {
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
           Scene currentScene = input.getScene();
           GameState.cabinetRightIntelfound = true;
+          try {
+            updateDialogue(Dialogue.CORRECTYEAR);
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
           currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
         });
   }
