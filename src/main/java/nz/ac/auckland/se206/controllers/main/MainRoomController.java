@@ -4,6 +4,7 @@ import java.util.Random;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -23,7 +24,6 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 public class MainRoomController extends Commander {
 
   // FXML objects in room
-  @FXML private Rectangle keypadCover;
   @FXML private Button back;
   @FXML private Polygon leftDoor;
   @FXML private Polygon rightDoor;
@@ -35,6 +35,7 @@ public class MainRoomController extends Commander {
   @FXML private Rectangle botDrawer;
   @FXML private ImageView filingCabinet;
   @FXML private ImageView intelFile;
+  @FXML private ImageView roomimage;
   // Initialize a random drawer to contain intel
   private Random random = new Random();
   private int randomDrawer = 1 + random.nextInt(2);
@@ -104,14 +105,6 @@ public class MainRoomController extends Commander {
         event -> {
           rightDoor.setOpacity(0);
         });
-
-    // if password has been solved, when user hovers over keypad, it will be visible
-    keypadCover.setOnMouseEntered(
-        event -> {
-          if (GameState.isPasswordSolved) {
-            keypadCover.setVisible(false);
-          }
-        });
   }
 
   /**
@@ -130,7 +123,13 @@ public class MainRoomController extends Commander {
         doorCheck(currentScene);
         break;
       case ("keyPad"):
-        currentScene.setRoot(SceneManager.getuserInterface(AppUi.KEYPAD));
+        // if the user has solved computer password, go to keypad, otherwise update dialogue saying
+        // it seems locked
+        if (GameState.isPasswordSolved) {
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.KEYPAD));
+        } else {
+          updateDialogue(Dialogue.KEYPADLOCKED);
+        }
         break;
       case ("cabinet"):
         // set visibility of the filing cabinet and background
@@ -288,6 +287,14 @@ public class MainRoomController extends Commander {
   public void onHover(MouseEvent event) {
     // enable indicator
     Rectangle rectangle = (Rectangle) event.getSource();
+    // when hovering the keypad, if user has solved computer password then show the unlocked keypad
+    // door
+    if (rectangle.getId().equals("keyPad")) {
+      if (GameState.isPasswordSolved) {
+        roomimage.setImage(new Image("/images/startUnlocked.png"));
+      }
+    }
+
     rectangle.setOpacity(1);
   }
 
