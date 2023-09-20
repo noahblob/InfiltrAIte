@@ -5,13 +5,12 @@ public enum Dialogue {
 
   // Add more dialogue and use as game progresses. Will try to tie this to GPT in the future.
   BACKSTORY(
-      "Greetings, Agent. Your mission, should you choose to accept it, involves infiltrating"
-          + " hostile territory.\n\n"
-          + "The objective: retrieve vital intelligence critical to national"
-          + " security in a high-stakes espionage mission. You'll need to utilize your skillset in"
-          + " problem solving to complete the mission.\n"
-          + "Remember, should you be caught or killed, the agency will disavow any knowledge of"
-          + " your actions. Good luck, Agent."),
+      "Greetings, Agent.\n\nYour mission, should you choose to accept it, involves infiltrating"
+          + " hostile territory.\n"
+          + "You must exfiltrate with vital enemy intelligence critical to our national security.\n"
+          + "We have equipped you with a notepad and a phone, the phone is connected to me.\n"
+          + "Should you be caught, the country will disavow any knowledge of"
+          + " your actions.\nGood luck, Agent."),
   INITIAL(
       "Agent, good job on infiltrating the base. Go get the intel and get out of there! Remember,"
           + " if you need any help, you can contact me any time."),
