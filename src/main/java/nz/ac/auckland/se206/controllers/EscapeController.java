@@ -14,7 +14,7 @@ public class EscapeController extends TextRollout {
 
   @FXML private TextArea dialogue;
   @FXML private Button exit;
-  @FXML private Button playAgain;
+  @FXML private Button won;
   @FXML private Pane winPane;
   @FXML private Pane losePane;
 
@@ -44,11 +44,6 @@ public class EscapeController extends TextRollout {
 
   @FXML
   public void onClick(MouseEvent event) {
-    System.out.println("boop");
-
-    Button whichButton = (Button) event.getSource();
-    if (whichButton.getId().equals("exit")) {
-      System.exit(0);
-    }
+    System.exit(0);
   }
 }
