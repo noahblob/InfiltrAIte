@@ -201,7 +201,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextArea fx:id="notes" layoutX="478.0" layoutY="303.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+      <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
@@ -211,5 +211,10 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
+      <ImageView fx:id="morse" fitHeight="358.0" fitWidth="406.0" layoutX="50.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@../images/morse.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
