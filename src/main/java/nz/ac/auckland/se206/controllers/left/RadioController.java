@@ -64,11 +64,13 @@ public class RadioController extends Commander {
    */
   public void initialize() throws Exception {
 
+    // print answer to console for development purposes
     System.out.println(String.valueOf(GameState.setSliders()));
 
     super.initialize();
     objective.setText("Hmm I wonder what this does...");
 
+    // Set up all elements of the slider pane so answer can be set
     sineWave.setVisible(false);
     answer = GameState.setSliders();
     isDialogueUpdated = false;

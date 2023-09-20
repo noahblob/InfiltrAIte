@@ -6,8 +6,6 @@ import javafx.scene.Parent;
 
 public class SceneManager {
 
-  private static AppUi currentScene = null;
-
   public enum AppUi {
     START,
     TITLE,
@@ -26,6 +24,8 @@ public class SceneManager {
     ESCAPE,
     END
   }
+
+  private static AppUi currentScene = null;
 
   private static Map<AppUi, Parent> sceneMap = new HashMap<>();
 

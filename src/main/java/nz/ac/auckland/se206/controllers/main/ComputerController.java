@@ -133,6 +133,8 @@ public class ComputerController extends Commander {
    * @throws Exception if there is an error communicating with the API proxy
    */
   public void checkPassword(String currentGuess) throws Exception {
+    // if the password has not already been solved, check if the users input answer is correct and
+    // update commander dialogue and gamestate accordingly
     if (!GameState.isPasswordSolved) {
       if (!currentGuess.equals(GameState.mainRiddleAnswer)) {
         updateDialogue(Dialogue.WRONGPASSCODE);
@@ -142,6 +144,8 @@ public class ComputerController extends Commander {
         GameState.isPasswordSolved = true;
       }
     } else {
+      // in the case user has already solved the passcode, remind them that it has already been
+      // solved
       updateDialogue(Dialogue.ALREADYSOLVED);
     }
   }

@@ -85,7 +85,9 @@ public class LeftRoomController extends Commander {
   }
 
   private void createRoom() {
+    // Initialize all objects in the room into a hashmap
     objects = new HashMap<>();
+    // This will allow us to check which object was clicked on
     objects.put(communications, Object.RADIO);
     objects.put(drawer, Object.DRAWER);
     objects.put(painting, Object.PAINT);
@@ -99,6 +101,9 @@ public class LeftRoomController extends Commander {
   }
 
   private void setHoverEvents() {
+    // When a user hovers over some relevant object in the room, it should highlight yellow
+    // indicating the user can interact with it, this sets that hover event up for all objects in
+    // the left room
     setOpacityOnHover(door);
     setOpacityOnHover(painting);
     setOpacityOnHover(painting1);
@@ -163,6 +168,7 @@ public class LeftRoomController extends Commander {
   @FXML
   public void onClick(MouseEvent event) throws Exception {
 
+    // Get the scene and type of the object that was clicked on
     Shape clickedObject = (Shape) event.getSource();
     Scene currentScene = clickedObject.getScene();
     Object type = objects.get(clickedObject);
@@ -183,6 +189,7 @@ public class LeftRoomController extends Commander {
         showPopup(poster2);
         break;
       case RADIO:
+        // update commander dialogue accordingly and move to radio fxml
         if (!isRadioOpened) {
           updateDialogue(Dialogue.SLIDERHINT);
           isRadioOpened = true;
@@ -194,6 +201,7 @@ public class LeftRoomController extends Commander {
         toggleYear(true);
         break;
       case DRAWER:
+        // move to drawer fxml
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.DRAWER));
         break;
       case HANGER:
@@ -204,7 +212,7 @@ public class LeftRoomController extends Commander {
         break;
       case MORSE:
         showPopup(morse);
-      break;
+        break;
       default:
         updateDialogue(Dialogue.EMPTY);
         break;

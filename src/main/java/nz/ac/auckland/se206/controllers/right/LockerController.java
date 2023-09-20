@@ -65,38 +65,42 @@ public class LockerController extends Commander {
    */
   @FXML
   public void onCheckAns(MouseEvent event) throws Exception {
-
+    // If the right cabinet intel has not been found, check if the answer is correct
     if (!GameState.cabinetRightIntelfound) {
       int answer = LeftRoomController.year;
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
+        // if the user answers correct, show them the intel file
         intelFile.setDisable(false);
         intelFile.setVisible(true);
         roomimage.setVisible(false);
         checkAns.setVisible(false);
         goBack.setVisible(false);
         showIntel();
-
       } else {
+        // Otherwise update commander dialogue to alert player they have guessed incorrectly
         updateDialogue(Dialogue.WRONGYEAR);
       }
     }
   }
 
   private void showIntel() {
+    // On the event of the intel file being clicked, update intel count if the right cabinet intel
+    // is yet to be found, and update commander dialogue
     intelFile.setOnMouseClicked(
         event -> {
           if (!GameState.cabinetRightIntelfound) {
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
           }
-            Scene currentScene = input.getScene();
-            GameState.cabinetRightIntelfound = true;
-            try {
-              updateDialogue(Dialogue.CORRECTYEAR);
-            } catch (Exception e) {
-              e.printStackTrace();
-            }
-            currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
+          Scene currentScene = input.getScene();
+          GameState.cabinetRightIntelfound = true;
+          try {
+            updateDialogue(Dialogue.CORRECTYEAR);
+          } catch (Exception e) {
+            e.printStackTrace();
+          }
+          // go back to room upon clicking on intel
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
         });
   }
 
@@ -108,7 +112,7 @@ public class LockerController extends Commander {
   @FXML
   public void increase(MouseEvent event) {
     Rectangle rect = (Rectangle) event.getSource();
-    
+
     // Check which rectangle is clicked then increase the number shown.
     switch (rect.getId()) {
       case "upOne":
@@ -116,15 +120,15 @@ public class LockerController extends Commander {
         first.setText(String.valueOf(one));
         break;
       case "upTwo":
-        two = (two == 9) ? 0: ++two;
+        two = (two == 9) ? 0 : ++two;
         second.setText(String.valueOf(two));
         break;
       case "upThree":
-        three = (three == 9) ? 0: ++three;
+        three = (three == 9) ? 0 : ++three;
         third.setText(String.valueOf(three));
         break;
       case "upFour":
-        four = (four == 9) ? 0: ++four;
+        four = (four == 9) ? 0 : ++four;
         fourth.setText(String.valueOf(four));
         break;
       default:
@@ -143,19 +147,19 @@ public class LockerController extends Commander {
     // Check which rectangle was clicked and then decrement the number shown.
     switch (rect.getId()) {
       case "downOne":
-        one = (one == 0) ? 9: --one; // decrement unless 0, then set to 1.
+        one = (one == 0) ? 9 : --one; // decrement unless 0, then set to 1.
         first.setText(String.valueOf(one));
         break;
       case "downTwo":
-        two = (two == 0) ? 9: --two;
+        two = (two == 0) ? 9 : --two;
         second.setText(String.valueOf(two));
         break;
       case "downThree":
-        three = (three == 0) ? 9: --three;
+        three = (three == 0) ? 9 : --three;
         third.setText(String.valueOf(three));
         break;
       case "downFour":
-        four = (four == 0) ? 9: --four;
+        four = (four == 0) ? 9 : --four;
         fourth.setText(String.valueOf(four));
         break;
       default:

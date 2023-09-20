@@ -134,14 +134,18 @@ public abstract class Commander implements TimerObserver {
   }
 
   public void setupHints() {
+    // Depending on difficulty setting of the game, show how many hints the user has
     switch (GameState.difficulty.get()) {
       case 1:
+        // infinite for easy
         hints.setText("\u221E");
         break;
       case 2:
+        // 5 for medium
         hints.textProperty().bind(Bindings.concat("x", GameState.numHints.asString()));
         break;
       case 3:
+        // none for hard
         hints.setText("x0");
         break;
       default:

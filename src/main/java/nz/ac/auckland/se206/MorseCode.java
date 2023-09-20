@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class MorseCode {
 
-  private static final Map<Character,String> MORSE_CODE_MAP;
+  private static final Map<Character, String> MORSE_CODE_MAP;
 
   static {
     MORSE_CODE_MAP = new HashMap<>();
     MORSE_CODE_MAP.put('a', ".-");
     MORSE_CODE_MAP.put('b', "-...");
-     MORSE_CODE_MAP.put('c', "-.-.");
+    MORSE_CODE_MAP.put('c', "-.-.");
     MORSE_CODE_MAP.put('d', "-..");
     MORSE_CODE_MAP.put('e', ".");
     MORSE_CODE_MAP.put('f', "..-.");
@@ -42,17 +42,16 @@ public class MorseCode {
 
     StringBuilder morseCode = new StringBuilder();
     // Loop through the word and convert the word to morse code
-      for (char c : word.toLowerCase().toCharArray()) {
-        if (MORSE_CODE_MAP.containsKey(c)) {
-          morseCode.append(MORSE_CODE_MAP.get(c)).append(" ");
-          } else {
-            // Handle space or unknown characters
-            if (c == ' ') {
-              morseCode.append("  ");
-            }
-          }
+    for (char c : word.toLowerCase().toCharArray()) {
+      if (MORSE_CODE_MAP.containsKey(c)) {
+        morseCode.append(MORSE_CODE_MAP.get(c)).append(" ");
+      } else {
+        // Handle space or unknown characters
+        if (c == ' ') {
+          morseCode.append("  ");
         }
+      }
+    }
     return morseCode.toString().trim();
   }
-
 }
