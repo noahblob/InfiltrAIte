@@ -156,12 +156,14 @@ public class BookController extends Commander {
    * @throws Exception
    */
   public void initialize() throws Exception {
+    // bind the intel to gamestate number of intel so it updates every time user finds intel
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
 
     // Initialise phone.
     super.initialize();
     objective.setText("Wonder which book can help me?");
 
+    // Initialise the book map and put all contents into each book
     bookMap.put("book1", actual1);
     bookMap.put("book2", actual2);
     bookMap.put("book3", actual3);
@@ -178,6 +180,7 @@ public class BookController extends Commander {
     descriptionMap.put("book4", description4);
     descriptionMap.put("book5", description5);
 
+    // setup content of books and add each button to a list to be used later
     setupContent();
     bookButtons = Arrays.asList(book1, book2, book3, book4, book5);
   }
@@ -251,13 +254,16 @@ public class BookController extends Commander {
    */
   @FXML
   private void onGoBackShelf() {
+    // disable the back button and hide the book
     back.setVisible(false);
     back.setDisable(true);
     book.setVisible(false);
 
+    // Make each book appear on the shelf
     for (Rectangle bookInShelf : bookButtons) {
       bookInShelf.setVisible(true);
     }
+    // Hide all the book titles and descriptions
     for (int i = 1; i <= 5; i++) {
       titleMap.get("book" + i).setVisible(false);
       descriptionMap.get("book" + i).setVisible(false);

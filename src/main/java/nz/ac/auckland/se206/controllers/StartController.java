@@ -22,9 +22,10 @@ public class StartController extends TextRollout {
 
   @FXML
   private void onClick(MouseEvent event) {
-
+    // Get source of the click event to check which button was clicked
     Button whichButton = (Button) event.getSource();
 
+    // If user accepts the mission, move on to the game otherwise close
     if (whichButton.getId().equals("accept")) {
       Scene currentScene = whichButton.getScene();
       currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));

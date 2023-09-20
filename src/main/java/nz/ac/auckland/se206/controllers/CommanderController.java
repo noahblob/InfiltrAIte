@@ -141,14 +141,15 @@ public class CommanderController {
         new Task<>() {
           @Override
           protected ChatMessage call() throws Exception {
+            // Add current message to GPT request, and prompt GPT for a new response
             messages.addMessage(msg);
             try {
               ChatCompletionResult chatCompletionResult = messages.execute();
               Choice result = chatCompletionResult.getChoices().iterator().next();
-
               messages.addMessage(result.getChatMessage());
               return result.getChatMessage();
             } catch (ApiProxyException e) {
+              // Ensure to catch any exceptions thrown by the API proxy.
               e.printStackTrace();
               return null;
             }

@@ -57,10 +57,6 @@ public class TimerClass {
   private boolean shouldRun = false;
   private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
-  public void setFinished(Runnable call) {
-    this.finished = call;
-  }
-  
   /**
    * Constructor is private hence a new instance cannot be made with 'new TimerClass' Just a
    * mechanism to make sure that the TimerClass cant be made by unwanted code.
@@ -71,27 +67,34 @@ public class TimerClass {
     this.timeLeft = minutes * 60 + 1;
   }
 
+  public void setFinished(Runnable call) {
+    this.finished = call;
+  }
+
   /** Starts or resumes the timer from counting. */
   public void start() {
+    // start timer using a new Runnable thread
     shouldRun = true;
     scheduler.scheduleWithFixedDelay(
         new Runnable() {
           @Override
           public void run() {
-
+            // run the timer
             if (shouldRun) {
               timeLeft--;
-
+              // update timer for each observer in the different rooms
               for (TimerObserver observer : observe) {
                 observer.timerUpdated();
               }
 
+              // when user is down to 30 seconds on the clock, alert them that time is running out
               if (timeLeft == 30) {
                 Platform.runLater(
                     new Runnable() {
                       @Override
                       public void run() {
                         try {
+                          // update dialogue with alert
                           CommanderController.getInstance()
                               .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
 
@@ -99,6 +102,8 @@ public class TimerClass {
                                   new Runnable() {
                                     @Override
                                     public void run() {
+                                      // Get text to speech to alert user, tts acts as the speakers
+                                      // in enemy base
                                       tts.speak(
                                           "ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR"
                                               + " BASE!!");
@@ -113,6 +118,7 @@ public class TimerClass {
                     });
               }
 
+              // if user runs out of time, move to lost game screen
               if (timeLeft == 0) {
                 shouldRun = false;
 

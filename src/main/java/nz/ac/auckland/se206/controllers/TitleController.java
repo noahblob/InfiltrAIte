@@ -61,9 +61,10 @@ public class TitleController {
   }
 
   private void setImageHover(ImageView image, String info, String about, String country) {
-
+    // When each difficulty country is hovered over, display relevant information
     image.setOnMouseEntered(
         event -> {
+          // ensure text formatting is correct when displaying information
           changeImage(event, country, true);
           difficulty.setText(info);
           difficulty.setTextAlignment(TextAlignment.JUSTIFY);
@@ -74,6 +75,7 @@ public class TitleController {
 
     image.setOnMouseExited(
         event -> {
+          // when user is not hovering over a country, prompt them to select a country
           changeImage(event, country, false);
           difficulty.setText("DIFFICULTY");
           difficulty.setTextAlignment(TextAlignment.JUSTIFY);
