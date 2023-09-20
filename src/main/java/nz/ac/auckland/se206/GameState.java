@@ -56,7 +56,7 @@ public class GameState {
   public static boolean isPasswordSolved = false;
 
   /** Indicates the answer to the left room riddle for the current game. */
-  public static String leftRiddleAnswer = "";
+  public static String puzzleWord = "";
 
   /** Indicates the answer to the computer riddle for the current game. */
   public static String mainRiddleAnswer = "";
@@ -68,6 +68,9 @@ public class GameState {
     riddleSetOne.add("pear");
     riddleSetOne.add("banana");
     riddleSetOne.add("book");
+    riddleSetOne.add("cake");
+    riddleSetOne.add("riddlers");
+    riddleSetOne.add("aiishere");
 
     // Create riddle set for computer.
     riddleSetTwo.add("potato");
@@ -75,8 +78,8 @@ public class GameState {
     // Add more words.
 
     // Update GameState:
-    GameState.leftRiddleAnswer = getRandomWord(riddleSetOne);
-    System.out.println(GameState.leftRiddleAnswer);
+    GameState.puzzleWord = getRandomWord(riddleSetOne);
+    System.out.println(GameState.puzzleWord);
 
     GameState.mainRiddleAnswer = getRandomWord(riddleSetTwo);
     System.out.println(GameState.mainRiddleAnswer);
