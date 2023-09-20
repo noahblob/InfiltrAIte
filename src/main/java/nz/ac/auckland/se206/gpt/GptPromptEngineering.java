@@ -81,7 +81,7 @@ public class GptPromptEngineering {
   }
 
   public static String getRiddle(String leftRiddle) {
-    return "Game Update: Reply beginning This is what the paper says: with the riddle here";
+    return "Reply 'This is what the paper says:' with the riddle following that.";
   }
 
   // Prompt to send to GPT To update it about the current state of the game.
