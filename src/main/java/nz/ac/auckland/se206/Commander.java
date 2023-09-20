@@ -109,7 +109,7 @@ public abstract class Commander implements TimerObserver {
     Platform.runLater(
         () -> {
           Scene currentScene = (Scene) SceneManager.getCurrentSceneRoot().getScene();
-          currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
         });
   }
 

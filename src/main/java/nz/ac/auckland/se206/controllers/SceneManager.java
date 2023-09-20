@@ -21,7 +21,6 @@ public class SceneManager {
     BOOKSHELF,
     POPUP,
     BLACKBOARD,
-    ESCAPE,
     END
   }
 

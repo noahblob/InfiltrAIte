@@ -33,14 +33,20 @@ public enum Dialogue {
   DOORLOCKED("How in the world do you open the door..."),
   COMPUTERHINT("Maybe you can open the door with this computer..."),
   WINDIALOGUE1(
-      "Good work, Agent. You've done your country proud. You successfully escaped with 1 intel."
-          + " Meet for extraction at the rendezvous point."),
+      "Good work, Agent. You've done your country proud. You successfully escaped with 1 intel from the base. "
+      + "We now have critical information confirming the enemy's plans to launch an attack on our southern sea front. "
+      + "Your next mission is crucial. Meet for extraction at the rendezvous point"),
   WINDIALOGUE2(
-      "Good work, Agent. You've done your country proud. You successfully escaped with 2 intel."
-          + " Meet for extraction at the rendezvous point."),
-  WINDIALOGUE3(
-      "Good work, Agent. You've done your country proud. You successfully escaped with 3 intel."
-          + " Meet for extraction at the rendezvous point."),
+      "Superb work, Agent. You've done your country proud. You successfully escaped with 2 intel from the base. "
+      + "We now have critical information confirming the enemy's plans to launch an attack on our southern sea front. "
+      + "They plan to do so in approximately in T-minus 10 days."
+      + " Your next mission is crucial. Meet for extraction at the rendezvous point"),
+  WINDIALOGUE3("Outstanding, Agent! You've elevated the stakes and your nation salutes you. "
+    + "With 3 intel pieces gripped tightly in your hand, you've pierced the veil of the enemy's plans."
+    + "We've confirmed that they're plotting a devastating strike on our southern maritime stronghold in T-minus 10 days."
+    + " They're also deploying a secret agent to infiltrate us. \n\nYour mission, " 
+    + "should you choose to accept it, is nothing less than the assassination of this covert operative."
+    + " Pack your gear and meet for extraction at the rendezvous point."),
   CORRECTYEAR("Well done soldier you found one of the enemy's intelligence"),
   SLIDERHINT("I wonder if moving the sliders around does anything?"),
   SLIDERSOLVED("Whats this now?"),
