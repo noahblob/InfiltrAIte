@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 
 public class SceneManager {
 
+  private static AppUi currentScene = null;
+
   public enum AppUi {
     START,
     TITLE,
@@ -32,6 +34,11 @@ public class SceneManager {
   }
 
   public static Parent getuserInterface(AppUi ui) {
+    currentScene = ui;
     return sceneMap.get(ui);
+  }
+
+  public static Parent getCurrentSceneRoot() {
+    return sceneMap.get(currentScene);
   }
 }

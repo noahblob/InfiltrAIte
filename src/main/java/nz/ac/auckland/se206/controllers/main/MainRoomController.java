@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
@@ -153,6 +154,8 @@ public class MainRoomController extends Commander {
     if (GameState.isKeypadSolved.get()) {
       // Change scene or dialogue based on how much intel user has found
       if (GameState.numOfIntel.get() >= 1) {
+        // Pause Timer
+        TimerClass.getInstance().pause();
         // Allow user to leave room with any amount of intel
         SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));

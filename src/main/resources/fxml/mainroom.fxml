@@ -139,6 +139,9 @@
          <image>
             <Image url="@../images/intel%20(1).png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
          <styleClass>
@@ -197,6 +200,9 @@
             <Font size="37.0" />
          </font>
       </Label>
-      <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="31.0" layoutX="333.0" layoutY="260.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0" />
+      <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="31.0" layoutX="333.0" layoutY="260.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
    </children>
 </Pane>

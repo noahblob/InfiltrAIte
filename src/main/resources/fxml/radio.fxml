@@ -225,6 +225,9 @@
          <image>
             <Image url="@../images/intel%20(1).png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <Rectangle fx:id="pigeonhole" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="98.0" layoutX="378.0" layoutY="270.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
    </children>

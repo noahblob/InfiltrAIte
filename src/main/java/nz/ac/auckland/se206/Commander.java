@@ -86,20 +86,6 @@ public abstract class Commander implements TimerObserver {
     timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
   }
 
-  protected void setupTimerAction() {
-    // Get the timer label of the current scene.
-    Scene currentScene = this.send.getScene();
-    TimerClass.getInstance()
-        .setFinished(
-            () -> {
-              Platform.runLater(
-                  () -> {
-                    // Change to win/lose screen.
-                    currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
-                  });
-            });
-  }
-
   /**
    * Handles the event of user clicking send message button to commander.
    *
@@ -122,7 +108,7 @@ public abstract class Commander implements TimerObserver {
   public void timerFinished() {
     Platform.runLater(
         () -> {
-          Scene currentScene = input.getScene();
+          Scene currentScene = (Scene) SceneManager.getCurrentSceneRoot().getScene();
           currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
         });
   }
