@@ -17,7 +17,6 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
-import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -239,6 +238,7 @@ public class BookController extends Commander {
       // Prompt the user that this book may important for the game.
       updateDialogue(Dialogue.CORRECTBOOK);
     } else {
+      // Display a random text that is not the slider code.
       titleMap.get(bookCode).setVisible(true);
       descriptionMap.get(bookCode).setVisible(true);
     }
