@@ -32,7 +32,8 @@ public class LeftRoomController extends Commander {
     DOOR,
     DESK,
     NEWS,
-    HANGER
+    HANGER,
+    MORSE
   }
 
   public static int year;
@@ -50,6 +51,7 @@ public class LeftRoomController extends Commander {
   @FXML private ImageView poster;
   @FXML private ImageView poster1;
   @FXML private ImageView poster2;
+  @FXML private ImageView morse;
   @FXML private ImageView tear;
   @FXML private Label lastDigits;
   @FXML private Label intel;
@@ -93,6 +95,7 @@ public class LeftRoomController extends Commander {
     objects.put(newspaper, Object.NEWS);
     objects.put(desk, Object.DESK);
     objects.put(hanger, Object.HANGER);
+    objects.put(painting2, Object.MORSE);
   }
 
   private void setHoverEvents() {
@@ -133,6 +136,7 @@ public class LeftRoomController extends Commander {
     poster2.setVisible(false);
     tear.setVisible(false);
     lastDigits.setVisible(false);
+    morse.setVisible(false);
 
     back.setOnAction(
         event -> {
@@ -198,6 +202,9 @@ public class LeftRoomController extends Commander {
         updateDialogue(Dialogue.KEYFOUND);
         hanger.setDisable(true);
         break;
+      case MORSE:
+        showPopup(morse);
+      break;
       default:
         updateDialogue(Dialogue.EMPTY);
         break;

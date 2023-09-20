@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206.controllers.left;
 
-import java.security.SecureRandom;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
