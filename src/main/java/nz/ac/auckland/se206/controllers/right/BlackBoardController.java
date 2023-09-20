@@ -71,6 +71,7 @@ public class BlackBoardController extends Commander {
    */
   private void findDate() {
 
+    // Get the system date, then get the current day of the week.
     currentDate = LocalDate.now();
     day = currentDate.getDayOfWeek().getValue();
 
@@ -82,6 +83,7 @@ public class BlackBoardController extends Commander {
     saturday = 100 + random.nextInt(900);
     sunday = 100 + random.nextInt(900);
 
+    // Add these days to a hashmap.
     hashmap.put(1, monday);
     hashmap.put(2, tuesday);
     hashmap.put(3, wednesday);
@@ -90,6 +92,7 @@ public class BlackBoardController extends Commander {
     hashmap.put(6, saturday);
     hashmap.put(7, sunday);
 
+    // match font with image font so it is less obvious to player.
     mon.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
     tues.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
     wed.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
@@ -98,6 +101,7 @@ public class BlackBoardController extends Commander {
     sat.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
     sun.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
 
+    // Update the blackboard.
     mon.setText(Integer.toString(monday));
     tues.setText(Integer.toString(tuesday));
     wed.setText(Integer.toString(wednesday));

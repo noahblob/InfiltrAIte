@@ -38,12 +38,17 @@ public class TitleController {
   }
 
   private void initialiseImageMap() {
+    // Put respective countrys' image in a hashmap with its respective key.
+    // E represents Elbonia
     countryImageMap.put("E1", "images/countries/elbonia.png");
     countryImageMap.put("E2", "images/countries/1.png");
+    // G represents Genovia
     countryImageMap.put("G1", "images/countries/genovia.png");
     countryImageMap.put("G2", "images/countries/2.png");
+    // S represents Sanescobar
     countryImageMap.put("S1", "images/countries/z1.png");
     countryImageMap.put("S2", "images/countries/z2.png");
+    // Z represents Zubrowka
     countryImageMap.put("Z1", "images/countries/zubrowka.png");
     countryImageMap.put("Z2", "images/countries/4.png");
   }

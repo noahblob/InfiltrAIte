@@ -106,6 +106,7 @@ public class CommanderController {
   public void sendForUser(String messageContent) throws Exception {
     ChatMessage msg = new ChatMessage("user", messageContent);
 
+    // Create a new task to send a message to GPT, concurrency.
     Task<ChatMessage> task =
         new Task<>() {
           @Override
@@ -113,14 +114,13 @@ public class CommanderController {
             return runGpt(msg);
           }
         };
-
+    // If successfully completed the messsage, update the phone screen with GPT's response.
     task.setOnSucceeded(
         e -> {
           ChatMessage gptMsg = task.getValue();
-          javafx.application.Platform.runLater(
-              () -> {
-                appendChatMessage(gptMsg);
-              });
+            Platform.runLater(() -> { 
+              appendChatMessage(gptMsg);
+            });
         });
 
     new Thread(task).start();
