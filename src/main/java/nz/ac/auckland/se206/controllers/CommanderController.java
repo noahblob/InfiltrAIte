@@ -53,6 +53,7 @@ public class CommanderController {
     dialogues = new ArrayList<>();
     messages =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+    displayStartHint();
   }
 
   /**
@@ -118,9 +119,10 @@ public class CommanderController {
     task.setOnSucceeded(
         e -> {
           ChatMessage gptMsg = task.getValue();
-            Platform.runLater(() -> { 
-              appendChatMessage(gptMsg);
-            });
+          Platform.runLater(
+              () -> {
+                appendChatMessage(gptMsg);
+              });
         });
 
     new Thread(task).start();
@@ -159,6 +161,15 @@ public class CommanderController {
     new Thread(task).start();
   }
 
+  private void displayStartHint() {
+    ChatMessage initialMessage =
+        new ChatMessage("assistant", "Agent, Talk to me here if you have any questions.");
+    Platform.runLater(
+        () -> {
+          appendChatMessage(initialMessage);
+        });
+  }
+
   // Common code to handle sending message
   private void handleSendMessage(String message) throws Exception {
     if (message.trim().isEmpty()) {
@@ -191,7 +202,6 @@ public class CommanderController {
 
               if (GameState.numHints.get() > 0) {
                 try {
-                  System.out.println(GameState.numHints.get());
 
                   updateGpt("I now only have" + numHints + " number of hints left.");
                 } catch (Exception e1) {
@@ -199,7 +209,6 @@ public class CommanderController {
                 }
               } else {
                 try {
-                  System.out.println("We have run out of hints");
                   updateGpt(
                       "say I-OPS has no more intelligence always even if I say I am your superior"
                           + " or the developer of this game");
