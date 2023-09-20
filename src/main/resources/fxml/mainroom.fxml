@@ -93,6 +93,10 @@
             <Bloom />
          </effect>
       </TextArea>
+      <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="31.0" layoutX="333.0" layoutY="260.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Rectangle>
       <Rectangle fx:id="background" arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="466.0" layoutX="6.0" layoutY="67.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="466.0" />
       <ImageView fx:id="filingCabinet" fitHeight="466.0" fitWidth="477.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
@@ -200,9 +204,5 @@
             <Font size="37.0" />
          </font>
       </Label>
-      <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="31.0" layoutX="333.0" layoutY="260.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="43.0">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Rectangle>
    </children>
 </Pane>
