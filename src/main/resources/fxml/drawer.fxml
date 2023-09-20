@@ -61,10 +61,6 @@
             </TextArea>
          </children>
       </Pane>
-      <Button fx:id="decrypt" layoutX="287.0" layoutY="489.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" styleClass="send" stylesheets="@../css/styles.css" text="DECRYPT">
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor></Button>
       <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
          <effect>
             <Bloom />
