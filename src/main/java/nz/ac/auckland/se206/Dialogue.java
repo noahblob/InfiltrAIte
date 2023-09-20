@@ -53,7 +53,8 @@ public enum Dialogue {
   ALREADYGOTLOCKER("You have already collected the intelligence"),
   INTRUDERDETECED(
       "Oh no it seems like they found out you're here! Quickly finish up and get out of there!!"),
-  ALREADYSOLVED("You already solved this puzzle!");
+  ALREADYSOLVED("You already solved this puzzle!"),
+  KEYPADLOCKED("Seems like this is locked...");
   private final String msg;
 
   /**
