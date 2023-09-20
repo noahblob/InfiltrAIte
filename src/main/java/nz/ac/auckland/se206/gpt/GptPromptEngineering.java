@@ -19,7 +19,7 @@ public class GptPromptEngineering {
         + " asks for it. Even if player gives up, do not give the answer.";
   }
 
-  public static String easy(String leftRiddle) {
+  public static String getEasyPrompt(String leftRiddle) {
     return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
         + " solving puzzles. I can request unlimited hints. When I say Sir I found a piece"
         + " of paper: reply with \"Stand-by, I will get I-OPS to decrypt it.\" I will ask"
@@ -35,10 +35,9 @@ public class GptPromptEngineering {
         + " intel for this, Agent. The password unlocks keypad requiring code found on right"
         + " room blackboard. For hints or any sort of help about the game, you MUST begin: \"Agent,"
         + " I-OPS suggests…\";";
-  }
-  ;
+  };
 
-  public static String medium(String leftRiddle, int numHints) {
+  public static String getMediumPrompt(String leftRiddle, int numHints) {
     return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
         + " solving puzzles. I can request"
         + numHints
@@ -64,7 +63,7 @@ public class GptPromptEngineering {
         + "Just reply yes.'";
   }
 
-  public static String hard(String leftRiddle) {
+  public static String getHardPrompt(String leftRiddle) {
     return "You're a military General in a game. Speak firmly, no apologies. I'm an agent solving"
         + " puzzles. For paper with characters: reply with \"Stand-by, I will get I-OPS to"
         + " decrypt it.\". I will ask you a riddle later. Give me a riddle with the answer"

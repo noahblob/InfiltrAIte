@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -42,24 +43,8 @@ public class RightRoomController extends Commander {
     final NumberGroup[] answerGroup = NumberGroup.values();
     // Randomnly select a number group
     answer = answerGroup[new Random().nextInt(answerGroup.length)];
-
-    riddle.setOnMouseEntered(
-        event -> {
-          riddle.setOpacity(0.5);
-        });
-    riddle.setOnMouseExited(
-        event -> {
-          riddle.setOpacity(0);
-        });
-
-    blackboard.setOnMouseEntered(
-        event -> {
-          blackboard.setOpacity(0.5);
-        });
-    blackboard.setOnMouseExited(
-        event -> {
-          blackboard.setOpacity(0);
-        });
+    
+    setHoverEvents();
   }
 
   /**
@@ -85,14 +70,16 @@ public class RightRoomController extends Commander {
    */
   @FXML
   public void clickRiddle(MouseEvent event) throws Exception {
-    if (GameState.cabinetRightIntelfound)
-      CommanderController.getInstance().updateDialogueBox(Dialogue.ALREADYGOTLOCKER.toString());
-
-    Polygon rectangle = (Polygon) event.getSource();
-    Scene currentScene = rectangle.getScene();
-    // Update the scene to the main room
-    currentScene.setRoot(SceneManager.getuserInterface(AppUi.LOCKER));
+    if (GameState.cabinetRightIntelfound) {
+      updateDialogue(Dialogue.ALREADYGOTLOCKER);
+    } else {
+      Polygon rectangle = (Polygon) event.getSource();
+      Scene currentScene = rectangle.getScene();
+      // Update the scene to the main room
+      currentScene.setRoot(SceneManager.getuserInterface(AppUi.LOCKER));
+    }
   }
+   
 
   /**
    * Shows the blackboard this is connected to the answer for the keypad
@@ -141,4 +128,15 @@ public class RightRoomController extends Commander {
     // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.BOOKSHELF));
   }
+
+  private void setHoverEvents() {
+    setOpacityOnHover(riddle);
+    setOpacityOnHover(blackboard);
+  }
+  
+  private void setOpacityOnHover(Shape shape) {
+    shape.setOnMouseEntered(event -> shape.setOpacity(0.5));
+    shape.setOnMouseExited(event -> shape.setOpacity(0));
+  }
+
 }

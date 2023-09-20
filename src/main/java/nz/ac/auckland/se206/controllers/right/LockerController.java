@@ -86,16 +86,17 @@ public class LockerController extends Commander {
   private void showIntel() {
     intelFile.setOnMouseClicked(
         event -> {
-          if (!GameState.cabinetRightIntelfound)
+          if (!GameState.cabinetRightIntelfound) {
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-          Scene currentScene = input.getScene();
-          GameState.cabinetRightIntelfound = true;
-          try {
-            updateDialogue(Dialogue.CORRECTYEAR);
-          } catch (Exception e) {
-            e.printStackTrace();
           }
-          currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
+            Scene currentScene = input.getScene();
+            GameState.cabinetRightIntelfound = true;
+            try {
+              updateDialogue(Dialogue.CORRECTYEAR);
+            } catch (Exception e) {
+              e.printStackTrace();
+            }
+            currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
         });
   }
 
@@ -107,40 +108,23 @@ public class LockerController extends Commander {
   @FXML
   public void increase(MouseEvent event) {
     Rectangle rect = (Rectangle) event.getSource();
+    
+    // Check which rectangle is clicked then increase the number shown.
     switch (rect.getId()) {
       case "upOne":
-        if (one == 9) {
-          one = 0;
-        } else {
-          one++;
-        }
+        one = (one == 9) ? 0 : ++one; // increment unless 9, then set to 0.
         first.setText(String.valueOf(one));
         break;
-
       case "upTwo":
-        if (two == 9) {
-          two = 0;
-        } else {
-          two++;
-        }
+        two = (two == 9) ? 0: ++two;
         second.setText(String.valueOf(two));
         break;
-
       case "upThree":
-        if (three == 9) {
-          three = 0;
-        } else {
-          three++;
-        }
+        three = (three == 9) ? 0: ++three;
         third.setText(String.valueOf(three));
         break;
-
       case "upFour":
-        if (four == 9) {
-          four = 0;
-        } else {
-          four++;
-        }
+        four = (four == 9) ? 0: ++four;
         fourth.setText(String.valueOf(four));
         break;
       default:
@@ -156,40 +140,22 @@ public class LockerController extends Commander {
   @FXML
   public void decrease(MouseEvent event) {
     Rectangle rect = (Rectangle) event.getSource();
+    // Check which rectangle was clicked and then decrement the number shown.
     switch (rect.getId()) {
       case "downOne":
-        if (one == 0) {
-          one = 9;
-        } else {
-          one--;
-        }
+        one = (one == 0) ? 9: --one; // decrement unless 0, then set to 1.
         first.setText(String.valueOf(one));
         break;
-
       case "downTwo":
-        if (two == 0) {
-          two = 9;
-        } else {
-          two--;
-        }
+        two = (two == 0) ? 9: --two;
         second.setText(String.valueOf(two));
         break;
-
       case "downThree":
-        if (three == 0) {
-          three = 9;
-        } else {
-          three--;
-        }
+        three = (three == 0) ? 9: --three;
         third.setText(String.valueOf(three));
         break;
-
       case "downFour":
-        if (four == 0) {
-          four = 9;
-        } else {
-          four--;
-        }
+        four = (four == 0) ? 9: --four;
         fourth.setText(String.valueOf(four));
         break;
       default:

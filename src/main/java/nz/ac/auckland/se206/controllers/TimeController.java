@@ -63,14 +63,14 @@ public class TimeController {
 
     if (GameState.difficulty.get() == 1) {
       CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.easy(GameState.leftRiddleAnswer));
+          .updateGpt(GptPromptEngineering.getEasyPrompt(GameState.leftRiddleAnswer));
     } else if (GameState.difficulty.get() == 2) {
       // Update to medium later
       CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.medium(GameState.leftRiddleAnswer, 5));
+          .updateGpt(GptPromptEngineering.getMediumPrompt(GameState.leftRiddleAnswer, 5));
     } else {
       CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.hard(GameState.leftRiddleAnswer));
+          .updateGpt(GptPromptEngineering.getHardPrompt(GameState.leftRiddleAnswer));
     }
 
     // Sets the timer time and starts it

@@ -220,6 +220,7 @@ public class BookController extends Commander {
     back.setDisable(false);
     book.setVisible(true);
 
+    // Allow the user to click on the books on the shelf.
     for (Rectangle bookInShelf : bookButtons) {
       bookInShelf.setVisible(false);
     }
@@ -235,7 +236,8 @@ public class BookController extends Commander {
       titleMap.get(bookCode).setVisible(true);
       descriptionMap.get(bookCode).setVisible(true);
 
-      CommanderController.getInstance().updateDialogueBox(Dialogue.CORRECTBOOK.toString());
+      // Prompt the user that this book may important for the game.
+      updateDialogue(Dialogue.CORRECTBOOK);
     } else {
       titleMap.get(bookCode).setVisible(true);
       descriptionMap.get(bookCode).setVisible(true);

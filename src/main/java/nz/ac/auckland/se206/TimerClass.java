@@ -17,8 +17,14 @@ public class TimerClass {
   // Observer List which contains the classes that should show the timer
   private static List<TimerObserver> observe = new ArrayList<>();
 
-  private Runnable finished;
-  private TextToSpeech tts = new TextToSpeech();
+  /**
+   * Adds an observer to the observer list.
+   *
+   * @param observer The observer to add
+   */
+  public static void add(TimerObserver observer) {
+    observe.add(observer);
+  }
 
   /**
    * Initalize the timer with a time.
@@ -37,19 +43,6 @@ public class TimerClass {
     }
   }
 
-  public void setFinished(Runnable call) {
-    this.finished = call;
-  }
-
-  /**
-   * Adds an observer to the observer list.
-   *
-   * @param observer The observer to add
-   */
-  public static void add(TimerObserver observer) {
-    observe.add(observer);
-  }
-
   // Returns this timer instance
   public static TimerClass getInstance() {
     if (instance == null) {
@@ -58,14 +51,16 @@ public class TimerClass {
     return instance;
   }
 
-  // Time to countdown
+  private Runnable finished;
+  private TextToSpeech tts = new TextToSpeech();
   private int timeLeft;
-  // Flag which checks if the timer is running or not. Can be used when timer needs to be stopped
-  // for some reason
   private boolean shouldRun = false;
-  // Scheduler so timer goes down once every seocond
   private ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
+  public void setFinished(Runnable call) {
+    this.finished = call;
+  }
+  
   /**
    * Constructor is private hence a new instance cannot be made with 'new TimerClass' Just a
    * mechanism to make sure that the TimerClass cant be made by unwanted code.
