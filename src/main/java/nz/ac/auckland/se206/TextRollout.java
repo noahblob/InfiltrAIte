@@ -17,7 +17,9 @@ public abstract class TextRollout {
    * @param message String to be animated
    * @param dialogue TextArea to be animated
    */
-  public void textRollout(String message) {
+  public void textRollout(Dialogue text) {
+
+    String message = text.toString();
     char[] chars = message.toCharArray();
     Timeline timeline = new Timeline();
     Duration timepoint = Duration.ZERO;

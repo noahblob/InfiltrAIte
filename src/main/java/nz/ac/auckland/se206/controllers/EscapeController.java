@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TextRollout;
@@ -33,11 +34,11 @@ public class EscapeController extends TextRollout {
       Platform.runLater(
           () -> {
             if (GameState.numOfIntel.get() == 1) {
-              textRollout(Dialogue.WINDIALOGUE1.toString());
+              textRollout(Dialogue.WINDIALOGUE1);
             } else if (GameState.numOfIntel.get() == 2) {
-              textRollout(Dialogue.WINDIALOGUE2.toString());
+              textRollout(Dialogue.WINDIALOGUE2);
             } else if (GameState.numOfIntel.get() == 3) {
-              textRollout(Dialogue.WINDIALOGUE3.toString());
+              textRollout(Dialogue.WINDIALOGUE3);
             }
           });
     } else {
@@ -51,14 +52,8 @@ public class EscapeController extends TextRollout {
     // Get the button that was clicked to check against some conditionals
     Button button = (Button) event.getSource();
     if (button == playAgain) {
-      // In the case user wants to retry the game upon winning or losing, reset the game state.
-      GameState.resetGameState();
-      // Reset the commander (GPT) and the timer.
-      CommanderController.resetInstance();
-      // Create new commander controller.
-      CommanderController.getInstance();
-      TimerClass.resetInstance();
-
+      // Reset game variables and GPT
+      reset();
       // Swich to difficulty select screen.
       Scene currentScene = (Scene) SceneManager.getCurrentSceneRoot().getScene();
       currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
@@ -66,5 +61,28 @@ public class EscapeController extends TextRollout {
       // in the case user wishes to exit the game upon losing or winning
       System.exit(0);
     }
+  }
+
+  private void reset() throws Exception {
+ 
+    // In the case user wants to retry the game upon winning or losing, reset the game state.
+    GameState.resetGameState();
+    
+    // Reset the timer.
+    TimerClass.resetInstance();
+
+    // Reload specific scenes.
+    SceneManager.addUserInterface(AppUi.WATCH, App.loadFxml("time"));
+    SceneManager.addUserInterface(AppUi.MAIN, App.loadFxml("mainroom"));
+    SceneManager.addUserInterface(AppUi.RIGHT, App.loadFxml("rightroom"));
+    SceneManager.addUserInterface(AppUi.LEFT, App.loadFxml("leftroom"));
+    SceneManager.addUserInterface(AppUi.DRAWER, App.loadFxml("drawer"));
+    SceneManager.addUserInterface(AppUi.RADIO, App.loadFxml("radio"));
+    SceneManager.addUserInterface(AppUi.LOCKER, App.loadFxml("rightlocker"));
+    SceneManager.addUserInterface(AppUi.KEYPAD, App.loadFxml("keypad"));
+    SceneManager.addUserInterface(AppUi.BOOKSHELF, App.loadFxml("bookshelf"));
+    SceneManager.addUserInterface(AppUi.BLACKBOARD, App.loadFxml("blackboard"));
+    SceneManager.addUserInterface(AppUi.COMPUTER, App.loadFxml("computer"));
+
   }
 }

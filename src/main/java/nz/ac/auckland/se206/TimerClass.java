@@ -17,7 +17,6 @@ public class TimerClass {
   // Observer List which contains the classes that should show the timer
   private static List<TimerObserver> observe = new ArrayList<>();
 
-  
   // Method to reset the timer for a new game.
   public static void resetInstance() {
     instance = null;

@@ -50,7 +50,6 @@ public class RadioController extends Commander {
 
   /** The key in the inventory box. It is currently set to visible. */
   private List<Slider> sliders;
-
   private List<Label> passcode;
   private char[] code;
   private char[] answer;
@@ -93,7 +92,8 @@ public class RadioController extends Commander {
   }
 
   /** Set the correct values of each slider relative to the value of the passcode in right room. */
-  private void setSliders() {
+  public void setSliders() {
+    comms.setImage(new Image("/images/commsNew.png"));
     code = new char[6];
     sliders = List.of(slider, slider1, slider2, slider3, slider4, slider5);
     passcode = List.of(label, label1, label2, label3, label4, label5);

@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -53,7 +54,8 @@ public abstract class Commander implements TimerObserver {
 
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
-    key.visibleProperty().bind(GameState.doePlayerHaveKey);
+    BooleanBinding keyVisibilityBinding = Bindings.and(GameState.isKeyFound, Bindings.not(GameState.isKeyUsed));
+    key.visibleProperty().bind(keyVisibilityBinding);
 
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     if (notes == null) {

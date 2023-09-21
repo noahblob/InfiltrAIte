@@ -33,7 +33,6 @@ public class DrawerController extends Commander {
   @FXML private TextArea riddleBox;
   @FXML private Button check;
 
-  private boolean isPaperSeen;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -44,7 +43,6 @@ public class DrawerController extends Commander {
 
     super.initialize();
     objective.setText("I wonder whats inside...");
-    isPaperSeen = false;
     configureButtons();
     setHoverEvents();
     configurePuzzle();
