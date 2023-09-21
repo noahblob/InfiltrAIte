@@ -43,22 +43,40 @@ public class CommanderController {
   }
 
   // Instance fields
+  private final Queue<String> messageQueue;
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> dialogues;
-  private StringProperty notesProperty = new SimpleStringProperty("");
-  private StringProperty lastInputTextProperty = new SimpleStringProperty("");
+  private StringProperty notesProperty;
+  private StringProperty lastInputTextProperty;
   private boolean scroll = false;
-  private final Queue<String> messageQueue = new LinkedList<>();
   private boolean isRolling = false;
+
+  public List<TextArea> getDialogues() {
+    return dialogues;
+  }
+
+  public void setPhoneScreens(List<ListView<ChatMessage>> phoneScreens) {
+    this.phoneScreens = phoneScreens;
+  }
+  
+  public List<ListView<ChatMessage>> getPhoneScreens() {
+    return phoneScreens;
+  }
+
+  public void setDialogues(List<TextArea> dialogues) {
+    this.dialogues = dialogues;
+  }
 
   private CommanderController() throws Exception {
 
+    notesProperty = new SimpleStringProperty("");
+    messageQueue = new LinkedList<>();
+    lastInputTextProperty = new SimpleStringProperty("");
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
-    messages =
-        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
-    displayStartHint();
+    // Set Up the commander (can recall this when restarting the game)
+    setUpCommander();
   }
 
   /**
@@ -371,5 +389,16 @@ public class CommanderController {
     timeline.play();
   }
 
+  public void setUpCommander() {
+    messages = new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+    displayStartHint();
+  }
 
+  // Method to clear the phone.
+  public void clearPhones() {
+    for (ListView<ChatMessage> phonescreen : phoneScreens) {
+      // Get all the cells and clear the phone.
+      phonescreen.getItems().clear();
+    }
+  }
 }

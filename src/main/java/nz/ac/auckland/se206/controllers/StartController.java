@@ -36,6 +36,6 @@ public class StartController extends TextRollout {
 
   private void initialiseDialogue() {
     dialogue.setEditable(false);
-    Platform.runLater(() -> textRollout(Dialogue.BACKSTORY.toString()));
+    Platform.runLater(() -> textRollout(Dialogue.BACKSTORY));
   }
 }
