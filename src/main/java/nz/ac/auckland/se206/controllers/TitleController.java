@@ -57,7 +57,6 @@ public class TitleController {
     setImageHover(elbonia, "EASY", infinity + " hints provided", "Elbonia");
     setImageHover(genovia, "MEDIUM", "Five hints provided", "Genovia");
     setImageHover(sanescobar, "HARD", "No Hints provided", "Sanescobar");
-    setImageHover(zubrowka, "???", "???", "Zubrowka");
   }
 
   private void setImageHover(ImageView image, String info, String about, String country) {

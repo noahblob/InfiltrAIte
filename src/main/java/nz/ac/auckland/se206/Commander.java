@@ -47,7 +47,9 @@ public abstract class Commander implements TimerObserver {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
     objective.setEditable(false);
+    objective.setWrapText(true);
     output.setFixedCellSize(-1);
+    notes.setWrapText(true);
 
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
@@ -76,7 +78,7 @@ public abstract class Commander implements TimerObserver {
     }
     updateTimerFont();
 
-    notes.setPromptText("NOTEPAD!! Write your notes here!!");
+    notes.setPromptText("NOTEPAD: Write your findings");
     TimerClass.add(this);
   }
 
