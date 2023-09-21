@@ -136,4 +136,23 @@ public class GameState {
   private static void checkIsGameWon() {
     isGameWon.set(isKeypadSolved.get() && numOfIntel.get() >= 1);
   }
+
+  public static void resetGameState() {
+    // Reset all gamestate variables to default values for when player restarts the game.
+    isRiddleResolved = false;
+    doePlayerHaveKey = new SimpleBooleanProperty(false);
+    isKeypadSolved = new SimpleBooleanProperty(false);
+    isGameWon = new SimpleBooleanProperty(false);
+    difficulty = new SimpleIntegerProperty();
+    country = null;
+    numOfIntel = new SimpleIntegerProperty(0);
+    numHints = new SimpleIntegerProperty(0);
+    cabinetRightIntelfound = false;
+    cabinetMiddleIntelfound = false;
+    isSlidersSolved = false;
+    isPasswordSolved = false;
+    puzzleWord = "";
+    mainRiddleAnswer = "";
+    sliderAnswer = null;
+  }
 }
