@@ -41,9 +41,4 @@ public class SceneManager {
     return sceneMap.get(currentScene);
   }
 
-  public static void resetUserInterface() {
-    // clear current sceneMap and set currentScene to null
-    sceneMap.clear();
-    currentScene = null;
-  }
 }

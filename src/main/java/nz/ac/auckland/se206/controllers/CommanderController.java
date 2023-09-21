@@ -28,13 +28,18 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 /** Controller class for the chat view. */
 public class CommanderController {
 
-  private static CommanderController instance;
+  private static volatile CommanderController instance;
 
   public static CommanderController getInstance() throws Exception {
     if (instance == null) {
       instance = new CommanderController();
     }
     return instance;
+  }
+
+  // Method to delete the commandercontroller for a new game.
+  public static void resetInstance() {
+    instance = null;
   }
 
   // Instance fields
@@ -365,4 +370,6 @@ public class CommanderController {
     timeline.getKeyFrames().add(clearKeyFrame);
     timeline.play();
   }
+
+
 }

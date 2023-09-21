@@ -33,7 +33,12 @@ public class ComputerController extends Commander {
     super.initialize();
     objective.setText("I wonder what could be on the computer...");
 
-    /// Create a chat completion request and run gpt to generate the password hint
+    // Generate the riddle for current game.
+    generateRiddle();
+  }
+
+  public void generateRiddle() throws ApiProxyException {
+    // Create a chat completion request and run gpt to generate the password hint
     chatCompletionRequest =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     runGpt(
