@@ -64,7 +64,7 @@
                   <Bloom />
                </effect>
             </Label>
-            <TextArea fx:id="description" editable="false" layoutX="337.0" layoutY="378.0" prefHeight="63.0" prefWidth="128.0" promptText="test" styleClass="titlearea" stylesheets="@../css/styles.css">
+            <TextArea fx:id="description" editable="false" layoutX="337.0" layoutY="378.0" prefHeight="63.0" prefWidth="128.0" styleClass="titlearea" stylesheets="@../css/styles.css">
                <effect>
                   <Bloom />
                </effect></TextArea>

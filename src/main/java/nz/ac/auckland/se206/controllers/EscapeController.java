@@ -67,6 +67,9 @@ public class EscapeController extends TextRollout {
  
     // In the case user wants to retry the game upon winning or losing, reset the game state.
     GameState.resetGameState();
+
+    // Reset the game master.
+    CommanderController.resetInstance();
     
     // Reset the timer.
     TimerClass.resetInstance();
