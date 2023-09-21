@@ -210,9 +210,6 @@ public class LeftRoomController extends Commander {
         updateDialogue(Dialogue.KEYFOUND);
         hanger.setDisable(true);
         break;
-      case MORSE:
-        showPopup(morse);
-        break;
       default:
         updateDialogue(Dialogue.EMPTY);
         break;

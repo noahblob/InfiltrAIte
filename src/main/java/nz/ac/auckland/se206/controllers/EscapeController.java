@@ -21,7 +21,7 @@ public class EscapeController extends TextRollout {
   public void initialize() {
 
     System.out.println(GameState.isGameWon.get());
-    
+
     if (GameState.isGameWon.get()) {
       winPane.setVisible(true);
       losePane.setVisible(false);
@@ -38,6 +38,7 @@ public class EscapeController extends TextRollout {
             }
           });
     } else {
+      winPane.setVisible(false);
       losePane.setVisible(true);
     }
   }

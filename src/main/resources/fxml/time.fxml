@@ -58,7 +58,7 @@
             <Font name="Anonymous Pro Bold" size="54.0" />
          </font>
       </Label>
-      <Button fx:id="back" layoutX="14.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="136.0" styleClass="time" stylesheets="@../css/styles.css" text="BACK">
+      <Button fx:id="back" layoutX="14.0" layoutY="307.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="136.0" styleClass="time" stylesheets="@../css/styles.css" text="BACK">
          <font>
             <Font size="18.0" />
          </font>

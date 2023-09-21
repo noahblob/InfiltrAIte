@@ -47,6 +47,7 @@ public abstract class Commander implements TimerObserver {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
     objective.setEditable(false);
+    objective.setWrapText(true);
     output.setFixedCellSize(-1);
 
     // Bind key, intel, notes, input and output elements to commander controller to be passed
