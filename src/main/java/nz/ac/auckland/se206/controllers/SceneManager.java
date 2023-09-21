@@ -26,7 +26,7 @@ public class SceneManager {
 
   private static AppUi currentScene = null;
 
-  private static Map<AppUi, Parent> sceneMap = new HashMap<>();
+  public static Map<AppUi, Parent> sceneMap = new HashMap<>();
 
   public static void addUserInterface(AppUi appUserInterface, Parent root) {
     sceneMap.put(appUserInterface, root);
