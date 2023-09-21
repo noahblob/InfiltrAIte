@@ -76,7 +76,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="exit" layoutX="495.0" layoutY="462.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="115.0" styleClass="decline" stylesheets="@../css/styles.css" text="EXIT">
+      <Button fx:id="exit" layoutX="495.0" layoutY="462.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="150.0" styleClass="decline" stylesheets="@../css/styles.css" text="EXIT">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
@@ -87,7 +87,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="playAgain" layoutX="194.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="115.0" styleClass="accept" stylesheets="@../css/styles.css" text="PLAY AGAIN">
+      <Button fx:id="playAgain" layoutX="194.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="150.0" styleClass="accept" stylesheets="@../css/styles.css" text="PLAY AGAIN">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
