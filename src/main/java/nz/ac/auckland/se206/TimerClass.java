@@ -13,9 +13,15 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class TimerClass {
 
   // The timer instance, this is the only instance of the timer that should exist.
-  private static TimerClass instance;
+  private static volatile TimerClass instance;
   // Observer List which contains the classes that should show the timer
   private static List<TimerObserver> observe = new ArrayList<>();
+
+  
+  // Method to reset the timer for a new game.
+  public static void resetInstance() {
+    instance = null;
+  }
 
   /**
    * Adds an observer to the observer list.
@@ -158,4 +164,5 @@ public class TimerClass {
   public int getTimeLeftInt() {
     return timeLeft;
   }
+
 }
