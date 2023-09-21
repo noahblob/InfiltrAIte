@@ -72,7 +72,7 @@ public class ComputerController extends Commander {
         e -> {
           ChatMessage result = taskGpt.getValue();
           chatCompletionRequest.addMessage(result);
-          passwordHint.setText("paswsword hint: " + result.getContent());
+          passwordHint.setText("password hint: " + result.getContent());
         });
 
     // Optional: catch any exceptions thrown during the task execution.

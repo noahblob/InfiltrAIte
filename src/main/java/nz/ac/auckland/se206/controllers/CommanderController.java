@@ -353,7 +353,7 @@ public class CommanderController {
 
     KeyFrame clearKeyFrame =
         new KeyFrame(
-            timepoint.add(Duration.millis(1000)),
+            timepoint.add(Duration.millis(2000)),
             e -> {
               if (dialogue != null) {
                 dialogue.clear();
