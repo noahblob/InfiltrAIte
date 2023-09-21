@@ -158,6 +158,7 @@ public class MainRoomController extends Commander {
         // Allow user to leave room with any amount of intel
         SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
+        System.gc();
       } else {
         // if user has not found any intel, update them reminding them to find intel
         updateDialogue(Dialogue.NOINTELFOUND);

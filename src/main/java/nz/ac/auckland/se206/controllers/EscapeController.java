@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -24,27 +25,22 @@ public class EscapeController extends TextRollout {
 
   public void initialize() {
 
-    System.out.println(GameState.isGameWon.get());
+    // update the dialogue area with final message from commander. (UPDATE LATER BASED ON IF ALL 3
+    // Intel COLLECTED)
+    Platform.runLater(
+        () -> {
+          if (GameState.numOfIntel.get() == 1) {
+            textRollout(Dialogue.WINDIALOGUE1);
+          } else if (GameState.numOfIntel.get() == 2) {
+            textRollout(Dialogue.WINDIALOGUE2);
+          } else if (GameState.numOfIntel.get() == 3) {
+            textRollout(Dialogue.WINDIALOGUE3);
+          }
+        });
 
-    if (GameState.isGameWon.get()) {
-      winPane.setVisible(true);
-      losePane.setVisible(false);
-      // update the dialogue area with final message from commander. (UPDATE LATER BASED ON IF ALL 3
-      // Intel COLLECTED)
-      Platform.runLater(
-          () -> {
-            if (GameState.numOfIntel.get() == 1) {
-              textRollout(Dialogue.WINDIALOGUE1);
-            } else if (GameState.numOfIntel.get() == 2) {
-              textRollout(Dialogue.WINDIALOGUE2);
-            } else if (GameState.numOfIntel.get() == 3) {
-              textRollout(Dialogue.WINDIALOGUE3);
-            }
-          });
-    } else {
-      winPane.setVisible(false);
-      losePane.setVisible(true);
-    }
+    // Bind the win lose pane to the gamstate (IsgameWon)
+    winPane.visibleProperty().bind(GameState.isGameWon);
+    losePane.visibleProperty().bind(Bindings.not(GameState.isGameWon));
   }
 
   @FXML
@@ -64,28 +60,29 @@ public class EscapeController extends TextRollout {
   }
 
   private void reset() throws Exception {
- 
+
     // In the case user wants to retry the game upon winning or losing, reset the game state.
     GameState.resetGameState();
 
     // Reset the game master.
     CommanderController.resetInstance();
-    
+
     // Reset the timer.
     TimerClass.resetInstance();
 
     // Reload specific scenes.
-    SceneManager.addUserInterface(AppUi.WATCH, App.loadFxml("time"));
+    // SceneManager.addUserInterface(AppUi.WATCH, App.loadFxml("time"));
     SceneManager.addUserInterface(AppUi.MAIN, App.loadFxml("mainroom"));
-    SceneManager.addUserInterface(AppUi.RIGHT, App.loadFxml("rightroom"));
+    // SceneManager.addUserInterface(AppUi.RIGHT, App.loadFxml("rightroom"));
     SceneManager.addUserInterface(AppUi.LEFT, App.loadFxml("leftroom"));
-    SceneManager.addUserInterface(AppUi.DRAWER, App.loadFxml("drawer"));
+    // SceneManager.addUserInterface(AppUi.DRAWER, App.loadFxml("drawer"));
     SceneManager.addUserInterface(AppUi.RADIO, App.loadFxml("radio"));
     SceneManager.addUserInterface(AppUi.LOCKER, App.loadFxml("rightlocker"));
     SceneManager.addUserInterface(AppUi.KEYPAD, App.loadFxml("keypad"));
     SceneManager.addUserInterface(AppUi.BOOKSHELF, App.loadFxml("bookshelf"));
     SceneManager.addUserInterface(AppUi.BLACKBOARD, App.loadFxml("blackboard"));
     SceneManager.addUserInterface(AppUi.COMPUTER, App.loadFxml("computer"));
-
+    System.out.println(SceneManager.sceneMap.size());
+    System.gc();
   }
 }
