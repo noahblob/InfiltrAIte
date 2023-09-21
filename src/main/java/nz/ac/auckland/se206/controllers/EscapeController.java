@@ -1,21 +1,18 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.List;
-
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TextRollout;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
-import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public class EscapeController extends TextRollout {
 
@@ -70,20 +67,22 @@ public class EscapeController extends TextRollout {
  
     // In the case user wants to retry the game upon winning or losing, reset the game state.
     GameState.resetGameState();
-
-    // Save phone and dialogue boxes from previous commander controller.
-    List<ListView<ChatMessage>> phoneScreens = CommanderController.getInstance().getPhoneScreens();
-    List<TextArea> dialogues = CommanderController.getInstance().getDialogues();
-    // Reset the commander (GPT) and the timer.
-    CommanderController.resetInstance();
-    // Create new commander controller give all the phoneScreens and dialogue boxes to new commander.
-    CommanderController.getInstance().setPhoneScreens(phoneScreens);
-    CommanderController.getInstance().setDialogues(dialogues);
-    // Clear all the phone screens.
-    CommanderController.getInstance().clearPhones();
     
     // Reset the timer.
     TimerClass.resetInstance();
+
+    // Reload specific scenes.
+    SceneManager.addUserInterface(AppUi.WATCH, App.loadFxml("time"));
+    SceneManager.addUserInterface(AppUi.MAIN, App.loadFxml("mainroom"));
+    SceneManager.addUserInterface(AppUi.RIGHT, App.loadFxml("rightroom"));
+    SceneManager.addUserInterface(AppUi.LEFT, App.loadFxml("leftroom"));
+    SceneManager.addUserInterface(AppUi.DRAWER, App.loadFxml("drawer"));
+    SceneManager.addUserInterface(AppUi.RADIO, App.loadFxml("radio"));
+    SceneManager.addUserInterface(AppUi.LOCKER, App.loadFxml("rightlocker"));
+    SceneManager.addUserInterface(AppUi.KEYPAD, App.loadFxml("keypad"));
+    SceneManager.addUserInterface(AppUi.BOOKSHELF, App.loadFxml("bookshelf"));
+    SceneManager.addUserInterface(AppUi.BLACKBOARD, App.loadFxml("blackboard"));
+    SceneManager.addUserInterface(AppUi.COMPUTER, App.loadFxml("computer"));
 
   }
 }

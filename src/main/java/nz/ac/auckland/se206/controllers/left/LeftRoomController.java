@@ -205,10 +205,14 @@ public class LeftRoomController extends Commander {
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.DRAWER));
         break;
       case HANGER:
-        // Find the key to main room drawer.
-        GameState.doePlayerHaveKey.set(true);
-        updateDialogue(Dialogue.KEYFOUND);
-        hanger.setDisable(true);
+        // If the key is not yet found, give player a key.
+        if (!GameState.isKeyFound.get()) {
+          // Find the key to main room drawer.
+          GameState.isKeyFound.set(true);
+          updateDialogue(Dialogue.KEYFOUND);
+        } else {
+          updateDialogue(Dialogue.EMPTY);
+        }
         break;
       default:
         updateDialogue(Dialogue.EMPTY);

@@ -20,7 +20,10 @@ public class GameState {
   public static boolean isRiddleResolved = false;
 
   /** Indicates whether the key to the cabinet has been found. */
-  public static BooleanProperty doePlayerHaveKey = new SimpleBooleanProperty(false);
+  public static BooleanProperty isKeyFound = new SimpleBooleanProperty(false);
+
+  /** Indicates whether the key to the cabinet has been used. */
+  public static BooleanProperty isKeyUsed = new SimpleBooleanProperty(false);
 
   /** Indicates whether the keypad has had the correct digits input. */
   public static BooleanProperty isKeypadSolved = new SimpleBooleanProperty(false);
@@ -141,7 +144,8 @@ public class GameState {
   // Reset all game state variables to default values for when the player restarts the game.
   
   isRiddleResolved = false;
-  doePlayerHaveKey.set(false);
+  isKeyFound.set(false);
+  isKeyUsed.set(false);
   isKeypadSolved.set(false);
   isGameWon.set(false);
 
