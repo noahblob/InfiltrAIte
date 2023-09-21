@@ -13,8 +13,10 @@ import nz.ac.auckland.se206.TextRollout;
 public class EscapeController extends TextRollout {
 
   @FXML private TextArea dialogue;
-  @FXML private Button exit;
-  @FXML private Button won;
+  @FXML private Button exitWin;
+  @FXML private Button exitLose;
+  @FXML private Button retryWin;
+  @FXML private Button retryLose;
   @FXML private Pane winPane;
   @FXML private Pane losePane;
 
@@ -45,6 +47,16 @@ public class EscapeController extends TextRollout {
 
   @FXML
   public void onClick(MouseEvent event) {
-    System.exit(0);
+    // Get the button that was clicked to check against some conditionals
+    Button button = (Button) event.getSource();
+    if (button == exitWin || button == exitLose) {
+      // in the case user wishes to exit the game upon losing or winning
+      System.exit(0);
+    } else {
+      // in the case user wants to retry the game upon winning or losing, reset the game state and
+      // generate new Scene Manager hash map
+      GameState.resetGameState();
+      SceneManager.resetUserInterface();
+    }
   }
 }

@@ -13,7 +13,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.EscapeController">
    <children>
-      <Pane fx:id="losePane" prefHeight="600.0" prefWidth="800.0" visible="false">
+      <Pane fx:id="losePane" prefHeight="600.0" prefWidth="800.0">
          <children>
             <Label alignment="CENTER" contentDisplay="CENTER" layoutX="208.0" layoutY="129.0" prefHeight="53.0" prefWidth="384.0" styleClass="lose" stylesheets="@../css/styles.css" text="You were caught by the enemy" textAlignment="CENTER" textFill="RED">
                <font>
@@ -36,7 +36,18 @@
                   <Bloom threshold="0.2" />
                </effect>
             </Label>
-            <Button fx:id="exit" layoutX="343.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="115.0" styleClass="decline" stylesheets="@../css/styles.css" text="EXIT">
+            <Button fx:id="exitLose" layoutX="485.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="115.0" styleClass="decline" stylesheets="@../css/styles.css" text="EXIT">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="retryLose" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="90.0" styleClass="accept" stylesheets="@../css/styles.css" text="RETRY">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
@@ -49,7 +60,7 @@
             </Button>
          </children>
       </Pane>
-      <Pane fx:id="winPane" prefHeight="600.0" prefWidth="800.0">
+      <Pane fx:id="winPane" prefHeight="600.0" prefWidth="800.0" visible="false">
          <children>
             <TextArea editable="false" layoutX="10.0" layoutY="201.0" prefHeight="164.0" prefWidth="172.0" promptText="TESTING" stylesheets="@../css/styles.css" wrapText="true">
                <font>
@@ -85,7 +96,18 @@
                   <Image url="@../images/commander.png" />
                </image>
             </ImageView>
-            <Button id="accept" fx:id="won" layoutX="343.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="115.0" styleClass="accept" stylesheets="@../css/styles.css" text="EXIT">
+            <Button id="accept" fx:id="exitWin" layoutX="485.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="115.0" styleClass="decline" stylesheets="@../css/styles.css" text="EXIT">
+               <font>
+                  <Font name="Calibri Bold" size="16.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="retryWin" layoutX="243.0" layoutY="452.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="46.0" prefWidth="90.0" styleClass="accept" stylesheets="@../css/styles.css" text="RETRY">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
