@@ -52,10 +52,6 @@ public class BlackBoardController extends Commander {
     return resultMap;
   }
 
-  public BlackBoardController() {
-    instance = this;
-  }
-
   @FXML private Label mon;
   @FXML private Label tues;
   @FXML private Label wed;
@@ -75,6 +71,10 @@ public class BlackBoardController extends Commander {
   private LocalDate currentDate;
 
   private Map<Integer, Integer> hashmap = new HashMap<>();
+
+  public BlackBoardController() {
+    instance = this;
+  }
 
   /**
    * Initializes the room view, it is called when the room loads.
