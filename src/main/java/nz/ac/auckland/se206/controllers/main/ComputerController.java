@@ -110,6 +110,8 @@ public class ComputerController extends Commander {
         runGpt(
             new ChatMessage(
                 "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
+        // empty text field in case user has left password sitting there
+        computerPassword.setText("");
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
         break;
       case ("submitButton"):
