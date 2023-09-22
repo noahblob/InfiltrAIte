@@ -154,6 +154,8 @@ public class MainRoomController extends Commander {
       if (GameState.numOfIntel.get() >= 1) {
         // Pause Timer
         TimerClass.getInstance().pause();
+        // Reset all aspects of the room to original state for replay functionality
+        roomimage.setImage(new Image("/images/startLocked.png"));
         // Allow user to leave room with any amount of intel
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
         System.gc();
