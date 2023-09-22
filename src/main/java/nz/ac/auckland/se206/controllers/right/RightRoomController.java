@@ -137,5 +137,6 @@ public class RightRoomController extends Commander {
     shape.setOnMouseEntered(event -> shape.setOpacity(0.5));
     shape.setOnMouseExited(event -> shape.setOpacity(0));
   }
+  
 
 }
