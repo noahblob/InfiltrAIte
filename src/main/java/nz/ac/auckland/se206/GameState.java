@@ -84,11 +84,9 @@ public class GameState {
     riddleSetOne.add("aiishere");
 
     // Create riddle set for computer.
-    riddleSetTwo.add("radio");
-    riddleSetTwo.add("blackboard");
-    riddleSetTwo.add("keypad");
-    riddleSetTwo.add("painting");
-    riddleSetTwo.add("bookshelf");
+    riddleSetTwo.add("clock");
+    riddleSetTwo.add("potato");
+    riddleSetTwo.add("cheese");
     // Add more words.
 
     // Update GameState:
