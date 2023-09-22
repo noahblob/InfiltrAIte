@@ -130,7 +130,7 @@
       </ImageView>
       <ImageView fitHeight="54.0" fitWidth="43.0" layoutX="674.0" layoutY="540.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/intel%20(1).png" />
+            <Image url="@../images/intel(small).png" />
          </image>
       </ImageView>
       <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" text="x0" textFill="#aeaeae">
