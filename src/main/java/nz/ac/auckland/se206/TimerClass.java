@@ -1,12 +1,16 @@
 package nz.ac.auckland.se206;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.controllers.SceneManager;
+import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class TimerClass {
@@ -56,7 +60,13 @@ public class TimerClass {
     this.timeLeft = minutes * 60;
     this.timeline = new Timeline();
     timeline.setCycleCount(Timeline.INDEFINITE);
-    KeyFrame frame = new KeyFrame(Duration.seconds(1), e -> timerAction());
+    KeyFrame frame = new KeyFrame(Duration.seconds(1), e -> {
+      try {
+        timerAction();
+      } catch (IOException e1) {
+        e1.printStackTrace();
+      }
+    });
     timeline.getKeyFrames().add(frame);
     timeline.play();
   }
@@ -68,7 +78,7 @@ public class TimerClass {
     timeline.stop();
   }
 
-  private void timerAction() {
+  private void timerAction() throws IOException {
     timeLeft--;
     for (Text timer : timers) {
       String time = getTimerLeft();
@@ -86,6 +96,10 @@ public class TimerClass {
       }
       if (timeLeft == 0) {
         timeline.stop();
+        // Switch to lose screen.
+        Scene currentScene = SceneManager.getCurrentSceneRoot().getScene();
+        SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
+        currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
       }
     }
   }

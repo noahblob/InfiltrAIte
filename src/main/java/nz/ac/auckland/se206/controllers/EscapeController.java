@@ -28,8 +28,7 @@ public class EscapeController extends TextRollout {
 
   public void initialize() {
 
-    // update the dialogue area with final message from commander. (UPDATE LATER BASED ON IF ALL 3
-    // Intel COLLECTED)
+    // update the dialogue area with final message from commander.
     Platform.runLater(
         () -> {
           if (GameState.numOfIntel.get() == 1) {
@@ -87,7 +86,7 @@ public class EscapeController extends TextRollout {
     TimerClass.resetInstance();
     // Create a new Timer.
     TimerClass.initialize();
-    // Upate new Timer with old rooms.
+    // Update new Timer with room labels.
     TimerClass.setTimers(timers);
   }
 }
