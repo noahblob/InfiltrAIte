@@ -151,6 +151,7 @@ public class ComputerController extends Commander {
       } else {
         updateDialogue(Dialogue.CORRECTPASSCODE);
         GameState.isPasswordSolved = true;
+        computerPassword.clear();
       }
     } else {
       // in the case user has already solved the passcode, remind them that it has already been

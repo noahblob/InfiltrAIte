@@ -125,18 +125,35 @@ public class MainRoomController extends Commander {
         // if the user has solved computer password, go to keypad, otherwise update dialogue saying
         // it seems locked
         if (GameState.isPasswordSolved) {
-          currentScene.setRoot(SceneManager.getuserInterface(AppUi.KEYPAD));
+          if (GameState.isKeypadSolved.get()) {
+            // if user has already solved the keypad, let them know they have already solved this
+            // puzzle, otherwise go to the keypad
+            updateDialogue(Dialogue.ALREADYSOLVED);
+          } else {
+            currentScene.setRoot(SceneManager.getuserInterface(AppUi.KEYPAD));
+          }
         } else {
           updateDialogue(Dialogue.KEYPADLOCKED);
         }
         break;
       case ("cabinet"):
-        // set visibility of the filing cabinet and background
-        setCabinetVisibility(true);
+        // set visibility of the filing cabinet and background (if cabinet intel has not already
+        // been found)
+        if (!GameState.cabinetMiddleIntelfound) {
+          setCabinetVisibility(true);
+        } else {
+          updateDialogue(Dialogue.INTELALREADYFOUND);
+        }
         break;
       case ("computer"):
-        updateDialogue(Dialogue.COMPUTERHINT);
-        currentScene.setRoot(SceneManager.getuserInterface(AppUi.COMPUTER));
+        if (GameState.isPasswordSolved) {
+          // if user has solved computer password already, notify them that this puzzle has already
+          // been solved
+          updateDialogue(Dialogue.ALREADYSOLVED);
+        } else {
+          updateDialogue(Dialogue.COMPUTERHINT);
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.COMPUTER));
+        }
         break;
       default:
         break;
