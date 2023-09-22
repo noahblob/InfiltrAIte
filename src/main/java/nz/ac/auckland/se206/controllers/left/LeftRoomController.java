@@ -62,7 +62,6 @@ public class LeftRoomController extends Commander {
 
   private List<ImageView> visiblePopups;
   private int lastNumbers;
-  private boolean isRadioOpened = false;
 
   /**
    * Initializes the room view, it is called when the room loads.
