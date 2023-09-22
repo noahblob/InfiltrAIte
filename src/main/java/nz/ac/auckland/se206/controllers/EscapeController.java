@@ -16,6 +16,9 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TextRollout;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.right.BlackBoardController;
+import nz.ac.auckland.se206.controllers.right.BookController;
+import nz.ac.auckland.se206.controllers.right.LockerController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public class EscapeController extends TextRollout {
@@ -82,6 +85,16 @@ public class EscapeController extends TextRollout {
 
     // get the list of timers before resetting.
     List<Text> timers = TimerClass.getTimers();
+
+    // Reset BlackBoard Numbers
+    BlackBoardController.getInstance().refreshBoard();
+
+    // Reset Book order in bookshelf
+    BookController.getInstance().resetFont();
+    BookController.getInstance().setupContent();
+
+    // Reset Right Room Locker
+    LockerController.getInstance().resetRoom();
 
     // Reset the timer.
     TimerClass.resetInstance();
