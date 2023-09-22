@@ -74,6 +74,7 @@ public class KeyPadController extends Commander {
         }
         break;
       case "exitButton":
+        numberLabel.setText("");
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
         break;
       default:
