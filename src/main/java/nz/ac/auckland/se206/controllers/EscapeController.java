@@ -2,7 +2,6 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.List;
 import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -31,22 +30,10 @@ public class EscapeController extends TextRollout {
 
   public void initialize() {
 
-    // update the dialogue area with final message from commander. (UPDATE LATER BASED ON IF ALL 3
-    // Intel COLLECTED)
-    Platform.runLater(
-        () -> {
-          if (GameState.numOfIntel.get() == 1) {
-            textRollout(Dialogue.WINDIALOGUE1);
-          } else if (GameState.numOfIntel.get() == 2) {
-            textRollout(Dialogue.WINDIALOGUE2);
-          } else if (GameState.numOfIntel.get() == 3) {
-            textRollout(Dialogue.WINDIALOGUE3);
-          }
-        });
-
-    // Bind the win lose pane to the gamstate (IsgameWon)
-    winPane.visibleProperty().bind(GameState.isGameWon);
-    losePane.visibleProperty().bind(Bindings.not(GameState.isGameWon));
+    // If we are on the win screen.
+    setWinScreen();
+    // Default by showing lose screen.
+    losePane.setVisible(true);
   }
 
   @FXML
@@ -63,6 +50,27 @@ public class EscapeController extends TextRollout {
       // in the case user wishes to exit the game upon losing or winning
       System.exit(0);
     }
+  }
+
+  private void setWinScreen() {
+    GameState.isEndScreen.addListener(
+        (observable, oldValue, newValue) -> {
+          if (newValue) {
+            winPane.setVisible(true);
+            losePane.setVisible(false);
+            Platform.runLater(
+                () -> {
+                  dialogue.clear();
+                  if (GameState.numOfIntel.get() == 1) {
+                    textRollout(Dialogue.WINDIALOGUE1);
+                  } else if (GameState.numOfIntel.get() == 2) {
+                    textRollout(Dialogue.WINDIALOGUE2);
+                  } else if (GameState.numOfIntel.get() == 3) {
+                    textRollout(Dialogue.WINDIALOGUE3);
+                  }
+                });
+          }
+        });
   }
 
   private void reset() throws Exception {
@@ -100,7 +108,7 @@ public class EscapeController extends TextRollout {
     TimerClass.resetInstance();
     // Create a new Timer.
     TimerClass.initialize();
-    // Upate new Timer with old rooms.
+    // Update new Timer with room labels.
     TimerClass.setTimers(timers);
   }
 }

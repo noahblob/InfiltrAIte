@@ -13,7 +13,6 @@ import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.left.LeftRoomController;
 
 /** Controller class for the room view. */
 public class LockerController extends Commander {
@@ -77,7 +76,7 @@ public class LockerController extends Commander {
   public void onCheckAns(MouseEvent event) throws Exception {
     // If the right cabinet intel has not been found, check if the answer is correct
     if (!GameState.cabinetRightIntelfound) {
-      int answer = LeftRoomController.year;
+      int answer = GameState.lastNumbers.get() + 1900;
       int userAnswer = (one * 1000 + two * 100 + three * 10 + four);
       if (answer == userAnswer) {
         // if the user answers correct, show them the intel file

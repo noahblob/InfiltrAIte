@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -36,8 +36,6 @@ public class LeftRoomController extends Commander {
     MORSE
   }
 
-  public static int year;
-
   @FXML private Rectangle popUpBackGround;
   @FXML private Rectangle communications;
   @FXML private Rectangle drawer;
@@ -57,11 +55,8 @@ public class LeftRoomController extends Commander {
   @FXML private Label intel;
   @FXML private Button back;
 
-  /** The key in the inventory box. It is currently set to visible. */
   private Map<Shape, Object> objects;
-
   private List<ImageView> visiblePopups;
-  private int lastNumbers;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -155,13 +150,9 @@ public class LeftRoomController extends Commander {
 
   private void generateYear() {
 
-    Random random = new Random();
-    lastNumbers = random.nextInt(41) + 20; // Generates number between 20 and 60
-
-    // Update the year passcode: 19XX
-    LeftRoomController.year = 1900 + lastNumbers;
-    // Update the tear piece to show the last digits.
-    lastDigits.setText(String.valueOf(lastNumbers));
+    // Unbind lastDigits from lastNumbers.
+    lastDigits.textProperty().unbind();
+    lastDigits.textProperty().bind(Bindings.convert(GameState.lastNumbers));
   }
 
   @FXML
