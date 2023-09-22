@@ -189,12 +189,13 @@ public class LeftRoomController extends Commander {
         showPopup(poster2);
         break;
       case RADIO:
-        // update commander dialogue accordingly and move to radio fxml
-        if (!isRadioOpened) {
+        if (!GameState.isSlidersSolved) {
+          // update commander dialogue accordingly and move to radio fxml
           updateDialogue(Dialogue.SLIDERHINT);
-          isRadioOpened = true;
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.RADIO));
+        } else {
+          updateDialogue(Dialogue.ALREADYSOLVED);
         }
-        currentScene.setRoot(SceneManager.getuserInterface(AppUi.RADIO));
         break;
       case DESK:
         showPopup(tear);
