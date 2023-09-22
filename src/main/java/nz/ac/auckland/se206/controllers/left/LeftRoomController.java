@@ -149,7 +149,6 @@ public class LeftRoomController extends Commander {
   }
 
   private void generateYear() {
-
     // Unbind lastDigits from lastNumbers.
     lastDigits.textProperty().unbind();
     lastDigits.textProperty().bind(Bindings.convert(GameState.lastNumbers));
@@ -197,7 +196,7 @@ public class LeftRoomController extends Commander {
         break;
       case HANGER:
         // If the key is not yet found, give player a key.
-        if (!GameState.isKeyFound.get()) {
+        if (!GameState.isKeyUsed.get()) {
           // Find the key to main room drawer.
           GameState.isKeyFound.set(true);
           updateDialogue(Dialogue.KEYFOUND);

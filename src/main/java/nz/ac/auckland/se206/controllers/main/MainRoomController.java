@@ -271,7 +271,7 @@ public class MainRoomController extends Commander {
       intelFile.setVisible(true);
 
       // Player uses key, so key disappears.
-      GameState.isKeyFound.set(false);
+      GameState.isKeyUsed.set(true);
 
       // Update commander dialogue to prompt player that key has been used.
       updateDialogue(Dialogue.KEYUSED);
