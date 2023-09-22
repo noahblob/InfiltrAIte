@@ -53,14 +53,17 @@ public class EscapeController extends TextRollout {
   }
 
   private void setWinScreen() {
+    // If the user has won, set the win screen based on how much intel the user has found
     GameState.isEndScreen.addListener(
         (observable, oldValue, newValue) -> {
           if (newValue) {
+            // set the win Pane to be visible in the case of a win
             winPane.setVisible(true);
             losePane.setVisible(false);
             Platform.runLater(
                 () -> {
                   dialogue.clear();
+                  // change commander dialogue based on number of intel user has found
                   if (GameState.numOfIntel.get() == 1) {
                     textRollout(Dialogue.WINDIALOGUE1);
                   } else if (GameState.numOfIntel.get() == 2) {

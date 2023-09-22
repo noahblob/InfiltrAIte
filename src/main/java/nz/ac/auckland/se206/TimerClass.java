@@ -58,15 +58,18 @@ public class TimerClass {
   private TimerClass() {}
 
   public void start(int minutes) {
+    // Set the correct amount of time for timer and start counting
     this.timeLeft = minutes * 60;
     this.timeline = new Timeline();
     timeline.setCycleCount(Timeline.INDEFINITE);
+    // Create a keyframe to decrease the timer every second.
     KeyFrame frame =
         new KeyFrame(
             Duration.seconds(1),
             e -> {
               try {
-                decrement();
+                // decrement the timer
+                decreaseTimer();
               } catch (IOException e1) {
                 e1.printStackTrace();
               }
@@ -82,7 +85,7 @@ public class TimerClass {
     timeline.stop();
   }
 
-  private void decrement() throws IOException {
+  private void decreaseTimer() throws IOException {
     timeLeft--;
     for (Text timer : timers) {
       String time = getTimeLeft();

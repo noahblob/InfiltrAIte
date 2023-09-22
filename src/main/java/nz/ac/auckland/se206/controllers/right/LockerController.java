@@ -17,6 +17,12 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class LockerController extends Commander {
 
+  public static LockerController instance;
+
+  public static LockerController getInstance() {
+    return instance;
+  }
+
   @FXML private Label first;
   @FXML private Label second;
   @FXML private Label third;
@@ -26,16 +32,10 @@ public class LockerController extends Commander {
   @FXML private Button checkAns;
   @FXML private Button goBack;
 
-  public static LockerController instance;
-
   private int one;
   private int two;
   private int three;
   private int four;
-
-  public static LockerController getInstance() {
-    return instance;
-  }
 
   public LockerController() {
     instance = this;
@@ -177,12 +177,15 @@ public class LockerController extends Commander {
   }
 
   public void resetRoom() {
+    // Reset all the variables to their original state in the locker once the user restarts the game
     one = two = three = four = 0;
+    // set visibility of all relevant elements
     intelFile.setDisable(true);
     intelFile.setVisible(false);
     roomimage.setVisible(true);
     checkAns.setVisible(true);
     goBack.setVisible(true);
+    // set text of all relevant elements
     first.setText(String.valueOf(one));
     second.setText(String.valueOf(two));
     third.setText(String.valueOf(three));

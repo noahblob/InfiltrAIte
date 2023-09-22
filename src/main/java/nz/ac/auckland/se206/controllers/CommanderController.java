@@ -54,6 +54,17 @@ public class CommanderController {
   private boolean scroll = false;
   private boolean isRolling = false;
 
+  private CommanderController() throws Exception {
+    notes = new ArrayList<>();
+    notesProperty = new SimpleStringProperty("");
+    messageQueue = new LinkedList<>();
+    lastInputTextProperty = new SimpleStringProperty("");
+    phoneScreens = new ArrayList<>();
+    dialogues = new ArrayList<>();
+    // Set Up the commander (can recall this when restarting the game)
+    setUpCommander();
+  }
+
   public List<TextArea> getDialogues() {
     return dialogues;
   }
@@ -68,18 +79,6 @@ public class CommanderController {
 
   public void setDialogues(List<TextArea> dialogues) {
     this.dialogues = dialogues;
-  }
-
-  private CommanderController() throws Exception {
-
-    notes = new ArrayList<>();
-    notesProperty = new SimpleStringProperty("");
-    messageQueue = new LinkedList<>();
-    lastInputTextProperty = new SimpleStringProperty("");
-    phoneScreens = new ArrayList<>();
-    dialogues = new ArrayList<>();
-    // Set Up the commander (can recall this when restarting the game)
-    setUpCommander();
   }
 
   /**
@@ -412,9 +411,8 @@ public class CommanderController {
 
   // Method to clear the notes.
   public void clearNotes() {
-    for (TextArea notepad: notes) {
+    for (TextArea notepad : notes) {
       notepad.clear();
     }
   }
-  
 }

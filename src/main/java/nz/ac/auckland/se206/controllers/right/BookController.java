@@ -23,6 +23,12 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class BookController extends Commander {
 
+  private static BookController instance;
+
+  public static BookController getInstance() {
+    return instance;
+  }
+
   @FXML private Rectangle book1;
   @FXML private Rectangle book2;
   @FXML private Rectangle book3;
@@ -48,8 +54,6 @@ public class BookController extends Commander {
   @FXML private Text description5;
 
   @FXML private String currentBook;
-
-  private static BookController instance;
 
   private List<Rectangle> bookButtons;
 
@@ -151,10 +155,6 @@ public class BookController extends Commander {
                   + "10- Stay Updated");
         }
       };
-
-  public static BookController getInstance() {
-    return instance;
-  }
 
   public BookController() {
     instance = this;

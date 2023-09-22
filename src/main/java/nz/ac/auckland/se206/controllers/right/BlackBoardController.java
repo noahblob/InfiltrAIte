@@ -20,10 +20,6 @@ public class BlackBoardController extends Commander {
   private static int ans;
   public static BlackBoardController instance;
 
-  public BlackBoardController() {
-    instance = this;
-  }
-
   public static BlackBoardController getInstance() {
     return instance;
   }
@@ -35,6 +31,29 @@ public class BlackBoardController extends Commander {
    */
   public static int getKeypadAns() {
     return ans;
+  }
+
+  public static Map<Integer, Integer> randomizeNumbers() {
+    // Create a new random variable that is used to calculate random keypad codes to put on
+    // blackboard
+    Random random = new Random();
+
+    Map<Integer, Integer> resultMap = new HashMap<>();
+
+    // put all random values into a hashmap to be accessed later
+    resultMap.put(1, 100 + random.nextInt(900));
+    resultMap.put(2, 100 + random.nextInt(900));
+    resultMap.put(3, 100 + random.nextInt(900));
+    resultMap.put(4, 100 + random.nextInt(900));
+    resultMap.put(5, 100 + random.nextInt(900));
+    resultMap.put(6, 100 + random.nextInt(900));
+    resultMap.put(7, 100 + random.nextInt(900));
+
+    return resultMap;
+  }
+
+  public BlackBoardController() {
+    instance = this;
   }
 
   @FXML private Label mon;
@@ -56,22 +75,6 @@ public class BlackBoardController extends Commander {
   private LocalDate currentDate;
 
   private Map<Integer, Integer> hashmap = new HashMap<>();
-
-  public static Map<Integer, Integer> randomizeNumbers() {
-    Random random = new Random();
-
-    Map<Integer, Integer> resultMap = new HashMap<>();
-
-    resultMap.put(1, 100 + random.nextInt(900));
-    resultMap.put(2, 100 + random.nextInt(900));
-    resultMap.put(3, 100 + random.nextInt(900));
-    resultMap.put(4, 100 + random.nextInt(900));
-    resultMap.put(5, 100 + random.nextInt(900));
-    resultMap.put(6, 100 + random.nextInt(900));
-    resultMap.put(7, 100 + random.nextInt(900));
-
-    return resultMap;
-  }
 
   /**
    * Initializes the room view, it is called when the room loads.
