@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -50,7 +51,7 @@ public class TimerClass {
     return instance;
   }
 
-  private TextToSpeech tts = new TextToSpeech();
+  private TextToSpeech tts = TextToSpeech.getInstance();
   private int timeLeft;
   private Timeline timeline;
 
@@ -115,14 +116,24 @@ public class TimerClass {
   // Method to warn player than time is running out.
   public void warn() {
     if (timeLeft == 30) {
-      try {
-        CommanderController.getInstance().updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
-        tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
-        // Delete the thread straight after.
-        tts.terminate();
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
+      Task<Void> warn =
+          new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+              try {
+                CommanderController.getInstance()
+                    .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
+                tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
+                // Delete the thread straight after.
+                tts.terminate();
+              } catch (Exception e) {
+                e.printStackTrace();
+              }
+              return null;
+            }
+          };
+      // This will schedule the task to be run on a background thread
+      new Thread(warn).start();
     }
   }
 }

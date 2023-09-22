@@ -8,6 +8,20 @@ import javax.speech.synthesis.SynthesizerModeDesc;
 
 /** Text-to-speech API using the JavaX speech library. */
 public class TextToSpeech {
+
+  private static volatile TextToSpeech instance;
+
+  public static TextToSpeech getInstance() {
+    if (instance == null) {
+      synchronized (TextToSpeech.class) {
+        if (instance == null) {
+          instance = new TextToSpeech();
+        }
+      }
+    }
+    return instance;
+  }
+
   /** Custom unchecked exception for Text-to-speech issues. */
   static class TextToSpeechException extends RuntimeException {
     public TextToSpeechException(final String message) {

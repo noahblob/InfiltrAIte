@@ -28,7 +28,7 @@ public class TimeController {
 
     Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
     time.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 50px; -fx-text-fill: black;");
-    gameTime = 4;
+    gameTime = 1;
     updateTime();
     initialiseButtons();
   }
