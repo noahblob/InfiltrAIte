@@ -96,10 +96,6 @@ public class TimerClass {
     return String.format("%02d:%02d", minutes, seconds);
   }
 
-  public int getTimeLeftInt() {
-    return timeLeft;
-  }
-
   // Method to add each rooms timer label to the timer.
   public void addTimer(Text timer) {
     timers.add(timer);
