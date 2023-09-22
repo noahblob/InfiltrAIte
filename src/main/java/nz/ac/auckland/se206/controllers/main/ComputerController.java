@@ -101,6 +101,10 @@ public class ComputerController extends Commander {
     // switch case for different buttons, including back and submit button
     switch (button.getId()) {
       case ("back"):
+        // change riddle for next user playthrough
+        runGpt(
+            new ChatMessage(
+                "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
         break;
       case ("submitButton"):
