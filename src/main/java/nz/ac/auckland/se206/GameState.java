@@ -64,6 +64,11 @@ public class GameState {
   /** Indicates the answer to the computer riddle for the current game. */
   public static String mainRiddleAnswer = "";
 
+  /** Indicates the last numbers of the year for the current game. */
+  public static SimpleIntegerProperty lastNumbers = new SimpleIntegerProperty(0);
+
+  private static Random random = new Random();
+
   // Create riddle answers for drawer.
   static {
     // Decide what type of riddle answers we want later.
@@ -89,15 +94,14 @@ public class GameState {
 
     // setUp listeners to check if game is won or not.
     setupWinListeners();
+    // Generate random year for left room puzzle.
+    generateYear();
   }
 
   /** Method to create random riddle for current game. */
   public static String getRandomWord(Set<String> set) {
     // Create an ArrayList to hold the keys (words)
     ArrayList<String> keys = new ArrayList<>(set);
-
-    // Create a Random object
-    Random random = new Random();
 
     // Get a random index from 0 to size-1
     int randomIndex = random.nextInt(keys.size());
@@ -140,6 +144,11 @@ public class GameState {
     isGameWon.set(isKeypadSolved.get() && numOfIntel.get() >= 1);
   }
 
+  // Method to generate a new Year number for the current game.
+  private static void generateYear() {
+    lastNumbers.set(random.nextInt(41) + 20); // Generates number between 20 and 60
+  }
+
   public static void resetGameState() {
     // Reset all game state variables to default values for when the player restarts the game.
 
@@ -162,5 +171,6 @@ public class GameState {
     puzzleWord = getRandomWord(riddleSetOne);
     mainRiddleAnswer = getRandomWord(riddleSetTwo);
     sliderAnswer = setSliders();
+    lastNumbers.set(random.nextInt(41) + 20);
   }
 }
