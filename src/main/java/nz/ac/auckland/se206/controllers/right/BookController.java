@@ -49,6 +49,8 @@ public class BookController extends Commander {
 
   @FXML private String currentBook;
 
+  private static BookController instance;
+
   private List<Rectangle> bookButtons;
 
   private String bookCode;
@@ -150,6 +152,14 @@ public class BookController extends Commander {
         }
       };
 
+  public static BookController getInstance() {
+    return instance;
+  }
+
+  public BookController() {
+    instance = this;
+  }
+
   /**
    * Initializes the room view, it is called when the room loads.
    *
@@ -185,7 +195,7 @@ public class BookController extends Commander {
     bookButtons = Arrays.asList(book1, book2, book3, book4, book5);
   }
 
-  private void setupContent() {
+  public void setupContent() {
     // Select a random book to be the good book
     int randomNumber = new Random().nextInt(5) + 1;
     String randomBookId = "book" + randomNumber;
@@ -244,6 +254,16 @@ public class BookController extends Commander {
       // Display a random text that is not the slider code.
       titleMap.get(bookCode).setVisible(true);
       descriptionMap.get(bookCode).setVisible(true);
+    }
+  }
+
+  public void resetFont() {
+    if (titleMap.containsKey(bookCode)) {
+      titleMap.get(bookCode).setStyle("");
+    }
+
+    if (descriptionMap.containsKey(bookCode)) {
+      descriptionMap.get(bookCode).setStyle("");
     }
   }
 

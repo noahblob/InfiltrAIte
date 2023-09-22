@@ -18,6 +18,15 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 public class BlackBoardController extends Commander {
 
   private static int ans;
+  public static BlackBoardController instance;
+
+  public BlackBoardController() {
+    instance = this;
+  }
+
+  public static BlackBoardController getInstance() {
+    return instance;
+  }
 
   /**
    * Returns the correct answer for keypad
@@ -48,7 +57,21 @@ public class BlackBoardController extends Commander {
 
   private Map<Integer, Integer> hashmap = new HashMap<>();
 
-  private Random random = new Random();
+  public static Map<Integer, Integer> randomizeNumbers() {
+    Random random = new Random();
+
+    Map<Integer, Integer> resultMap = new HashMap<>();
+
+    resultMap.put(1, 100 + random.nextInt(900));
+    resultMap.put(2, 100 + random.nextInt(900));
+    resultMap.put(3, 100 + random.nextInt(900));
+    resultMap.put(4, 100 + random.nextInt(900));
+    resultMap.put(5, 100 + random.nextInt(900));
+    resultMap.put(6, 100 + random.nextInt(900));
+    resultMap.put(7, 100 + random.nextInt(900));
+
+    return resultMap;
+  }
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -64,33 +87,21 @@ public class BlackBoardController extends Commander {
     findDate();
   }
 
-  /**
-   * Find the local date from the user and update
-   *
-   * @param event
-   */
   private void findDate() {
 
     // Get the system date, then get the current day of the week.
     currentDate = LocalDate.now();
     day = currentDate.getDayOfWeek().getValue();
 
-    monday = 100 + random.nextInt(900);
-    tuesday = 100 + random.nextInt(900);
-    wednesday = 100 + random.nextInt(900);
-    thursday = 100 + random.nextInt(900);
-    friday = 100 + random.nextInt(900);
-    saturday = 100 + random.nextInt(900);
-    sunday = 100 + random.nextInt(900);
+    hashmap = randomizeNumbers();
 
-    // Add these days to a hashmap.
-    hashmap.put(1, monday);
-    hashmap.put(2, tuesday);
-    hashmap.put(3, wednesday);
-    hashmap.put(4, thursday);
-    hashmap.put(5, friday);
-    hashmap.put(6, saturday);
-    hashmap.put(7, sunday);
+    monday = hashmap.get(1);
+    tuesday = hashmap.get(2);
+    wednesday = hashmap.get(3);
+    thursday = hashmap.get(4);
+    friday = hashmap.get(5);
+    saturday = hashmap.get(6);
+    sunday = hashmap.get(7);
 
     // match font with image font so it is less obvious to player.
     mon.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
@@ -111,6 +122,11 @@ public class BlackBoardController extends Commander {
     sun.setText(Integer.toString(sunday));
 
     ans = hashmap.get(day);
+  }
+
+  public void refreshBoard() {
+    randomizeNumbers();
+    findDate();
   }
 
   /**

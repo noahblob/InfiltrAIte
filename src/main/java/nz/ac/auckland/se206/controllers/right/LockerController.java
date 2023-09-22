@@ -27,10 +27,20 @@ public class LockerController extends Commander {
   @FXML private Button checkAns;
   @FXML private Button goBack;
 
+  public static LockerController instance;
+
   private int one;
   private int two;
   private int three;
   private int four;
+
+  public static LockerController getInstance() {
+    return instance;
+  }
+
+  public LockerController() {
+    instance = this;
+  }
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -165,6 +175,19 @@ public class LockerController extends Commander {
       default:
         break;
     }
+  }
+
+  public void resetRoom() {
+    one = two = three = four = 0;
+    intelFile.setDisable(true);
+    intelFile.setVisible(false);
+    roomimage.setVisible(true);
+    checkAns.setVisible(true);
+    goBack.setVisible(true);
+    first.setText(String.valueOf(one));
+    second.setText(String.valueOf(two));
+    third.setText(String.valueOf(three));
+    fourth.setText(String.valueOf(four));
   }
 
   /**
