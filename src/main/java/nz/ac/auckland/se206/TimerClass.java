@@ -60,6 +60,9 @@ public class TimerClass {
   public void start(int minutes) {
     // Set the correct amount of time for timer and start counting
     this.timeLeft = minutes * 60;
+    for (Text timer : timers) {
+      timer.setText(String.format("0%d:00", minutes));
+    }
     this.timeline = new Timeline();
     timeline.setCycleCount(Timeline.INDEFINITE);
     // Create a keyframe to decrease the timer every second.

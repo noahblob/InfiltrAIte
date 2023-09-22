@@ -67,8 +67,6 @@ public class BookController extends Commander {
   private Map<String, Text> descriptionMap = new HashMap<>();
   private String goodTitle = "Where our intelligence is stored";
 
-  private String fahrenheit = "\u00B0F";
-  private String celsius = "\u00B0C";
   private String pattern = new String(GameState.setSliders());
   private String goodDesc =
       "One of the intelligence can be found in the left room, make sure to use the sliders"
@@ -92,16 +90,7 @@ public class BookController extends Commander {
                   + "1 and 3/4 tsp baking powder\r\n"
                   + "1/2 cup milk\r\n"
                   + "1 tsp vanilla extract\r\n"
-                  + "Pinch of salt\r\n"
-                  + "\r\n"
-                  + "Instructions:\r\n"
-                  + "Preheat the Oven: Set your oven to 350"
-                  + fahrenheit
-                  + "(175"
-                  + celsius
-                  + ") and position a"
-                  + " rack in the middle. Lightly grease a 9x9 inch baking pan or line it with"
-                  + " parchment paper.\r\n");
+                  + "Pinch of salt\r\n");
           put(
               "The rain is never ending",
               "The small town of Riverview had seen rain before, but this was different."
@@ -113,14 +102,7 @@ public class BookController extends Commander {
                   + " became rivers, and gardens, ponds."
                   + "\r\n"
                   + " People whispered about an ancient curse as"
-                  + " they watched their umbrellas turn inside out."
-                  + "\r\n"
-                  + "Children played, imagining"
-                  + " adventures on grand, floating cities. Mrs. Thompson, the oldest in town,"
-                  + " smiled, remembering a similar storm from her youth."
-                  + "\r\n"
-                  + "\"It's nature's way of"
-                  + " reminding us,\" she said, \"that sometimes, change needs time.\"");
+                  + " they watched their umbrellas turn inside out");
           put(
               "Data Structures 5th Edition",
               "A heap is a specialized tree-based data structure that satisfies the heap property."
