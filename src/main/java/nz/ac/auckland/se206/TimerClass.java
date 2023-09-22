@@ -127,11 +127,10 @@ public class TimerClass {
             @Override
             protected Void call() throws Exception {
               try {
+                // update commander dialogue to let player know they have been detected and play tts
                 CommanderController.getInstance()
                     .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
                 tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
-                // Delete the thread straight after.
-                tts.terminate();
               } catch (Exception e) {
                 e.printStackTrace();
               }
