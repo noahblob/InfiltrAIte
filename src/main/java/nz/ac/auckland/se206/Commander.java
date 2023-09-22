@@ -1,10 +1,8 @@
 package nz.ac.auckland.se206;
 
-import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -16,12 +14,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.CommanderController;
-import nz.ac.auckland.se206.controllers.SceneManager;
-import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
 /** Abstract class representing the commander */
-public abstract class Commander implements TimerObserver {
+public abstract class Commander {
 
   // Relevant FXML elements accessed across all scenes by commander
   @FXML protected TextArea objective;
@@ -50,7 +46,7 @@ public abstract class Commander implements TimerObserver {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
     CommanderController.getInstance().addNotes(notes);
-    
+
     objective.setEditable(false);
     objective.setWrapText(true);
     output.setFixedCellSize(-1);
@@ -106,21 +102,6 @@ public abstract class Commander implements TimerObserver {
     CommanderController.getInstance().onSendMessage(event, input);
   }
 
-  @Override
-  public void timerUpdated() {
-    TimerClass timerText = TimerClass.getInstance();
-    timer.setText(timerText.getTimerLeft());
-  }
-
-  @Override
-  public void timerFinished() {
-    Platform.runLater(
-        () -> {
-          Scene currentScene = (Scene) SceneManager.getCurrentSceneRoot().getScene();
-          currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
-        });
-  }
-
   /**
    * Handles the event of user pressing enter to send message to commander.
    *
@@ -142,6 +123,9 @@ public abstract class Commander implements TimerObserver {
   }
 
   public void setupHints() {
+    
+    // Unbind hints text property (For replayability)
+    hints.textProperty().unbind();
     // Depending on difficulty setting of the game, show how many hints the user has
     switch (GameState.difficulty.get()) {
       case 1:

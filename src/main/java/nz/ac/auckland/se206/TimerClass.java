@@ -60,13 +60,16 @@ public class TimerClass {
     this.timeLeft = minutes * 60;
     this.timeline = new Timeline();
     timeline.setCycleCount(Timeline.INDEFINITE);
-    KeyFrame frame = new KeyFrame(Duration.seconds(1), e -> {
-      try {
-        timerAction();
-      } catch (IOException e1) {
-        e1.printStackTrace();
-      }
-    });
+    KeyFrame frame =
+        new KeyFrame(
+            Duration.seconds(1),
+            e -> {
+              try {
+                decrement();
+              } catch (IOException e1) {
+                e1.printStackTrace();
+              }
+            });
     timeline.getKeyFrames().add(frame);
     timeline.play();
   }
@@ -78,13 +81,39 @@ public class TimerClass {
     timeline.stop();
   }
 
-  private void timerAction() throws IOException {
+  private void decrement() throws IOException {
     timeLeft--;
     for (Text timer : timers) {
-      String time = getTimerLeft();
+      String time = getTimeLeft();
       timer.setText(String.valueOf(time));
     }
+    warn();
+    checkLost();
+  }
 
+  public String getTimeLeft() {
+    int minutes = timeLeft / 60;
+    int seconds = timeLeft % 60;
+    return String.format("%02d:%02d", minutes, seconds);
+  }
+
+  // Method to add each rooms timer label to the timer.
+  public void addTimer(Text timer) {
+    timers.add(timer);
+  }
+
+  // Method to check if the game has been lost or not.
+  private void checkLost() {
+    if (timeLeft == 0) {
+      timeline.stop();
+      // Switch to lose screen.
+      Scene currentScene = SceneManager.getCurrentSceneRoot().getScene();
+      currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
+    }
+  }
+
+  // Method to warn player than time is running out.
+  public void warn() {
     if (timeLeft == 30) {
       try {
         CommanderController.getInstance().updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
@@ -94,24 +123,6 @@ public class TimerClass {
       } catch (Exception e) {
         e.printStackTrace();
       }
-      if (timeLeft == 0) {
-        timeline.stop();
-        // Switch to lose screen.
-        Scene currentScene = SceneManager.getCurrentSceneRoot().getScene();
-        SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
-        currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
-      }
     }
-  }
-
-  public String getTimerLeft() {
-    int minutes = timeLeft / 60;
-    int seconds = timeLeft % 60;
-    return String.format("%02d:%02d", minutes, seconds);
-  }
-
-  // Method to add each rooms timer label to the timer.
-  public void addTimer(Text timer) {
-    timers.add(timer);
   }
 }

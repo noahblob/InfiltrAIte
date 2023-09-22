@@ -169,7 +169,7 @@ public class MainRoomController extends Commander {
     if (GameState.isKeypadSolved.get()) {
       // Change scene or dialogue based on how much intel user has found
       if (GameState.numOfIntel.get() >= 1) {
-        // Pause Timer
+        // Stop Timer
         TimerClass.getInstance().stop();
         // Reset all aspects of the room to original state for replay functionality
         roomimage.setImage(new Image("/images/startLocked.png"));
