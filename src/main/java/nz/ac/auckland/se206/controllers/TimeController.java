@@ -68,10 +68,7 @@ public class TimeController {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
 
-    // Update game master with number of hints I have.
-
     // Check if Easy, medium or hard and update prompt accordingly.
-
     if (GameState.difficulty.get() == 1) {
       CommanderController.getInstance()
           .updateGpt(GptPromptEngineering.getEasyPrompt(GameState.puzzleWord));
@@ -84,12 +81,14 @@ public class TimeController {
           .updateGpt(GptPromptEngineering.getHardPrompt(GameState.puzzleWord));
     }
 
-    // Sets the timer time and starts it.
     TimerClass timer = TimerClass.getInstance();
     timer.start(gameTime);
 
     // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
+
+    // Reset the scene.
+    resetTime();
 
     Platform.runLater(
         () -> {
@@ -103,5 +102,13 @@ public class TimeController {
 
   private void updateTime() {
     time.setText(String.format("%d:00", gameTime));
+  }
+
+  // Reset the scene to default state for replaying.
+  private void resetTime() {
+    gameTime = 4;
+    updateTime();
+    increase.setDisable(false);
+    decrease.setDisable(false);
   }
 }
