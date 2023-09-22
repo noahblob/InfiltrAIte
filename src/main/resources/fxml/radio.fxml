@@ -114,26 +114,6 @@
             <String fx:value="uiTextAreaChat" />
          </styleClass>
       </ListView>
-      <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="11.0" prefWidth="269.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreaChat" />
-         </styleClass>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextArea>
-      <Button fx:id="send" layoutX="751.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="43.0" prefWidth="43.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
-         <font>
-            <Font size="9.0" />
-         </font>
-         <effect>
-            <Bloom />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
       <TextArea layoutX="385.0" layoutY="6.0" prefHeight="57.0" prefWidth="86.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <effect>
             <Bloom />
@@ -173,52 +153,9 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
-      <TextArea layoutX="700.0" layoutY="538.0" prefHeight="58.0" prefWidth="94.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreainventory" />
-         </styleClass>
-      </TextArea>
       <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="481.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="710.0" layoutY="545.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/intel%20(1).png" />
-         </image>
-      </ImageView>
-      <Label fx:id="intel" alignment="CENTER" layoutX="746.0" layoutY="537.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#aeaeae">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <TextArea layoutX="537.0" layoutY="538.0" prefHeight="58.0" prefWidth="59.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreainventory" />
-         </styleClass>
-      </TextArea>
-      <TextArea layoutX="598.0" layoutY="538.0" prefHeight="58.0" prefWidth="100.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreainventory" />
-         </styleClass>
-      </TextArea>
-      <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="598.0" layoutY="544.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/pngwing.com.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="hints" alignment="CENTER" layoutX="647.0" layoutY="537.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#a4a4a4">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="40.0" fitWidth="37.0" layoutX="548.0" layoutY="546.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/newphone.png" />
          </image>
       </ImageView>
       <ImageView fx:id="intelligence" fitHeight="314.0" fitWidth="326.0" layoutX="130.0" layoutY="157.0" onMouseClicked="#onCollect" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -230,5 +167,51 @@
          </cursor>
       </ImageView>
       <Rectangle fx:id="pigeonhole" arcHeight="5.0" arcWidth="5.0" fill="#fffa96" height="98.0" layoutX="378.0" layoutY="270.0" onMouseClicked="#onClick" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="30.0" />
+      <TextArea editable="false" layoutX="540.0" layoutY="538.0" prefHeight="58.0" prefWidth="254.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreainventory" />
+         </styleClass>
+      </TextArea>
+      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" text="x0" textFill="#aeaeae">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="548.0" layoutY="545.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/pngwing.com.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" text="x0" textFill="#a4a4a4">
+         <font>
+            <Font size="37.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="44.0" prefWidth="254.0" stylesheets="@../css/styles.css">
+         <styleClass>
+            <String fx:value="uiTextArea" />
+            <String fx:value="uiTextAreaChat" />
+         </styleClass>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextArea>
+      <ImageView fitHeight="54.0" fitWidth="43.0" layoutX="674.0" layoutY="540.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/intel(small).png" />
+         </image>
+      </ImageView>
+      <Button fx:id="send" layoutX="738.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="56.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </Pane>
