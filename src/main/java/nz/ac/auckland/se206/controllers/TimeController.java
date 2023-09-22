@@ -84,10 +84,9 @@ public class TimeController {
           .updateGpt(GptPromptEngineering.getHardPrompt(GameState.puzzleWord));
     }
 
-    // Sets the timer time and starts it
-    TimerClass.initialize(gameTime);
+    // Sets the timer time and starts it.
     TimerClass timer = TimerClass.getInstance();
-    timer.start();
+    timer.start(gameTime);
 
     // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));

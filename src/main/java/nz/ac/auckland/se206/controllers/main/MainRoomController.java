@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -156,7 +155,6 @@ public class MainRoomController extends Commander {
         // Pause Timer
         TimerClass.getInstance().pause();
         // Allow user to leave room with any amount of intel
-        SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
         System.gc();
       } else {

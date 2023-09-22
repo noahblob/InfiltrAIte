@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.application.Platform;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.speech.TextToSpeech;
@@ -12,96 +12,78 @@ import nz.ac.auckland.se206.speech.TextToSpeech;
 public class TimerClass {
 
   private static volatile TimerClass instance;
-  private static List<TimerObserver> observe = new ArrayList<>();
+  private static List<Text> timers = new ArrayList<>();
+
+  public static List<Text> getTimers() {
+    return timers;
+  }
+
+  public static void setTimers(List<Text> timers) {
+    TimerClass.timers = timers;
+  }
 
   public static void resetInstance() {
     instance = null;
+    System.gc();
   }
 
-  public static void add(TimerObserver observer) {
-    observe.add(observer);
+  public static void add(Text timer) {
+    timers.add(timer);
   }
 
-  public static void initialize(int time) {
+  public static void initialize() {
     if (instance == null) {
-      instance = new TimerClass(time);
-      for (TimerObserver observer : observe) {
-        observer.timerUpdated();
-      }
+      instance = new TimerClass();
     } else {
-      throw new IllegalStateException("There already is a timer instance!!");
+      System.out.println("Timer Exists");
     }
   }
 
   public static TimerClass getInstance() {
     if (instance == null) {
-      throw new IllegalStateException("No timer exists");
+      System.out.println("NO TIMER EXISTS");
     }
     return instance;
   }
 
-  private Runnable finished;
   private TextToSpeech tts = new TextToSpeech();
   private int timeLeft;
-  private boolean shouldRun = false;
   private Timeline timeline;
 
-  private TimerClass(int minutes) {
-    this.timeLeft = minutes * 60 + 1;
+  private TimerClass() {}
+
+  public void start(int minutes) {
+    this.timeLeft = minutes * 60;
     this.timeline = new Timeline();
     timeline.setCycleCount(Timeline.INDEFINITE);
     KeyFrame frame = new KeyFrame(Duration.seconds(1), e -> timerAction());
     timeline.getKeyFrames().add(frame);
-  }
-
-  public void setFinished(Runnable call) {
-    this.finished = call;
-  }
-
-  public void start() {
-    shouldRun = true;
     timeline.play();
   }
 
   public void pause() {
-    shouldRun = false;
     timeline.pause();
   }
 
   private void timerAction() {
-    if (shouldRun) {
-      timeLeft--;
+    timeLeft--;
+    System.out.println(timeLeft);
+    for (Text timer : timers) {
+      String time = getTimerLeft();
+      timer.setText(String.valueOf(time));
+    }
 
-      for (TimerObserver observer : observe) {
-        observer.timerUpdated();
+    if (timeLeft == 30) {
+      try {
+        CommanderController.getInstance().updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
+        tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
+        // Delete the thread straight after.
+        tts.terminate();
+      } catch (Exception e) {
+        e.printStackTrace();
       }
-
-      if (timeLeft == 30) {
-        Platform.runLater(
-            () -> {
-              try {
-                CommanderController.getInstance()
-                    .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
-
-                new Thread(
-                        () ->
-                            tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!"))
-                    .start();
-
-              } catch (Exception e) {
-                e.printStackTrace();
-              }
-            });
-      }
-
       if (timeLeft == 0) {
-        shouldRun = false;
-
-        observe.get(0).timerFinished();
-
-        if (finished != null) {
-          Platform.runLater(finished);
-        }
+        timeline.stop();
       }
     }
   }
@@ -114,5 +96,10 @@ public class TimerClass {
 
   public int getTimeLeftInt() {
     return timeLeft;
+  }
+
+  // Method to add each rooms timer label to the timer.
+  public void addTimer(Text timer) {
+    timers.add(timer);
   }
 }

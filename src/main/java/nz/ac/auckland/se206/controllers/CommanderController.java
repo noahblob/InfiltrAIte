@@ -16,6 +16,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
 import nz.ac.auckland.se206.GameState;
@@ -40,6 +41,7 @@ public class CommanderController {
   // Method to delete the commandercontroller for a new game.
   public static void resetInstance() {
     instance = null;
+    System.gc();
   }
 
   // Instance fields
@@ -47,6 +49,7 @@ public class CommanderController {
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> dialogues;
+  private List<TextArea> notes;
   private StringProperty notesProperty;
   private StringProperty lastInputTextProperty;
   private boolean scroll = false;
@@ -59,7 +62,7 @@ public class CommanderController {
   public void setPhoneScreens(List<ListView<ChatMessage>> phoneScreens) {
     this.phoneScreens = phoneScreens;
   }
-  
+
   public List<ListView<ChatMessage>> getPhoneScreens() {
     return phoneScreens;
   }
@@ -70,6 +73,7 @@ public class CommanderController {
 
   private CommanderController() throws Exception {
 
+    notes = new ArrayList<>();
     notesProperty = new SimpleStringProperty("");
     messageQueue = new LinkedList<>();
     lastInputTextProperty = new SimpleStringProperty("");
@@ -330,6 +334,10 @@ public class CommanderController {
     dialogues.add(textArea);
   }
 
+  public void addNotes(TextArea notepad) {
+    notes.add(notepad);
+  }
+
   // Method to update commander's dialogue.
   public void updateDialogueBox(String textToRollOut) {
     messageQueue.offer(textToRollOut);
@@ -390,7 +398,8 @@ public class CommanderController {
   }
 
   public void setUpCommander() {
-    messages = new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
+    messages =
+        new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     displayStartHint();
   }
 
@@ -401,4 +410,12 @@ public class CommanderController {
       phonescreen.getItems().clear();
     }
   }
+
+  // Method to clear the notes.
+  public void clearNotes() {
+    for (TextArea notepad: notes) {
+      notepad.clear();
+    }
+  }
+  
 }

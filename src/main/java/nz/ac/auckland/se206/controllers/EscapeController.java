@@ -1,19 +1,22 @@
 package nz.ac.auckland.se206.controllers;
 
+import java.util.List;
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import nz.ac.auckland.se206.App;
+import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TextRollout;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.ChatMessage;
 
 public class EscapeController extends TextRollout {
 
@@ -64,25 +67,27 @@ public class EscapeController extends TextRollout {
     // In the case user wants to retry the game upon winning or losing, reset the game state.
     GameState.resetGameState();
 
+    // Clear the notes and phones of previous game.
+    CommanderController.getInstance().clearNotes();
+    CommanderController.getInstance().clearPhones();
+
+    List<TextArea> dialogues = CommanderController.getInstance().getDialogues();
+    List<ListView<ChatMessage>> phoneScreens = CommanderController.getInstance().getPhoneScreens();
     // Reset the game master.
     CommanderController.resetInstance();
 
+    // Update the new Commander controller with the list of dialogues and phonescreens.
+    CommanderController.getInstance().setDialogues(dialogues);
+    CommanderController.getInstance().setPhoneScreens(phoneScreens);
+
+    // get the list of timers before resetting.
+    List<Text> timers = TimerClass.getTimers();
+
     // Reset the timer.
     TimerClass.resetInstance();
-
-    // Reload specific scenes.
-    // SceneManager.addUserInterface(AppUi.WATCH, App.loadFxml("time"));
-    SceneManager.addUserInterface(AppUi.MAIN, App.loadFxml("mainroom"));
-    // SceneManager.addUserInterface(AppUi.RIGHT, App.loadFxml("rightroom"));
-    SceneManager.addUserInterface(AppUi.LEFT, App.loadFxml("leftroom"));
-    // SceneManager.addUserInterface(AppUi.DRAWER, App.loadFxml("drawer"));
-    SceneManager.addUserInterface(AppUi.RADIO, App.loadFxml("radio"));
-    SceneManager.addUserInterface(AppUi.LOCKER, App.loadFxml("rightlocker"));
-    SceneManager.addUserInterface(AppUi.KEYPAD, App.loadFxml("keypad"));
-    SceneManager.addUserInterface(AppUi.BOOKSHELF, App.loadFxml("bookshelf"));
-    SceneManager.addUserInterface(AppUi.BLACKBOARD, App.loadFxml("blackboard"));
-    SceneManager.addUserInterface(AppUi.COMPUTER, App.loadFxml("computer"));
-    System.out.println(SceneManager.sceneMap.size());
-    System.gc();
+    // Create a new Timer.
+    TimerClass.initialize();
+    // Upate new Timer with old rooms.
+    TimerClass.setTimers(timers);
   }
 }

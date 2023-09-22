@@ -141,27 +141,26 @@ public class GameState {
   }
 
   public static void resetGameState() {
-  // Reset all game state variables to default values for when the player restarts the game.
-  
-  isRiddleResolved = false;
-  isKeyFound.set(false);
-  isKeyUsed.set(false);
-  isKeypadSolved.set(false);
-  isGameWon.set(false);
+    // Reset all game state variables to default values for when the player restarts the game.
 
-  difficulty.set(0); 
-  numOfIntel.set(0);
-  numHints.set(0);
+    isRiddleResolved = false;
+    isKeyFound.set(false);
+    isKeyUsed.set(false);
+    isKeypadSolved.set(false);
+    isGameWon.set(false);
 
-  country = null;
-  cabinetRightIntelfound = false;
-  cabinetMiddleIntelfound = false;
-  isSlidersSolved = false;
-  isPasswordSolved = false;
+    difficulty.set(0);
+    numOfIntel.set(0);
+    numHints.set(0);
 
-  puzzleWord = getRandomWord(riddleSetOne);
-  mainRiddleAnswer = getRandomWord(riddleSetTwo);
-  sliderAnswer = setSliders(); 
-}
+    country = null;
+    cabinetRightIntelfound = false;
+    cabinetMiddleIntelfound = false;
+    isSlidersSolved = false;
+    isPasswordSolved = false;
 
+    puzzleWord = getRandomWord(riddleSetOne);
+    mainRiddleAnswer = getRandomWord(riddleSetTwo);
+    sliderAnswer = setSliders();
+  }
 }
