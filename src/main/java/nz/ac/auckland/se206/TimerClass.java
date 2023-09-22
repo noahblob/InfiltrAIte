@@ -61,13 +61,15 @@ public class TimerClass {
     timeline.play();
   }
 
-  public void pause() {
-    timeline.pause();
+  public void stop() {
+    for (Text timer : timers) {
+      timer.setText("00:00");
+    }
+    timeline.stop();
   }
 
   private void timerAction() {
     timeLeft--;
-    System.out.println(timeLeft);
     for (Text timer : timers) {
       String time = getTimerLeft();
       timer.setText(String.valueOf(time));
@@ -92,10 +94,6 @@ public class TimerClass {
     int minutes = timeLeft / 60;
     int seconds = timeLeft % 60;
     return String.format("%02d:%02d", minutes, seconds);
-  }
-
-  public int getTimeLeftInt() {
-    return timeLeft;
   }
 
   // Method to add each rooms timer label to the timer.

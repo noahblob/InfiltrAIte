@@ -153,7 +153,7 @@ public class MainRoomController extends Commander {
       // Change scene or dialogue based on how much intel user has found
       if (GameState.numOfIntel.get() >= 1) {
         // Pause Timer
-        TimerClass.getInstance().pause();
+        TimerClass.getInstance().stop();
         // Reset all aspects of the room to original state for replay functionality
         roomimage.setImage(new Image("/images/startLocked.png"));
         // Allow user to leave room with any amount of intel
