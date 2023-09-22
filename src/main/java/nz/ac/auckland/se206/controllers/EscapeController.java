@@ -30,19 +30,22 @@ public class EscapeController extends TextRollout {
   @FXML private Pane losePane;
 
   public void initialize() {
-
-    // update the dialogue area with final message from commander.
-    Platform.runLater(
-        () -> {
-          if (GameState.numOfIntel.get() == 1) {
-            textRollout(Dialogue.WINDIALOGUE1);
-          } else if (GameState.numOfIntel.get() == 2) {
-            textRollout(Dialogue.WINDIALOGUE2);
-          } else if (GameState.numOfIntel.get() == 3) {
-            textRollout(Dialogue.WINDIALOGUE3);
+    GameState.isEndScreen.addListener(
+        (observable, oldValue, newValue) -> {
+          if (newValue) {
+            Platform.runLater(
+                () -> {
+                  dialogue.clear();
+                  if (GameState.numOfIntel.get() == 1) {
+                    textRollout(Dialogue.WINDIALOGUE1);
+                  } else if (GameState.numOfIntel.get() == 2) {
+                    textRollout(Dialogue.WINDIALOGUE2);
+                  } else if (GameState.numOfIntel.get() == 3) {
+                    textRollout(Dialogue.WINDIALOGUE3);
+                  }
+                });
           }
         });
-
     // Bind the win lose pane to the gamstate (IsgameWon)
     winPane.visibleProperty().bind(GameState.isGameWon);
     losePane.visibleProperty().bind(Bindings.not(GameState.isGameWon));

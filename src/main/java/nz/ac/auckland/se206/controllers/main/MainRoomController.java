@@ -175,6 +175,8 @@ public class MainRoomController extends Commander {
         roomimage.setImage(new Image("/images/startLocked.png"));
         // Allow user to leave room with any amount of intel
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
+        // Switch flag to trigger text rollout.
+        GameState.isEndScreen.set(true);
         System.gc();
       } else {
         // if user has not found any intel, update them reminding them to find intel
