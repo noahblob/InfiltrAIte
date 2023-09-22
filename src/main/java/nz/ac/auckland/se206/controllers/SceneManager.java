@@ -41,4 +41,7 @@ public class SceneManager {
     return sceneMap.get(currentScene);
   }
 
+  public static Parent getRoom(AppUi ui) {
+    return sceneMap.get(ui);
+  }
 }

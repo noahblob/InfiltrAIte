@@ -16,7 +16,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
 import nz.ac.auckland.se206.GameState;

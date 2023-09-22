@@ -48,7 +48,6 @@ public class RadioController extends Commander {
   @FXML private Label label5;
   @FXML private Rectangle pigeonhole;
 
-  /** The key in the inventory box. It is currently set to visible. */
   private List<Slider> sliders;
   private List<Label> passcode;
   private char[] code;
@@ -68,9 +67,7 @@ public class RadioController extends Commander {
 
     super.initialize();
     objective.setText("Hmm I wonder what this does...");
-
     // Set up all elements of the slider pane so answer can be set
-    sineWave.setVisible(false);
     answer = GameState.setSliders();
     isDialogueUpdated = false;
     setSliders();
@@ -87,18 +84,29 @@ public class RadioController extends Commander {
   public void onReturn(MouseEvent event) {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
+
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
     System.out.println("switched to left");
   }
 
   /** Set the correct values of each slider relative to the value of the passcode in right room. */
   public void setSliders() {
+    // Set the sineWave to be invisible.
+    sineWave.setVisible(false);
+    // Set the default image.
     comms.setImage(new Image("/images/commsNew.png"));
+    // Corectly map the sliders.
     code = new char[6];
     sliders = List.of(slider, slider1, slider2, slider3, slider4, slider5);
     passcode = List.of(label, label1, label2, label3, label4, label5);
 
     IntStream.range(0, sliders.size()).forEach(i -> setSlider(sliders.get(i), passcode.get(i), i));
+
+    for (Slider slider : sliders) {
+      slider.setDisable(false);
+      // Set the slider position to the middle
+      slider.setValue(5);
+    }
   }
 
   /** Create a hash map of all the possible slider values. */
@@ -197,6 +205,9 @@ public class RadioController extends Commander {
     intelligence.setVisible(false);
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
 
+    // Reset the radio.
+    resetRadio();
+
     // Update text rollout.
     try {
       updateDialogue(Dialogue.INTELFOUND);
@@ -206,5 +217,9 @@ public class RadioController extends Commander {
 
     // Update game state.
     GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
+  }
+
+  private void resetRadio() {
+    setSliders();
   }
 }
