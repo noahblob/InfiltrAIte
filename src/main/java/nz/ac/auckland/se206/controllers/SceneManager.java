@@ -21,13 +21,12 @@ public class SceneManager {
     BOOKSHELF,
     POPUP,
     BLACKBOARD,
-    ESCAPE,
     END
   }
 
   private static AppUi currentScene = null;
 
-  private static Map<AppUi, Parent> sceneMap = new HashMap<>();
+  public static Map<AppUi, Parent> sceneMap = new HashMap<>();
 
   public static void addUserInterface(AppUi appUserInterface, Parent root) {
     sceneMap.put(appUserInterface, root);
@@ -41,4 +40,5 @@ public class SceneManager {
   public static Parent getCurrentSceneRoot() {
     return sceneMap.get(currentScene);
   }
+
 }

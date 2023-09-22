@@ -21,6 +21,7 @@ public class TimeController {
   @FXML private Button increase;
   @FXML private Button decrease;
   @FXML private Button set;
+  @FXML private Button back;
   private int gameTime;
 
   public void initialize() {
@@ -35,20 +36,30 @@ public class TimeController {
   private void initialiseButtons() {
     increase.setOnAction(
         event -> {
+          decrease.setDisable(false);
           gameTime += 2; // Increment by 2 minutes
-          if (gameTime > 6) {
+          if (gameTime > 4) {
             gameTime = 6; // Ensure time doesn't go above 6 minutes.
+            increase.setDisable(true);
           }
           updateTime();
         });
 
     decrease.setOnAction(
         event -> {
+          increase.setDisable(false);
           gameTime -= 2; // Decrement by 2 minutes
-          if (gameTime < 2) {
+          if (gameTime < 4) {
             gameTime = 2; // Ensure time doesn't go below 2 minutes
+            decrease.setDisable(true);
           }
           updateTime();
+        });
+
+    back.setOnAction(
+        event -> {
+          Scene currentScene = back.getScene();
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
         });
   }
 
@@ -73,10 +84,9 @@ public class TimeController {
           .updateGpt(GptPromptEngineering.getHardPrompt(GameState.puzzleWord));
     }
 
-    // Sets the timer time and starts it
-    TimerClass.initialize(gameTime);
+    // Sets the timer time and starts it.
     TimerClass timer = TimerClass.getInstance();
-    timer.start();
+    timer.start(gameTime);
 
     // Update the scene to the main game.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));

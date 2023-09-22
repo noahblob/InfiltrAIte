@@ -33,7 +33,6 @@ public class DrawerController extends Commander {
   @FXML private TextArea riddleBox;
   @FXML private Button check;
 
-  private boolean isPaperSeen;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -44,7 +43,6 @@ public class DrawerController extends Commander {
 
     super.initialize();
     objective.setText("I wonder whats inside...");
-    isPaperSeen = false;
     configureButtons();
     setHoverEvents();
     configurePuzzle();
@@ -109,43 +107,7 @@ public class DrawerController extends Commander {
 
   @FXML
   public void onClick(MouseEvent event) throws Exception {
-    // get the source of the object that was clicked to perform actions on the object
-    Rectangle clickedObject = (Rectangle) event.getSource();
-    String drawer = clickedObject.getId();
-
-    // check which drawer was clicked
-    switch (drawer) {
-      case "topDrawer":
-        updateDialogue(Dialogue.EMPTY);
-        break;
-      case "midDrawer":
-        // if middle drawer is clicked, show user piece of paper with morse code
-        if (!isPaperSeen) {
-          isPaperSeen = true;
-        }
-        riddlePane.setVisible(true);
-        toggleDrawers(false);
-
-        break;
-      case "botDrawer":
-        // if bottom drawer is clicked, check if the riddle has been solved, if not show user the
-        // passcode screen to enter passcode that unlocks drawer
-        if (GameState.isRiddleResolved) {
-          updateDialogue(Dialogue.DEADEND);
-          objective.setText("At least I get a snack...");
-        } else {
-
-          if (isPaperSeen) {
-            updateDialogue(Dialogue.PAPERSEEN);
-          }
-
-          keyDrawer.setVisible(true);
-          toggleDrawers(false);
-        }
-        break;
-      default:
-        break;
-    }
+    updateDialogue(Dialogue.EMPTY);
   }
 
   private void toggleDrawers(Boolean flag) {

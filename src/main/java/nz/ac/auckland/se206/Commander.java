@@ -2,6 +2,7 @@ package nz.ac.auckland.se206;
 
 import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -43,15 +44,23 @@ public abstract class Commander implements TimerObserver {
   @FXML
   protected void initialize() throws Exception {
 
+    TimerClass.getInstance().addTimer(timer);
+
     // Add the relevant FXML elements to the commander controller
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
+    CommanderController.getInstance().addNotes(notes);
+    
     objective.setEditable(false);
+    objective.setWrapText(true);
     output.setFixedCellSize(-1);
+    notes.setWrapText(true);
 
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
-    key.visibleProperty().bind(GameState.doePlayerHaveKey);
+    BooleanBinding keyVisibilityBinding =
+        Bindings.and(GameState.isKeyFound, Bindings.not(GameState.isKeyUsed));
+    key.visibleProperty().bind(keyVisibilityBinding);
 
     intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
     if (notes == null) {
@@ -76,8 +85,7 @@ public abstract class Commander implements TimerObserver {
     }
     updateTimerFont();
 
-    notes.setPromptText("NOTEPAD!! Write your notes here!!");
-    TimerClass.add(this);
+    notes.setPromptText("NOTEPAD: Write your findings");
   }
 
   /** Updates styling for timer to correct font and size upon game launch. */
@@ -109,7 +117,7 @@ public abstract class Commander implements TimerObserver {
     Platform.runLater(
         () -> {
           Scene currentScene = (Scene) SceneManager.getCurrentSceneRoot().getScene();
-          currentScene.setRoot(SceneManager.getuserInterface(AppUi.ESCAPE));
+          currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
         });
   }
 

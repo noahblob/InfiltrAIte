@@ -11,7 +11,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
-import nz.ac.auckland.se206.App;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -158,8 +157,8 @@ public class MainRoomController extends Commander {
         // Reset all aspects of the room to original state for replay functionality
         roomimage.setImage(new Image("/images/start.png"));
         // Allow user to leave room with any amount of intel
-        SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
+        System.gc();
       } else {
         // if user has not found any intel, update them reminding them to find intel
         updateDialogue(Dialogue.NOINTELFOUND);
@@ -213,7 +212,7 @@ public class MainRoomController extends Commander {
     switch (drawer.getId()) {
       case ("topDrawer"):
         if (randomDrawer == 1) {
-          checkDrawer(GameState.doePlayerHaveKey.get(), GameState.cabinetMiddleIntelfound);
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -221,7 +220,7 @@ public class MainRoomController extends Commander {
       case ("midDrawer"):
         // same case for top drawer but for middle
         if (randomDrawer == 2) {
-          checkDrawer(GameState.doePlayerHaveKey.get(), GameState.cabinetMiddleIntelfound);
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -229,7 +228,7 @@ public class MainRoomController extends Commander {
       case ("botDrawer"):
         // same case for top and middle drawer but for bottom drawer
         if (randomDrawer == 3) {
-          checkDrawer(GameState.doePlayerHaveKey.get(), GameState.cabinetMiddleIntelfound);
+          checkDrawer(GameState.isKeyFound.get(), GameState.cabinetMiddleIntelfound);
         } else {
           commander.updateDialogueBox(Dialogue.EMPTY.toString());
         }
@@ -253,7 +252,7 @@ public class MainRoomController extends Commander {
       intelFile.setVisible(true);
 
       // Player uses key, so key disappears.
-      GameState.doePlayerHaveKey.set(false);
+      GameState.isKeyFound.set(false);
 
       // Update commander dialogue to prompt player that key has been used.
       updateDialogue(Dialogue.KEYUSED);
@@ -271,10 +270,10 @@ public class MainRoomController extends Commander {
               e.printStackTrace();
             }
           });
-    } else if (!GameState.doePlayerHaveKey.get() && cabinetIntelFound) {
+    } else if (!GameState.isKeyFound.get() && cabinetIntelFound) {
       // user has already found cabinet intel
       updateDialogue(Dialogue.INTELALREADYFOUND);
-    } else if (!GameState.doePlayerHaveKey.get() && !cabinetIntelFound) {
+    } else if (!GameState.isKeyFound.get() && !cabinetIntelFound) {
       // user is missing key to cabinet
       updateDialogue(Dialogue.KEYNEEDED);
     }

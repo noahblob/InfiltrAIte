@@ -8,6 +8,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.TextRollout;
+import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 public class StartController extends TextRollout {
@@ -17,6 +18,10 @@ public class StartController extends TextRollout {
   @FXML private TextArea dialogue;
 
   public void initialize() {
+
+    // Initialise the timer.
+    TimerClass.initialize();
+
     initialiseDialogue();
   }
 
@@ -36,6 +41,6 @@ public class StartController extends TextRollout {
 
   private void initialiseDialogue() {
     dialogue.setEditable(false);
-    Platform.runLater(() -> textRollout(Dialogue.BACKSTORY.toString()));
+    Platform.runLater(() -> textRollout(Dialogue.BACKSTORY));
   }
 }
