@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.CommanderController;
@@ -30,6 +31,8 @@ public abstract class Commander {
   @FXML protected Label intel;
   @FXML protected Label hints;
   @FXML protected ImageView key;
+
+  @FXML protected AnchorPane roomUi;
 
   /**
    * Initializes the commander for each room and stores all relevant information to be passed
@@ -123,7 +126,7 @@ public abstract class Commander {
   }
 
   public void setupHints() {
-    
+
     // Unbind hints text property (For replayability)
     hints.textProperty().unbind();
     // Depending on difficulty setting of the game, show how many hints the user has

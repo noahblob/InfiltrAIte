@@ -55,6 +55,7 @@ public class MainRoomController extends Commander {
    * @throws Exception
    */
   public void initialize() throws Exception {
+
     super.initialize();
     objective.setText("Find intel and escape!");
     // separate method for left and right door hover and click events
