@@ -15,10 +15,13 @@ import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TextRollout;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
+import nz.ac.auckland.se206.controllers.main.ComputerController;
+import nz.ac.auckland.se206.controllers.main.MainRoomController;
 import nz.ac.auckland.se206.controllers.right.BlackBoardController;
 import nz.ac.auckland.se206.controllers.right.BookController;
 import nz.ac.auckland.se206.controllers.right.LockerController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class EscapeController extends TextRollout {
 
@@ -106,6 +109,15 @@ public class EscapeController extends TextRollout {
 
     // Reset Right Room Locker
     LockerController.getInstance().resetRoom();
+
+    // change computer riddle for next user playthrough
+    ComputerController.getInstance()
+        .runGpt(
+            new ChatMessage(
+                "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
+
+    // Reset main room back to original imageview
+    MainRoomController.getInstance().resetRoom();
 
     // Reset the timer.
     TimerClass.resetInstance();

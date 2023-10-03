@@ -23,11 +23,21 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
 public class ComputerController extends Commander {
 
+  public static ComputerController instance;
+
+  public static ComputerController getInstance() {
+    return instance;
+  }
+
   @FXML private Label passwordHint;
   @FXML private TextField computerPassword;
   @FXML private Button back;
   @FXML private Button submitButton;
   private ChatCompletionRequest chatCompletionRequest;
+
+  public ComputerController() {
+    instance = this;
+  }
 
   public void initialize() throws Exception {
     super.initialize();
@@ -53,7 +63,7 @@ public class ComputerController extends Commander {
    * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
-  private void runGpt(ChatMessage msg) throws ApiProxyException {
+  public void runGpt(ChatMessage msg) throws ApiProxyException {
 
     // Create a task for chat gpt to generate password hint asynchronously
     Task<ChatMessage> taskGpt =
@@ -106,10 +116,6 @@ public class ComputerController extends Commander {
     // switch case for different buttons, including back and submit button
     switch (button.getId()) {
       case ("back"):
-        // change riddle for next user playthrough
-        runGpt(
-            new ChatMessage(
-                "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
         // empty text field in case user has left password sitting there
         computerPassword.setText("");
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));

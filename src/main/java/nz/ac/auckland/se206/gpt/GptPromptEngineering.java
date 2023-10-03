@@ -72,9 +72,8 @@ public class GptPromptEngineering {
   public static String getPasswordRiddle(String riddleAnswer) {
     return "Generate a short riddle, no more than 3 sentences long with the answer being "
         + riddleAnswer
-        + "."
-        + " This riddle should be relatively easy to solve. The riddle is to solve the"
-        + " password for the computer.";
+        + ". This riddle should be relatively easy to solve. The riddle is to solve the password"
+        + " for the computer. Do not, under any circumstance include the answer in the riddle.";
   }
 
   public static String getRiddle(String leftRiddle) {
