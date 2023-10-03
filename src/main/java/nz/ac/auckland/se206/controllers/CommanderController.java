@@ -154,7 +154,7 @@ public class CommanderController {
   }
 
   public void updateGpt(String messageContent) throws Exception {
-    ChatMessage msg = new ChatMessage("user", messageContent);
+    ChatMessage msg = new ChatMessage("system", messageContent);
     updateGpt(msg);
   }
 
@@ -243,16 +243,10 @@ public class CommanderController {
                 }
               }
             }
-
-            Platform.runLater(
-                () -> {
-                  phoneScreens.forEach(
-                      screen ->
-                          screen
-                              .getItems()
-                              .remove(transmittingMsg)); // Remove "Transmitting..." message
-                  appendChatMessage(gptResponse); // Add GPT's response to the UI
-                });
+            phoneScreens.forEach(
+                screen ->
+                    screen.getItems().remove(transmittingMsg)); // Remove "Transmitting..." message
+            appendChatMessage(gptResponse); // Add GPT's response to the UI
           }
         });
     task.setOnFailed(
@@ -345,14 +339,13 @@ public class CommanderController {
   }
 
   private void dequeueAndRoll() {
+    if (isRolling) {
+      return;
+    }
     if (messageQueue.isEmpty() || messageQueue.size() > 1) {
       messageQueue.clear();
       return;
     }
-    if (isRolling) {
-      return;
-    }
-
     String nextMessage = messageQueue.poll();
     isRolling = true;
 

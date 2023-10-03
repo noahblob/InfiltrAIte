@@ -26,7 +26,11 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class RadioController extends Commander {
 
-  public static int year;
+  public static RadioController instance;
+
+  public static RadioController getInstance() {
+    return instance;
+  }
 
   @FXML private Button back;
   @FXML private ImageView comms;
@@ -62,8 +66,7 @@ public class RadioController extends Commander {
    */
   public void initialize() throws Exception {
 
-    // print answer to console for development purposes
-    System.out.println(String.valueOf(GameState.setSliders()));
+    instance = this;
 
     super.initialize();
     objective.setText("Hmm I wonder what this does...");
@@ -84,9 +87,7 @@ public class RadioController extends Commander {
   public void onReturn(MouseEvent event) {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
-
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
-    System.out.println("switched to left");
   }
 
   /** Set the correct values of each slider relative to the value of the passcode in right room. */
@@ -196,7 +197,7 @@ public class RadioController extends Commander {
   }
 
   @FXML
-  public void onCollect(MouseEvent event) {
+  public void onCollect(MouseEvent event) throws Exception {
     // return back to main room.
     ImageView intel = (ImageView) event.getSource();
     Scene currentScene = intel.getScene();
@@ -206,20 +207,12 @@ public class RadioController extends Commander {
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
 
     // Reset the radio.
-    resetRadio();
+    setSliders();
 
     // Update text rollout.
-    try {
-      updateDialogue(Dialogue.INTELFOUND);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
+    updateDialogue(Dialogue.INTELFOUND);
 
     // Update game state.
     GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
-  }
-
-  private void resetRadio() {
-    setSliders();
   }
 }

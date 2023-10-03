@@ -87,39 +87,31 @@ public class MainRoomController extends Commander {
 
   /** Handles the click and hover effects for left and right door in main room. */
   public void setDoorEvents() {
-    // set click functionaltiy for left and right door, this will take the player to relative rooms
-    leftDoor.setOnMouseClicked(
-        event -> {
-          Polygon object = (Polygon) event.getSource();
-          Scene scene = object.getScene();
-          // if cabinet is on the screen, make it not visible when switching rooms
-          setCabinetVisibility(false);
-          scene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
-        });
-    rightDoor.setOnMouseClicked(
-        event -> {
-          Polygon object = (Polygon) event.getSource();
-          Scene scene = object.getScene();
-          setCabinetVisibility(false);
-          scene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
-        });
-    // set hover effects for left door and right door
-    leftDoor.setOnMouseEntered(
-        event -> {
-          leftDoor.setOpacity(1);
-        });
-    leftDoor.setOnMouseExited(
-        event -> {
-          leftDoor.setOpacity(0);
-        });
-    rightDoor.setOnMouseEntered(
-        event -> {
-          rightDoor.setOpacity(1);
-        });
-    rightDoor.setOnMouseExited(
-        event -> {
-          rightDoor.setOpacity(0);
-        });
+    setClickEvents(leftDoor, AppUi.LEFT);
+    setClickEvents(rightDoor, AppUi.RIGHT);
+
+    setHoverEvents(leftDoor);
+    setHoverEvents(rightDoor);
+  }
+
+  private void setClickEvents(Polygon door, AppUi direction) {
+    door.setOnMouseClicked(event -> handleDoorClick(event, direction));
+  }
+
+  private void handleDoorClick(MouseEvent event, AppUi direction) {
+    Polygon object = (Polygon) event.getSource();
+    Scene scene = object.getScene();
+    setCabinetVisibility(false);
+    scene.setRoot(SceneManager.getuserInterface(direction));
+  }
+
+  private void setHoverEvents(Polygon door) {
+    door.setOnMouseEntered(event -> setDoorOpacity(door, 1));
+    door.setOnMouseExited(event -> setDoorOpacity(door, 0));
+  }
+
+  private void setDoorOpacity(Polygon door, double opacity) {
+    door.setOpacity(opacity);
   }
 
   /**
@@ -214,21 +206,6 @@ public class MainRoomController extends Commander {
   public void clickBack(MouseEvent event) {
     // Set visibility of filing cabinet and background to false to return to room
     setCabinetVisibility(false);
-  }
-
-  /**
-   * Sets the visibility of the filing cabinet and background.
-   *
-   * @param visible true if the cabinet should be visible, false otherwise
-   */
-  public void setCabinetVisibility(boolean visible) {
-    // set visibility of filing cabinet and background
-    filingCabinet.setVisible(visible);
-    background.setVisible(visible);
-    back.setVisible(visible);
-    topDrawer.setVisible(visible);
-    midDrawer.setVisible(visible);
-    botDrawer.setVisible(visible);
   }
 
   /**
@@ -342,5 +319,20 @@ public class MainRoomController extends Commander {
     // disable indicator
     Rectangle rectangle = (Rectangle) event.getSource();
     rectangle.setOpacity(0);
+  }
+
+  /**
+   * Sets the visibility of the filing cabinet and background.
+   *
+   * @param visible true if the cabinet should be visible, false otherwise
+   */
+  private void setCabinetVisibility(boolean visible) {
+    // set visibility of filing cabinet and background
+    filingCabinet.setVisible(visible);
+    background.setVisible(visible);
+    back.setVisible(visible);
+    topDrawer.setVisible(visible);
+    midDrawer.setVisible(visible);
+    botDrawer.setVisible(visible);
   }
 }
