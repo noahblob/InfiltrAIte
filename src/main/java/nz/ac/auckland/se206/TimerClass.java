@@ -127,10 +127,13 @@ public class TimerClass {
             @Override
             protected Void call() throws Exception {
               try {
-                // update commander dialogue to let player know they have been detected and play tts
+                // update commander dialogue to let player know they have been detected
                 CommanderController.getInstance()
                     .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
-                tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
+                // if user has not muted the audio, play tts
+                if (!GameState.isMuted) {
+                  tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
+                }
               } catch (Exception e) {
                 e.printStackTrace();
               }

@@ -124,7 +124,7 @@
             <Font size="25.0" />
          </font>
       </Text>
-      <TextArea fx:id="dialogue" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="407.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+      <TextArea fx:id="dialogue" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="349.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
          </font>
@@ -181,5 +181,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
+      <TextArea editable="false" layoutX="415.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+         <font>
+            <Font name="Courier New" size="12.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
+      <ImageView fx:id="soundButton" fitHeight="45.0" fitWidth="43.0" layoutX="422.0" layoutY="546.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-volume-100-green.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
