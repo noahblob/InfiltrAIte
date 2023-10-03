@@ -349,7 +349,6 @@ public class CommanderController {
     String nextMessage = messageQueue.poll();
     isRolling = true;
 
-    // Assume dialogues is some List<TextArea>
     for (TextArea dialogue : dialogues) {
       textRollout(nextMessage, dialogue);
     }
