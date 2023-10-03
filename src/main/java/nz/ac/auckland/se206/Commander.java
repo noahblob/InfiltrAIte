@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -31,6 +32,7 @@ public abstract class Commander {
   @FXML protected Label intel;
   @FXML protected Label hints;
   @FXML protected ImageView key;
+  @FXML protected ImageView soundButton;
 
   @FXML protected AnchorPane roomUi;
 
@@ -73,6 +75,24 @@ public abstract class Commander {
     // if the user tries to send message using enter, send message to commander controller
     if (event.getCode() == KeyCode.ENTER) {
       CommanderController.getInstance().onSendMessage(event, input);
+    }
+  }
+
+  /**
+   * Handles when the sound/volume button is pressed to mute and/or unmute the tts in the game.
+   *
+   * @param event
+   */
+  @FXML
+  protected void onMute(MouseEvent event) {
+    ImageView image = (ImageView) event.getSource();
+    // if the game is muted, change image to muted image and disable tts
+    if (!GameState.isMuted) {
+      GameState.isMuted = true;
+      image.setImage(new Image("/images/icons8-mute-100-red.png"));
+    } else {
+      GameState.isMuted = false;
+      image.setImage(new Image("/images/icons8-volume-100-green.png"));
     }
   }
 
