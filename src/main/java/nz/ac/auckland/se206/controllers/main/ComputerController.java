@@ -91,7 +91,7 @@ public class ComputerController extends Commander {
               Choice result = chatCompletionResult.getChoices().iterator().next();
               return result.getChatMessage();
             } catch (ApiProxyException e) {
-              System.out.println("API Key not Activated");
+              System.out.println("API KEY MISSING");
               return null;
             }
           }

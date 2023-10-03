@@ -55,9 +55,8 @@ public class RadioController extends Commander {
   private List<Slider> sliders;
   private List<Label> passcode;
   private char[] code;
-  private char[] answer;
   private Map<Integer, Character> sliderMap;
-  private boolean isDialogueUpdated;
+  private boolean isSliderSolved;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -71,8 +70,7 @@ public class RadioController extends Commander {
     super.initialize();
     objective.setText("Hmm I wonder what this does...");
     // Set up all elements of the slider pane so answer can be set
-    answer = GameState.setSliders();
-    isDialogueUpdated = false;
+    isSliderSolved = false;
     setSliders();
     createSliderMap();
     setPigeonHole();
@@ -108,6 +106,11 @@ public class RadioController extends Commander {
       // Set the slider position to the middle
       slider.setValue(5);
     }
+    // Set the initial text for the sliders.
+    for (Label digit : passcode) {
+      digit.setText("X");
+    }
+    isSliderSolved = false;
   }
 
   /** Create a hash map of all the possible slider values. */
@@ -171,8 +174,8 @@ public class RadioController extends Commander {
   }
 
   private void checkSlidersSolved() throws Exception {
-    if (Arrays.equals(code, answer) && !isDialogueUpdated) {
-      isDialogueUpdated = true;
+    if (Arrays.equals(code, GameState.sliderAnswer) && !isSliderSolved) {
+      isSliderSolved = true;
       // Update game state and show sine wave.
       GameState.isSlidersSolved = true;
       sineWave.setVisible(true);
@@ -205,9 +208,6 @@ public class RadioController extends Commander {
     // Set the intelligence to invisible
     intelligence.setVisible(false);
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
-
-    // Reset the radio.
-    setSliders();
 
     // Update text rollout.
     updateDialogue(Dialogue.INTELFOUND);

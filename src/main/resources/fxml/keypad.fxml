@@ -21,7 +21,7 @@
             <Image url="@../images/UI.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="roomimage" fitHeight="461.0" fitWidth="460.0" layoutX="9.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomimage" fitHeight="460.0" fitWidth="460.0" layoutX="9.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/start.png" />
          </image>

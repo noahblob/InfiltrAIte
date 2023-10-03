@@ -175,7 +175,7 @@ public class CommanderController {
               return result.getChatMessage();
             } catch (ApiProxyException e) {
               // Ensure to catch any exceptions thrown by the API proxy.
-              e.printStackTrace();
+              System.out.println("API KEY MISSING");
               return null;
             }
           }

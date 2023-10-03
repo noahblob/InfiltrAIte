@@ -67,12 +67,8 @@ public class BookController extends Commander {
   private Map<String, Text> descriptionMap = new HashMap<>();
   private String goodTitle = "Where our intelligence is stored";
 
-  private String pattern = new String(GameState.setSliders());
-  private String goodDesc =
-      "One of the intelligence can be found in the left room, make sure to use the sliders"
-          + " properly!!\r\n"
-          + "\r\n"
-          + pattern;
+  private String pattern;
+  private String goodDesc;
 
   private Map<String, String> titleToDescription =
       new HashMap<>() {
@@ -201,6 +197,14 @@ public class BookController extends Commander {
 
       availableBadTitles.remove(randomIndex);
     }
+
+    // Update the passcode for left room puzzle.
+    pattern = String.valueOf(GameState.sliderAnswer);
+    goodDesc =
+        "One of the intelligence can be found in the left room, make sure to use the sliders"
+            + " properly!!\r\n"
+            + "\r\n"
+            + pattern;
   }
 
   /**
