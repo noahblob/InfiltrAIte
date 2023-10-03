@@ -24,6 +24,11 @@ public class MainRoomController extends Commander {
 
   public static MainRoomController instance;
 
+  /**
+   * Method to store and get the current instance of the MainRoomController.
+   *
+   * @return the current instance of the MainRoomController
+   */
   public static MainRoomController getInstance() {
     return instance;
   }
@@ -43,8 +48,9 @@ public class MainRoomController extends Commander {
   @FXML private ImageView roomimage;
   // Initialize a random drawer to contain intel
   private Random random = new Random();
-  private int randomDrawer = 1 + random.nextInt(2);
+  private int randomDrawer = 1 + random.nextInt(3);
 
+  /** Constructor for the MainRoomController that contains the instance that will later be reset. */
   public MainRoomController() {
     instance = this;
   }
@@ -62,9 +68,13 @@ public class MainRoomController extends Commander {
     setDoorEvents();
   }
 
+  /**
+   * Resets relevant aspects of the room upon the play again button being pressed.
+   */
   public void resetRoom() {
-    // Reset visual aspects of the room to original state for replay functionality
+    // Reset visual aspects of the room to original state and random drawer for replayability
     roomimage.setImage(new Image("/images/startLocked.png"));
+    randomDrawer = 1 + random.nextInt(3);
   }
 
   /**
@@ -85,7 +95,7 @@ public class MainRoomController extends Commander {
     }
   }
 
-  /** Handles the click and hover effects for left and right door in main room. */
+  /** Sets the click and hover effects for left and right door in main room. */
   public void setDoorEvents() {
     setClickEvents(leftDoor, AppUi.LEFT);
     setClickEvents(rightDoor, AppUi.RIGHT);
@@ -94,22 +104,46 @@ public class MainRoomController extends Commander {
     setHoverEvents(rightDoor);
   }
 
+  /**
+   * Sets the click event on the main room doors.
+   *
+   * @param door the door polygon that was clicked
+   * @param direction the room that the door leads to
+   */
   private void setClickEvents(Polygon door, AppUi direction) {
     door.setOnMouseClicked(event -> handleDoorClick(event, direction));
   }
 
+  /**
+   * Handles the click event on the main room middle door.
+   *
+   * @param event the mouse event
+   * @param direction the room that the door leads to
+   */
   private void handleDoorClick(MouseEvent event, AppUi direction) {
     Polygon object = (Polygon) event.getSource();
     Scene scene = object.getScene();
+    // if a door is clicked on while the cabinet is still open, need to close the cabinet
     setCabinetVisibility(false);
     scene.setRoot(SceneManager.getuserInterface(direction));
   }
 
+  /**
+   * Sets the hover event on the main room doors.
+   *
+   * @param door the door polygon that was hovered over
+   */
   private void setHoverEvents(Polygon door) {
     door.setOnMouseEntered(event -> setDoorOpacity(door, 1));
     door.setOnMouseExited(event -> setDoorOpacity(door, 0));
   }
 
+  /**
+   * Sets the opacity of the door.
+   *
+   * @param door the door polygon that was hovered over
+   * @param opacity the opacity of the door
+   */
   private void setDoorOpacity(Polygon door, double opacity) {
     door.setOpacity(opacity);
   }

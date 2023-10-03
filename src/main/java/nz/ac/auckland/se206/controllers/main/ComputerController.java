@@ -25,6 +25,12 @@ public class ComputerController extends Commander {
 
   public static ComputerController instance;
 
+
+  /**
+   * Method to store and return the current instance of computercontroller.
+   * 
+   * @return the current instance of computer controller
+   */
   public static ComputerController getInstance() {
     return instance;
   }
@@ -35,6 +41,9 @@ public class ComputerController extends Commander {
   @FXML private Button submitButton;
   private ChatCompletionRequest chatCompletionRequest;
 
+  /**
+   * A constructor to initialize the instance of computer controller.
+   */
   public ComputerController() {
     instance = this;
   }
@@ -47,6 +56,11 @@ public class ComputerController extends Commander {
     generateRiddle();
   }
 
+  /**
+   * Programatically updates the dialogue box with the given dialogue.
+   * 
+   * @throws ApiProxyException if there is an error communicating with the API proxy
+   */
   public void generateRiddle() throws ApiProxyException {
     // Create a chat completion request and run gpt to generate the password hint
     chatCompletionRequest =
