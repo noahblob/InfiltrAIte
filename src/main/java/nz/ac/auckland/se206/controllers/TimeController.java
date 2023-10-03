@@ -1,6 +1,7 @@
 package nz.ac.auckland.se206.controllers;
 
 import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +18,7 @@ import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 public class TimeController {
 
   @FXML private ImageView watch;
+  @FXML private Label diff;
   @FXML private Label time;
   @FXML private Button increase;
   @FXML private Button decrease;
@@ -26,11 +28,33 @@ public class TimeController {
 
   public void initialize() {
 
-    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
-    time.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 50px; -fx-text-fill: black;");
     gameTime = 4;
+    bindDifficulty();
+    setFont();
     updateTime();
     initialiseButtons();
+  }
+
+  private void setFont() {
+    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
+    diff.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 25px; -fx-text-fill: black;");
+    time.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 45px; -fx-text-fill: black;");
+  }
+
+  private void bindDifficulty() {
+    diff.textProperty()
+        .bind(
+            Bindings.createStringBinding(
+                () -> {
+                  if (GameState.difficulty.get() == 1) {
+                    return "EASY";
+                  } else if (GameState.difficulty.get() == 2) {
+                    return "MEDIUM";
+                  } else {
+                    return "HARD";
+                  }
+                },
+                GameState.difficulty));
   }
 
   private void initialiseButtons() {
