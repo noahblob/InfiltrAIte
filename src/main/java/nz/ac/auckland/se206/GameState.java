@@ -28,7 +28,9 @@ public class GameState {
 
   private static final Set<String> riddleSetOne = new HashSet<>();
   private static final Set<String> riddleSetTwo = new HashSet<>();
-  private static char[] sliderAnswer = null;
+
+  /** Indicates the answer to slider puzzle for current game. */
+  public static char[] sliderAnswer = null;
 
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
@@ -102,7 +104,6 @@ public class GameState {
 
     // Update GameState:
     GameState.puzzleWord = getRandomWord(riddleSetOne);
-    System.out.println(GameState.puzzleWord);
 
     GameState.mainRiddleAnswer = getRandomWord(riddleSetTwo);
     System.out.println(GameState.mainRiddleAnswer);
@@ -111,6 +112,7 @@ public class GameState {
     setupWinListeners();
     // Generate random year for left room puzzle.
     generateYear();
+    sliderAnswer = setSliders();
   }
 
   /** Method to create random riddle for current game. */
@@ -128,9 +130,6 @@ public class GameState {
 
   /** Method to create random slider combination for the current game */
   public static char[] setSliders() {
-    if (sliderAnswer != null) {
-      return sliderAnswer;
-    }
     // Create an array of chars to hold the slider answer
     char[] answer = new char[6];
     Random random = new Random();
@@ -142,7 +141,7 @@ public class GameState {
       answer[i] = symbols[index];
     }
     sliderAnswer = answer;
-    return answer;
+    return sliderAnswer;
   }
 
   public static void resetGame() throws Exception {
