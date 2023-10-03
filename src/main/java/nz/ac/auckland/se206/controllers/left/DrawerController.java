@@ -33,7 +33,6 @@ public class DrawerController extends Commander {
   @FXML private TextArea riddleBox;
   @FXML private Button check;
 
-
   /**
    * Initializes the room view, it is called when the room loads.
    *

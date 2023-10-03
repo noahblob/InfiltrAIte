@@ -17,11 +17,11 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.left.LeftRoomController">
    <children>
-      <TextArea layoutX="6.0" layoutY="68.0" prefHeight="465.0" prefWidth="465.0" styleClass="uiTextArea" stylesheets="@../css/styles.css">
-         <effect>
-            <Bloom />
-         </effect>
-      </TextArea>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/UI.png" />
+         </image>
+      </ImageView>
       <ImageView fitHeight="460.0" fitWidth="460.0" layoutX="9.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/testroom.gif" />
@@ -95,26 +95,11 @@
             <String fx:value="uiTextAreaChat" />
          </styleClass>
       </ListView>
-      <TextArea layoutX="385.0" layoutY="6.0" prefHeight="57.0" prefWidth="86.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
-         <effect>
-            <Bloom />
-         </effect>
-      </TextArea>
       <Text fx:id="timer" fill="#909090" layoutX="387.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
          <font>
             <Font size="25.0" />
          </font>
       </Text>
-      <TextArea layoutX="5.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
-         <effect>
-            <Bloom />
-         </effect>
-      </TextArea>
-      <ImageView fitHeight="50.0" fitWidth="46.0" layoutX="10.0" layoutY="545.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/commander.png" />
-         </image>
-      </ImageView>
       <TextArea fx:id="dialogue" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="407.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
@@ -122,12 +107,6 @@
          <effect>
             <Bloom />
          </effect>
-      </TextArea>
-      <TextArea layoutX="478.0" layoutY="538.0" prefHeight="58.0" prefWidth="57.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreainventory" />
-         </styleClass>
       </TextArea>
       <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="481.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -153,22 +132,11 @@
             <Image url="@../images/morse.png" />
          </image>
       </ImageView>
-      <TextArea editable="false" layoutX="540.0" layoutY="538.0" prefHeight="58.0" prefWidth="254.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreainventory" />
-         </styleClass>
-      </TextArea>
       <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" text="x0" textFill="#aeaeae">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <ImageView fitHeight="40.0" fitWidth="50.0" layoutX="548.0" layoutY="545.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/pngwing.com.png" />
-         </image>
-      </ImageView>
       <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
@@ -183,11 +151,6 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
-      <ImageView fitHeight="54.0" fitWidth="43.0" layoutX="674.0" layoutY="540.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/intel(small).png" />
-         </image>
-      </ImageView>
       <Button fx:id="send" layoutX="738.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="56.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
          <font>
             <Font size="10.0" />
