@@ -57,7 +57,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <TextArea fx:id="dialogue" editable="false" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="407.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+      <TextArea fx:id="dialogue" editable="false" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="349.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
          </font>
@@ -101,7 +101,7 @@
             <Image url="@../images/Key.png" />
          </image>
       </ImageView>
-      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" text="x0" textFill="#aeaeae">
+      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="43.0" text="x0" textFill="#aeaeae">
          <font>
             <Font size="37.0" />
          </font>
@@ -144,10 +144,23 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
+      <TextArea editable="false" layoutX="415.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+         <font>
+            <Font name="Courier New" size="12.0" />
+         </font>
+         <effect>
+            <Bloom />
+         </effect>
+      </TextArea>
       <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
+      <ImageView fx:id="soundButton" fitHeight="45.0" fitWidth="43.0" layoutX="422.0" layoutY="546.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/icons8-volume-100-green.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>
