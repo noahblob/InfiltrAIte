@@ -53,7 +53,7 @@ public class ComputerController extends Commander {
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);
     runGpt(
         new ChatMessage(
-            "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
+            "system", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
   }
 
   /**
@@ -77,7 +77,7 @@ public class ComputerController extends Commander {
               Choice result = chatCompletionResult.getChoices().iterator().next();
               return result.getChatMessage();
             } catch (ApiProxyException e) {
-              e.printStackTrace();
+              System.out.println("API Key not Activated");
               return null;
             }
           }
@@ -88,13 +88,6 @@ public class ComputerController extends Commander {
           ChatMessage result = taskGpt.getValue();
           chatCompletionRequest.addMessage(result);
           passwordHint.setText("password hint: " + result.getContent());
-        });
-
-    // Optional: catch any exceptions thrown during the task execution.
-    taskGpt.setOnFailed(
-        workerStateEvent -> {
-          Throwable ex = taskGpt.getException();
-          ex.printStackTrace();
         });
 
     // Run the task in a background thread
@@ -161,7 +154,7 @@ public class ComputerController extends Commander {
         GameState.isPasswordSolved = true;
         computerPassword.clear();
       }
-    } else {
+    } else if (GameState.isPasswordSolved) {
       // in the case user has already solved the passcode, remind them that it has already been
       // solved
       updateDialogue(Dialogue.ALREADYSOLVED);

@@ -1,27 +1,16 @@
 package nz.ac.auckland.se206.controllers;
 
-import java.util.List;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.TextRollout;
-import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
-import nz.ac.auckland.se206.controllers.main.ComputerController;
-import nz.ac.auckland.se206.controllers.main.MainRoomController;
-import nz.ac.auckland.se206.controllers.right.BlackBoardController;
-import nz.ac.auckland.se206.controllers.right.BookController;
-import nz.ac.auckland.se206.controllers.right.LockerController;
-import nz.ac.auckland.se206.gpt.ChatMessage;
-import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class EscapeController extends TextRollout {
 
@@ -32,11 +21,9 @@ public class EscapeController extends TextRollout {
   @FXML private Pane losePane;
 
   public void initialize() {
-
     // If we are on the win screen.
     setWinScreen();
-    // Default by showing lose screen.
-    losePane.setVisible(true);
+    lose(true);
   }
 
   @FXML
@@ -44,13 +31,15 @@ public class EscapeController extends TextRollout {
     // Get the button that was clicked to check against some conditionals
     Button button = (Button) event.getSource();
     if (button == playAgain) {
-      // Reset game variables and GPT
-      reset();
+      GameState.resetGame();
+
+      // Update game screen to lose screen by default.
+      lose(true);
+
       // Swich to difficulty select screen.
       Scene currentScene = (Scene) SceneManager.getCurrentSceneRoot().getScene();
       currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
     } else {
-      // in the case user wishes to exit the game upon losing or winning
       System.exit(0);
     }
   }
@@ -61,69 +50,27 @@ public class EscapeController extends TextRollout {
         (observable, oldValue, newValue) -> {
           if (newValue) {
             // set the win Pane to be visible in the case of a win
-            winPane.setVisible(true);
-            losePane.setVisible(false);
+            lose(false);
             Platform.runLater(
                 () -> {
-                  dialogue.clear();
-                  // change commander dialogue based on number of intel user has found
-                  if (GameState.numOfIntel.get() == 1) {
-                    textRollout(Dialogue.WINDIALOGUE1);
-                  } else if (GameState.numOfIntel.get() == 2) {
-                    textRollout(Dialogue.WINDIALOGUE2);
-                  } else if (GameState.numOfIntel.get() == 3) {
-                    textRollout(Dialogue.WINDIALOGUE3);
-                  }
+                  showDialogue();
                 });
           }
         });
   }
 
-  private void reset() throws Exception {
+  private void lose(boolean flag) {
+    winPane.setVisible(!flag);
+    losePane.setVisible(flag);
+  }
 
-    // In the case user wants to retry the game upon winning or losing, reset the game state.
-    GameState.resetGameState();
-
-    // Clear the notes and phones of previous game.
-    CommanderController.getInstance().clearNotes();
-    CommanderController.getInstance().clearPhones();
-
-    List<TextArea> dialogues = CommanderController.getInstance().getDialogues();
-    List<ListView<ChatMessage>> phoneScreens = CommanderController.getInstance().getPhoneScreens();
-    // Reset the game master.
-    CommanderController.resetInstance();
-
-    // Update the new Commander controller with the list of dialogues and phonescreens.
-    CommanderController.getInstance().setDialogues(dialogues);
-    CommanderController.getInstance().setPhoneScreens(phoneScreens);
-
-    // get the list of timers before resetting.
-    List<Text> timers = TimerClass.getTimers();
-
-    // Reset BlackBoard Numbers
-    BlackBoardController.getInstance().refreshBoard();
-
-    // Reset Book order in bookshelf
-    BookController.getInstance().resetFont();
-    BookController.getInstance().setupContent();
-
-    // Reset Right Room Locker
-    LockerController.getInstance().resetRoom();
-
-    // change computer riddle for next user playthrough
-    ComputerController.getInstance()
-        .runGpt(
-            new ChatMessage(
-                "user", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
-
-    // Reset main room back to original imageview
-    MainRoomController.getInstance().resetRoom();
-
-    // Reset the timer.
-    TimerClass.resetInstance();
-    // Create a new Timer.
-    TimerClass.initialize();
-    // Update new Timer with room labels.
-    TimerClass.setTimers(timers);
+  private void showDialogue() {
+    dialogue.clear();
+    // change commander dialogue based on number of intel user has found
+    Dialogue msg =
+        (GameState.numOfIntel.get() == 1)
+            ? Dialogue.WIN1
+            : (GameState.numOfIntel.get() == 2) ? Dialogue.WIN2 : Dialogue.WIN3;
+    textRollout(msg);
   }
 }

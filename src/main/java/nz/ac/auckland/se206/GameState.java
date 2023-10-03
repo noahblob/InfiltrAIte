@@ -2,12 +2,26 @@ package nz.ac.auckland.se206;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.text.Text;
+import nz.ac.auckland.se206.controllers.CommanderController;
+import nz.ac.auckland.se206.controllers.left.RadioController;
+import nz.ac.auckland.se206.controllers.main.ComputerController;
+import nz.ac.auckland.se206.controllers.main.MainRoomController;
+import nz.ac.auckland.se206.controllers.right.BlackBoardController;
+import nz.ac.auckland.se206.controllers.right.BookController;
+import nz.ac.auckland.se206.controllers.right.LockerController;
+import nz.ac.auckland.se206.gpt.ChatMessage;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
+import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 
 /** Represents the state of the game. */
 public class GameState {
@@ -33,9 +47,6 @@ public class GameState {
 
   /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD. */
   public static IntegerProperty difficulty = new SimpleIntegerProperty();
-
-  /** Indicates current country we are infiltrating */
-  public static String country = null;
 
   /** Indicates amount of intelligence gathered */
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
@@ -134,6 +145,15 @@ public class GameState {
     return answer;
   }
 
+  public static void resetGame() throws Exception {
+    resetGameState();
+    resetTimer();
+    resetCommander();
+    resetMainRoom();
+    resetLeftRoom();
+    resetRightRoom();
+  }
+
   // Add listeners to isKeyPadSolved and numOfIntel to update isGameWon.
   private static void setupWinListeners() {
     // Listen for changes to isKeyPadSolved
@@ -153,7 +173,7 @@ public class GameState {
     lastNumbers.set(random.nextInt(41) + 20); // Generates number between 20 and 60
   }
 
-  public static void resetGameState() {
+  private static void resetGameState() {
     // Reset all game state variables to default values for when the player restarts the game.
 
     isRiddleResolved = false;
@@ -166,7 +186,6 @@ public class GameState {
     numOfIntel.set(0);
     numHints.set(0);
 
-    country = null;
     cabinetRightIntelfound = false;
     cabinetMiddleIntelfound = false;
     isSlidersSolved = false;
@@ -177,5 +196,61 @@ public class GameState {
     sliderAnswer = setSliders();
     lastNumbers.set(random.nextInt(41) + 20);
     isEndScreen.set(false);
+  }
+
+  private static void resetTimer() {
+    // get the list of timers before resetting.
+    List<Text> timers = TimerClass.getTimers();
+    // Reset the timer.
+    TimerClass.resetInstance();
+    // Create a new Timer.
+    TimerClass.initialize();
+    // Update new Timer with room labels.
+    TimerClass.setTimers(timers);
+  }
+
+  private static void resetCommander() throws Exception {
+
+    CommanderController instance = CommanderController.getInstance();
+
+    // Clear the notes and phones of previous game.
+    instance.clearNotes();
+    instance.clearPhones();
+
+    List<TextArea> dialogues = instance.getDialogues();
+    List<ListView<ChatMessage>> phoneScreens = instance.getPhoneScreens();
+    // Reset the game master.
+    CommanderController.resetInstance();
+
+    // Update the new Commander controller with the list of dialogues and phonescreens.
+    CommanderController.getInstance().setDialogues(dialogues);
+    CommanderController.getInstance().setPhoneScreens(phoneScreens);
+  }
+
+  private static void resetMainRoom() throws ApiProxyException {
+    // change computer riddle for next user playthrough
+    ComputerController.getInstance()
+        .runGpt(
+            new ChatMessage(
+                "system", GptPromptEngineering.getPasswordRiddle(GameState.mainRiddleAnswer)));
+
+    // Reset main room back to original imageview
+    MainRoomController.getInstance().resetRoom();
+  }
+
+  private static void resetLeftRoom() {
+    RadioController.getInstance().setSliders();
+  }
+
+  private static void resetRightRoom() {
+    // Reset BlackBoard Numbers
+    BlackBoardController.getInstance().refreshBoard();
+
+    // Reset Book order in bookshelf
+    BookController.getInstance().resetFont();
+    BookController.getInstance().setupContent();
+
+    // Reset Right Room Locker
+    LockerController.getInstance().resetRoom();
   }
 }

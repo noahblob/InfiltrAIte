@@ -44,53 +44,10 @@ public abstract class Commander {
   protected void initialize() throws Exception {
 
     TimerClass.getInstance().addTimer(timer);
-
-    // Add the relevant FXML elements to the commander controller
-    CommanderController.getInstance().addListView(output);
-    CommanderController.getInstance().addDialogueBox(dialogue);
-    CommanderController.getInstance().addNotes(notes);
-
-    objective.setEditable(false);
-    objective.setWrapText(true);
-    output.setFixedCellSize(-1);
-    notes.setWrapText(true);
-
-    // Bind key, intel, notes, input and output elements to commander controller to be passed
-    // through rooms
-    BooleanBinding keyVisibilityBinding =
-        Bindings.and(GameState.isKeyFound, Bindings.not(GameState.isKeyUsed));
-    key.visibleProperty().bind(keyVisibilityBinding);
-
-    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
-    if (notes == null) {
-      notes = new TextArea();
-    }
-    notes.textProperty().bindBidirectional(CommanderController.getInstance().notesProperty());
-    input
-        .textProperty()
-        .bindBidirectional(CommanderController.getInstance().lastInputTextProperty());
-
-    output.scrollTo(output.getItems().size() - 1);
-
-    GameState.difficulty.addListener(
-        (observable, oldValue, newValue) -> {
-          setupHints();
-        });
-
-    // Set dialogue box to be uneditable and wrap text
-    if (dialogue != null) {
-      dialogue.setEditable(false);
-      dialogue.setWrapText(true);
-    }
+    updateCommander();
+    setUpUI();
+    setUpHints();
     updateTimerFont();
-
-    notes.setPromptText("NOTEPAD: Write your findings");
-  }
-
-  /** Updates styling for timer to correct font and size upon game launch. */
-  protected void updateTimerFont() {
-    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
-    timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
   }
 
   /**
@@ -125,26 +82,85 @@ public abstract class Commander {
     CommanderController.getInstance().updateDialogueBox(msg);
   }
 
-  public void setupHints() {
+  /** Updates styling for timer to correct font and size upon game launch. */
+  private void updateTimerFont() {
+    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
+    timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
+  }
 
-    // Unbind hints text property (For replayability)
+  private void setupHints() {
+    unbindHints();
+    setHintsBasedOnDifficulty();
+  }
+
+  private void unbindHints() {
     hints.textProperty().unbind();
-    // Depending on difficulty setting of the game, show how many hints the user has
-    switch (GameState.difficulty.get()) {
+  }
+
+  private void setHintsBasedOnDifficulty() {
+    int difficulty = GameState.difficulty.get();
+    switch (difficulty) {
       case 1:
-        // infinite for easy
-        hints.setText("\u221E");
+        setInfiniteHints();
         break;
       case 2:
-        // 5 for medium
-        hints.textProperty().bind(Bindings.concat("x", GameState.numHints.asString()));
+        setMediumHints();
         break;
       case 3:
-        // none for hard
-        hints.setText("x0");
+        setNoHints();
         break;
       default:
         break;
     }
+  }
+
+  private void setInfiniteHints() {
+    hints.setText("\u221E");
+  }
+
+  private void setMediumHints() {
+    hints.textProperty().bind(Bindings.concat("x", GameState.numHints.asString()));
+  }
+
+  private void setNoHints() {
+    hints.setText("x0");
+  }
+
+  private void setUpHints() {
+    GameState.difficulty.addListener(
+        (observable, oldValue, newValue) -> {
+          setupHints();
+        });
+  }
+
+  private void setUpUI() throws Exception {
+    // Bind key, intel, notes, input and output elements to commander controller to be passed
+    // through rooms
+    BooleanBinding keyVisibilityBinding =
+        Bindings.and(GameState.isKeyFound, Bindings.not(GameState.isKeyUsed));
+    key.visibleProperty().bind(keyVisibilityBinding);
+
+    intel.textProperty().bind(Bindings.concat("x", GameState.numOfIntel.asString()));
+    notes.textProperty().bindBidirectional(CommanderController.getInstance().notesProperty());
+    input
+        .textProperty()
+        .bindBidirectional(CommanderController.getInstance().lastInputTextProperty());
+
+    output.scrollTo(output.getItems().size() - 1);
+
+    objective.setEditable(false);
+    objective.setWrapText(true);
+    dialogue.setEditable(false);
+    dialogue.setWrapText(true);
+    output.setFixedCellSize(-1);
+    notes.setWrapText(true);
+    notes.setPromptText("NOTEPAD: Write your findings");
+  }
+
+  private void updateCommander() throws Exception {
+    // Add the relevant FXML elements to the commander controller
+    CommanderController.getInstance().addListView(output);
+    CommanderController.getInstance().addDialogueBox(dialogue);
+    CommanderController.getInstance().addNotes(notes);
   }
 }

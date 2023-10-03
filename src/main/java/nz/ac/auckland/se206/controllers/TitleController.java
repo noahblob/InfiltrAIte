@@ -9,7 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
 import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
@@ -21,7 +20,6 @@ public class TitleController {
   @FXML private TextArea description;
   @FXML private Label country;
 
-  @FXML private Circle ring;
   @FXML private ImageView elbonia;
   @FXML private ImageView genovia;
   @FXML private ImageView sanescobar;
@@ -31,7 +29,6 @@ public class TitleController {
   private String infinity = "\u221E";
 
   public void initialize() {
-    ring.getStyleClass().add("titlerings");
     intialiseFonts();
     initialiseCountries();
     initialiseImageMap();
@@ -92,15 +89,12 @@ public class TitleController {
     // Set difficulty of game
     if (image.equals(elbonia)) {
       GameState.difficulty.set(1);
-      GameState.country = "Elbonia";
       GameState.numHints.set(100);
     } else if (image.equals(genovia)) {
       GameState.difficulty.set(2);
-      GameState.country = "Genovia";
       GameState.numHints.set(5);
     } else if (image.equals(sanescobar)) {
       GameState.difficulty.set(3);
-      GameState.country = "Sanescobar";
       GameState.numHints.set(0);
     }
 

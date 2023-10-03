@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
@@ -58,19 +59,18 @@ public class KeyPadController extends Commander {
         numberLabel.setText("");
         break;
       case "submitButton":
-        CommanderController commander = CommanderController.getInstance();
         // Check if the user has added anything
         if (numberLabel.getText().equals("")) {
-          commander.updateDialogueBox("You haven't entered anything!");
+          updateDialogue(Dialogue.NOCODE);
           break;
         }
         // Check if user has typed in the correct value to the keypad
         if (Integer.parseInt(numberLabel.getText()) == BlackBoardController.getKeypadAns()) {
           // Update the game state (keypad is solved)
           GameState.isKeypadSolved.set(true);
-          commander.updateDialogueBox("Nice work, you cracked the code to the door!");
+          updateDialogue(Dialogue.DOORUNLOCK);
         } else {
-          commander.updateDialogueBox("That's not the right code, try again!");
+          updateDialogue(Dialogue.WRONGCODE);
         }
         break;
       case "exitButton":
