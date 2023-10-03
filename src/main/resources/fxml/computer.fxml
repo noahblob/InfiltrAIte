@@ -92,7 +92,7 @@
                </image>
             </ImageView>
             <TextField fx:id="computerPassword" layoutX="121.0" layoutY="231.0" onKeyPressed="#onKeyPressed" promptText="password" />
-            <Label fx:id="passwordHint" alignment="TOP_CENTER" layoutX="48.0" layoutY="256.0" prefHeight="96.0" prefWidth="365.0" text="password hint:" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+            <Label fx:id="passwordHint" alignment="TOP_CENTER" layoutX="104.0" layoutY="256.0" prefHeight="79.0" prefWidth="254.0" style="-fx-background-color: #000a;" text="password hint:" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
             <Button fx:id="submitButton" layoutX="270.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#onClick" text="SUBMIT" />
          </children>
       </Pane>

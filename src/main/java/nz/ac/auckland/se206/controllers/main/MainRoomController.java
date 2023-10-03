@@ -22,6 +22,12 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class MainRoomController extends Commander {
 
+  public static MainRoomController instance;
+
+  public static MainRoomController getInstance() {
+    return instance;
+  }
+
   // FXML objects in room
   @FXML private Button back;
   @FXML private Polygon leftDoor;
@@ -39,6 +45,10 @@ public class MainRoomController extends Commander {
   private Random random = new Random();
   private int randomDrawer = 1 + random.nextInt(2);
 
+  public MainRoomController() {
+    instance = this;
+  }
+
   /**
    * Initializes the room view, it is called when the room loads.
    *
@@ -49,6 +59,11 @@ public class MainRoomController extends Commander {
     objective.setText("Find intel and escape!");
     // separate method for left and right door hover and click events
     setDoorEvents();
+  }
+
+  public void resetRoom() {
+    // Reset visual aspects of the room to original state for replay functionality
+    roomimage.setImage(new Image("/images/startLocked.png"));
   }
 
   /**
@@ -171,8 +186,6 @@ public class MainRoomController extends Commander {
       if (GameState.numOfIntel.get() >= 1) {
         // Stop Timer
         TimerClass.getInstance().stop();
-        // Reset all aspects of the room to original state for replay functionality
-        roomimage.setImage(new Image("/images/startLocked.png"));
         // Allow user to leave room with any amount of intel
         currentScene.setRoot(SceneManager.getuserInterface(AppUi.END));
         // Switch flag to trigger text rollout.
