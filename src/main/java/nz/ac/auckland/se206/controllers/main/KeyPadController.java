@@ -9,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.controllers.right.BlackBoardController;
@@ -52,6 +53,7 @@ public class KeyPadController extends Commander {
   public void onClick(MouseEvent event) throws Exception {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
+    Sound.getInstance().playClickMinor();
     // switch case for the different buttons, including clear, submit and exit
     switch (button.getId()) {
       case "clearButton":
@@ -91,6 +93,7 @@ public class KeyPadController extends Commander {
     Rectangle button = (Rectangle) event.getSource();
     StringBuilder currentText = new StringBuilder(numberLabel.getText());
     String number = button.getAccessibleText();
+    Sound.getInstance().playClickMinor();
     // Limit the user to typing only 3 numbers at a time
     if (currentText.length() >= 3) {
       return;

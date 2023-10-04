@@ -14,6 +14,7 @@ import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.MorseCode;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
@@ -69,6 +70,7 @@ public class DrawerController extends Commander {
 
     back.setOnAction(
         event -> {
+          Sound.getInstance().playClickMinor();
           if (riddlePane.isVisible()) {
             riddlePane.setVisible(false);
           } else if (keyDrawer.isVisible()) {
@@ -106,6 +108,7 @@ public class DrawerController extends Commander {
 
   @FXML
   public void onClick(MouseEvent event) throws Exception {
+    Sound.getInstance().playClickMinor();
     updateDialogue(Dialogue.EMPTY);
   }
 

@@ -12,7 +12,6 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
-import nz.ac.auckland.se206.speech.TextToSpeech;
 
 public class TimerClass {
 
@@ -51,7 +50,6 @@ public class TimerClass {
     return instance;
   }
 
-  private TextToSpeech tts = TextToSpeech.getInstance();
   private int timeLeft;
   private Timeline timeline;
 
@@ -130,10 +128,7 @@ public class TimerClass {
                 // update commander dialogue to let player know they have been detected
                 CommanderController.getInstance()
                     .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
-                // if user has not muted the audio, play tts
-                if (!GameState.isMuted.get()) {
-                  tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
-                }
+                Sound.getInstance().playTTS();
               } catch (Exception e) {
                 e.printStackTrace();
               }

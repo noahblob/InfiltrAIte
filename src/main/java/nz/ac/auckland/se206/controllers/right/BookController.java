@@ -17,6 +17,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -40,7 +41,6 @@ public class BookController extends Commander {
   @FXML private ImageView actual4;
   @FXML private ImageView actual5;
   @FXML private Button back;
-  @FXML private Button goBack;
   @FXML private Text title1;
   @FXML private Text title2;
   @FXML private Text title3;
@@ -214,6 +214,7 @@ public class BookController extends Commander {
    */
   @FXML
   private void showBook() throws Exception {
+    Sound.getInstance().playClickMinor();
     back.setVisible(true);
     back.setDisable(false);
     book.setVisible(true);
@@ -260,6 +261,7 @@ public class BookController extends Commander {
    */
   @FXML
   private void onGoBackShelf() {
+    Sound.getInstance().playClickMinor();
     // disable the back button and hide the book
     back.setVisible(false);
     back.setDisable(true);
@@ -302,6 +304,7 @@ public class BookController extends Commander {
   public void onGoBack(MouseEvent event) {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
+    Sound.getInstance().playClickMinor();
     // Update the scene to the right room
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }

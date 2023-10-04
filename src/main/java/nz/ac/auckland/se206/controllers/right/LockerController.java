@@ -11,6 +11,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -62,6 +63,7 @@ public class LockerController extends Commander {
   public void clickDoor(MouseEvent event) throws IOException {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
+    Sound.getInstance().playClickMinor();
     // Update the scene to the main room
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
   }
@@ -74,6 +76,8 @@ public class LockerController extends Commander {
    */
   @FXML
   public void onCheckAns(MouseEvent event) throws Exception {
+
+    Sound.getInstance().playClickMinor();
     // If the right cabinet intel has not been found, check if the answer is correct
     if (!GameState.cabinetRightIntelfound) {
       int answer = GameState.lastNumbers.get() + 1900;
@@ -98,6 +102,7 @@ public class LockerController extends Commander {
     // is yet to be found, and update commander dialogue
     intelFile.setOnMouseClicked(
         event -> {
+          Sound.getInstance().playClickMinor();
           if (!GameState.cabinetRightIntelfound) {
             GameState.numOfIntel.set(GameState.numOfIntel.get() + 1);
           }
@@ -121,7 +126,7 @@ public class LockerController extends Commander {
   @FXML
   public void increase(MouseEvent event) {
     Rectangle rect = (Rectangle) event.getSource();
-
+    Sound.getInstance().playClickMinor();
     // Check which rectangle is clicked then increase the number shown.
     switch (rect.getId()) {
       case "upOne":
@@ -153,6 +158,7 @@ public class LockerController extends Commander {
   @FXML
   public void decrease(MouseEvent event) {
     Rectangle rect = (Rectangle) event.getSource();
+    Sound.getInstance().playClickMinor();
     // Check which rectangle was clicked and then decrement the number shown.
     switch (rect.getId()) {
       case "downOne":
@@ -201,6 +207,7 @@ public class LockerController extends Commander {
   public void onGoBack(MouseEvent event) {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
+    Sound.getInstance().playClickMinor();
     // Update the scene to the right room
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }

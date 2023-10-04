@@ -33,12 +33,6 @@ public class TitleController {
     intialiseFonts();
     initialiseCountries();
     initialiseImageMap();
-    setUpSound();
-  }
-
-  private void setUpSound() {
-    String clickPath = getClass().getResource("/sounds/clickMenu.mp3").toString();
-    String hoverPath = getClass().getResource("/sounds/hover.mp3").toString();
   }
 
   private void initialiseImageMap() {

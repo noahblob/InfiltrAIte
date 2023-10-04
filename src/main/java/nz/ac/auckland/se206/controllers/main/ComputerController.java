@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -25,10 +26,9 @@ public class ComputerController extends Commander {
 
   public static ComputerController instance;
 
-
   /**
    * Method to store and return the current instance of computercontroller.
-   * 
+   *
    * @return the current instance of computer controller
    */
   public static ComputerController getInstance() {
@@ -41,9 +41,7 @@ public class ComputerController extends Commander {
   @FXML private Button submitButton;
   private ChatCompletionRequest chatCompletionRequest;
 
-  /**
-   * A constructor to initialize the instance of computer controller.
-   */
+  /** A constructor to initialize the instance of computer controller. */
   public ComputerController() {
     instance = this;
   }
@@ -58,7 +56,7 @@ public class ComputerController extends Commander {
 
   /**
    * Programatically updates the dialogue box with the given dialogue.
-   * 
+   *
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void generateRiddle() throws ApiProxyException {
@@ -120,6 +118,7 @@ public class ComputerController extends Commander {
   private void onClick(MouseEvent event) throws Exception {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
+    Sound.getInstance().playClickMinor();
     // switch case for different buttons, including back and submit button
     switch (button.getId()) {
       case ("back"):

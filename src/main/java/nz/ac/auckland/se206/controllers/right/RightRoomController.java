@@ -11,6 +11,7 @@ import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -42,7 +43,7 @@ public class RightRoomController extends Commander {
     final NumberGroup[] answerGroup = NumberGroup.values();
     // Randomnly select a number group
     answer = answerGroup[new Random().nextInt(answerGroup.length)];
-    
+
     setHoverEvents();
   }
 
@@ -55,6 +56,7 @@ public class RightRoomController extends Commander {
   @FXML
   public void clickDoor(MouseEvent event) throws IOException {
     System.out.println(BlackBoardController.getKeypadAns());
+    Sound.getInstance().playClickMinor();
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main room
@@ -69,6 +71,7 @@ public class RightRoomController extends Commander {
    */
   @FXML
   public void clickRiddle(MouseEvent event) throws Exception {
+    Sound.getInstance().playClickMinor();
     if (GameState.cabinetRightIntelfound) {
       updateDialogue(Dialogue.ALREADYGOTLOCKER);
     } else {
@@ -78,7 +81,6 @@ public class RightRoomController extends Commander {
       currentScene.setRoot(SceneManager.getuserInterface(AppUi.LOCKER));
     }
   }
-   
 
   /**
    * Shows the blackboard this is connected to the answer for the keypad
@@ -87,6 +89,7 @@ public class RightRoomController extends Commander {
    */
   @FXML
   public void clickBlackBoard(MouseEvent event) throws IOException {
+    Sound.getInstance().playClickMinor();
     Polygon poly = (Polygon) event.getSource();
     Scene currentScene = poly.getScene();
     // Update the scene to the blackboard
@@ -122,6 +125,7 @@ public class RightRoomController extends Commander {
    */
   @FXML
   public void clickBook(MouseEvent event) {
+    Sound.getInstance().playClickMinor();
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
     // Update the scene to the main game.
@@ -132,11 +136,9 @@ public class RightRoomController extends Commander {
     setOpacityOnHover(riddle);
     setOpacityOnHover(blackboard);
   }
-  
+
   private void setOpacityOnHover(Shape shape) {
     shape.setOnMouseEntered(event -> shape.setOpacity(0.5));
     shape.setOnMouseExited(event -> shape.setOpacity(0));
   }
-  
-
 }
