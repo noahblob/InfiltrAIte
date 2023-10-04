@@ -9,12 +9,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class TitleController {
+public class TitleController extends Sound {
 
   @FXML private Label difficulty;
   @FXML private TextArea description;
@@ -27,11 +30,25 @@ public class TitleController {
 
   private final Map<String, String> countryImageMap = new HashMap<>();
   private String infinity = "\u221E";
+  private MediaPlayer player;
+  private MediaPlayer hover;
+  private Media click;
+  private Media hoverOver;
 
   public void initialize() {
     intialiseFonts();
     initialiseCountries();
     initialiseImageMap();
+    setUpSound();
+  }
+
+  private void setUpSound() {
+    String clickPath = getClass().getResource("/sounds/clickMenu.mp3").toString();
+    String hoverPath = getClass().getResource("/sounds/hover.mp3").toString();
+    click = new Media(clickPath);
+    hoverOver = new Media(hoverPath);
+    player = new MediaPlayer(click);
+    hover = new MediaPlayer(hoverOver);
   }
 
   private void initialiseImageMap() {
@@ -60,6 +77,8 @@ public class TitleController {
     // When each difficulty country is hovered over, display relevant information
     image.setOnMouseEntered(
         event -> {
+          // play hover sound effect.
+          playSound(hover);
           // ensure text formatting is correct when displaying information
           changeImage(event, country, true);
           difficulty.setText(info);
@@ -83,6 +102,10 @@ public class TitleController {
 
   @FXML
   private void onClick(MouseEvent event) {
+
+    // Play sound effect.
+    playSound(player);
+
     // Update in the future with different difficulties but for now just click to next screen.
     ImageView image = (ImageView) event.getSource();
     System.out.println(image.getId());

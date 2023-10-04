@@ -36,7 +36,7 @@
             <Font name="Anonymous Pro Bold" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="increase" layoutX="444.0" layoutY="303.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="INCREASE">
+      <Button fx:id="increase" layoutX="444.0" layoutY="303.0" mnemonicParsing="false" onMouseEntered="#onHover" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="INCREASE">
          <font>
             <Font name="Aqua Grotesque" size="30.0" />
          </font>
@@ -44,7 +44,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="set" layoutX="444.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="84.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="START">
+      <Button fx:id="set" layoutX="444.0" layoutY="180.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="84.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="START">
          <font>
             <Font name="Aqua Grotesque" size="30.0" />
          </font>
@@ -52,7 +52,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="decrease" alignment="CENTER" layoutX="444.0" layoutY="380.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="DECREASE">
+      <Button fx:id="decrease" alignment="CENTER" layoutX="444.0" layoutY="380.0" mnemonicParsing="false" onMouseEntered="#onHover" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="DECREASE">
          <font>
             <Font name="Aqua Grotesque" size="30.0" />
          </font>

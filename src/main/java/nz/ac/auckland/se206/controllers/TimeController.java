@@ -11,14 +11,18 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
-import javafx.util.Duration;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
-public class TimeController {
+public class TimeController extends Sound {
+
+  private static final int TIME_INCREMENT = 2;
+  private static final int MAX_GAME_TIME = 6;
+  private static final int MIN_GAME_TIME = 2;
 
   @FXML private ImageView watch;
   @FXML private Label diff;
@@ -30,11 +34,10 @@ public class TimeController {
   private int gameTime;
   private Media startSound;
   private Media interfaceSound;
+  private Media hoverOver;
   private MediaPlayer start;
   private MediaPlayer buttons;
-  private static final int TIME_INCREMENT = 2;
-  private static final int MAX_GAME_TIME = 6;
-  private static final int MIN_GAME_TIME = 2;
+  private MediaPlayer hover;
 
   public void initialize() {
 
@@ -55,10 +58,13 @@ public class TimeController {
   private void setUpSound() {
     String startSoundURL = getClass().getResource("/sounds/clickMenu.mp3").toString();
     String ui = getClass().getResource("/sounds/clickMenu1.mp3").toString();
+    String hoverURL = getClass().getResource("/sounds/hover.mp3").toString();
     startSound = new Media(startSoundURL);
     interfaceSound = new Media(ui);
+    hoverOver = new Media(hoverURL);
     start = new MediaPlayer(startSound);
     buttons = new MediaPlayer(interfaceSound);
+    hover = new MediaPlayer(hoverOver);
   }
 
   private void initialiseButtons() {
@@ -72,19 +78,15 @@ public class TimeController {
         .bind(
             Bindings.createStringBinding(
                 () -> {
-                  if (GameState.difficulty.get() == 1) {
-                    return "EASY";
-                  } else if (GameState.difficulty.get() == 2) {
-                    return "MEDIUM";
-                  } else {
-                    return "HARD";
-                  }
+                  return GameState.difficulty.get() == 1
+                      ? "EASY"
+                      : GameState.difficulty.get() == 2 ? "MEDIUM" : "HARD";
                 },
                 GameState.difficulty));
   }
 
   private void adjustGameTime(int delta) {
-    clickSound(buttons);
+    playSound(buttons);
     gameTime += delta;
 
     boolean shouldDisableIncrease = false;
@@ -114,29 +116,32 @@ public class TimeController {
   }
 
   private void navigateBack() {
-    clickSound(buttons);
+    playSound(buttons);
     Scene currentScene = back.getScene();
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
+  }
+
+  @FXML
+  private void onHover(MouseEvent event) {
+    playSound(hover);
   }
 
   @FXML
   private void onClick(MouseEvent event) throws Exception {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
-    clickSound(start);
-
+    playSound(start);
+    CommanderController instance = CommanderController.getInstance();
     // Check if Easy, medium or hard and update prompt accordingly.
+    String prompt = null;
     if (GameState.difficulty.get() == 1) {
-      CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.getEasyPrompt(GameState.puzzleWord));
+      prompt = GptPromptEngineering.getEasyPrompt(GameState.puzzleWord);
     } else if (GameState.difficulty.get() == 2) {
-      // Update to medium later
-      CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.getMediumPrompt(GameState.puzzleWord, 5));
+      prompt = GptPromptEngineering.getMediumPrompt(GameState.puzzleWord, 5);
     } else {
-      CommanderController.getInstance()
-          .updateGpt(GptPromptEngineering.getHardPrompt(GameState.puzzleWord));
+      prompt = GptPromptEngineering.getHardPrompt(GameState.puzzleWord);
     }
+    instance.updateGpt(prompt);
 
     TimerClass timer = TimerClass.getInstance();
     timer.start(gameTime);
@@ -149,11 +154,7 @@ public class TimeController {
 
     Platform.runLater(
         () -> {
-          try {
-            CommanderController.getInstance().updateDialogueBox(Dialogue.INITIAL.toString());
-          } catch (Exception e) {
-            e.printStackTrace();
-          }
+          instance.updateDialogueBox(Dialogue.INITIAL.toString());
         });
   }
 
@@ -167,11 +168,5 @@ public class TimeController {
     updateTime();
     increase.setDisable(false);
     decrease.setDisable(false);
-  }
-
-  private void clickSound(MediaPlayer player) {
-    player.stop();
-    player.seek(Duration.ZERO);
-    player.play();
   }
 }
