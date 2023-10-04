@@ -131,7 +131,7 @@ public class TimerClass {
                 CommanderController.getInstance()
                     .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
                 // if user has not muted the audio, play tts
-                if (!GameState.isMuted) {
+                if (!GameState.isMuted.get()) {
                   tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
                 }
               } catch (Exception e) {
