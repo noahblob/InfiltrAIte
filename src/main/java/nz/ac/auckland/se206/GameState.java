@@ -66,7 +66,7 @@ public class GameState {
   public static boolean isSlidersSolved = false;
 
   /** Indicates whether player has pressed the mute button to mute TTS. */
-  public static boolean isMuted = false;
+  public static BooleanProperty isMuted = new SimpleBooleanProperty(false);
 
   /**
    * Indicates whether the player has solved the password to the computer, giving them access to the

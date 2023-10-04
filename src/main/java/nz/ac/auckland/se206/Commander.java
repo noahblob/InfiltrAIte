@@ -50,6 +50,13 @@ public abstract class Commander {
     setUpUI();
     setUpHints();
     updateTimerFont();
+    // if the game is muted, change image to muted image and disable tts
+    soundButton
+        .imageProperty()
+        .bind(
+            Bindings.when(GameState.isMuted)
+                .then(new Image("/images/icons8-mute-100-red.png"))
+                .otherwise(new Image("/images/icons8-volume-100-green.png")));
   }
 
   /**
@@ -85,15 +92,7 @@ public abstract class Commander {
    */
   @FXML
   protected void onMute(MouseEvent event) {
-    ImageView image = (ImageView) event.getSource();
-    // if the game is muted, change image to muted image and disable tts
-    if (!GameState.isMuted) {
-      GameState.isMuted = true;
-      image.setImage(new Image("/images/icons8-mute-100-red.png"));
-    } else {
-      GameState.isMuted = false;
-      image.setImage(new Image("/images/icons8-volume-100-green.png"));
-    }
+    GameState.isMuted.set(!GameState.isMuted.get());
   }
 
   // Method to update the commander's dialogue box.
