@@ -10,7 +10,7 @@ import javafx.util.Duration;
 public abstract class TextRollout {
 
   @FXML private TextArea dialogue;
-  
+
   /**
    * Method to generate text rollout animation
    *
@@ -18,6 +18,9 @@ public abstract class TextRollout {
    * @param dialogue TextArea to be animated
    */
   public void textRollout(Dialogue text) {
+
+    // Play the text rollout sound effect.
+    Sound.getInstance().playTextRollout();
 
     String message = text.toString();
     char[] chars = message.toCharArray();
@@ -35,6 +38,7 @@ public abstract class TextRollout {
               });
       timeline.getKeyFrames().add(keyFrame);
     }
+    timeline.setOnFinished(e -> Sound.getInstance().stopRollout());
     timeline.play();
   }
 }

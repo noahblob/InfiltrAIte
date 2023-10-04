@@ -8,8 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -18,7 +16,7 @@ import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
-public class TimeController extends Sound {
+public class TimeController {
 
   private static final int TIME_INCREMENT = 2;
   private static final int MAX_GAME_TIME = 6;
@@ -32,17 +30,10 @@ public class TimeController extends Sound {
   @FXML private Button set;
   @FXML private Button back;
   private int gameTime;
-  private Media startSound;
-  private Media interfaceSound;
-  private Media hoverOver;
-  private MediaPlayer start;
-  private MediaPlayer buttons;
-  private MediaPlayer hover;
 
   public void initialize() {
 
     gameTime = 4;
-    setUpSound();
     bindDifficulty();
     setFont();
     updateTime();
@@ -53,18 +44,6 @@ public class TimeController extends Sound {
     Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
     diff.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 25px; -fx-text-fill: black;");
     time.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 45px; -fx-text-fill: black;");
-  }
-
-  private void setUpSound() {
-    String startSoundURL = getClass().getResource("/sounds/clickMenu.mp3").toString();
-    String ui = getClass().getResource("/sounds/clickMenu1.mp3").toString();
-    String hoverURL = getClass().getResource("/sounds/hover.mp3").toString();
-    startSound = new Media(startSoundURL);
-    interfaceSound = new Media(ui);
-    hoverOver = new Media(hoverURL);
-    start = new MediaPlayer(startSound);
-    buttons = new MediaPlayer(interfaceSound);
-    hover = new MediaPlayer(hoverOver);
   }
 
   private void initialiseButtons() {
@@ -86,7 +65,7 @@ public class TimeController extends Sound {
   }
 
   private void adjustGameTime(int delta) {
-    playSound(buttons);
+    Sound.getInstance().playClickMinor();
     gameTime += delta;
 
     boolean shouldDisableIncrease = false;
@@ -116,21 +95,21 @@ public class TimeController extends Sound {
   }
 
   private void navigateBack() {
-    playSound(buttons);
+    Sound.getInstance().playClickMinor();
     Scene currentScene = back.getScene();
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
   }
 
   @FXML
   private void onHover(MouseEvent event) {
-    playSound(hover);
+    Sound.getInstance().playHover();
   }
 
   @FXML
   private void onClick(MouseEvent event) throws Exception {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
-    playSound(start);
+    Sound.getInstance().playClickMajor();
     CommanderController instance = CommanderController.getInstance();
     // Check if Easy, medium or hard and update prompt accordingly.
     String prompt = null;

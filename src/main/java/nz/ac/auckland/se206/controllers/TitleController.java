@@ -17,7 +17,7 @@ import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
-public class TitleController extends Sound {
+public class TitleController {
 
   @FXML private Label difficulty;
   @FXML private TextArea description;
@@ -78,7 +78,7 @@ public class TitleController extends Sound {
     image.setOnMouseEntered(
         event -> {
           // play hover sound effect.
-          playSound(hover);
+          Sound.getInstance().playHover();
           // ensure text formatting is correct when displaying information
           changeImage(event, country, true);
           difficulty.setText(info);
@@ -104,7 +104,7 @@ public class TitleController extends Sound {
   private void onClick(MouseEvent event) {
 
     // Play sound effect.
-    playSound(player);
+    Sound.getInstance().playClickMajor();
 
     // Update in the future with different difficulties but for now just click to next screen.
     ImageView image = (ImageView) event.getSource();
