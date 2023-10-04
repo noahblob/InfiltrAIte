@@ -19,6 +19,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
@@ -228,7 +229,6 @@ public class CommanderController {
 
               if (GameState.numHints.get() > 0) {
                 try {
-
                   updateGpt("I now only have" + numHints + " number of hints left.");
                 } catch (Exception e1) {
                   e1.printStackTrace();
@@ -251,8 +251,7 @@ public class CommanderController {
         });
     task.setOnFailed(
         e -> {
-          Throwable ex = task.getException();
-          ex.printStackTrace();
+          System.out.println("API KEY MISSING");
         });
     new Thread(task).start();
   }
@@ -354,9 +353,7 @@ public class CommanderController {
     }
   }
 
-  // Method to generate commander text roll out on each screen.
   public void textRollout(String message, TextArea dialogue) {
-
     // Clear existing dialogue (in case of spam clicks)
     dialogue.clear();
 
@@ -365,12 +362,20 @@ public class CommanderController {
     Duration timepoint = Duration.ZERO;
 
     for (char ch : chars) {
+      // Play sound effect for the text rollout.
+      if (!GameState.isMuted.get()) {
+        Sound.getInstance().playTextRollout();
+      }
       timepoint = timepoint.add(Duration.millis(20));
       final char finalChar = ch;
       KeyFrame keyFrame =
           new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
       timeline.getKeyFrames().add(keyFrame);
     }
+
+    // Stop the sound at the same time the last character appears.
+    KeyFrame stopSoundKeyFrame = new KeyFrame(timepoint, e -> Sound.getInstance().stopRollout());
+    timeline.getKeyFrames().add(stopSoundKeyFrame);
 
     KeyFrame clearKeyFrame =
         new KeyFrame(
@@ -384,6 +389,7 @@ public class CommanderController {
             });
 
     timeline.getKeyFrames().add(clearKeyFrame);
+
     timeline.play();
   }
 

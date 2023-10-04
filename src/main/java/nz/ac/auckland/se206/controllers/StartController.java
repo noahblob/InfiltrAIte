@@ -39,6 +39,8 @@ public class StartController extends TextRollout {
     if (whichButton.getId().equals("accept")) {
       Scene currentScene = whichButton.getScene();
       currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
+      // Stop the media player.
+      Sound.getInstance().stopRollout();
     } else {
       System.exit(0);
     }

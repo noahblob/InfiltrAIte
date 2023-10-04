@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import nz.ac.auckland.se206.Commander;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -141,6 +142,7 @@ public class BlackBoardController extends Commander {
   public void onGoBack(MouseEvent event) {
     Button rectangle = (Button) event.getSource();
     Scene currentScene = rectangle.getScene();
+    Sound.getInstance().playClickMinor();
     // Update the scene to the right room
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.RIGHT));
   }

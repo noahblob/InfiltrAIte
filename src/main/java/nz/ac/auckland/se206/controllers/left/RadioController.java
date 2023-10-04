@@ -20,6 +20,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -85,6 +86,7 @@ public class RadioController extends Commander {
   public void onReturn(MouseEvent event) {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
+    Sound.getInstance().playClickMinor();
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
   }
 
@@ -178,6 +180,7 @@ public class RadioController extends Commander {
       isSliderSolved = true;
       // Update game state and show sine wave.
       GameState.isSlidersSolved = true;
+      Sound.getInstance().playClickMajor();
       sineWave.setVisible(true);
       // Update the image of the radio.
       comms.setImage(new Image("/images/commsNewF.png"));
@@ -193,6 +196,7 @@ public class RadioController extends Commander {
   @FXML
   public void onClick(MouseEvent event) {
     // Update the imageview and disable pigeonhole.
+    Sound.getInstance().playClickMinor();
     comms.setImage(new Image("/images/commsNewC.png"));
     pigeonhole.setVisible(false);
     intelligence.setVisible(true);
@@ -204,6 +208,8 @@ public class RadioController extends Commander {
     // return back to main room.
     ImageView intel = (ImageView) event.getSource();
     Scene currentScene = intel.getScene();
+
+    Sound.getInstance().playClickMinor();
 
     // Set the intelligence to invisible
     intelligence.setVisible(false);

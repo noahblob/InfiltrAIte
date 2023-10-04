@@ -17,6 +17,7 @@ import javafx.scene.shape.Shape;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -142,6 +143,7 @@ public class LeftRoomController extends Commander {
           for (ImageView popUp : visiblePopups) {
             popUp.setVisible(false);
           }
+          Sound.getInstance().playClickMinor();
           popUpBackGround.setVisible(false);
           back.setVisible(false);
           lastDigits.setVisible(false);
@@ -156,6 +158,8 @@ public class LeftRoomController extends Commander {
 
   @FXML
   public void onClick(MouseEvent event) throws Exception {
+
+    Sound.getInstance().playClickMinor();
 
     // Get the scene and type of the object that was clicked on
     Shape clickedObject = (Shape) event.getSource();

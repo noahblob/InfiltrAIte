@@ -9,6 +9,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.TextRollout;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
@@ -28,6 +29,7 @@ public class EscapeController extends TextRollout {
 
   @FXML
   public void onClick(MouseEvent event) throws Exception {
+    Sound.getInstance().playClickMajor();
     // Get the button that was clicked to check against some conditionals
     Button button = (Button) event.getSource();
     if (button == playAgain) {

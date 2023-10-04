@@ -22,7 +22,7 @@
             <Image url="@../images/UI.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="461.0" fitWidth="460.0" layoutX="9.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="460.0" fitWidth="460.0" layoutX="9.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/start.png" />
          </image>
@@ -57,7 +57,7 @@
             <Bloom />
          </effect>
       </TextArea>
-      <Pane layoutX="9.0" layoutY="70.0" prefHeight="461.0" prefWidth="460.0">
+      <Pane layoutX="9.0" layoutY="70.0" prefHeight="460.0" prefWidth="460.0">
          <children>
             <Rectangle fx:id="computerBorder" arcHeight="50.0" arcWidth="50.0" fill="#517d63" height="291.0" layoutX="28.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="404.0" />
             <ImageView fitHeight="245.0" fitWidth="365.0" layoutX="48.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">

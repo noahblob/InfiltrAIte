@@ -25,7 +25,7 @@
   -fx-text-fill: #00FF00;
   -fx-font-smoothing-type: green;
   -fx-border-color: #00FF00;
-  -fx-border-width: 5px;
+  -fx-border-width: 2px;
 }
 
 .accept:hover {
@@ -44,7 +44,7 @@
   -fx-background-color: rgb(0, 0, 0);
   -fx-text-fill: #ef0f0f;
   -fx-border-color: #e72323;
-  -fx-border-width: 5px;
+  -fx-border-width: 2px;
 }
 
 .decline:hover {
@@ -81,6 +81,14 @@
 .time:pressed {
   -fx-background-color: rgb(121, 231, 121);
   -fx-text-fill: rgb(0, 0, 0);
+}
+
+.title-area {
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #00FF00;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #00FF00;
+  -fx-border-width: 1px
 }
 
 .text-area {

@@ -14,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
@@ -68,9 +69,7 @@ public class MainRoomController extends Commander {
     setDoorEvents();
   }
 
-  /**
-   * Resets relevant aspects of the room upon the play again button being pressed.
-   */
+  /** Resets relevant aspects of the room upon the play again button being pressed. */
   public void resetRoom() {
     // Reset visual aspects of the room to original state and random drawer for replayability
     roomimage.setImage(new Image("/images/startLocked.png"));
@@ -123,6 +122,7 @@ public class MainRoomController extends Commander {
   private void handleDoorClick(MouseEvent event, AppUi direction) {
     Polygon object = (Polygon) event.getSource();
     Scene scene = object.getScene();
+    Sound.getInstance().playClickMinor();
     // if a door is clicked on while the cabinet is still open, need to close the cabinet
     setCabinetVisibility(false);
     scene.setRoot(SceneManager.getuserInterface(direction));
@@ -158,6 +158,7 @@ public class MainRoomController extends Commander {
   public void onClick(MouseEvent event) throws Exception {
     Rectangle rectangle = (Rectangle) event.getSource();
     Scene currentScene = rectangle.getScene();
+    Sound.getInstance().playClickMinor();
     // switch case for each rectangle, including the middle door, keypad and cabinet
     switch (rectangle.getId()) {
       case ("middleDoor"):
@@ -238,6 +239,7 @@ public class MainRoomController extends Commander {
    */
   @FXML
   public void clickBack(MouseEvent event) {
+    Sound.getInstance().playClickMinor();
     // Set visibility of filing cabinet and background to false to return to room
     setCabinetVisibility(false);
   }
@@ -251,6 +253,7 @@ public class MainRoomController extends Commander {
   @FXML
   public void clickDrawer(MouseEvent event) throws Exception {
     Rectangle drawer = (Rectangle) event.getSource();
+    Sound.getInstance().playClickMinor();
     CommanderController commander = CommanderController.getInstance();
     // check which drawer the user has pressed
     switch (drawer.getId()) {

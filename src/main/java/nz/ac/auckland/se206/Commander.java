@@ -57,6 +57,13 @@ public abstract class Commander {
             Bindings.when(GameState.isMuted)
                 .then(new Image("/images/icons8-mute-100-red.png"))
                 .otherwise(new Image("/images/icons8-volume-100-green.png")));
+
+    soundButton.setOnMouseClicked(
+        event -> {
+          boolean current = GameState.isMuted.get();
+          GameState.isMuted.set(!current); // Toggle value
+          System.out.println("Is muted: " + GameState.isMuted.get());
+        });
   }
 
   /**

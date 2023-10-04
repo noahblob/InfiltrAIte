@@ -1,5 +1,6 @@
 package nz.ac.auckland.se206.speech;
 
+import javafx.concurrent.Task;
 import javax.speech.AudioException;
 import javax.speech.Central;
 import javax.speech.EngineException;
@@ -47,6 +48,7 @@ public class TextToSpeech {
   }
 
   private final Synthesizer synthesizer;
+  private boolean isMuted = false;
 
   /**
    * Constructs the TextToSpeech object creating and allocating the speech synthesizer. English
@@ -66,24 +68,39 @@ public class TextToSpeech {
     }
   }
 
+  // New method to toggle mute status
+  public void toggleMute() {
+    isMuted = !isMuted;
+  }
+
   /**
    * Speaks the given list of sentences.
    *
    * @param sentences A sequence of strings to speak.
    */
   public void speak(final String... sentences) {
-    boolean isFirst = true;
-
-    for (final String sentence : sentences) {
-      if (isFirst) {
-        isFirst = false;
-      } else {
-        // Add a pause between sentences.
-        sleep();
-      }
-
-      speak(sentence);
+    if (isMuted) {
+      return; // Return without speaking if muted
     }
+
+    Task<Void> speakTask =
+        new Task<Void>() {
+          @Override
+          protected Void call() {
+            boolean isFirst = true;
+            for (final String sentence : sentences) {
+              if (isFirst) {
+                isFirst = false;
+              } else {
+                sleep();
+              }
+              speak(sentence);
+            }
+            return null;
+          }
+        };
+
+    new Thread(speakTask).start();
   }
 
   /**
@@ -92,8 +109,8 @@ public class TextToSpeech {
    * @param sentence A string to speak.
    */
   public void speak(final String sentence) {
-    if (sentence == null) {
-      throw new IllegalArgumentException("Text cannot be null.");
+    if (sentence == null || isMuted) {
+      return; // Return without speaking if null or muted
     }
 
     try {

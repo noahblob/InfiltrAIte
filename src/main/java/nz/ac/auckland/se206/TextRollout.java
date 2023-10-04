@@ -38,6 +38,7 @@ public abstract class TextRollout {
               });
       timeline.getKeyFrames().add(keyFrame);
     }
+    // Stop the sound effect once finished.
     timeline.setOnFinished(e -> Sound.getInstance().stopRollout());
     timeline.play();
   }
