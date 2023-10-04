@@ -221,12 +221,14 @@ public class GameState {
 
     List<TextArea> dialogues = instance.getDialogues();
     List<ListView<ChatMessage>> phoneScreens = instance.getPhoneScreens();
+
     // Reset the game master.
-    CommanderController.resetInstance();
+    // CommanderController.resetInstance();
 
     // Update the new Commander controller with the list of dialogues and phonescreens.
     CommanderController.getInstance().setDialogues(dialogues);
     CommanderController.getInstance().setPhoneScreens(phoneScreens);
+    CommanderController.getInstance().displayStartHint();
   }
 
   private static void resetMainRoom() throws ApiProxyException {
