@@ -77,9 +77,9 @@
             <Image url="@../images/rightroom.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="395.0" fitWidth="379.0" layoutX="34.0" layoutY="74.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="224.0" fitWidth="466.0" layoutX="11.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../images/books.png" />
+            <Image url="@../images/bookshelfNew.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual5" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
@@ -115,27 +115,27 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="45.0" layoutY="106.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
+      <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="137.0" layoutX="43.0" layoutY="227.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="28.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="117.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="70.0">
+      <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="96.0" layoutX="126.0" layoutY="270.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="21.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="192.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
+      <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="137.0" layoutX="221.0" layoutY="231.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="24.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="341.0" layoutX="260.0" layoutY="105.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="63.0">
+      <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="150.0" layoutX="323.0" layoutY="213.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="28.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="348.0" layoutX="332.0" layoutY="95.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="81.0">
+      <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="156.0" layoutX="416.0" layoutY="210.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="21.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
