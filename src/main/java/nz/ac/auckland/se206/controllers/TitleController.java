@@ -9,8 +9,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Sound;
@@ -30,10 +28,6 @@ public class TitleController {
 
   private final Map<String, String> countryImageMap = new HashMap<>();
   private String infinity = "\u221E";
-  private MediaPlayer player;
-  private MediaPlayer hover;
-  private Media click;
-  private Media hoverOver;
 
   public void initialize() {
     intialiseFonts();
@@ -45,10 +39,6 @@ public class TitleController {
   private void setUpSound() {
     String clickPath = getClass().getResource("/sounds/clickMenu.mp3").toString();
     String hoverPath = getClass().getResource("/sounds/hover.mp3").toString();
-    click = new Media(clickPath);
-    hoverOver = new Media(hoverPath);
-    player = new MediaPlayer(click);
-    hover = new MediaPlayer(hoverOver);
   }
 
   private void initialiseImageMap() {
