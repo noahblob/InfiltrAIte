@@ -205,6 +205,10 @@ public class BookController extends Commander {
             + " properly!!\r\n"
             + "\r\n"
             + pattern;
+
+    titleMap.get(randomBookId).setStyle("-fx-font-weight: bold; -fx-font-size: 25px;");
+
+    descriptionMap.get(randomBookId).setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
   }
 
   /**
@@ -225,9 +229,6 @@ public class BookController extends Commander {
     }
 
     if (content.get(bookCode)) {
-      titleMap.get(bookCode).setStyle("-fx-font-weight: bold; -fx-font-size: 25px;");
-
-      descriptionMap.get(bookCode).setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
 
       titleMap.get(bookCode).setText(goodTitle);
       descriptionMap.get(bookCode).setText(goodDesc);
@@ -248,6 +249,7 @@ public class BookController extends Commander {
     if (titleMap.containsKey(bookCode)) {
       titleMap.get(bookCode).setStyle("");
     }
+    if (book != null) onGoBackShelf();
 
     if (descriptionMap.containsKey(bookCode)) {
       descriptionMap.get(bookCode).setStyle("");

@@ -38,12 +38,6 @@ public class CommanderController {
     return instance;
   }
 
-  // Method to delete the commandercontroller for a new game.
-  public static void resetInstance() {
-    instance = null;
-    System.gc();
-  }
-
   // Instance fields
   private final Queue<String> messageQueue;
   private ChatCompletionRequest messages;
@@ -188,7 +182,7 @@ public class CommanderController {
     new Thread(task).start();
   }
 
-  private void displayStartHint() {
+  public void displayStartHint() {
     ChatMessage initialMessage =
         new ChatMessage("assistant", "Agent, Talk to me here if you have any questions.");
     Platform.runLater(
