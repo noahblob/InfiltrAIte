@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import nz.ac.auckland.se206.Dialogue;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.TextRollout;
 import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
@@ -27,6 +28,10 @@ public class StartController extends TextRollout {
 
   @FXML
   private void onClick(MouseEvent event) {
+
+    // Play sound effect.
+    Sound.getInstance().playClickMajor();
+
     // Get source of the click event to check which button was clicked
     Button whichButton = (Button) event.getSource();
 
@@ -37,6 +42,11 @@ public class StartController extends TextRollout {
     } else {
       System.exit(0);
     }
+  }
+
+  @FXML
+  private void onHover(MouseEvent event) {
+    Sound.getInstance().playHover();
   }
 
   private void initialiseDialogue() {

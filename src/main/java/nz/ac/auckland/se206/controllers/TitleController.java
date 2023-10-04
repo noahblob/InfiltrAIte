@@ -11,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.TextAlignment;
 import nz.ac.auckland.se206.GameState;
+import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 /** Controller class for the room view. */
@@ -32,6 +33,12 @@ public class TitleController {
     intialiseFonts();
     initialiseCountries();
     initialiseImageMap();
+    setUpSound();
+  }
+
+  private void setUpSound() {
+    String clickPath = getClass().getResource("/sounds/clickMenu.mp3").toString();
+    String hoverPath = getClass().getResource("/sounds/hover.mp3").toString();
   }
 
   private void initialiseImageMap() {
@@ -60,6 +67,8 @@ public class TitleController {
     // When each difficulty country is hovered over, display relevant information
     image.setOnMouseEntered(
         event -> {
+          // play hover sound effect.
+          Sound.getInstance().playHover();
           // ensure text formatting is correct when displaying information
           changeImage(event, country, true);
           difficulty.setText(info);
@@ -83,6 +92,10 @@ public class TitleController {
 
   @FXML
   private void onClick(MouseEvent event) {
+
+    // Play sound effect.
+    Sound.getInstance().playClickMajor();
+
     // Update in the future with different difficulties but for now just click to next screen.
     ImageView image = (ImageView) event.getSource();
     System.out.println(image.getId());
