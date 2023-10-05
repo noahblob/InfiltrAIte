@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Sound;
@@ -35,15 +34,8 @@ public class TimeController {
 
     gameTime = 4;
     bindDifficulty();
-    setFont();
     updateTime();
     initialiseButtons();
-  }
-
-  private void setFont() {
-    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
-    diff.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 25px; -fx-text-fill: black;");
-    time.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 45px; -fx-text-fill: black;");
   }
 
   private void initialiseButtons() {
