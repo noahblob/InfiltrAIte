@@ -68,7 +68,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text fontSmoothingType="LCD" layoutX="52.0" layoutY="89.0" strokeType="OUTSIDE" style="-fx-stroke: green; -fx-font: white;" text="SELECT MISSION TIME">
+      <Text fontSmoothingType="LCD" layoutX="52.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="2.0" style="-fx-stroke: green;" text="SELECT MISSION TIME">
          <font>
             <Font name="Aqua Grotesque" size="60.0" />
          </font>
