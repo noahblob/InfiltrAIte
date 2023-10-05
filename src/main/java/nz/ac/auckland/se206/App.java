@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.SceneManager;
@@ -65,6 +66,10 @@ public class App extends Application {
 
     // load fonts for the game.
     loadFonts();
+
+    // Set Icon for for game.
+    Image icon = new Image("/images/commander.png");
+    stage.getIcons().add(icon);
 
     // Set the scene for start screen and show it
     scene = new Scene(SceneManager.getuserInterface(AppUi.START), 800, 600);
