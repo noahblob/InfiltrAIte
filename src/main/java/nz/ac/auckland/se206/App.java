@@ -81,5 +81,6 @@ public class App extends Application {
   private void loadFonts() {
     Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
     Font.loadFont(getClass().getResourceAsStream("/fonts/aqua.ttf"), 20);
+    Font.loadFont(getClass().getResourceAsStream("/fonts/Chalkduster.ttf"), 12);
   }
 }
