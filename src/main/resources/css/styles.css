@@ -21,6 +21,8 @@
 
 /* First custom button style */
 .accept {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
   -fx-background-color: rgb(0, 0, 0);
   -fx-text-fill: #00FF00;
   -fx-font-smoothing-type: green;
@@ -29,17 +31,23 @@
 }
 
 .accept:hover {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
   -fx-background-color: #00FF00;
-  -fx-text-fill: rgb(0, 0, 0);
+  -fx-text-fill: rgb(255, 255, 255);
 }
 
 .accept:pressed {
-  -fx-background-color: rgb(121, 231, 121);
-  -fx-text-fill: rgb(0, 0, 0);
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: rgb(255, 255, 255);
 }
 
 /* Second custom button style */
 .decline {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
   -fx-background-color: rgb(238, 33, 33);
   -fx-background-color: rgb(0, 0, 0);
   -fx-text-fill: #ef0f0f;
@@ -48,16 +56,71 @@
 }
 
 .decline:hover {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
   -fx-background-color: #fe1f1f;
-  -fx-text-fill: rgb(0, 0, 0);
+  -fx-text-fill: rgb(255, 255, 255);
 }
 
 .decline:pressed {
-  -fx-background-color: rgb(242, 80, 80);
-  -fx-text-fill: rgb(0, 0, 0);
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: rgb(255, 255, 255);
+}
+
+.playAgain {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 15;
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #00FF00;
+  -fx-font-smoothing-type: green;
+  -fx-border-color: #00FF00;
+  -fx-border-width: 2px;
+}
+
+.playAgain:hover {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 15;
+  -fx-background-color: #00FF00;
+  -fx-text-fill: rgb(255, 255, 255);
+}
+
+.playAgain:pressed {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: rgb(255, 255, 255);
+}
+
+.difficultyWatch {
+  -fx-font-family: 'DS-Digital';
+  -fx-font-size: 30px;
+  -fx-text-fill: black;
+}
+
+.infiltr-ai-te {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 70;
+  -fx-text-fill: #ffffff;
+  -fx-border-width: 2px;
+}
+
+.titleText {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 25px;
+  -fx-fill: black;
+}
+
+.timer {
+  -fx-font-family: 'DS-Digital';
+  -fx-font-size: 40px;
+  -fx-text-fill: black;
 }
 
 .timeTitle {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 12;
   -fx-text-fill: #ffffff;
   -fx-border-width: 2px;
   -fx-stroke: rgb(43, 255, 71);
@@ -65,6 +128,8 @@
 }
 
 .time {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 35;
   -fx-background-radius: 10;
   -fx-border-radius: 10;
   -fx-background-color: rgb(0, 0, 0);
@@ -75,13 +140,39 @@
 
 .time:hover {
   -fx-background-color: #00ff80;
+  -fx-font-size: 35;
   -fx-text-fill: rgb(0, 0, 0);
 }
 
 .time:pressed {
   -fx-background-color: rgb(121, 231, 121);
+  -fx-font-size: 35;
   -fx-text-fill: rgb(0, 0, 0);
 }
+
+.backTitle {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
+  -fx-background-radius: 10;
+  -fx-border-radius: 10;
+  -fx-background-color: rgb(0, 0, 0);
+  -fx-text-fill: #ffffff;
+  -fx-border-color: #00ff0d;
+  -fx-border-width: 2px;
+}
+
+.backTitle:hover {
+  -fx-background-color: #00ff80;
+  -fx-font-size: 20;
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
+.backTitle:pressed {
+  -fx-background-color: rgb(121, 231, 121);
+  -fx-font-size: 20;
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
 
 .title-area {
   -fx-background-color: rgb(0, 0, 0);
@@ -120,26 +211,33 @@
 }
 
 .titlearea {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 15;
   -fx-background-color: rgb(0, 0, 0);
   -fx-border-color: #000000;
-  -fx-text-fill: #ff0000;
+  -fx-text-fill: #00ff37;
   -fx-text-alignment: justify;
 }
 
 .difficulty {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
   -fx-alignment: center;
   -fx-text-fill: #ffffff
 }
 
-.lose {
+.missionFailed {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 60;
   -fx-alignment: center;
   -fx-text-fill: #ff0000
 }
 
-.titlerings {
-  -fx-fill: transparent;
-  -fx-stroke: rgb(255, 0, 0);
-  -fx-stroke-width: 10;
+.lose {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 20;
+  -fx-alignment: center;
+  -fx-text-fill: #ff0000
 }
 
 /* Disables horizontal scroll bar in list view */
@@ -175,18 +273,12 @@
 
 .slider .thumb {
   -fx-background-color: transparent;
-  /* Hide default background */
   -fx-background-radius: 0;
-  /* Remove rounding */
   -fx-background-insets: 0;
-  /* Remove insets */
   -fx-pref-width: 30px;
-  /* Your image width */
   -fx-pref-height: 30px;
-  /* Your image height */
   -fx-background-image: url('/images/slider.png');
   -fx-background-size: 30px 30px;
-  /* Set to your image size */
   -fx-background-repeat: no-repeat;
   -fx-background-position: center;
 }
@@ -237,6 +329,8 @@
 }
 
 .uiTextAreaChat {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 12;
   -fx-background-color: rgb(53, 53, 53);
   -fx-text-fill: #ffffff;
   -fx-font-smoothing-type: green;
@@ -245,6 +339,8 @@
 }
 
 .uiTextAreaCommander {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 12;
   -fx-background-color: rgb(0, 0, 0);
   -fx-text-fill: #00ff2a;
   -fx-font-smoothing-type: green;
@@ -253,6 +349,7 @@
 }
 
 .uiNotePad {
+  -fx-font-family: 'Aqua Grotesque';
   -fx-prompt-text-fill: white;
   -fx-font-size: 20px;
   -fx-background-radius: 10, 10, 10, 10;
@@ -265,6 +362,8 @@
 
 /* First custom button style */
 .send {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 12;
   -fx-background-color: rgb(53, 53, 53);
   -fx-text-fill: #00FF00;
   -fx-font-smoothing-type: green;
@@ -273,11 +372,41 @@
 }
 
 .send:hover {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 12;
   -fx-background-color: #00FF00;
   -fx-text-fill: rgb(0, 0, 0);
 }
 
 .send:pressed {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 12;
   -fx-background-color: rgb(121, 231, 121);
+  -fx-text-fill: rgb(0, 0, 0);
+}
+
+.whiteBoard {
+  -fx-font-family: 'Chalkduster';
+  -fx-font-size: 12;
+}
+
+.uiIntel {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 40;
+  -fx-text-fill: rgb(204, 204, 204);
+}
+
+.computerSend {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 10;
+  -fx-text-fill: rgb(229, 229, 229);
+  -fx-background-color: rgb(53, 53, 53);
+  -fx-border-color: #afafaf;
+  -fx-border-width: 1px;
+}
+
+.rightlocker {
+  -fx-font-family: 'Aqua Grotesque';
+  -fx-font-size: 34;
   -fx-text-fill: rgb(0, 0, 0);
 }

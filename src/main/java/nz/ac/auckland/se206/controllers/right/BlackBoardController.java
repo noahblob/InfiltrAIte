@@ -9,7 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.text.Font;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Sound;
 import nz.ac.auckland.se206.controllers.SceneManager;
@@ -83,8 +82,6 @@ public class BlackBoardController extends Commander {
    * @throws Exception
    */
   public void initialize() throws Exception {
-    Font.loadFont(getClass().getResourceAsStream("/fonts/Chalkduster.ttf"), 12);
-
     super.initialize();
     objective.setText("Hmm this seems pretty important");
 
@@ -106,15 +103,6 @@ public class BlackBoardController extends Commander {
     friday = hashmap.get(5);
     saturday = hashmap.get(6);
     sunday = hashmap.get(7);
-
-    // match font with image font so it is less obvious to player.
-    mon.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
-    tues.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
-    wed.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
-    th.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
-    fr.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
-    sat.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
-    sun.setStyle("-fx-font-family: 'Chalkduster'; -fx-font-size: 12px;");
 
     // Update the blackboard.
     mon.setText(Integer.toString(monday));

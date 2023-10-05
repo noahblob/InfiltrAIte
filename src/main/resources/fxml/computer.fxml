@@ -71,17 +71,17 @@
                   <Image url="@../images/icon_user_whiteongrey.png" />
                </image>
             </ImageView>
-            <TextField fx:id="computerPassword" layoutX="121.0" layoutY="231.0" onKeyPressed="#onKeyPressed" promptText="password" />
-            <Label fx:id="passwordHint" alignment="TOP_CENTER" layoutX="104.0" layoutY="256.0" prefHeight="79.0" prefWidth="254.0" style="-fx-background-color: #000a;" text="password hint:" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-            <Button fx:id="submitButton" layoutX="270.0" layoutY="231.0" mnemonicParsing="false" onMouseClicked="#onClick" text="SUBMIT" />
+            <TextField fx:id="computerPassword" layoutX="121.0" layoutY="231.0" onKeyPressed="#onKeyPressed" prefHeight="28.0" prefWidth="153.0" promptText="password" styleClass="computerSend" stylesheets="@../css/styles.css" />
+            <Label fx:id="passwordHint" alignment="TOP_CENTER" layoutX="104.0" layoutY="261.0" prefHeight="79.0" prefWidth="254.0" style="-fx-background-color: #000a;" styleClass="text" stylesheets="@../css/styles.css" text="password hint:" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+            <Button fx:id="submitButton" layoutX="280.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#onClick" styleClass="computerSend" stylesheets="@../css/styles.css" text="SUBMIT" />
          </children>
       </Pane>
-      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" text="x0" textFill="#aeaeae">
+      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" text="x0" textFill="#a4a4a4">
+      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
          </font>

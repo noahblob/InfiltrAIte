@@ -69,17 +69,17 @@
             <Image url="@../images/best-puzzles-that-make-an-escape-room-more-challenging.png" />
          </image>
       </ImageView>
-      <Label fx:id="first" alignment="CENTER" layoutX="149.0" layoutY="295.0" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
+      <Label fx:id="first" alignment="CENTER" layoutX="149.0" layoutY="295.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label fx:id="third" alignment="CENTER" layoutX="246.0" layoutY="295.0" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
+      <Label fx:id="third" alignment="CENTER" layoutX="247.0" layoutY="296.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label fx:id="second" alignment="CENTER" layoutX="198.0" layoutY="295.0" opacity="0.8" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
+      <Label fx:id="second" alignment="CENTER" layoutX="199.0" layoutY="296.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
@@ -89,7 +89,7 @@
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <Label fx:id="fourth" alignment="CENTER" layoutX="295.0" layoutY="295.0" prefHeight="65.0" prefWidth="43.0" text="0" textAlignment="CENTER">
+      <Label fx:id="fourth" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="296.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
@@ -193,12 +193,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" text="x0" textFill="#aeaeae">
+      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" text="x0" textFill="#a4a4a4">
+      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
          </font>

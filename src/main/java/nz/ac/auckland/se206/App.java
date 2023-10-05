@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
@@ -62,6 +64,13 @@ public class App extends Application {
     SceneManager.addUserInterface(AppUi.COMPUTER, loadFxml("computer"));
     SceneManager.addUserInterface(AppUi.END, App.loadFxml("escape"));
 
+    // load fonts for the game.
+    loadFonts();
+
+    // Set Icon for for game.
+    Image icon = new Image("/images/commander.png");
+    stage.getIcons().add(icon);
+
     // Set the scene for start screen and show it
     scene = new Scene(SceneManager.getuserInterface(AppUi.START), 800, 600);
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
@@ -72,5 +81,11 @@ public class App extends Application {
         event -> {
           System.exit(0);
         });
+  }
+
+  private void loadFonts() {
+    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
+    Font.loadFont(getClass().getResourceAsStream("/fonts/aqua.ttf"), 20);
+    Font.loadFont(getClass().getResourceAsStream("/fonts/Chalkduster.ttf"), 12);
   }
 }
