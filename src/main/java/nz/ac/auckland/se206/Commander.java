@@ -13,7 +13,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -49,21 +48,8 @@ public abstract class Commander {
     updateCommander();
     setUpUI();
     setUpHints();
-    updateTimerFont();
-    // if the game is muted, change image to muted image and disable tts
-    soundButton
-        .imageProperty()
-        .bind(
-            Bindings.when(GameState.isMuted)
-                .then(new Image("/images/icons8-mute-100-red.png"))
-                .otherwise(new Image("/images/icons8-volume-100-green.png")));
-
-    soundButton.setOnMouseClicked(
-        event -> {
-          boolean current = GameState.isMuted.get();
-          GameState.isMuted.set(!current); // Toggle value
-          System.out.println("Is muted: " + GameState.isMuted.get());
-        });
+    setTimerFont();
+    setUpSoundButton();
   }
 
   /**
@@ -108,12 +94,6 @@ public abstract class Commander {
     CommanderController.getInstance().updateDialogueBox(msg);
   }
 
-  /** Updates styling for timer to correct font and size upon game launch. */
-  private void updateTimerFont() {
-    Font.loadFont(getClass().getResourceAsStream("/fonts/DS-DIGI.TTF"), 20);
-    timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
-  }
-
   private void setupHints() {
     unbindHints();
     setHintsBasedOnDifficulty();
@@ -138,6 +118,28 @@ public abstract class Commander {
       default:
         break;
     }
+  }
+
+  /** Updates styling for timer to correct font and size upon game launch. */
+  private void setTimerFont() {
+    timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
+  }
+
+  private void setUpSoundButton() {
+    // if the game is muted, change image to muted image and disable tts
+    soundButton
+        .imageProperty()
+        .bind(
+            Bindings.when(GameState.isMuted)
+                .then(new Image("/images/icons8-mute-100-red.png"))
+                .otherwise(new Image("/images/icons8-volume-100-green.png")));
+
+    soundButton.setOnMouseClicked(
+        event -> {
+          boolean current = GameState.isMuted.get();
+          GameState.isMuted.set(!current); // Toggle value
+          System.out.println("Is muted: " + GameState.isMuted.get());
+        });
   }
 
   private void setInfiniteHints() {

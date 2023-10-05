@@ -348,8 +348,6 @@ public class CommanderController {
   }
 
   public void textRollout(String message, TextArea dialogue) {
-    // Clear existing dialogue (in case of spam clicks)
-    dialogue.clear();
 
     char[] chars = message.toCharArray();
     Timeline timeline = new Timeline();
