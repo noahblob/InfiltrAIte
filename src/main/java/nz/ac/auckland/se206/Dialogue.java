@@ -39,13 +39,13 @@ public enum Dialogue {
       "Good work, Agent. You've done your country proud. You successfully escaped with 1 intel from"
           + " the base. We now have critical information confirming the enemy's plans to launch an"
           + " attack on our southern sea front. Your next mission is crucial. Meet for extraction"
-          + " at the rendezvous point"),
+          + " at the rendezvous point."),
   WIN2(
       "Superb work, Agent. You've done your country proud. You successfully escaped with 2 intel"
           + " from the base. We now have critical information confirming the enemy's plans to"
           + " launch an attack on our southern sea front. They plan to do so in approximately in"
           + " T-minus 10 days. Your next mission is crucial. Meet for extraction at the rendezvous"
-          + " point"),
+          + " point."),
   WIN3(
       "Outstanding, Agent! You've elevated the stakes and your nation salutes you. With 3 intel"
           + " pieces gripped tightly in your hand, you've pierced the veil of the enemy's"

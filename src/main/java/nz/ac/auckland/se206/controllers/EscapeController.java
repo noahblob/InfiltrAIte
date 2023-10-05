@@ -28,7 +28,7 @@ public class EscapeController extends TextRollout {
   }
 
   @FXML
-  public void onClick(MouseEvent event) throws Exception {
+  private void onClick(MouseEvent event) throws Exception {
     Sound.getInstance().playClickMajor();
     // Get the button that was clicked to check against some conditionals
     Button button = (Button) event.getSource();
@@ -44,6 +44,11 @@ public class EscapeController extends TextRollout {
     } else {
       System.exit(0);
     }
+  }
+
+  @FXML
+  private void onHover() {
+    Sound.getInstance().playClickMinor();
   }
 
   private void setWinScreen() {
