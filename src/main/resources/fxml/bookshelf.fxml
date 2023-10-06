@@ -84,27 +84,27 @@
       </ImageView>
       <ImageView fx:id="actual5" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual4" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual3" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual2" fitHeight="401.0" fitWidth="431.0" layoutX="28.0" layoutY="82.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual1" fitHeight="401.0" fitWidth="431.0" layoutX="18.0" layoutY="72.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <Button fx:id="goBack" layoutX="27.0" layoutY="463.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN TO ROOM">
@@ -144,17 +144,20 @@
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
-      <Text fx:id="description1" layoutX="221.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="title1" layoutX="55.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="description2" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="description3" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="description4" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="description5" layoutX="231.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="191.0" />
-      <Text fx:id="title2" layoutX="65.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="title3" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="title4" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
-      <Text fx:id="title5" layoutX="65.0" layoutY="209.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" />
+      <Text fx:id="description1" layoutX="239.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="131.0" x="20.0" y="75.0" />
+      <Text fx:id="description2" layoutX="235.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="131.0" x="20.0" y="75.0" />
+      <Text fx:id="description3" layoutX="239.0" layoutY="132.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="125.0" x="20.0" y="75.0" />
+      <Text fx:id="description4" layoutX="236.0" layoutY="133.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" x="20.0" y="75.0" />
+      <Text fx:id="description5" layoutX="237.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" x="20.0" y="75.0" />
+      <Text fx:id="title1" layoutX="105.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" x="2.0" y="40.0" />
+      <Text fx:id="title2" layoutX="105.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" x="2.0" y="40.0" />
+      <Text fx:id="title3" layoutX="106.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" x="2.0" y="40.0" />
+      <Text fx:id="title4" layoutX="107.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" x="2.0" y="40.0" />
+      <Text fx:id="title5" layoutX="106.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="138.0" x="2.0" y="40.0" />
       <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
          <font>
             <Font size="37.0" />
