@@ -65,7 +65,7 @@ public class BookController extends Commander {
   private Map<String, Boolean> content = new HashMap<>();
   private Map<String, Text> titleMap = new HashMap<>();
   private Map<String, Text> descriptionMap = new HashMap<>();
-  private String goodTitle = "Where our intelligence is stored";
+  private String goodTitle = "[IMPORTANT] INTELLIGENCE";
 
   private String pattern;
   private String goodDesc;
@@ -73,64 +73,21 @@ public class BookController extends Commander {
   private Map<String, String> titleToDescription =
       new HashMap<>() {
         {
-          put(
-              "How to bake a Cake",
-              "Simple Vanilla Cake Recipe\r\n"
-                  + "\r\n"
-                  + "Ingredients:\r\n"
-                  + "\r\n"
-                  + "1 cup sugar\r\n"
-                  + "1/2 cup butter, softened\r\n"
-                  + "2 eggs\r\n"
-                  + "1 and 1/2 cups all-purpose flour\r\n"
-                  + "1 and 3/4 tsp baking powder\r\n"
-                  + "1/2 cup milk\r\n"
-                  + "1 tsp vanilla extract\r\n"
-                  + "Pinch of salt\r\n");
+          put("How to bake a Cake", "Simple Vanilla Cake Recipe\r\nYou will need eggs,flour...");
           put(
               "The rain is never ending",
-              "The small town of Riverview had seen rain before, but this was different."
-                  + "\r\n"
-                  + " Dark"
-                  + " clouds loomed for weeks, turning days into an endless twilight."
-                  + "\r\n"
-                  + "Streets"
-                  + " became rivers, and gardens, ponds."
-                  + "\r\n"
-                  + " People whispered about an ancient curse as"
-                  + " they watched their umbrellas turn inside out");
+              "The small town of Riverview had seen rain before, but this was different.");
           put(
-              "Data Structures 5th Edition",
-              "A heap is a specialized tree-based data structure that satisfies the heap property."
-                  + " It can be visualized as a binary tree, and it finds its primary use in"
-                  + " algorithms like heap sort and in data structures such as priority queues.\r\n"
-                  + "\r\n"
-                  + "There are two types of heaps based on the heap property:\r\n"
-                  + "\r\n"
-                  + "Max Heap - In a max heap, the largest element is found at the root.\r\n"
-                  + "\r\n"
-                  + "Min Heap - In a min heap, the smallest element is located at the root.");
+              "Data Structures\r\n5th Edition",
+              "A heap is a specialized tree-based data structure that satisfies the heap"
+                  + " property.");
           put(
-              "10 Programming tips even your grandma knows",
+              "3 Programming tips even your grandma knows",
               "1- Always Save Your Work\r\n"
                   + "\r\n"
                   + "2- Read the Error Messages\r\n"
                   + "\r\n"
-                  + "3- Google is Your Friend\r\n"
-                  + "\r\n"
-                  + "4- Comments are For Humans\r\n"
-                  + "\r\n"
-                  + "5- Backup, Backup, Backup\r\n"
-                  + "\r\n"
-                  + "6- Keep Your Code Neat\r\n"
-                  + "\r\n"
-                  + "7- Start Simple\r\n"
-                  + "\r\n"
-                  + "8- Test Often\r\n"
-                  + "\r\n"
-                  + "9- Take Breaks\r\n"
-                  + "\r\n"
-                  + "10- Stay Updated");
+                  + "3- Google is Your Friend\r\n");
         }
       };
 
@@ -200,13 +157,9 @@ public class BookController extends Commander {
 
     // Update the passcode for left room puzzle.
     pattern = String.valueOf(GameState.sliderAnswer);
-    goodDesc =
-        "One of the intelligence can be found in the left room, make sure to use the sliders"
-            + " properly!!\r\n"
-            + "\r\n"
-            + pattern;
+    goodDesc = "Stored in\r\nLEFT ROOM\r\nRadio sliders\r\n" + "\r\n " + pattern;
 
-    titleMap.get(randomBookId).setStyle("-fx-font-weight: bold; -fx-font-size: 25px;");
+    titleMap.get(randomBookId).setStyle("-fx-font-weight: bold; -fx-font-size: 18px;");
 
     descriptionMap.get(randomBookId).setStyle("-fx-font-weight: bold; -fx-font-size: 20px;");
   }
