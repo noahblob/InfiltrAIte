@@ -76,6 +76,7 @@ public class App extends Application {
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     stage.setResizable(false);
     stage.setScene(scene);
+    stage.setTitle("InfiltrAIte");
     stage.show();
     stage.setOnCloseRequest(
         event -> {
