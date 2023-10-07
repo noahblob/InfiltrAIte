@@ -67,6 +67,7 @@ public class MainRoomController extends Commander {
     objective.setText("Find intel and escape!");
     // separate method for left and right door hover and click events
     setDoorEvents();
+    setCabinetVisibility(false);
   }
 
   /** Resets relevant aspects of the room upon the play again button being pressed. */

@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
    <children>
-      <Button id="accept" fx:id="accept" layoutX="171.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="46.0" prefWidth="150.0" styleClass="accept" stylesheets="@../css/styles.css" text="ACCEPT">
+      <Button id="accept" fx:id="accept" layoutX="300.0" layoutY="741.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="46.0" prefWidth="150.0" styleClass="accept" stylesheets="@../css/styles.css" text="ACCEPT">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
@@ -22,7 +22,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextArea editable="false" layoutX="14.0" layoutY="201.0" prefHeight="164.0" prefWidth="172.0" promptText="TESTING" stylesheets="@../css/styles.css" wrapText="true">
+      <TextArea editable="false" layoutX="14.0" layoutY="300.0" prefHeight="268.0" prefWidth="267.0" promptText="TESTING" stylesheets="@../css/styles.css" wrapText="true">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
@@ -30,12 +30,12 @@
             <Bloom />
          </effect>
       </TextArea>
-      <ImageView fitHeight="143.0" fitWidth="181.0" layoutX="28.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="247.0" fitWidth="291.0" layoutX="23.0" layoutY="309.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="dialogue" editable="false" layoutX="198.0" layoutY="201.0" prefHeight="164.0" prefWidth="588.0" promptText="TESTING" styleClass="timeTitle" stylesheets="@../css/styles.css" wrapText="true">
+      <TextArea fx:id="dialogue" editable="false" layoutX="287.0" layoutY="300.0" prefHeight="268.0" prefWidth="900.0" promptText="TESTING" styleClass="timeTitle" stylesheets="@../css/styles.css" wrapText="true">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
@@ -43,7 +43,7 @@
             <Bloom />
          </effect>
       </TextArea>
-      <Button fx:id="decline" layoutX="492.0" layoutY="398.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="46.0" prefWidth="150.0" styleClass="decline" stylesheets="@../css/styles.css" text="DECLINE">
+      <Button fx:id="decline" layoutX="750.0" layoutY="741.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="46.0" prefWidth="150.0" styleClass="decline" stylesheets="@../css/styles.css" text="DECLINE">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
