@@ -78,11 +78,11 @@ public class GptPromptEngineering {
     return "Reply 'This is what the paper says:' with the riddle following that.";
   }
 
-  public static String getComputerHint(String numhints) {
+  public static String getComputerHint() {
     return "Tell the player that they should try examine the computer in the main room.";
   }
 
-  public static String getComputerHint(String numhints) {
-    return "Tell the player that they should try examine the computer in the main room.";
+  public static String getEscapeHint() {
+    return "Tell the player that they should try escape before they get caught.";
   }
 }

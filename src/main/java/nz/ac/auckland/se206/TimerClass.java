@@ -61,7 +61,7 @@ public class TimerClass {
     for (Text timer : timers) {
       timer.setText(String.format("0%d:00", minutes));
     }
-    
+
     this.timeline = new Timeline();
     timeline.setCycleCount(Timeline.INDEFINITE);
     // Create a keyframe to decrease the timer every second.
@@ -153,7 +153,10 @@ public class TimerClass {
     } else if (timeLeft == 60) {
       hint = GptPromptEngineering.getEscapeHint();
     }
-
-    CommanderController.getInstance().updateGpt(hint);
+    
+    // Only Update GPT at certain times.
+    if (timeLeft == 60) {
+      CommanderController.getInstance().updateGpt(hint);
+    }
   }
 }
