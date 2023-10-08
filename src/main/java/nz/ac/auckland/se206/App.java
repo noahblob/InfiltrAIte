@@ -72,7 +72,7 @@ public class App extends Application {
     stage.getIcons().add(icon);
 
     // Set the scene for start screen and show it
-    scene = new Scene(SceneManager.getuserInterface(AppUi.START), 1200, 900);
+    scene = new Scene(SceneManager.getuserInterface(AppUi.START), 1000, 750);
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     stage.setResizable(false);
     stage.setScene(scene);

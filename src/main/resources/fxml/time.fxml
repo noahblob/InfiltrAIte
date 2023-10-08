@@ -16,14 +16,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TimeController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.TimeController">
    <children>
-      <ImageView fx:id="watch" fitHeight="900.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="watch" fitHeight="750.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/watch.png" />
          </image>
       </ImageView>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="885.0" layoutX="7.0" layoutY="9.0" stroke="#00ff37" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" width="1186.0">
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffffff00" height="733.0" layoutX="10.0" layoutY="9.0" stroke="#00ff37" strokeLineCap="ROUND" strokeType="INSIDE" strokeWidth="2.0" width="980.0">
          <effect>
             <Glow level="1.0" />
          </effect>
@@ -31,12 +31,12 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </Rectangle>
-      <Label fx:id="time" alignment="CENTER" contentDisplay="CENTER" layoutX="289.0" layoutY="441.0" prefHeight="38.0" prefWidth="92.0" styleClass="timer" stylesheets="@../css/styles.css" text="0:00">
+      <Label fx:id="time" alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="366.0" prefHeight="38.0" prefWidth="92.0" styleClass="timer" stylesheets="@../css/styles.css" text="0:00">
          <font>
             <Font name="Anonymous Pro Bold" size="40.0" />
          </font>
       </Label>
-      <Button fx:id="increase" layoutX="658.0" layoutY="412.0" mnemonicParsing="false" onMouseEntered="#onHover" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="INCREASE">
+      <Button fx:id="increase" layoutX="529.0" layoutY="368.0" mnemonicParsing="false" onMouseEntered="#onHover" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="INCREASE">
          <font>
             <Font name="Aqua Grotesque" size="30.0" />
          </font>
@@ -47,7 +47,7 @@
             <Glow />
          </effect>
       </Button>
-      <Button fx:id="set" layoutX="658.0" layoutY="289.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="84.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="START">
+      <Button fx:id="set" layoutX="529.0" layoutY="245.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="84.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="START">
          <font>
             <Font name="Aqua Grotesque" size="30.0" />
          </font>
@@ -58,7 +58,7 @@
             <Glow />
          </effect>
       </Button>
-      <Button fx:id="decrease" alignment="CENTER" layoutX="658.0" layoutY="489.0" mnemonicParsing="false" onMouseEntered="#onHover" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="DECREASE">
+      <Button fx:id="decrease" alignment="CENTER" layoutX="529.0" layoutY="445.0" mnemonicParsing="false" onMouseEntered="#onHover" prefHeight="65.0" prefWidth="248.0" styleClass="time" stylesheets="@../css/styles.css" text="DECREASE">
          <font>
             <Font name="Aqua Grotesque" size="30.0" />
          </font>
@@ -69,7 +69,7 @@
             <Glow />
          </effect>
       </Button>
-      <Button fx:id="back" layoutX="21.0" layoutY="819.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="135.0" styleClass="backTitle" stylesheets="@../css/styles.css" text="BACK">
+      <Button fx:id="back" layoutX="25.0" layoutY="668.0" mnemonicParsing="false" prefHeight="58.0" prefWidth="135.0" styleClass="backTitle" stylesheets="@../css/styles.css" text="BACK">
          <font>
             <Font name="Aqua Grotesque" size="22.0" />
          </font>
@@ -77,9 +77,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Text id="timeTitle" fontSmoothingType="LCD" layoutX="164.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="2.0" style="-fx-stroke: green;" text="SELECT MISSION TIME" wrappingWidth="990.583984375">
+      <Text id="timeTitle" fontSmoothingType="LCD" layoutX="152.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="2.0" style="-fx-stroke: green;" text="SELECT MISSION TIME" wrappingWidth="696.583984375">
          <font>
-            <Font size="100.0" />
+            <Font size="70.0" />
          </font>
          <stroke>
             <LinearGradient endX="0.8672985781990521" endY="0.8957345971563981" startX="0.8388625592417062" startY="0.1137440758293839">
@@ -101,11 +101,11 @@
             <Bloom />
          </effect>
       </Text>
-      <Label fx:id="diff" alignment="CENTER" contentDisplay="CENTER" layoutX="289.0" layoutY="358.0" prefHeight="38.0" prefWidth="92.0" styleClass="difficultyWatch" stylesheets="@../css/styles.css" text="DIFF">
+      <Label fx:id="diff" alignment="CENTER" contentDisplay="CENTER" layoutX="235.0" layoutY="295.0" prefHeight="38.0" prefWidth="92.0" styleClass="difficultyWatch" stylesheets="@../css/styles.css" text="DIFF">
          <font>
             <Font name="Aqua Grotesque" size="30.0" />
          </font>
       </Label>
-      <Line endX="170.0" layoutX="731.0" layoutY="394.0" startX="-71.0" stroke="#09ff00" />
+      <Line endX="170.0" layoutX="602.0" layoutY="350.0" startX="-71.0" stroke="#09ff00" />
    </children>
 </Pane>

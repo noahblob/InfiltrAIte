@@ -13,11 +13,17 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.EscapeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+   prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: black;"
+   xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="nz.ac.auckland.se206.controllers.EscapeController">
    <children>
-      <Pane fx:id="losePane" prefHeight="600.0" prefWidth="800.0">
+      <Pane fx:id="losePane" prefHeight="750.0" prefWidth="1000.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="208.0" layoutY="137.0" prefHeight="53.0" prefWidth="384.0" styleClass="lose" stylesheets="@../css/styles.css" text="You were caught by the enemy" textAlignment="CENTER" textFill="RED">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="308.0" layoutY="137.0"
+               prefHeight="53.0" prefWidth="384.0" styleClass="lose"
+               stylesheets="@../css/styles.css" text="You were caught by the enemy"
+               textAlignment="CENTER" textFill="RED">
                <font>
                   <Font name="Calibri" size="16.0" />
                </font>
@@ -25,13 +31,18 @@
                   <Glow />
                </effect>
             </Label>
-            <Line endX="637.0" endY="203.5" layoutX="-17.0" layoutY="-67.0" startX="197.0" startY="203.5" stroke="RED" />
-            <ImageView fitHeight="384.0" fitWidth="438.0" layoutX="208.0" layoutY="214.0" pickOnBounds="true" preserveRatio="true">
+            <Line endX="637.0" endY="203.5" layoutX="83.0" layoutY="-67.0" startX="197.0"
+               startY="203.5" stroke="RED" />
+            <ImageView fitHeight="384.0" fitWidth="438.0" layoutX="308.0" layoutY="245.0"
+               pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/caughtNew.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="132.0" layoutY="48.0" prefHeight="101.0" prefWidth="536.0" styleClass="missionFailed" stylesheets="@../css/styles.css" text="MISSION FAILED" textAlignment="CENTER" textFill="RED" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="232.0" layoutY="48.0"
+               prefHeight="101.0" prefWidth="536.0" styleClass="missionFailed"
+               stylesheets="@../css/styles.css" text="MISSION FAILED" textAlignment="CENTER"
+               textFill="RED" wrapText="true">
                <font>
                   <Font name="Calibri" size="71.0" />
                </font>
@@ -41,9 +52,11 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="winPane" prefHeight="600.0" prefWidth="800.0" visible="false">
+      <Pane fx:id="winPane" prefHeight="750.0" prefWidth="1000.0" visible="false">
          <children>
-            <TextArea editable="false" layoutX="10.0" layoutY="201.0" prefHeight="164.0" prefWidth="172.0" promptText="TESTING" stylesheets="@../css/styles.css" wrapText="true">
+            <TextArea editable="false" layoutX="20.0" layoutY="292.0" prefHeight="210.0"
+               prefWidth="215.0" promptText="TESTING" stylesheets="@../css/styles.css"
+               wrapText="true">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -51,7 +64,9 @@
                   <Bloom />
                </effect>
             </TextArea>
-            <TextArea fx:id="dialogue" editable="false" layoutX="194.0" layoutY="202.0" prefHeight="164.0" prefWidth="410.0" promptText="TESTING" styleClass="title-area" stylesheets="@../css/styles.css" wrapText="true">
+            <TextArea fx:id="dialogue" editable="false" layoutX="240.0" layoutY="292.0"
+               prefHeight="210.0" prefWidth="522.0" promptText="TESTING" styleClass="title-area"
+               stylesheets="@../css/styles.css" wrapText="true">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -59,7 +74,9 @@
                   <Bloom />
                </effect>
             </TextArea>
-            <TextArea editable="false" layoutX="617.0" layoutY="201.0" prefHeight="164.0" prefWidth="172.0" promptText="TESTING" stylesheets="@../css/styles.css" wrapText="true">
+            <TextArea editable="false" layoutX="766.0" layoutY="292.0" prefHeight="210.0"
+               prefWidth="215.0" promptText="TESTING" stylesheets="@../css/styles.css"
+               wrapText="true">
                <font>
                   <Font name="Calibri" size="14.0" />
                </font>
@@ -67,19 +84,23 @@
                   <Bloom />
                </effect>
             </TextArea>
-            <ImageView fitHeight="143.0" fitWidth="161.0" layoutX="630.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="187.0" fitWidth="223.0" layoutX="779.0" layoutY="303.0"
+               pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/userNew.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="143.0" fitWidth="181.0" layoutX="25.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="187.0" fitWidth="194.0" layoutX="28.0" layoutY="303.0"
+               pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/commander.png" />
                </image>
             </ImageView>
          </children>
       </Pane>
-      <Button fx:id="exit" layoutX="495.0" layoutY="462.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="46.0" prefWidth="150.0" styleClass="decline" stylesheets="@../css/styles.css" text="EXIT">
+      <Button fx:id="playAgain" layoutX="240.0" layoutY="647.0" mnemonicParsing="false"
+         onMouseClicked="#onClick" prefHeight="46.0" prefWidth="150.0" styleClass="playAgain"
+         stylesheets="@../css/styles.css" text="PLAY AGAIN">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
@@ -90,7 +111,9 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="playAgain" layoutX="194.0" layoutY="464.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="46.0" prefWidth="150.0" styleClass="playAgain" stylesheets="@../css/styles.css" text="PLAY AGAIN">
+      <Button fx:id="exit" layoutX="609.0" layoutY="647.0" mnemonicParsing="false"
+         onMouseClicked="#onClick" prefHeight="46.0" prefWidth="150.0" styleClass="decline"
+         stylesheets="@../css/styles.css" text="EXIT">
          <font>
             <Font name="Calibri Bold" size="16.0" />
          </font>
