@@ -95,7 +95,7 @@
 
 .difficultyWatch {
   -fx-font-family: 'DS-Digital';
-  -fx-font-size: 30px;
+  -fx-font-size: 33px;
   -fx-text-fill: black;
 }
 
@@ -114,13 +114,13 @@
 
 .timer {
   -fx-font-family: 'DS-Digital';
-  -fx-font-size: 40px;
+  -fx-font-size: 45px;
   -fx-text-fill: black;
 }
 
 .timeTitle {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 12;
+  -fx-font-size: 16;
   -fx-text-fill: #ffffff;
   -fx-border-width: 2px;
   -fx-stroke: rgb(43, 255, 71);
@@ -212,7 +212,7 @@
 
 .titlearea {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 15;
+  -fx-font-size: 16;
   -fx-background-color: rgb(0, 0, 0);
   -fx-border-color: #000000;
   -fx-text-fill: #00ff37;
@@ -221,7 +221,7 @@
 
 .difficulty {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 20;
+  -fx-font-size: 22;
   -fx-alignment: center;
   -fx-text-fill: #ffffff
 }
@@ -322,6 +322,7 @@
 
 .uiTextAreainventory {
   -fx-background-color: rgb(53, 53, 53);
+  -fx-font-size: 18;
   -fx-text-fill: #000000;
   -fx-font-smoothing-type: green;
   -fx-border-color: #afafaf;
@@ -330,7 +331,7 @@
 
 .uiTextAreaChat {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 12;
+  -fx-font-size: 15;
   -fx-background-color: rgb(53, 53, 53);
   -fx-text-fill: #ffffff;
   -fx-font-smoothing-type: green;
@@ -340,7 +341,7 @@
 
 .uiTextAreaCommander {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 12;
+  -fx-font-size: 16;
   -fx-background-color: rgb(0, 0, 0);
   -fx-text-fill: #00ff2a;
   -fx-font-smoothing-type: green;
@@ -363,7 +364,7 @@
 /* First custom button style */
 .send {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 12;
+  -fx-font-size: 13;
   -fx-background-color: rgb(53, 53, 53);
   -fx-text-fill: #00FF00;
   -fx-font-smoothing-type: green;
@@ -373,14 +374,14 @@
 
 .send:hover {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 12;
+  -fx-font-size: 13;
   -fx-background-color: #00FF00;
   -fx-text-fill: rgb(0, 0, 0);
 }
 
 .send:pressed {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 12;
+  -fx-font-size: 13;
   -fx-background-color: rgb(121, 231, 121);
   -fx-text-fill: rgb(0, 0, 0);
 }

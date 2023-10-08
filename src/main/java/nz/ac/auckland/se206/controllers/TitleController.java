@@ -52,9 +52,9 @@ public class TitleController {
   }
 
   private void initialiseCountries() {
-    setImageHover(elbonia, "EASY", infinity + " hints provided", "Elbonia");
-    setImageHover(genovia, "MEDIUM", "Five hints provided", "Genovia");
-    setImageHover(sanescobar, "HARD", "No Hints provided", "Sanescobar");
+    setImageHover(elbonia, "EASY", infinity + " HINTS PROVIDED", "Elbonia");
+    setImageHover(genovia, "MEDIUM", "FIVE HINTS PROVIDED", "Genovia");
+    setImageHover(sanescobar, "HARD", "NO HINTS PROVIDED", "Sanescobar");
   }
 
   private void setImageHover(ImageView image, String info, String about, String country) {
