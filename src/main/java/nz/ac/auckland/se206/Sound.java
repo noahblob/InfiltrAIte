@@ -15,10 +15,12 @@ public class Sound {
   private Media clickMinorSound;
   private Media hoverOver;
   private Media textRollout;
+  private Media phoneSound;
   private MediaPlayer clickMajor;
   private MediaPlayer clickMinor;
   private MediaPlayer hover;
   private MediaPlayer rollout;
+  private MediaPlayer phone;
   private List<MediaPlayer> currentlyPlaying;
   private TextToSpeech tts;
 
@@ -31,16 +33,19 @@ public class Sound {
     String clickMinorPath = getClass().getResource("/sounds/clickMenu1.mp3").toString();
     String hoverPath = getClass().getResource("/sounds/hover.mp3").toString();
     String rollPath = getClass().getResource("/sounds/scroll.mp3").toString();
+    String notePath = getClass().getResource("/sounds/phone.mp3").toString();
 
     clickMajorSound = new Media(clickMajorPath);
     clickMinorSound = new Media(clickMinorPath);
     hoverOver = new Media(hoverPath);
     textRollout = new Media(rollPath);
+    phoneSound = new Media(notePath);
 
     clickMajor = new MediaPlayer(clickMajorSound);
     clickMinor = new MediaPlayer(clickMinorSound);
     hover = new MediaPlayer(hoverOver);
     rollout = new MediaPlayer(textRollout);
+    phone = new MediaPlayer(phoneSound);
 
     bindToMute();
   }
@@ -70,6 +75,18 @@ public class Sound {
 
   public void stopRollout() {
     stopSound(rollout);
+  }
+
+  public void playRecieved() {
+    playSound(phone);
+  }
+
+  public void transmitSound() {
+    playOnLoop(phone);
+  }
+
+  public void stopTransmit() {
+    stopSound(phone);
   }
 
   public void playTTS() {
