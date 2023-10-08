@@ -16,46 +16,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-   prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: black;"
-   xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
-   fx:controller="nz.ac.auckland.se206.controllers.main.MainRoomController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.main.MainRoomController">
    <children>
       <ImageView fitHeight="750.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/UI.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="roomimage" fitHeight="572.0" fitWidth="576.0" layoutX="13.0" layoutY="89.0"
-         pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomimage" fitHeight="572.0" fitWidth="576.0" layoutX="13.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/startLocked.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="keyPad" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="55.0"
-         layoutX="187.0" layoutY="348.0" onMouseClicked="#onClick" onMouseEntered="#onHover"
-         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
-         strokeWidth="0.0" width="33.0">
+      <Rectangle fx:id="keyPad" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="55.0" layoutX="187.0" layoutY="348.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="33.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Text fx:id="timer" fill="#909090" layoutX="481.0" layoutY="57.0" strokeType="OUTSIDE"
-         strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="112.3333740234375">
+      <Text fx:id="timer" fill="#909090" layoutX="481.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="112.3333740234375">
          <font>
             <Font size="30.0" />
          </font>
       </Text>
-      <Rectangle fx:id="middleDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="232.0"
-         layoutX="227.0" layoutY="258.0" onMouseClicked="#onClick" onMouseEntered="#onHover"
-         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
-         strokeWidth="0.0" width="147.0">
+      <Rectangle fx:id="middleDoor" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="232.0" layoutX="227.0" layoutY="258.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="147.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <TextArea fx:id="input" layoutX="594.0" layoutY="338.0" onKeyPressed="#onEnterPressed"
-         prefHeight="48.0" prefWidth="342.0" stylesheets="@../css/styles.css">
+      <TextArea fx:id="input" layoutX="594.0" layoutY="339.0" onKeyPressed="#onEnterPressed" prefHeight="48.0" prefWidth="342.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
@@ -64,16 +52,12 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
-      <Rectangle fx:id="cabinet" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="113.0"
-         layoutX="411.0" layoutY="374.0" onMouseClicked="#onClick" onMouseEntered="#onHover"
-         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
-         strokeWidth="0.0" width="66.0">
+      <Rectangle fx:id="cabinet" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="113.0" layoutX="411.0" layoutY="374.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="66.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <TextArea fx:id="dialogue" editable="false" layoutX="79.0" layoutY="673.0" prefHeight="72.0"
-         prefWidth="440.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+      <TextArea fx:id="dialogue" editable="false" layoutX="79.0" layoutY="673.0" prefHeight="72.0" prefWidth="440.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
          </font>
@@ -81,72 +65,49 @@
             <Bloom />
          </effect>
       </TextArea>
-      <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="40.0"
-         layoutX="415.0" layoutY="327.0" onMouseClicked="#onClick" onMouseEntered="#onHover"
-         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
-         strokeWidth="0.0" width="55.0">
+      <Rectangle fx:id="computer" arcHeight="5.0" arcWidth="5.0" fill="#fff89680" height="40.0" layoutX="415.0" layoutY="327.0" onMouseClicked="#onClick" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="55.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="background" arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="572.0"
-         layoutX="13.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" visible="false"
-         width="576.0" />
-      <ImageView fx:id="filingCabinet" fitHeight="572.0" fitWidth="576.0" layoutX="13.0"
-         layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="background" arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="572.0" layoutX="13.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="576.0" />
+      <ImageView fx:id="filingCabinet" fitHeight="572.0" fitWidth="576.0" layoutX="13.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/cabinet-nobg.png" />
          </image>
       </ImageView>
-      <Button fx:id="back" layoutX="427.0" layoutY="586.0" mnemonicParsing="false"
-         onMouseClicked="#clickBack" prefHeight="63.0" prefWidth="147.0" styleClass="send"
-         stylesheets="@../css/styles.css" text="RETURN" visible="false" />
-      <Polygon fx:id="leftDoor" fill="#fffa9680" layoutX="230.0" layoutY="382.0" opacity="0.0"
-         points="-187.0, 159.0, -152.0, 140.0, -152.0, -140.0, -187.0, -161.0" stroke="BLACK"
-         strokeType="INSIDE" strokeWidth="0.0">
+      <Button fx:id="back" layoutX="427.0" layoutY="586.0" mnemonicParsing="false" onMouseClicked="#clickBack" prefHeight="63.0" prefWidth="147.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" visible="false" />
+      <Polygon fx:id="leftDoor" fill="#fffa9680" layoutX="230.0" layoutY="382.0" opacity="0.0" points="-187.0, 159.0, -152.0, 140.0, -152.0, -140.0, -187.0, -161.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <Polygon fx:id="rightDoor" fill="#fffa9680" layoutX="560.0" layoutY="459.0" opacity="0.0"
-         points="-45.0, 68.0, -3.0, 88.0, -3.0, -224.0, -45.0, -212.0" stroke="BLACK"
-         strokeType="INSIDE" strokeWidth="0.0">
+      <Polygon fx:id="rightDoor" fill="#fffa9680" layoutX="560.0" layoutY="459.0" opacity="0.0" points="-45.0, 68.0, -3.0, 88.0, -3.0, -224.0, -45.0, -212.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Polygon>
-      <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="120.0"
-         layoutX="171.0" layoutY="159.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover"
-         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
-         strokeWidth="0.0" visible="false" width="257.0">
+      <Rectangle fx:id="topDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="120.0" layoutX="171.0" layoutY="159.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="257.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="120.0"
-         layoutX="171.0" layoutY="295.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover"
-         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
-         strokeWidth="0.0" visible="false" width="257.0">
+      <Rectangle fx:id="midDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="120.0" layoutX="171.0" layoutY="295.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="257.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="120.0"
-         layoutX="174.0" layoutY="427.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover"
-         onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE"
-         strokeWidth="0.0" visible="false" width="257.0">
+      <Rectangle fx:id="botDrawer" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="120.0" layoutX="174.0" layoutY="427.0" onMouseClicked="#clickDrawer" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" visible="false" width="257.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <ImageView fx:id="key" fitHeight="70.0" fitWidth="70.0" layoutX="594.0" layoutY="675.0"
-         pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="key" fitHeight="70.0" fitWidth="70.0" layoutX="594.0" layoutY="675.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="intelFile" fitHeight="572.0" fitWidth="418.0" layoutX="95.0" layoutY="90.0"
-         pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="intelFile" fitHeight="572.0" fitWidth="418.0" layoutX="95.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/intel%20(1).png" />
          </image>
@@ -154,23 +115,18 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <ListView fx:id="output" layoutX="594.0" layoutY="8.0" prefHeight="326.0" prefWidth="402.0"
-         stylesheets="@../css/styles.css">
+      <ListView fx:id="output" layoutX="594.0" layoutY="8.0" prefHeight="326.0" prefWidth="402.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
          </styleClass>
       </ListView>
-      <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="9.0" prefHeight="70.0"
-         prefWidth="472.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css"
-         text="OBJECTIVE">
+      <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="9.0" prefHeight="70.0" prefWidth="472.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
          <effect>
             <Bloom />
          </effect>
       </TextArea>
-      <Button fx:id="send" layoutX="941.0" layoutY="338.0" mnemonicParsing="false"
-         onMouseClicked="#onSendMessage" prefHeight="48.0" prefWidth="55.0" styleClass="send"
-         stylesheets="@../css/styles.css" text="SEND">
+      <Button fx:id="send" layoutX="941.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="48.0" prefWidth="55.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
          <font>
             <Font size="10.0" />
          </font>
@@ -181,8 +137,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextArea fx:id="notes" layoutX="594.0" layoutY="391.0" prefHeight="275.0" prefWidth="402.0"
-         promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+      <TextArea fx:id="notes" layoutX="594.0" layoutY="391.0" prefHeight="275.0" prefWidth="402.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -190,8 +145,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
-      <TextArea editable="false" layoutX="522.0" layoutY="673.0" prefHeight="72.0" prefWidth="70.0"
-         styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+      <TextArea editable="false" layoutX="522.0" layoutY="673.0" prefHeight="72.0" prefWidth="70.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
          </font>
@@ -199,20 +153,17 @@
             <Bloom />
          </effect>
       </TextArea>
-      <Label fx:id="hints" layoutX="746.0" layoutY="681.0" prefHeight="58.0" prefWidth="99.0"
-         styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
+      <Label fx:id="hints" layoutX="746.0" layoutY="681.0" prefHeight="58.0" prefWidth="99.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <ImageView fx:id="soundButton" fitHeight="72.0" fitWidth="55.0" layoutX="530.0"
-         layoutY="682.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="soundButton" fitHeight="72.0" fitWidth="55.0" layoutX="530.0" layoutY="682.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-volume-100-green.png" />
          </image>
       </ImageView>
-      <Label fx:id="intel" layoutX="901.0" layoutY="681.0" prefHeight="48.0" prefWidth="81.0"
-         styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
+      <Label fx:id="intel" layoutX="901.0" layoutY="681.0" prefHeight="48.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
          <font>
             <Font size="96.0" />
          </font>

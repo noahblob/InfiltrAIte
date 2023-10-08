@@ -364,7 +364,7 @@
 /* First custom button style */
 .send {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 13;
+  -fx-font-size: 10;
   -fx-background-color: rgb(53, 53, 53);
   -fx-text-fill: #00FF00;
   -fx-font-smoothing-type: green;
@@ -374,14 +374,14 @@
 
 .send:hover {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 13;
+  -fx-font-size: 10;
   -fx-background-color: #00FF00;
   -fx-text-fill: rgb(0, 0, 0);
 }
 
 .send:pressed {
   -fx-font-family: 'Aqua Grotesque';
-  -fx-font-size: 13;
+  -fx-font-size: 10;
   -fx-background-color: rgb(121, 231, 121);
   -fx-text-fill: rgb(0, 0, 0);
 }
