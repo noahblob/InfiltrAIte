@@ -149,14 +149,21 @@ public class TimerClass {
 
     // Determine the game state to get hints
     if (!GameState.isPasswordSolved && timeLeft == 60) {
+      // Prompt the player abount solving the computer.
       hint = GptPromptEngineering.getComputerHint();
-    } else if (timeLeft == 60) {
+    } else if (GameState.isPasswordSolved && timeLeft == 60) {
       hint = GptPromptEngineering.getEscapeHint();
+    } else if (GameState.isKeyFound.get()
+        && !GameState.isKeyUsed.get()
+        && timeLeft == 80) { // Give hint about the key if they have it.
+      hint = GptPromptEngineering.getKeyHint();
+    } else if (timeLeft == 80) { // Give player hint to focus on intel.
+      hint = GptPromptEngineering.getIntelHint();
     }
-    
+
     // Only Update GPT at certain times.
-    if (timeLeft == 60) {
-      CommanderController.getInstance().updateGpt(hint);
+    if (timeLeft == 60 || timeLeft == 80) {
+      CommanderController.getInstance().sendForUser(hint);
     }
   }
 }
