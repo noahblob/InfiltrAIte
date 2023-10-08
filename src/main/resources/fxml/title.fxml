@@ -26,7 +26,7 @@
                   <Glow />
                </effect>
             </Line>
-            <Label fx:id="difficulty" alignment="CENTER" contentDisplay="CENTER" layoutX="377.0" layoutY="406.0" prefHeight="58.0" prefWidth="262.0" styleClass="difficulty" stylesheets="@../css/styles.css" text="DIFFICULTY" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="difficulty" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="403.0" prefHeight="58.0" prefWidth="262.0" styleClass="difficulty" stylesheets="@../css/styles.css" text="DIFFICULTY" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -38,9 +38,9 @@
                <effect>
                   <Bloom />
                </effect></TextArea>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="330.0" layoutY="14.0" styleClass="infiltr-ai-te" stylesheets="@../css/styles.css" text="infiltr-AI-te" textFill="WHITE">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="229.0" layoutY="14.0" prefHeight="103.0" prefWidth="541.0" styleClass="infiltr-ai-te" stylesheets="@../css/styles.css" text="infiltr-AI-te" textFill="WHITE">
                <font>
-                  <Font size="41.0" />
+                  <Font size="40.0" />
                </font>
                <effect>
                   <Glow />
@@ -78,7 +78,7 @@
                   <Image url="@../images/countries/z1.png" />
                </image>
             </ImageView>
-            <Label fx:id="country" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="506.0" prefHeight="58.0" prefWidth="262.0" styleClass="difficulty" stylesheets="@../css/styles.css" text="SELECT COUNTRY" textAlignment="CENTER" textFill="WHITE">
+            <Label fx:id="country" alignment="CENTER" contentDisplay="CENTER" layoutX="368.0" layoutY="577.0" prefHeight="58.0" prefWidth="262.0" styleClass="difficulty" stylesheets="@../css/styles.css" text="SELECT COUNTRY" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>

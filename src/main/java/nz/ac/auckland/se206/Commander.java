@@ -122,7 +122,7 @@ public abstract class Commander {
 
   /** Updates styling for timer to correct font and size upon game launch. */
   private void setTimerFont() {
-    timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 30px; -fx-text-fill: black;");
+    timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 40px; -fx-text-fill: black;");
   }
 
   private void setUpSoundButton() {
