@@ -14,21 +14,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.right.LockerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.right.LockerController">
    <children>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: black;">
          <children>
-            <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="750.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/UI.png" />
                </image>
             </ImageView>
-            <Text fx:id="timer" fill="#909090" layoutX="387.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
+            <Text fx:id="timer" fill="#909090" layoutX="481.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="112.3333740234375">
                <font>
-                  <Font size="25.0" />
+                  <Font size="30.0" />
                </font>
             </Text>
-            <TextArea fx:id="dialogue" editable="false" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="349.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+            <TextArea fx:id="dialogue" editable="false" layoutX="79.0" layoutY="673.0" prefHeight="72.0" prefWidth="440.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
                <font>
                   <Font name="Courier New" size="12.0" />
                </font>
@@ -36,100 +36,100 @@
                   <Bloom />
                </effect>
             </TextArea>
-            <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="481.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="key" fitHeight="70.0" fitWidth="70.0" layoutX="594.0" layoutY="675.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/Key.png" />
                </image>
             </ImageView>
-            <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
+            <ListView fx:id="output" layoutX="594.0" layoutY="8.0" prefHeight="326.0" prefWidth="402.0" stylesheets="@../css/styles.css">
                <styleClass>
                   <String fx:value="uiTextArea" />
                   <String fx:value="uiTextAreaChat" />
                </styleClass>
             </ListView>
-            <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
+            <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="6.0" prefHeight="70.0" prefWidth="472.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
                <effect>
                   <Bloom />
                </effect>
             </TextArea>
-            <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+            <TextArea fx:id="notes" layoutX="594.0" layoutY="391.0" prefHeight="275.0" prefWidth="402.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
                <cursor>
                   <Cursor fx:constant="TEXT" />
                </cursor>
             </TextArea>
          </children>
       </Pane>
-      <ImageView fx:id="roomimage1" fitHeight="460.0" fitWidth="460.0" layoutX="9.0" layoutY="71.0" opacity="0.34" pickOnBounds="true">
+      <ImageView fx:id="roomimage1" fitHeight="572.0" fitWidth="576.0" layoutX="13.0" layoutY="89.0" opacity="0.34" pickOnBounds="true">
          <image>
             <Image url="@../images/rightroom.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="roomimage" fitHeight="371.0" fitWidth="452.0" layoutX="15.0" layoutY="75.0" pickOnBounds="true">
+      <ImageView fx:id="roomimage" fitHeight="451.0" fitWidth="546.0" layoutX="23.0" layoutY="113.0" pickOnBounds="true">
          <image>
             <Image url="@../images/best-puzzles-that-make-an-escape-room-more-challenging.png" />
          </image>
       </ImageView>
-      <Label fx:id="first" alignment="CENTER" layoutX="149.0" layoutY="295.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+      <Label fx:id="first" alignment="CENTER" layoutX="188.0" layoutY="386.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label fx:id="third" alignment="CENTER" layoutX="247.0" layoutY="296.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+      <Label fx:id="third" alignment="CENTER" layoutX="309.0" layoutY="386.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <Label fx:id="second" alignment="CENTER" layoutX="199.0" layoutY="296.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+      <Label fx:id="second" alignment="CENTER" layoutX="249.0" layoutY="386.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="193.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="243.0" layoutY="481.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <Label fx:id="fourth" alignment="CENTER" contentDisplay="CENTER" layoutX="296.0" layoutY="296.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+      <Label fx:id="fourth" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="386.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
          <font>
             <Font size="38.0" />
          </font>
       </Label>
-      <ImageView fx:id="downOne" fitHeight="33.0" fitWidth="75.0" layoutX="144.0" layoutY="381.0" onMouseClicked="#decrease" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+      <ImageView fx:id="downOne" fitHeight="33.0" fitWidth="75.0" layoutX="192.0" layoutY="480.0" onMouseClicked="#decrease" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="242.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="305.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="292.0" layoutY="381.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="365.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true" rotate="270.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="59.0" layoutX="146.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="33.0" fitWidth="59.0" layoutX="192.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="192.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="245.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="241.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="305.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="33.0" fitWidth="52.0" layoutX="292.0" layoutY="239.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+      <ImageView fitHeight="33.0" fitWidth="52.0" layoutX="365.0" layoutY="337.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
          <image>
             <Image url="@../images/arrow-25834_640.png" />
          </image>
       </ImageView>
-      <Button fx:id="checkAns" layoutX="266.0" layoutY="468.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="CHECK ANSWER">
+      <Button fx:id="checkAns" layoutX="378.0" layoutY="600.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="CHECK ANSWER">
          <font>
             <Font size="18.0" />
          </font>
@@ -137,47 +137,47 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Rectangle fx:id="upOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="158.0" layoutY="228.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+      <Rectangle fx:id="upOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="204.0" layoutY="321.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="downTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="205.0" layoutY="371.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+      <Rectangle fx:id="downTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="257.0" layoutY="470.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="downThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="254.0" layoutY="365.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+      <Rectangle fx:id="downThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="317.0" layoutY="464.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="downOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="154.0" layoutY="371.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
+      <Rectangle fx:id="downOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="201.0" layoutY="469.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="upTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="203.0" layoutY="230.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
+      <Rectangle fx:id="upTwo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="254.0" layoutY="327.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="upThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="251.0" layoutY="229.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
+      <Rectangle fx:id="upThree" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="54.0" layoutX="314.0" layoutY="327.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="33.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="downFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="304.0" layoutY="373.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+      <Rectangle fx:id="downFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="377.0" layoutY="470.0" onMouseClicked="#decrease" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <Rectangle fx:id="upFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="303.0" layoutY="230.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
+      <Rectangle fx:id="upFour" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="52.0" layoutX="377.0" layoutY="328.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Rectangle>
-      <ImageView fx:id="intelFile" disable="true" fitHeight="478.0" fitWidth="332.0" layoutX="72.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true" visible="false">
+      <ImageView fx:id="intelFile" disable="true" fitHeight="496.0" fitWidth="376.0" layoutX="118.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" visible="false">
          <image>
             <Image url="@../images/intel%20(1).png" />
          </image>
@@ -185,7 +185,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </ImageView>
-      <Button fx:id="goBack" layoutX="36.0" layoutY="470.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN">
+      <Button fx:id="goBack" layoutX="41.0" layoutY="600.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN">
          <font>
             <Font size="18.0" />
          </font>
@@ -193,17 +193,17 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
+      <Label fx:id="intel" layoutX="901.0" layoutY="681.0" prefHeight="48.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
+      <Label fx:id="hints" layoutX="746.0" layoutY="681.0" prefHeight="58.0" prefWidth="99.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="44.0" prefWidth="254.0" stylesheets="@../css/styles.css">
+      <TextArea fx:id="input" layoutX="594.0" layoutY="338.0" onKeyPressed="#onEnterPressed" prefHeight="48.0" prefWidth="342.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
@@ -212,7 +212,7 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
-      <Button fx:id="send" layoutX="738.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="56.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
+      <Button fx:id="send" layoutX="941.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="48.0" prefWidth="55.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
          <font>
             <Font size="10.0" />
          </font>
@@ -223,7 +223,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <TextArea editable="false" layoutX="415.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+      <TextArea editable="false" layoutX="522.0" layoutY="673.0" prefHeight="72.0" prefWidth="70.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
          </font>
@@ -231,7 +231,7 @@
             <Bloom />
          </effect>
       </TextArea>
-      <ImageView fx:id="soundButton" fitHeight="45.0" fitWidth="43.0" layoutX="422.0" layoutY="546.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="soundButton" fitHeight="72.0" fitWidth="55.0" layoutX="530.0" layoutY="682.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-volume-100-green.png" />
          </image>

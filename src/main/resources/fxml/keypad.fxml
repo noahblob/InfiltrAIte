@@ -14,25 +14,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.main.KeyPadController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.main.KeyPadController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="750.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/UI.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="roomimage" fitHeight="460.0" fitWidth="460.0" layoutX="9.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="roomimage" fitHeight="572.0" fitWidth="576.0" layoutX="13.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/start.png" />
          </image>
       </ImageView>
-      <Rectangle fx:id="background" arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="461.0" layoutX="9.0" layoutY="70.0" stroke="BLACK" strokeType="INSIDE" width="460.0" />
-      <Text fx:id="timer" fill="#909090" layoutX="387.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
+      <Rectangle fx:id="background" arcHeight="5.0" arcWidth="5.0" fill="#00000080" height="572.0" layoutX="13.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" width="576.0" />
+      <Text fx:id="timer" fill="#909090" layoutX="481.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="112.3333740234375">
          <font>
-            <Font size="25.0" />
+            <Font size="30.0" />
          </font>
       </Text>
-      <TextArea fx:id="dialogue" editable="false" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="349.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+      <TextArea fx:id="dialogue" editable="false" layoutX="79.0" layoutY="673.0" prefHeight="72.0" prefWidth="440.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
          </font>
@@ -40,60 +40,60 @@
             <Bloom />
          </effect>
       </TextArea>
-      <ImageView fitHeight="460.0" fitWidth="460.0" layoutX="6.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="572.0" fitWidth="576.0" layoutX="13.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/keypad.png" />
          </image>
       </ImageView>
-      <Button fx:id="clearButton" layoutX="260.0" layoutY="256.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="76.0" styleClass="keypad-button" text="CLEAR">
+      <Button fx:id="clearButton" layoutX="330.0" layoutY="323.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="40.0" prefWidth="90.0" styleClass="keypad-button" text="CLEAR">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="submitButton" layoutX="260.0" layoutY="297.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="76.0" styleClass="keypad-button" text="SUBMIT">
+      <Button fx:id="submitButton" layoutX="330.0" layoutY="376.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="40.0" prefWidth="90.0" styleClass="keypad-button" text="SUBMIT">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Button fx:id="exitButton" layoutX="258.0" layoutY="422.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="30.0" prefWidth="76.0" styleClass="keypad-button" text="EXIT">
+      <Button fx:id="exitButton" layoutX="330.0" layoutY="529.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="40.0" prefWidth="90.0" styleClass="keypad-button" text="EXIT">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label fx:id="numberLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="134.0" layoutY="139.0" prefHeight="60.0" prefWidth="206.0" textFill="#ff8500">
+      <Label fx:id="numberLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="170.0" layoutY="184.0" prefHeight="80.0" prefWidth="254.0" textFill="#ff8500">
          <font>
             <Font size="50.0" />
          </font>
       </Label>
-      <Rectangle fx:id="one" accessibleText="1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="139.0" layoutY="259.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="two" accessibleText="2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="181.0" layoutY="258.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="three" accessibleText="3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="221.0" layoutY="257.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="four" accessibleText="4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="139.0" layoutY="300.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="five" accessibleText="5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="181.0" layoutY="303.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="six" accessibleText="6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="221.0" layoutY="303.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="seven" accessibleText="7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="137.0" layoutY="345.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="eight" accessibleText="8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="178.0" layoutY="342.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="nine" accessibleText="9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="223.0" layoutY="343.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <Rectangle fx:id="zero" accessibleText="0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="181.0" layoutY="384.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
-      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="481.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
+      <Rectangle fx:id="one" accessibleText="1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="180.0" layoutY="325.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
+      <Rectangle fx:id="two" accessibleText="2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="226.0" layoutY="325.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+      <Rectangle fx:id="three" accessibleText="3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="280.0" layoutY="325.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+      <Rectangle fx:id="four" accessibleText="4" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="180.0" layoutY="377.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
+      <Rectangle fx:id="five" accessibleText="5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="226.0" layoutY="377.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+      <Rectangle fx:id="six" accessibleText="6" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="280.0" layoutY="377.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
+      <Rectangle fx:id="seven" accessibleText="7" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="29.0" layoutX="180.0" layoutY="431.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="32.0" />
+      <Rectangle fx:id="eight" accessibleText="8" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="226.0" layoutY="427.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+      <Rectangle fx:id="nine" accessibleText="9" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="279.0" layoutY="425.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+      <Rectangle fx:id="zero" accessibleText="0" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="40.0" layoutX="226.0" layoutY="479.0" onMouseClicked="#clickNum" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="39.0" />
+      <ImageView fx:id="key" fitHeight="70.0" fitWidth="70.0" layoutX="594.0" layoutY="675.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/Key.png" />
          </image>
       </ImageView>
-      <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
+      <ListView fx:id="output" layoutX="594.0" layoutY="8.0" prefHeight="326.0" prefWidth="402.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
          </styleClass>
       </ListView>
-      <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
+      <TextArea fx:id="objective" editable="false" layoutX="6.0" layoutY="9.0" prefHeight="70.0" prefWidth="472.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
          <effect>
             <Bloom />
          </effect>
       </TextArea>
-      <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+      <TextArea fx:id="notes" layoutX="594.0" layoutY="391.0" prefHeight="275.0" prefWidth="402.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
-      <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="44.0" prefWidth="254.0" stylesheets="@../css/styles.css">
+      <TextArea fx:id="input" layoutX="594.0" layoutY="338.0" onKeyPressed="#onEnterPressed" prefHeight="48.0" prefWidth="342.0" stylesheets="@../css/styles.css">
          <styleClass>
             <String fx:value="uiTextArea" />
             <String fx:value="uiTextAreaChat" />
@@ -102,12 +102,12 @@
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextArea>
-      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
+      <Label fx:id="intel" layoutX="901.0" layoutY="681.0" prefHeight="48.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <Button fx:id="send" layoutX="738.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="56.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
+      <Button fx:id="send" layoutX="941.0" layoutY="338.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="48.0" prefWidth="55.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
          <font>
             <Font size="10.0" />
          </font>
@@ -118,12 +118,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
+      <Label fx:id="hints" layoutX="746.0" layoutY="681.0" prefHeight="58.0" prefWidth="99.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <TextArea editable="false" layoutX="415.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+      <TextArea editable="false" layoutX="522.0" layoutY="673.0" prefHeight="72.0" prefWidth="70.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
          <font>
             <Font name="Courier New" size="12.0" />
          </font>
@@ -131,7 +131,7 @@
             <Bloom />
          </effect>
       </TextArea>
-      <ImageView fx:id="soundButton" fitHeight="45.0" fitWidth="43.0" layoutX="422.0" layoutY="546.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="soundButton" fitHeight="72.0" fitWidth="55.0" layoutX="530.0" layoutY="682.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/icons8-volume-100-green.png" />
          </image>
