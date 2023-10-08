@@ -72,10 +72,11 @@ public class App extends Application {
     stage.getIcons().add(icon);
 
     // Set the scene for start screen and show it
-    scene = new Scene(SceneManager.getuserInterface(AppUi.START), 800, 600);
+    scene = new Scene(SceneManager.getuserInterface(AppUi.START), 1200, 900);
     scene.getStylesheets().add(getClass().getResource("/css/styles.css").toExternalForm());
     stage.setResizable(false);
     stage.setScene(scene);
+    stage.setTitle("InfiltrAIte");
     stage.show();
     stage.setOnCloseRequest(
         event -> {
