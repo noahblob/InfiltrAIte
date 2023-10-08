@@ -81,7 +81,7 @@ public class GptPromptEngineering {
 
   public static String getComputerHint() {
     return "Tell the player that they should try examine the computer in the main room. Do not use"
-               + " the phrase: I-OPS Suggests";
+        + " the phrase: I-OPS Suggests";
   }
 
   public static String getEscapeHint() {
@@ -95,8 +95,7 @@ public class GptPromptEngineering {
   }
 
   public static String getIntelHint() {
-    return "Tell the player (in character) that they should focus on finding intelligence; that it"
-        + " might be possible the enemy has multiple intelligence laying around. Do not use"
-        + " the phrase: I-OPS Suggests";
+    return "Tell the player (in character) that they should focus on finding intelligence. Do not"
+        + " use the phrase: I-OPS Suggests";
   }
 }
