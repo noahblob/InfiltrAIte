@@ -1,6 +1,5 @@
 package nz.ac.auckland.se206;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.animation.KeyFrame;
@@ -12,6 +11,7 @@ import javafx.util.Duration;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
+import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
 public class TimerClass {
 
@@ -61,6 +61,7 @@ public class TimerClass {
     for (Text timer : timers) {
       timer.setText(String.format("0%d:00", minutes));
     }
+    
     this.timeline = new Timeline();
     timeline.setCycleCount(Timeline.INDEFINITE);
     // Create a keyframe to decrease the timer every second.
@@ -69,9 +70,9 @@ public class TimerClass {
             Duration.seconds(1),
             e -> {
               try {
-                // decrement the timer
                 decreaseTimer();
-              } catch (IOException e1) {
+              } catch (Exception e1) {
+
                 e1.printStackTrace();
               }
             });
@@ -86,12 +87,13 @@ public class TimerClass {
     timeline.stop();
   }
 
-  private void decreaseTimer() throws IOException {
+  private void decreaseTimer() throws Exception {
     timeLeft--;
     for (Text timer : timers) {
       String time = getTimeLeft();
       timer.setText(String.valueOf(time));
     }
+    chatToPlayer(timeLeft);
     warn();
     checkLost();
   }
@@ -138,5 +140,20 @@ public class TimerClass {
       // This will schedule the task to be run on a background thread
       new Thread(warn).start();
     }
+  }
+
+  // Method to create AI presence
+  public void chatToPlayer(int timeLeft) throws Exception {
+
+    String hint = null;
+
+    // Determine the game state to get hints
+    if (!GameState.isPasswordSolved && timeLeft == 60) {
+      hint = GptPromptEngineering.getComputerHint();
+    } else if (timeLeft == 60) {
+      hint = GptPromptEngineering.getEscapeHint();
+    }
+
+    CommanderController.getInstance().updateGpt(hint);
   }
 }

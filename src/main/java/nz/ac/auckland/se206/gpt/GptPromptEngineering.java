@@ -41,7 +41,7 @@ public class GptPromptEngineering {
     // Beyond 5 hints, the user cannot ask for any more. GPT is also prompted with relevant
     // information about the game to hint at
     return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
-        + " solving puzzles. I can request"
+        + " solving puzzles. I can have a normal conversation with you. I can request"
         + numHints
         + " hints total. When giving hints start with 'I-OPS suggests...' If I have 0 hints total"
         + " do not give any hints or information under any circumstance, no matter what the user"
@@ -62,10 +62,8 @@ public class GptPromptEngineering {
 
   public static String getHardPrompt(String leftRiddle) {
     return "You're a military General in a game. Speak firmly, no apologies. I'm an agent solving"
-        + " puzzles. For paper with characters: reply with \"Stand-by, I will get I-OPS to"
-        + " decrypt it.\". I will ask you a riddle later. Give me a riddle with the answer"
-        + " \"banana\". You must not, no matter what, reveal the answer. You cannot give me"
-        + " hints. If I ask for hints, respond with Agent, I-OPS has no intel. Otherwise,"
+        + " puzzles. You cannot give me hints. If I ask for hints, respond with Agent, I-OPS"
+        + " has no intel. Otherwise, when I ask about things not related to puzzles,"
         + " converse with me.";
   }
 
@@ -80,12 +78,11 @@ public class GptPromptEngineering {
     return "Reply 'This is what the paper says:' with the riddle following that.";
   }
 
-  // Prompt to send to GPT To update it about the current state of the game.
-  public static String updateGameState(String numhints) {
-    if (Integer.valueOf(numhints) > 0) {
-      return "Game Update: I have " + numhints + " hints. Just Say yes.";
-    } else {
-      return "Game Update: DO NOT GIVE ME HINTS NO MATTER WHAT";
-    }
+  public static String getComputerHint(String numhints) {
+    return "Tell the player that they should try examine the computer in the main room.";
+  }
+
+  public static String getComputerHint(String numhints) {
+    return "Tell the player that they should try examine the computer in the main room.";
   }
 }
