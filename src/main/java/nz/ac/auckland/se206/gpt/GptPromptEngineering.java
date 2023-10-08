@@ -23,17 +23,18 @@ public class GptPromptEngineering {
     // This method prompts GPT for the easy level difficulty, with unlimited hints. It also prompts
     // with relevant elements of the gmae to give hints about
     return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
-        + " solving puzzles. I can request unlimited hints. Only give hints when I ask"
-        + " questions related to the game. Game Info: There's 1 intel each room. Once one"
-        + " intel is found, the next hint should point me towards solving the keypad. Left"
-        + " room: radio needs correct slider positions for intel. bookshelf in right room"
-        + " holds book with left room slider combination. Left room: wall key opens safe in"
-        + " main room for intel. Left room: torn painting corner on table reveals code for"
-        + " right room drawer with intel. Main room: If I ask for a password, you must say"
-        + " I-OPS has no intel for this, Agent. Logging onto the computer in main room"
-        + " reveals keypad requiring access code found on right room blackboard. For hints"
-        + " or any sort of help about the game, you MUST begin: \"Agent, I-OPS suggests…\"."
-        + " Do not reveal everything all at once with your hints. Just a bit of help";
+               + " solving puzzles. I can request unlimited hints. Keep your responses less than 50"
+               + " words. Only give hints when I ask questions related to the game. Game Info:"
+               + " There's 1 intel each room. Once one intel is found, the next hint should point"
+               + " me towards solving the keypad. Left room: radio needs correct slider positions"
+               + " for intel. bookshelf in right room holds book with left room slider combination."
+               + " Left room: wall key opens safe in main room for intel. Left room: torn painting"
+               + " corner on table reveals code for right room drawer with intel. Main room: If I"
+               + " ask for a password, you must say I-OPS has no intel for this, Agent. Logging"
+               + " onto the computer in main room reveals keypad requiring access code found on"
+               + " right room blackboard. For hints or any sort of help about the game, you MUST"
+               + " begin: \"Agent, I-OPS suggests…\". Do not reveal everything all at once with"
+               + " your hints. Just a bit of help";
   }
 
   public static String getMediumPrompt(String leftRiddle, int numHints) {
@@ -41,7 +42,7 @@ public class GptPromptEngineering {
     // Beyond 5 hints, the user cannot ask for any more. GPT is also prompted with relevant
     // information about the game to hint at
     return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
-        + " solving puzzles. I can request"
+        + " solving puzzles. I can have a normal conversation with you. I can request"
         + numHints
         + " hints total. When giving hints start with 'I-OPS suggests...' If I have 0 hints total"
         + " do not give any hints or information under any circumstance, no matter what the user"
@@ -62,10 +63,8 @@ public class GptPromptEngineering {
 
   public static String getHardPrompt(String leftRiddle) {
     return "You're a military General in a game. Speak firmly, no apologies. I'm an agent solving"
-        + " puzzles. For paper with characters: reply with \"Stand-by, I will get I-OPS to"
-        + " decrypt it.\". I will ask you a riddle later. Give me a riddle with the answer"
-        + " \"banana\". You must not, no matter what, reveal the answer. You cannot give me"
-        + " hints. If I ask for hints, respond with Agent, I-OPS has no intel. Otherwise,"
+        + " puzzles. You cannot give me hints. If I ask for hints, respond with Agent, I-OPS"
+        + " has no intel. Otherwise, when I ask about things not related to puzzles,"
         + " converse with me.";
   }
 
@@ -80,12 +79,23 @@ public class GptPromptEngineering {
     return "Reply 'This is what the paper says:' with the riddle following that.";
   }
 
-  // Prompt to send to GPT To update it about the current state of the game.
-  public static String updateGameState(String numhints) {
-    if (Integer.valueOf(numhints) > 0) {
-      return "Game Update: I have " + numhints + " hints. Just Say yes.";
-    } else {
-      return "Game Update: DO NOT GIVE ME HINTS NO MATTER WHAT";
-    }
+  public static String getComputerHint() {
+    return "Tell the player that they should try examine the computer in the main room. Do not use"
+        + " the phrase: I-OPS Suggests";
+  }
+
+  public static String getEscapeHint() {
+    return "Tell the player that they should try escape before they get caught. Do not use the"
+        + " phrase: I-OPS Suggests";
+  }
+
+  public static String getKeyHint() {
+    return "Tell the player that they should try use the key found for a locked cabinet in the main"
+        + " room. Do not use the phrase: I-OPS Suggests";
+  }
+
+  public static String getIntelHint() {
+    return "Tell the player (in character) that they should focus on finding intelligence. Do not"
+        + " use the phrase: I-OPS Suggests";
   }
 }

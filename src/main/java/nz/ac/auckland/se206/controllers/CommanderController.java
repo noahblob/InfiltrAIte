@@ -125,7 +125,7 @@ public class CommanderController {
 
   // Method to talk to GPT without typing.
   public void sendForUser(String messageContent) throws Exception {
-    ChatMessage msg = new ChatMessage("user", messageContent);
+    ChatMessage msg = new ChatMessage("system", messageContent);
 
     // Create a new task to send a message to GPT, concurrency.
     Task<ChatMessage> task =
@@ -201,6 +201,8 @@ public class CommanderController {
 
     ChatMessage transmittingMsg = new ChatMessage("commander", "Transmitting...");
     appendChatMessage(transmittingMsg);
+    // Play transmitting sound effect.
+    Sound.getInstance().transmitSound();
 
     Task<ChatMessage> task =
         new Task<>() {
@@ -240,6 +242,8 @@ public class CommanderController {
             phoneScreens.forEach(
                 screen ->
                     screen.getItems().remove(transmittingMsg)); // Remove "Transmitting..." message
+            // Stop the sound.
+            Sound.getInstance().stopTransmit();
             appendChatMessage(gptResponse); // Add GPT's response to the UI
           }
         });
@@ -348,8 +352,6 @@ public class CommanderController {
   }
 
   public void textRollout(String message, TextArea dialogue) {
-    // Clear existing dialogue (in case of spam clicks)
-    dialogue.clear();
 
     char[] chars = message.toCharArray();
     Timeline timeline = new Timeline();

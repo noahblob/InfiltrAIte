@@ -118,27 +118,27 @@
       </ImageView>
       <ImageView fx:id="actual5" fitHeight="492.0" fitWidth="559.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual4" fitHeight="492.0" fitWidth="559.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual3" fitHeight="492.0" fitWidth="559.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual2" fitHeight="492.0" fitWidth="559.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <ImageView fx:id="actual1" fitHeight="492.0" fitWidth="559.0" layoutX="18.0" layoutY="97.0" pickOnBounds="true" visible="false">
          <image>
-            <Image url="@../images/Book.png" />
+            <Image url="@../images/newBook.png" />
          </image>
       </ImageView>
       <Button fx:id="goBack" layoutX="199.0" layoutY="594.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN TO ROOM">
@@ -178,6 +178,9 @@
          <font>
             <Font size="18.0" />
          </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </Button>
       <Text fx:id="description1" layoutX="270.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="248.0" />
       <Text fx:id="title1" layoutX="55.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="201.0" />
