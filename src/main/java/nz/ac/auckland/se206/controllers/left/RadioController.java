@@ -29,6 +29,11 @@ public class RadioController extends Commander {
 
   public static RadioController instance;
 
+  /**
+   * Stores and returns the current instance of the radiocontroller.
+   *
+   * @return the current instance of the radiocontroller
+   */
   public static RadioController getInstance() {
     return instance;
   }
@@ -142,7 +147,13 @@ public class RadioController extends Commander {
     pigeonhole.setOnMouseExited(event -> pigeonhole.setOpacity(0));
   }
 
-  // Helper function for sliders.
+  /**
+   * Set the slider to the correct value when user moves the slider.
+   *
+   * @param s the slider
+   * @param digit the label of which digit the slider is currently at
+   * @param index the index of the slider
+   */
   private void setSlider(Slider s, Label digit, int index) {
     s.setMajorTickUnit(1);
     s.setMinorTickCount(0);
@@ -175,6 +186,11 @@ public class RadioController extends Commander {
             });
   }
 
+  /**
+   * Check if the sliders are solved, if so, update the dialogue and show the sine wave.
+   *
+   * @throws Exception if the sound file cannot be found
+   */
   private void checkSlidersSolved() throws Exception {
     if (Arrays.equals(code, GameState.sliderAnswer) && !isSliderSolved) {
       isSliderSolved = true;
@@ -192,6 +208,11 @@ public class RadioController extends Commander {
     }
   }
 
+  /**
+   * Handler for when user clicks on the pigeonhole, giving the user intelligence.
+   *
+   * @param event the mouse event
+   */
   @FXML
   public void onClick(MouseEvent event) {
     // Update the imageview and disable pigeonhole.
@@ -202,6 +223,12 @@ public class RadioController extends Commander {
     objective.setText("I cracked it!");
   }
 
+  /**
+   * Handles the event of the user clicking the intel to collect it.
+   *
+   * @param event The mouse event.
+   * @throws Exception If the event cannot be handled.
+   */
   @FXML
   public void onCollect(MouseEvent event) throws Exception {
     // return back to main room.

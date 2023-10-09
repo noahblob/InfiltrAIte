@@ -32,7 +32,7 @@ public class RightRoomController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
 
@@ -64,10 +64,10 @@ public class RightRoomController extends Commander {
   }
 
   /**
-   * Handles the click event on the locker
+   * Handles the click event on the locker and either gives a dialogue response or swap scenes.
    *
    * @param event the mouse event
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   @FXML
   public void clickRiddle(MouseEvent event) throws Exception {
@@ -83,7 +83,7 @@ public class RightRoomController extends Commander {
   }
 
   /**
-   * Shows the blackboard this is connected to the answer for the keypad
+   * Shows the blackboard this is connected to the answer for the keypad.
    *
    * @param event
    */
@@ -97,7 +97,7 @@ public class RightRoomController extends Commander {
   }
 
   /**
-   * Handles the hovering of rectangles
+   * Handles the hovering of rectangles.
    *
    * @param event the mouse
    */
@@ -108,7 +108,7 @@ public class RightRoomController extends Commander {
   }
 
   /**
-   * Handles the un-hovering of rectangles
+   * Handles the un-hovering of rectangles.
    *
    * @param event the mouse
    */
@@ -132,11 +132,13 @@ public class RightRoomController extends Commander {
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.BOOKSHELF));
   }
 
+  /** Handles hover events on objects in the room. */
   private void setHoverEvents() {
     setOpacityOnHover(riddle);
     setOpacityOnHover(blackboard);
   }
 
+  /** When object in the room is hovered by user, opacity will increase to 0.5. */
   private void setOpacityOnHover(Shape shape) {
     shape.setOnMouseEntered(event -> shape.setOpacity(0.5));
     shape.setOnMouseExited(event -> shape.setOpacity(0));

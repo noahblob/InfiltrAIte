@@ -14,8 +14,7 @@ public abstract class TextRollout {
   /**
    * Method to generate text rollout animation
    *
-   * @param message String to be animated
-   * @param dialogue TextArea to be animated
+   * @param text the text to be animated
    */
   public void textRollout(Dialogue text) {
 

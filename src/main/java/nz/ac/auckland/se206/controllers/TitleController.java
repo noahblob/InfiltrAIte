@@ -29,12 +29,14 @@ public class TitleController {
   private final Map<String, String> countryImageMap = new HashMap<>();
   private String infinity = "\u221E";
 
+  /** Initialise the controller by setting fonts, countries and map image. */
   public void initialize() {
     intialiseFonts();
     initialiseCountries();
     initialiseImageMap();
   }
 
+  /** Initialize all relevant values in the country image hash map. */
   private void initialiseImageMap() {
     // Put respective countrys' image in a hashmap with its respective key.
     // E represents Elbonia
@@ -51,12 +53,21 @@ public class TitleController {
     countryImageMap.put("Z2", "images/countries/4.png");
   }
 
+  /** Initialise difficulties and number of hints provided to display to user. */
   private void initialiseCountries() {
     setImageHover(elbonia, "EASY", infinity + " HINTS PROVIDED", "Elbonia");
     setImageHover(genovia, "MEDIUM", "FIVE HINTS PROVIDED", "Genovia");
     setImageHover(sanescobar, "HARD", "NO HINTS PROVIDED", "Sanescobar");
   }
 
+  /**
+   * When countries are hovered in start screen, display related information and highlight country.
+   *
+   * @param image The country image that has been hovered
+   * @param info Information about the country
+   * @param about Information about the country
+   * @param country The country that has been hovered
+   */
   private void setImageHover(ImageView image, String info, String about, String country) {
     // When each difficulty country is hovered over, display relevant information
     image.setOnMouseEntered(
@@ -84,6 +95,11 @@ public class TitleController {
         });
   }
 
+  /**
+   * Handles the event of clicking on a country.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void onClick(MouseEvent event) {
 
@@ -112,6 +128,13 @@ public class TitleController {
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.WATCH));
   }
 
+  /**
+   * When a country is hovered, change the image to the highlighted version of the country.
+   *
+   * @param event The mouse event
+   * @param country The country that has been hovered
+   * @param flag True if the country has been hovered, false otherwise
+   */
   private void changeImage(MouseEvent event, String country, Boolean flag) {
     ImageView imageView = (ImageView) event.getSource();
     String suffix = flag ? "2" : "1";
@@ -123,6 +146,7 @@ public class TitleController {
     imageView.setImage(new Image(path));
   }
 
+  /** Set the fonts for the difficulty and description. */
   private void intialiseFonts() {
     difficulty.setText("DIFFICULTY");
     description.setEditable(false);

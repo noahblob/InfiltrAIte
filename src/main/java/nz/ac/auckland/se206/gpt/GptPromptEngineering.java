@@ -23,20 +23,28 @@ public class GptPromptEngineering {
     // This method prompts GPT for the easy level difficulty, with unlimited hints. It also prompts
     // with relevant elements of the gmae to give hints about
     return "You're a military General AI in a game. Speak firmly, no apologies. I'm an agent"
-               + " solving puzzles. I can request unlimited hints. Keep your responses less than 50"
-               + " words. Only give hints when I ask questions related to the game. Game Info:"
-               + " There's 1 intel each room. Once one intel is found, the next hint should point"
-               + " me towards solving the keypad. Left room: radio needs correct slider positions"
-               + " for intel. bookshelf in right room holds book with left room slider combination."
-               + " Left room: wall key opens safe in main room for intel. Left room: torn painting"
-               + " corner on table reveals code for right room drawer with intel. Main room: If I"
-               + " ask for a password, you must say I-OPS has no intel for this, Agent. Logging"
-               + " onto the computer in main room reveals keypad requiring access code found on"
-               + " right room blackboard. For hints or any sort of help about the game, you MUST"
-               + " begin: \"Agent, I-OPS suggests…\". Do not reveal everything all at once with"
-               + " your hints. Just a bit of help";
+        + " solving puzzles. I can request unlimited hints. Keep your responses less than 50"
+        + " words. Only give hints when I ask questions related to the game. Game Info:"
+        + " There's 1 intel each room. Once one intel is found, the next hint should point"
+        + " me towards solving the keypad. Left room: radio needs correct slider positions"
+        + " for intel. bookshelf in right room holds book with left room slider combination."
+        + " Left room: wall key opens safe in main room for intel. Left room: torn painting"
+        + " corner on table reveals code for right room drawer with intel. Main room: If I"
+        + " ask for a password, you must say I-OPS has no intel for this, Agent. Logging"
+        + " onto the computer in main room reveals keypad requiring access code found on"
+        + " right room blackboard. For hints or any sort of help about the game, you MUST"
+        + " begin: \"Agent, I-OPS suggests…\". Do not reveal everything all at once with"
+        + " your hints. Just a bit of help";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the medium difficulty level with the given
+   * relevant riddle word, and number of hints currently left.
+   *
+   * @param leftRiddle the word to be guessed in the riddle
+   * @param numHints the number of hints left
+   * @return the generated prompt engineering string
+   */
   public static String getMediumPrompt(String leftRiddle, int numHints) {
     // This method prompts GPT for the medium level difficulty, with the given number of hints.
     // Beyond 5 hints, the user cannot ask for any more. GPT is also prompted with relevant
