@@ -105,7 +105,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="600.0">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="600.0">
          <children>
             <ImageView fx:id="roomimage1" fitHeight="572.0" fitWidth="576.0" layoutX="12.0" layoutY="89.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
                <image>
