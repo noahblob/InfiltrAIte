@@ -193,6 +193,11 @@ public class RadioController extends Commander {
     }
   }
 
+  /**
+   * Handler for when user clicks on the pigeonhole, giving the user intelligence.
+   * 
+   * @param event the mouse event
+   */
   @FXML
   public void onClick(MouseEvent event) {
     // Update the imageview and disable pigeonhole.

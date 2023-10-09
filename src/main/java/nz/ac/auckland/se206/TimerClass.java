@@ -35,6 +35,9 @@ public class TimerClass {
     timers.add(timer);
   }
 
+  /**
+   * Method to initialize the timer, creating a new instance to be used across all scenes.
+   */
   public static void initialize() {
     if (instance == null) {
       instance = new TimerClass();
@@ -42,7 +45,11 @@ public class TimerClass {
       System.out.println("Timer Exists");
     }
   }
-
+  /**
+   * Method to get the instance of the timer to use across scenes.
+   * 
+   * @return the instance of the timer.
+   */
   public static TimerClass getInstance() {
     if (instance == null) {
       System.out.println("NO TIMER EXISTS");

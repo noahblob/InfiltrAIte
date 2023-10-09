@@ -3,7 +3,9 @@ package nz.ac.auckland.se206.controllers;
 import java.util.HashMap;
 import java.util.Map;
 import javafx.scene.Parent;
-
+/**
+ * Class to manage the scenes in the application.
+ */
 public class SceneManager {
 
   public enum AppUi {
