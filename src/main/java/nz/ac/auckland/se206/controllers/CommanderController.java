@@ -235,7 +235,7 @@ public class CommanderController {
         e -> {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
-
+            Sound.getInstance().stopTransmit();
             // Check if the response contains keywords determining if its a hint (Medium only).
             if (GameState.difficulty.get() == 2
                 && gptResponse.getContent().contains("I-OPS suggests")) {
@@ -271,6 +271,7 @@ public class CommanderController {
         });
     task.setOnFailed(
         e -> {
+          Sound.getInstance().stopTransmit();
           System.out.println("API KEY MISSING");
         });
     new Thread(task).start();
