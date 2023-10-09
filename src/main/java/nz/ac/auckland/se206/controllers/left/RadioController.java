@@ -96,8 +96,10 @@ public class RadioController extends Commander {
    */
   @FXML
   public void onReturn(MouseEvent event) {
+    // Check which button the user has clicked and determine the scene to return to.
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
+    // Stop all sounds related to the radio
     Sound.getInstance().stopRadio();
     Sound.getInstance().stopBuzz();
     Sound.getInstance().stopAllSound();
