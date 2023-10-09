@@ -245,11 +245,14 @@ public class BookController extends Commander {
     }
   }
 
+  /**
+   * Resets the font of the book titles and descriptions.
+   */
   public void resetFont() {
     if (titleMap.containsKey(bookCode)) {
       titleMap.get(bookCode).setStyle("");
     }
-    if (book != null)  {
+    if (book != null) {
       onGoBackShelf();
     }
     if (descriptionMap.containsKey(bookCode)) {
@@ -299,7 +302,7 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the return event
+   * Handles the player clicking the return button.
    *
    * @param event the mouse event
    */
@@ -313,9 +316,9 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the hovering of rectangles
+   * Handles the hovering of rectangles, and highlights them upon hovering.
    *
-   * @param event the mouse
+   * @param event the mouse event
    */
   @FXML
   public void onHover(MouseEvent event) {

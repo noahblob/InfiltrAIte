@@ -83,7 +83,7 @@ public class GameState {
   /** Indicates the last numbers of the year for the current game. */
   public static SimpleIntegerProperty lastNumbers = new SimpleIntegerProperty(0);
 
-  /** Indicates if player is on end Screen */
+  /** Indicates if player is on end Screen. */
   public static BooleanProperty isEndScreen = new SimpleBooleanProperty(false);
 
   private static Random random = new Random();

@@ -29,6 +29,7 @@ public class TitleController {
   private final Map<String, String> countryImageMap = new HashMap<>();
   private String infinity = "\u221E";
 
+  /** Initialise the controller by setting fonts, countries and map image. */
   public void initialize() {
     intialiseFonts();
     initialiseCountries();

@@ -31,6 +31,12 @@ public class CommanderController {
 
   private static volatile CommanderController instance;
 
+  /**
+   * Gets the singleton instance of the CommanderController.
+   *
+   * @return the singleton instance of the CommanderController
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   public static CommanderController getInstance() throws Exception {
     if (instance == null) {
       instance = new CommanderController();
@@ -387,6 +393,7 @@ public class CommanderController {
     timeline.play();
   }
 
+  /** Generates the initial GPT response of the commander. */
   public void setUpCommander() {
     messages =
         new ChatCompletionRequest().setN(1).setTemperature(0.2).setTopP(0.5).setMaxTokens(100);

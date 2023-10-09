@@ -21,6 +21,9 @@ public class EscapeController extends TextRollout {
   @FXML private Pane winPane;
   @FXML private Pane losePane;
 
+  /**
+   * Initializes the room view, it is called when the room loads.
+   */
   public void initialize() {
     // If we are on the win screen.
     setWinScreen();
