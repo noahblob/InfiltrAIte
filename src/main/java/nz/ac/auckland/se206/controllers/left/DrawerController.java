@@ -37,7 +37,7 @@ public class DrawerController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
 
@@ -48,17 +48,24 @@ public class DrawerController extends Commander {
     configurePuzzle();
   }
 
+  /** Indicates when each drawer is being hovered over. */
   private void setHoverEvents() {
     setOpacityOnHover(topDrawer);
     setOpacityOnHover(midDrawer);
     setOpacityOnHover(botDrawer);
   }
 
+  /**
+   * Sets the opacity of specified shape that has been hovered.
+   *
+   * @param shape The shape that has been hovered.
+   */
   private void setOpacityOnHover(Shape shape) {
     shape.setOnMouseEntered(event -> shape.setOpacity(0.5));
     shape.setOnMouseExited(event -> shape.setOpacity(0));
   }
 
+  /** Configures riddle and morse code puzzles in drawers. */
   private void configurePuzzle() {
     riddlePane.setVisible(false);
     riddle.setWrapText(true);
@@ -66,6 +73,7 @@ public class DrawerController extends Commander {
     riddle.appendText(easterEgg);
   }
 
+  /** Configure functionality of check and return buttons in drawer puzzles. */
   private void configureButtons() {
 
     back.setOnAction(
@@ -106,6 +114,12 @@ public class DrawerController extends Commander {
         });
   }
 
+  /**
+   * Handles the click event for different drawers.
+   *
+   * @param event the mouse event
+   * @throws Exception if there is an error loading the chat view
+   */
   @FXML
   public void onClick(MouseEvent event) throws Exception {
     Sound.getInstance().playClickMinor();

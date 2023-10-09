@@ -30,7 +30,7 @@ public class GameState {
   private static final Set<String> riddleSetTwo = new HashSet<>();
 
   /** Indicates the answer to slider puzzle for current game. */
-  public static char[] sliderAnswer = null;
+  public static char[] sliderAnswer;
 
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
@@ -50,7 +50,7 @@ public class GameState {
   /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD. */
   public static IntegerProperty difficulty = new SimpleIntegerProperty();
 
-  /** Indicates amount of intelligence gathered */
+  /** Indicates amount of intelligence gathered. */
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
 
   /** Indeicates the number of hints allowed. */
@@ -83,7 +83,7 @@ public class GameState {
   /** Indicates the last numbers of the year for the current game. */
   public static SimpleIntegerProperty lastNumbers = new SimpleIntegerProperty(0);
 
-  /** Indicates if player is on end Screen */
+  /** Indicates if player is on end Screen. */
   public static BooleanProperty isEndScreen = new SimpleBooleanProperty(false);
 
   private static Random random = new Random();
@@ -131,7 +131,7 @@ public class GameState {
     return riddle;
   }
 
-  /** Method to create random slider combination for the current game */
+  /** Method to create random slider combination for the current game. */
   public static char[] setSliders() {
     // Create an array of chars to hold the slider answer
     char[] answer = new char[6];
@@ -148,6 +148,11 @@ public class GameState {
     return sliderAnswer;
   }
 
+  /**
+   * Reset all states in all rooms when user has replayed.
+   *
+   * @throws Exception if the reset fails
+   */
   public static void resetGame() throws Exception {
     resetGameState();
     resetTimer();
@@ -157,7 +162,7 @@ public class GameState {
     resetRightRoom();
   }
 
-  // Add listeners to isKeyPadSolved and numOfIntel to update isGameWon.
+  /** Add listeners to isKeyPadSolved and numOfIntel to update isGameWon. */
   private static void setupWinListeners() {
     // Listen for changes to isKeyPadSolved
     isKeypadSolved.addListener((observable, oldValue, newValue) -> checkIsGameWon());
@@ -176,6 +181,7 @@ public class GameState {
     lastNumbers.set(random.nextInt(41) + 20); // Generates number between 20 and 60
   }
 
+  /** Reset all game state variables to default values for when the player restarts the game. */
   private static void resetGameState() {
     // Reset all game state variables to default values for when the player restarts the game.
 
@@ -201,6 +207,7 @@ public class GameState {
     isEndScreen.set(false);
   }
 
+  /** Reset timer when user has pressed replay. */
   private static void resetTimer() {
     // get the list of timers before resetting.
     List<Text> timers = TimerClass.getTimers();
@@ -212,6 +219,11 @@ public class GameState {
     TimerClass.setTimers(timers);
   }
 
+  /**
+   * Reset commander and all states related.
+   *
+   * @throws Exception if the reset fails
+   */
   private static void resetCommander() throws Exception {
 
     CommanderController instance = CommanderController.getInstance();
@@ -232,6 +244,11 @@ public class GameState {
     CommanderController.getInstance().displayStartHint();
   }
 
+  /**
+   * Reset main room and all states related.
+   *
+   * @throws ApiProxyException if the reset fails
+   */
   private static void resetMainRoom() throws ApiProxyException {
     // change computer riddle for next user playthrough
     ComputerController.getInstance()
@@ -243,10 +260,12 @@ public class GameState {
     MainRoomController.getInstance().resetRoom();
   }
 
+  /** Reset left room and all states related. */
   private static void resetLeftRoom() {
     RadioController.getInstance().setSliders();
   }
 
+  /** Reset right room and all states related. */
   private static void resetRightRoom() {
     // Reset BlackBoard Numbers
     BlackBoardController.getInstance().refreshBoard();

@@ -3,6 +3,7 @@ package nz.ac.auckland.se206;
 import java.util.HashMap;
 import java.util.Map;
 
+/** MorseCode class to convert a word to morse code. */
 public class MorseCode {
 
   private static final Map<Character, String> MORSE_CODE_MAP;
@@ -37,7 +38,12 @@ public class MorseCode {
     MORSE_CODE_MAP.put('z', "--..");
   }
 
-  // Public method to turn a word into morsecode.
+  /**
+   * Converts an input string word into morse code.
+   *
+   * @param word the word to convert to morse code
+   * @return the morse code representation of the word
+   */
   public static String convertToMorse(String word) {
 
     StringBuilder morseCode = new StringBuilder();

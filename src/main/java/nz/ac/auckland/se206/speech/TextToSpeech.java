@@ -19,6 +19,11 @@ public class TextToSpeech {
 
   private static volatile TextToSpeech instance;
 
+  /**
+   * Gets the singleton instance of the TextToSpeech class.
+   *
+   * @return The singleton instance of the TextToSpeech class.
+   */
   public static TextToSpeech getInstance() {
     if (instance == null) {
       synchronized (TextToSpeech.class) {
@@ -68,7 +73,7 @@ public class TextToSpeech {
     }
   }
 
-  // New method to toggle mute status
+  /** Toggles mute status to opposite of current state. */
   public void toggleMute() {
     isMuted = !isMuted;
   }
@@ -87,7 +92,9 @@ public class TextToSpeech {
         new Task<Void>() {
           @Override
           protected Void call() {
+            // Separate thread to run the speak method on so that it doesn't block the UI thread
             boolean isFirst = true;
+            // Speak all sentences passed in to speak method
             for (final String sentence : sentences) {
               if (isFirst) {
                 isFirst = false;

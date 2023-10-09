@@ -26,6 +26,11 @@ public class BookController extends Commander {
 
   private static BookController instance;
 
+  /**
+   * Stores and returns the current instance of BookController.
+   *
+   * @return the current instance of BookController
+   */
   public static BookController getInstance() {
     return instance;
   }
@@ -91,6 +96,7 @@ public class BookController extends Commander {
         }
       };
 
+  /** Constructor to create a new instance of the book controller. */
   public BookController() {
     instance = this;
   }
@@ -98,7 +104,7 @@ public class BookController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if the sound file cannot be found
    */
   public void initialize() throws Exception {
     // bind the intel to gamestate number of intel so it updates every time user finds intel
@@ -130,6 +136,7 @@ public class BookController extends Commander {
     bookButtons = Arrays.asList(book1, book2, book3, book4, book5);
   }
 
+  /** Set up content of each book to be randomized upon each playthrough. */
   public void setupContent() {
     // Select a random book to be the good book
     int randomNumber = new Random().nextInt(5) + 1;
@@ -165,9 +172,9 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the popup of books.
+   * Handles the popup of books, shows books and updates dialogue if user discovers correct book.
    *
-   * @throws Exception
+   * @throws Exception if the sound file cannot be found
    */
   @FXML
   private void showBook() throws Exception {
@@ -198,22 +205,20 @@ public class BookController extends Commander {
     }
   }
 
+  /** Resets the font of the book titles and descriptions. */
   public void resetFont() {
     if (titleMap.containsKey(bookCode)) {
       titleMap.get(bookCode).setStyle("");
     }
-    if (book != null) onGoBackShelf();
-
+    if (book != null) {
+      onGoBackShelf();
+    }
     if (descriptionMap.containsKey(bookCode)) {
       descriptionMap.get(bookCode).setStyle("");
     }
   }
 
-  /**
-   * Handles the return from popup of books.
-   *
-   * @param click
-   */
+  /** Handles the return from popup of books. */
   @FXML
   private void onGoBackShelf() {
     Sound.getInstance().playClickMinor();
@@ -234,10 +239,11 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the clicking of book type
+   * Handles the clicking of book type, sets up which book has been clicked and then shows this
+   * book.
    *
    * @param click the mouse event
-   * @throws Exception
+   * @throws Exception if the sound file cannot be found
    */
   @FXML
   public void checkBook(MouseEvent click) throws Exception {
@@ -251,7 +257,7 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the return event
+   * Handles the player clicking the return button.
    *
    * @param event the mouse event
    */
@@ -265,9 +271,9 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the hovering of rectangles
+   * Handles the hovering of rectangles, and highlights them upon hovering.
    *
-   * @param event the mouse
+   * @param event the mouse event
    */
   @FXML
   public void onHover(MouseEvent event) {
@@ -276,7 +282,7 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the un-hovering of rectangles
+   * Handles the un-hovering of rectangles.
    *
    * @param event the mouse
    */

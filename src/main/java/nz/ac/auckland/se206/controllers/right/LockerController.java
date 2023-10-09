@@ -45,7 +45,7 @@ public class LockerController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
     super.initialize();
@@ -69,10 +69,10 @@ public class LockerController extends Commander {
   }
 
   /**
-   * Checks the answer
+   * Plays the sound effect of click event and checks if user has guessed the correct answer.
    *
-   * @param event
-   * @throws Exception
+   * @param event the mouse event
+   * @throws Exception if there is an error loading the chat view
    */
   @FXML
   public void onCheckAns(MouseEvent event) throws Exception {
@@ -119,7 +119,7 @@ public class LockerController extends Commander {
   }
 
   /**
-   * Handles the increase event.
+   * Handles when the increase arrow is pressed on the locker.
    *
    * @param event the mouse event
    */
@@ -151,7 +151,8 @@ public class LockerController extends Commander {
   }
 
   /**
-   * Handles the decrease event.
+   * Handles the decrease event on the locker, decrementing each of the values depending on which
+   * arrow the player pressed.
    *
    * @param event the mouse event
    */
@@ -182,6 +183,7 @@ public class LockerController extends Commander {
     }
   }
 
+  /** Reset all relevant states to the locker room when replay button is pressed. */
   public void resetRoom() {
     // Reset all the variables to their original state in the locker once the user restarts the game
     one = two = three = four = 0;
@@ -199,7 +201,7 @@ public class LockerController extends Commander {
   }
 
   /**
-   * Handles the return event
+   * Handles the event of player clicking the return button.
    *
    * @param event the mouse event
    */
