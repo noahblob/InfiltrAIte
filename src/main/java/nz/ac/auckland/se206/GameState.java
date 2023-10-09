@@ -218,16 +218,16 @@ public class GameState {
     // Clear the notes and phones of previous game.
     instance.clearNotes();
     instance.clearPhones();
+    instance.clearInput();
 
     List<TextArea> dialogues = instance.getDialogues();
+    List<TextArea> inputAreas = instance.getInputAreas();
     List<ListView<ChatMessage>> phoneScreens = instance.getPhoneScreens();
-
-    // Reset the game master.
-    // CommanderController.resetInstance();
 
     // Update the new Commander controller with the list of dialogues and phonescreens.
     CommanderController.getInstance().setDialogues(dialogues);
     CommanderController.getInstance().setPhoneScreens(phoneScreens);
+    CommanderController.getInstance().setDialogues(inputAreas);
     CommanderController.getInstance().displayStartHint();
   }
 

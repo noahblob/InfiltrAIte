@@ -42,6 +42,7 @@ public class CommanderController {
   private final Queue<String> messageQueue;
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
+  private List<TextArea> inputAreas;
   private List<TextArea> dialogues;
   private List<TextArea> notes;
   private StringProperty notesProperty;
@@ -50,6 +51,7 @@ public class CommanderController {
   private boolean isRolling = false;
 
   private CommanderController() throws Exception {
+    inputAreas = new ArrayList<>();
     notes = new ArrayList<>();
     notesProperty = new SimpleStringProperty("");
     messageQueue = new LinkedList<>();
@@ -62,6 +64,14 @@ public class CommanderController {
 
   public List<TextArea> getDialogues() {
     return dialogues;
+  }
+
+  public List<TextArea> getInputAreas() {
+    return inputAreas;
+  }
+
+  public void setInputAreas(List<TextArea> inputAreas) {
+    this.inputAreas = inputAreas;
   }
 
   public void setPhoneScreens(List<ListView<ChatMessage>> phoneScreens) {
@@ -191,11 +201,21 @@ public class CommanderController {
         });
   }
 
+  private void disableInput(Boolean flag) {
+    for (TextArea inputArea : inputAreas) {
+      inputArea.setDisable(flag);
+    }
+  }
+
   // Common code to handle sending message
   private void handleSendMessage(String message) throws Exception {
     if (message.trim().isEmpty()) {
       return;
     }
+
+    // Disable the input.
+    disableInput(true);
+
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
@@ -242,6 +262,8 @@ public class CommanderController {
             phoneScreens.forEach(
                 screen ->
                     screen.getItems().remove(transmittingMsg)); // Remove "Transmitting..." message
+            // Reenable the input.
+            disableInput(false);
             // Stop the sound.
             Sound.getInstance().stopTransmit();
             appendChatMessage(gptResponse); // Add GPT's response to the UI
@@ -316,6 +338,10 @@ public class CommanderController {
 
   public StringProperty notesProperty() {
     return notesProperty;
+  }
+
+  public void addInputArea(TextArea textArea) {
+    inputAreas.add(textArea);
   }
 
   // Helper method to add text areas from different scenes to the controller.
@@ -407,6 +433,13 @@ public class CommanderController {
   public void clearNotes() {
     for (TextArea notepad : notes) {
       notepad.clear();
+    }
+  }
+
+  // Method to clear the notes.
+  public void clearInput() {
+    for (TextArea input : inputAreas) {
+      input.clear();
     }
   }
 }
