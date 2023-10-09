@@ -110,7 +110,7 @@ public class TimeController {
     Sound.getInstance().playClickMajor();
     CommanderController instance = CommanderController.getInstance();
     // Check if Easy, medium or hard and update prompt accordingly.
-    String prompt = null;
+    String prompt;
     if (GameState.difficulty.get() == 1) {
       prompt = GptPromptEngineering.getEasyPrompt(GameState.puzzleWord);
     } else if (GameState.difficulty.get() == 2) {

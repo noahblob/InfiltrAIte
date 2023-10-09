@@ -30,7 +30,7 @@ public class GameState {
   private static final Set<String> riddleSetTwo = new HashSet<>();
 
   /** Indicates the answer to slider puzzle for current game. */
-  public static char[] sliderAnswer = null;
+  public static char[] sliderAnswer;
 
   /** Indicates whether the riddle has been resolved. */
   public static boolean isRiddleResolved = false;
