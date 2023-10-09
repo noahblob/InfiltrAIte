@@ -11,6 +11,13 @@ public class Sound {
 
   private static Sound instance;
 
+  public static Sound getInstance() {
+    if (instance == null) {
+      instance = new Sound();
+    }
+    return instance;
+  }
+
   private Media clickMajorSound;
   private Media clickMinorSound;
   private Media hoverOver;
@@ -43,13 +50,6 @@ public class Sound {
     rollout = new MediaPlayer(textRollout);
 
     bindToMute();
-  }
-
-  public static Sound getInstance() {
-    if (instance == null) {
-      instance = new Sound();
-    }
-    return instance;
   }
 
   public void playClickMajor() {
