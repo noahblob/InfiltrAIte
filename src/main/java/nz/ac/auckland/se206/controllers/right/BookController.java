@@ -207,14 +207,14 @@ public class BookController extends Commander {
 
   /** Resets the font of the book titles and descriptions. */
   public void resetFont() {
-    if (titleMap.containsKey(bookCode)) {
-      titleMap.get(bookCode).setStyle("");
+    for (String titleName : titleMap.keySet()) {
+      titleMap.get(titleName).setStyle("");
+    }
+    for (String descriptionName : descriptionMap.keySet()) {
+      descriptionMap.get(descriptionName).setStyle("");
     }
     if (book != null) {
       onGoBackShelf();
-    }
-    if (descriptionMap.containsKey(bookCode)) {
-      descriptionMap.get(bookCode).setStyle("");
     }
   }
 
