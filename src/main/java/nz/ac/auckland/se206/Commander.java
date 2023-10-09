@@ -47,7 +47,7 @@ public abstract class Commander {
 
     TimerClass.getInstance().addTimer(timer);
     updateCommander();
-    setUpUI();
+    setUpUi();
     setUpHints();
     updateTimerFont();
     // if the game is muted, change image to muted image and disable tts
@@ -159,7 +159,7 @@ public abstract class Commander {
         });
   }
 
-  private void setUpUI() throws Exception {
+  private void setUpUi() throws Exception {
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
     BooleanBinding keyVisibilityBinding =

@@ -128,7 +128,7 @@ public class TimerClass {
                 // update commander dialogue to let player know they have been detected
                 CommanderController.getInstance()
                     .updateDialogueBox(Dialogue.INTRUDERDETECED.toString());
-                Sound.getInstance().playTTS();
+                Sound.getInstance().playTextToSpeech();
               } catch (Exception e) {
                 e.printStackTrace();
               }

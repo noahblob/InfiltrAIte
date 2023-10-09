@@ -72,7 +72,7 @@ public class Sound {
     stopSound(rollout);
   }
 
-  public void playTTS() {
+  public void playTextToSpeech() {
     tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
   }
 

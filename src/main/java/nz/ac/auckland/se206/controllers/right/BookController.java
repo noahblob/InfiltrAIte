@@ -249,8 +249,9 @@ public class BookController extends Commander {
     if (titleMap.containsKey(bookCode)) {
       titleMap.get(bookCode).setStyle("");
     }
-    if (book != null) onGoBackShelf();
-
+    if (book != null)  {
+      onGoBackShelf();
+    }
     if (descriptionMap.containsKey(bookCode)) {
       descriptionMap.get(bookCode).setStyle("");
     }
