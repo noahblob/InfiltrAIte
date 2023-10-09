@@ -1,8 +1,10 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Queue;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -39,6 +41,7 @@ public class CommanderController {
   }
 
   // Instance fields
+  private Map<TextArea, Timeline> textAreaTimelines;
   private final Queue<String> messageQueue;
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
@@ -49,8 +52,10 @@ public class CommanderController {
   private StringProperty lastInputTextProperty;
   private boolean scroll = false;
   private boolean isRolling = false;
+  private Timeline timeline;
 
   private CommanderController() throws Exception {
+    textAreaTimelines = new HashMap<>();
     inputAreas = new ArrayList<>();
     notes = new ArrayList<>();
     notesProperty = new SimpleStringProperty("");
@@ -58,6 +63,7 @@ public class CommanderController {
     lastInputTextProperty = new SimpleStringProperty("");
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
+    timeline = new Timeline();
     // Set Up the commander (can recall this when restarting the game)
     setUpCommander();
   }
@@ -354,25 +360,30 @@ public class CommanderController {
     notes.add(notepad);
   }
 
-  // Method to update commander's dialogue.
   public void updateDialogueBox(String textToRollOut) {
+    // Clear the previous queue and add the new message
+    messageQueue.clear();
     messageQueue.offer(textToRollOut);
-    if (!isRolling) {
-      dequeueAndRoll();
-    }
+    dequeueAndRoll();
   }
 
   private void dequeueAndRoll() {
-    if (isRolling) {
+    if (messageQueue.isEmpty()) {
       return;
     }
-    if (messageQueue.isEmpty() || messageQueue.size() > 1) {
-      messageQueue.clear();
-      return;
-    }
-    String nextMessage = messageQueue.poll();
-    isRolling = true;
 
+    String nextMessage = messageQueue.poll();
+
+    // Stop all existing timelines and clear the text areas
+    for (TextArea dialogue : dialogues) {
+      Timeline existingTimeline = textAreaTimelines.get(dialogue);
+      if (existingTimeline != null) {
+        existingTimeline.stop();
+      }
+      dialogue.clear();
+    }
+
+    // Start the new rollout
     for (TextArea dialogue : dialogues) {
       textRollout(nextMessage, dialogue);
     }
@@ -380,12 +391,13 @@ public class CommanderController {
 
   public void textRollout(String message, TextArea dialogue) {
 
+    Timeline newTimeline = new Timeline();
+    textAreaTimelines.put(dialogue, newTimeline);
+
     char[] chars = message.toCharArray();
-    Timeline timeline = new Timeline();
     Duration timepoint = Duration.ZERO;
 
     for (char ch : chars) {
-      // Play sound effect for the text rollout.
       if (!GameState.isMuted.get()) {
         Sound.getInstance().playTextRollout();
       }
@@ -393,27 +405,23 @@ public class CommanderController {
       final char finalChar = ch;
       KeyFrame keyFrame =
           new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
-      timeline.getKeyFrames().add(keyFrame);
+      newTimeline.getKeyFrames().add(keyFrame);
     }
 
-    // Stop the sound at the same time the last character appears.
     KeyFrame stopSoundKeyFrame = new KeyFrame(timepoint, e -> Sound.getInstance().stopRollout());
-    timeline.getKeyFrames().add(stopSoundKeyFrame);
+    newTimeline.getKeyFrames().add(stopSoundKeyFrame);
 
     KeyFrame clearKeyFrame =
         new KeyFrame(
             timepoint.add(Duration.millis(1500)),
             e -> {
-              if (dialogue != null) {
-                dialogue.clear();
-              }
+              dialogue.clear();
               isRolling = false;
-              dequeueAndRoll(); // Check if there is another message in the queue
+              dequeueAndRoll();
             });
+    newTimeline.getKeyFrames().add(clearKeyFrame);
 
-    timeline.getKeyFrames().add(clearKeyFrame);
-
-    timeline.play();
+    newTimeline.play();
   }
 
   public void setUpCommander() {
