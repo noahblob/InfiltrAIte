@@ -146,35 +146,6 @@
                   </ImageView>
                </children>
             </Pane>
-            <Pane layoutX="38.0" layoutY="188.0" prefHeight="193.0" prefWidth="508.0">
-               <children>
-                  <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="175.0" layoutY="18.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="36.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="106.0" layoutX="89.0" layoutY="86.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="21.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="156.0" layoutX="206.0" layoutY="30.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="21.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="150.0" layoutX="291.0" layoutY="43.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="30.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Rectangle>
-                  <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="191.0" layoutX="439.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="36.0">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Rectangle>
-               </children>
-            </Pane>
             <Button fx:id="goBack" layoutX="186.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN TO ROOM">
                <font>
                   <Font size="18.0" />
@@ -203,6 +174,35 @@
                   <Text fx:id="title3" layoutX="9.0" layoutY="5.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="130.3333740234375" />
                   <Text fx:id="title4" layoutX="16.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="130.3333740234375" />
                   <Text fx:id="title5" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96fffa96" visible="false" wrappingWidth="157.0" />
+               </children>
+            </Pane>
+            <Pane layoutX="34.0" layoutY="170.0" prefHeight="213.0" prefWidth="514.0">
+               <children>
+                  <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="175.0" layoutY="37.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="44.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Rectangle>
+                  <Rectangle fx:id="book2" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="107.0" layoutX="89.0" layoutY="103.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="30.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Rectangle>
+                  <Rectangle fx:id="book3" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="161.0" layoutX="206.0" layoutY="44.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="30.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Rectangle>
+                  <Rectangle fx:id="book4" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="144.0" layoutX="297.0" layoutY="60.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="30.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Rectangle>
+                  <Rectangle fx:id="book5" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="188.0" layoutX="446.0" layoutY="19.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="37.0">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Rectangle>
                </children>
             </Pane>
          </children>
