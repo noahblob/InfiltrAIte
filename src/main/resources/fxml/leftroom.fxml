@@ -124,7 +124,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Polygon>
-            <Polygon fx:id="desk" fill="#fffa96" layoutX="384.0" layoutY="320.0" onMouseClicked="#onClick" opacity="0.0" points="111.0, 127.0, 141.0, 127.0, 130.0, 117.0, 93.0, 117.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
+            <Polygon fx:id="desk" fill="#fffa96" layoutX="384.0" layoutY="317.0" onMouseClicked="#onClick" opacity="0.0" points="111.0, 127.0, 141.0, 127.0, 130.0, 117.0, 93.0, 117.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -175,10 +175,13 @@
                   <Image url="@../images/corner.png" />
                </image>
             </ImageView>
-            <Label fx:id="lastDigits" layoutX="344.0" layoutY="267.0" prefHeight="82.0" prefWidth="105.0" text="XX" visible="false">
+            <Label fx:id="lastDigits" layoutX="344.0" layoutY="327.0" prefHeight="82.0" prefWidth="105.0" text="XX" visible="false">
                <font>
                   <Font name="Anonymous Pro Bold" size="30.0" />
                </font>
+               <opaqueInsets>
+                  <Insets top="-2.0" />
+               </opaqueInsets>
             </Label>
             <Button fx:id="back" layoutX="488.0" layoutY="618.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="87.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" visible="false">
                <cursor>
