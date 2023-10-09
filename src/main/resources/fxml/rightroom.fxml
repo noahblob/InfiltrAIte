@@ -108,7 +108,7 @@
       </Pane>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="600.0" style="-fx-background-color: transparent;">
          <children>
-            <ImageView fx:id="roomimage" fitHeight="572.0" fitWidth="576.0" layoutX="13.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="roomimage" fitHeight="572.0" fitWidth="576.0" layoutX="12.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/rightroom.png" />
                </image>

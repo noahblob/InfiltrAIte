@@ -105,39 +105,39 @@
             </Label>
          </children>
       </Pane>
-      <Pane layoutX="13.0" layoutY="89.0">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="600.0">
          <children>
-            <ImageView fx:id="roomimage1" fitHeight="572.0" fitWidth="576.0" layoutX="-2.0" opacity="0.34" pickOnBounds="true">
+            <ImageView fx:id="roomimage1" fitHeight="572.0" fitWidth="576.0" layoutX="12.0" layoutY="89.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/rightroom.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="roomimage" fitHeight="451.0" fitWidth="546.0" layoutX="10.0" layoutY="24.0" pickOnBounds="true">
+            <ImageView fx:id="roomimage" fitHeight="451.0" fitWidth="546.0" layoutX="23.0" layoutY="115.0" pickOnBounds="true">
                <image>
                   <Image url="@../images/best-puzzles-that-make-an-escape-room-more-challenging.png" />
                </image>
             </ImageView>
-            <Label fx:id="first" alignment="CENTER" layoutX="175.0" layoutY="297.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+            <Label fx:id="first" alignment="CENTER" layoutX="188.0" layoutY="388.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
                <font>
                   <Font size="38.0" />
                </font>
             </Label>
-            <Label fx:id="third" alignment="CENTER" layoutX="296.0" layoutY="297.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+            <Label fx:id="third" alignment="CENTER" layoutX="309.0" layoutY="388.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
                <font>
                   <Font size="38.0" />
                </font>
             </Label>
-            <Label fx:id="second" alignment="CENTER" layoutX="236.0" layoutY="297.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+            <Label fx:id="second" alignment="CENTER" layoutX="249.0" layoutY="388.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
                <font>
                   <Font size="38.0" />
                </font>
             </Label>
-            <Label fx:id="fourth" alignment="CENTER" contentDisplay="CENTER" layoutX="356.0" layoutY="297.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
+            <Label fx:id="fourth" alignment="CENTER" contentDisplay="CENTER" layoutX="369.0" layoutY="388.0" prefHeight="65.0" prefWidth="43.0" styleClass="rightlocker" stylesheets="@../css/styles.css" text="0" textAlignment="CENTER">
                <font>
                   <Font size="38.0" />
                </font>
             </Label>
-            <Pane layoutX="137.31907653808594" layoutY="229.3618621826172">
+            <Pane layoutX="150.0" layoutY="320.0">
                <children>
                   <ImageView fitHeight="33.0" fitWidth="75.0" layoutX="91.31907653808594" layoutY="163.2762908935547" pickOnBounds="true" preserveRatio="true" rotate="270.0">
                      <image>
@@ -181,7 +181,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="checkAns" layoutX="365.0" layoutY="511.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="CHECK ANSWER">
+            <Button fx:id="checkAns" layoutX="378.0" layoutY="602.0" mnemonicParsing="false" onMouseClicked="#onCheckAns" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="CHECK ANSWER">
                <font>
                   <Font size="18.0" />
                </font>
@@ -189,7 +189,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Pane layoutX="184.0" layoutY="228.0">
+            <Pane layoutX="197.0" layoutY="319.0">
                <children>
                   <Rectangle fx:id="upOne" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="65.0" layoutX="-3.0" layoutY="4.0" onMouseClicked="#increase" opacity="0.0" stroke="BLACK" strokeType="INSIDE" width="27.0">
                      <cursor>
@@ -233,7 +233,7 @@
                   </Rectangle>
                </children>
             </Pane>
-            <ImageView fx:id="intelFile" disable="true" fitHeight="496.0" fitWidth="376.0" layoutX="105.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true" visible="false">
+            <ImageView fx:id="intelFile" disable="true" fitHeight="496.0" fitWidth="376.0" layoutX="118.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/intel%20(1).png" />
                </image>
@@ -241,7 +241,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <Button fx:id="goBack" layoutX="28.0" layoutY="511.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN">
+            <Button fx:id="goBack" layoutX="41.0" layoutY="602.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="44.0" prefWidth="180.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN">
                <font>
                   <Font size="18.0" />
                </font>

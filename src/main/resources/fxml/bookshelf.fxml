@@ -146,15 +146,7 @@
                   </ImageView>
                </children>
             </Pane>
-            <Button fx:id="goBack" layoutX="186.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN TO ROOM">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Pane layoutX="38.0" layoutY="188.0">
+            <Pane layoutX="38.0" layoutY="188.0" prefHeight="193.0" prefWidth="508.0">
                <children>
                   <Rectangle fx:id="book1" arcHeight="5.0" arcWidth="5.0" fill="#fffa9680" height="175.0" layoutY="18.0" onMouseClicked="#checkBook" onMouseEntered="#onHover" onMouseExited="#onHoverExit" opacity="0.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="36.0">
                      <cursor>
@@ -183,7 +175,15 @@
                   </Rectangle>
                </children>
             </Pane>
-            <Button fx:id="back" disable="true" layoutX="180.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#onGoBackShelf" prefHeight="45.0" prefWidth="214.0" styleClass="send" stylesheets="@../css/styles.css" text="BOOKSHELF" visible="false">
+            <Button fx:id="goBack" layoutX="186.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#onGoBack" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN TO ROOM">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="back" disable="true" layoutX="186.0" layoutY="505.0" mnemonicParsing="false" onMouseClicked="#onGoBackShelf" prefHeight="45.0" prefWidth="201.0" styleClass="send" stylesheets="@../css/styles.css" text="BOOKSHELF" visible="false">
                <font>
                   <Font size="18.0" />
                </font>
