@@ -20,6 +20,10 @@ public class BlackBoardController extends Commander {
   private static int ans;
   public static BlackBoardController instance;
 
+  /**
+   * Stores and returns the current instance of black board controller.
+   * @return the current instance of black board controller
+   */
   public static BlackBoardController getInstance() {
     return instance;
   }
@@ -33,6 +37,11 @@ public class BlackBoardController extends Commander {
     return ans;
   }
 
+  /**
+   * Randomizes the keypad answer numbers on the blackboard upon every refresh of the blackboard.
+   * 
+   * @return a hashmap of the random numbers
+   */
   public static Map<Integer, Integer> randomizeNumbers() {
     // Create a new random variable that is used to calculate random keypad codes to put on
     // blackboard
@@ -72,6 +81,7 @@ public class BlackBoardController extends Commander {
 
   private Map<Integer, Integer> hashmap = new HashMap<>();
 
+  /** Constructor for the blackboardcontroller class that initialises an instance of it. */
   public BlackBoardController() {
     instance = this;
   }
@@ -88,6 +98,9 @@ public class BlackBoardController extends Commander {
     findDate();
   }
 
+  /**
+   * Finds the current date on users device and updates the blackboard.
+   */
   private void findDate() {
 
     // Get the system date, then get the current day of the week.
@@ -122,7 +135,7 @@ public class BlackBoardController extends Commander {
   }
 
   /**
-   * Handles the return event
+   * Handles the event of user clicking the return button.
    *
    * @param event the mouse event
    */

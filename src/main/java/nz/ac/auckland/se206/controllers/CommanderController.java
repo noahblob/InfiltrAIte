@@ -55,6 +55,11 @@ public class CommanderController {
   private StringProperty lastInputTextProperty;
   private boolean scroll = false;
 
+  /**
+   * Constructor for the commandercontroller than initializes all relevant fields.
+   *
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   private CommanderController() throws Exception {
     textAreaTimelines = new HashMap<>();
     inputAreas = new ArrayList<>();
@@ -67,22 +72,47 @@ public class CommanderController {
     setUpCommander();
   }
 
+  /**
+   * Gets a list of all current dialogues of the commander.
+   *
+   * @return a list of all current dialogues of the commander
+   */
   public List<TextArea> getDialogues() {
     return dialogues;
   }
 
+  /**
+   * Gets a list of all the input from the user.
+   *
+   * @return a list of all the input from the user
+   */
   public List<TextArea> getInputAreas() {
     return inputAreas;
   }
 
+  /**
+   * Sets the input area list to new input area list.
+   *
+   * @param inputAreas the new input area list
+   */
   public void setInputAreas(List<TextArea> inputAreas) {
     this.inputAreas = inputAreas;
   }
 
+  /**
+   * Sets the list of phone screens to new phone screens.
+   *
+   * @param phoneScreens the new phone screens
+   */
   public void setPhoneScreens(List<ListView<ChatMessage>> phoneScreens) {
     this.phoneScreens = phoneScreens;
   }
 
+  /**
+   * Gets a list of all the phone screens.
+   *
+   * @return a list of all the phone screens
+   */
   public List<ListView<ChatMessage>> getPhoneScreens() {
     return phoneScreens;
   }
@@ -119,26 +149,49 @@ public class CommanderController {
     return result.getChatMessage();
   }
 
-  // For TextArea input
+  /**
+   * Handles when a message is sent by the user by clicking send.
+   *
+   * @param event the mouse event
+   * @param inputText the text area where the user types
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   public void onSendMessage(MouseEvent event, TextArea inputText) throws Exception {
     String message = inputText.getText();
     handleSendMessage(message);
     inputText.clear();
   }
 
-  // For when user presses enter
+  /**
+   * Handles when a message is sent by the user by pressing eneter.
+   *
+   * @param event the key event
+   * @param inputText the text area where the user types
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   public void onSendMessage(KeyEvent event, TextArea inputText) throws Exception {
     String message = inputText.getText();
     handleSendMessage(message);
     inputText.clear();
   }
 
-  // For String input
+  /**
+   * A bridging method to handle sending a message to GPT.
+   *
+   * @param event the event which took place for user to submit message
+   * @param message the message to send to GPT
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   public void onSendMessage(ActionEvent event, String message) throws Exception {
     handleSendMessage(message);
   }
 
-  // Method to talk to GPT without typing.
+  /**
+   * Sends a message to the GPT model to generate a response.
+   *
+   * @param messageContent the message to send to GPT
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   public void sendForUser(String messageContent) throws Exception {
     ChatMessage msg = new ChatMessage("system", messageContent);
 
@@ -163,12 +216,23 @@ public class CommanderController {
     new Thread(task).start();
   }
 
+  /**
+   * Bridging method to update GPT's information without any output.
+   *
+   * @param messageContent the message to send to GPT
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   public void updateGpt(String messageContent) throws Exception {
     ChatMessage msg = new ChatMessage("system", messageContent);
     updateGpt(msg);
   }
 
-  // Method to update GPT's information without any output.
+  /**
+   * Updates GPT's information without any output.
+   *
+   * @param msg the message to send to GPT
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   public void updateGpt(ChatMessage msg) throws Exception {
 
     // Create new Task (Thread) to handle calling chatGPT.
@@ -197,6 +261,9 @@ public class CommanderController {
     new Thread(task).start();
   }
 
+  /**
+   * Displays text from the commander at beginning of game to remind user they can text commander.
+   */
   public void displayStartHint() {
     ChatMessage initialMessage =
         new ChatMessage("assistant", "Agent, Talk to me here if you have any questions.");
@@ -206,13 +273,23 @@ public class CommanderController {
         });
   }
 
+  /**
+   * Disables the input text area so user cannot type.
+   *
+   * @param flag true if input should be disabled, false otherwise
+   */
   private void disableInput(Boolean flag) {
     for (TextArea inputArea : inputAreas) {
       inputArea.setDisable(flag);
     }
   }
 
-  // Common code to handle sending message
+  /**
+   * Handles sending a message to GPT, does nothing if message is empty.
+   *
+   * @param message the message to send to GPT
+   * @throws Exception if there is an error communicating with the API proxy
+   */
   private void handleSendMessage(String message) throws Exception {
     if (message.trim().isEmpty()) {
       return;
@@ -282,7 +359,11 @@ public class CommanderController {
     new Thread(task).start();
   }
 
-  // Helper method to add text areas from different scenes to the controller.
+  /**
+   * Helper method to add text areas from different scenes to the controller.
+   *
+   * @param textArea the text area to add
+   */
   public void addListView(ListView<ChatMessage> textArea) {
     textArea.setCellFactory(param -> new ChatCell());
     phoneScreens.add(textArea);
@@ -307,6 +388,11 @@ public class CommanderController {
                 });
   }
 
+  /**
+   * Method to scroll to the bottom of the phone screen.
+   *
+   * @param textArea the text area to scroll to the bottom of
+   */
   private void scrollToBottom(ListView<ChatMessage> textArea) {
     scroll = true;
     // Add a non-visible empty item and scroll to it.
@@ -318,47 +404,92 @@ public class CommanderController {
     scroll = false;
   }
 
-  // Helper method which keeps track of what is written in the users text are so that it can be kept
-  // through different scenes
+  /**
+   * Helper method to keep track of content in user text area to keep across different scenes
+   *
+   * @return the last input text
+   */
   public String getLastInputText() {
     return lastInputTextProperty.get();
   }
 
+  /**
+   * Setter to set last user input text before swapping scenes.
+   *
+   * @param text the last input text
+   */
   public void setLastInputText(String text) {
     this.lastInputTextProperty.set(text);
   }
 
+  /**
+   * Getter for the last input text property.
+   *
+   * @return the last input text property
+   */
   public StringProperty lastInputTextProperty() {
     return lastInputTextProperty;
   }
 
-  // Helper method which keeps track of what is written in the notes text are so that it can be kept
-  // through different scenes
+  /**
+   * Getter for notes property between scenes to retain information in notes.
+   *
+   * @return the notes property
+   */
   public String getNotes() {
     return notesProperty.get();
   }
 
+  /**
+   * Setter for notes property between scenes to retain information in notes.
+   *
+   * @param text the notes property
+   */
   public void setNotes(String text) {
     this.notesProperty.set(text);
   }
 
+  /**
+   * Getter for notes property between scenes to retain information in notes.
+   *
+   * @return the notes property
+   */
   public StringProperty notesProperty() {
     return notesProperty;
   }
 
+  /**
+   * Add a new user input to the inputAreas list.
+   *
+   * @param textArea the text area to add
+   */
   public void addInputArea(TextArea textArea) {
     inputAreas.add(textArea);
   }
 
-  // Helper method to add text areas from different scenes to the controller.
+  /**
+   * Adds text areas from different scenes to the controller.
+   *
+   * @param textArea the text area to add
+   */
   public void addDialogueBox(TextArea textArea) {
     dialogues.add(textArea);
   }
 
+  /**
+   * Add notes from different scenes to the controller.
+   *
+   * @param notepad the text area to add
+   */
   public void addNotes(TextArea notepad) {
     notes.add(notepad);
   }
 
+  /**
+   * Updates the dialogue box with the given text.
+   *
+   * @param textToRollOut the text to update the dialogue box with
+   */
   public void updateDialogueBox(String textToRollOut) {
     stopAllTimelinesAndClearText();
     for (TextArea dialogue : dialogues) {
@@ -366,6 +497,7 @@ public class CommanderController {
     }
   }
 
+  /** Stops all existing timelines and clears the text areas. */
   private void stopAllTimelinesAndClearText() {
     // Stop all existing timelines and clear the text areas
     for (TextArea dialogue : dialogues) {
@@ -377,6 +509,12 @@ public class CommanderController {
     }
   }
 
+  /**
+   * Rolls out the given message in the given text area.
+   *
+   * @param message the message to roll out
+   * @param dialogue the text area to roll out the message in
+   */
   public void textRollout(String message, TextArea dialogue) {
     // Stop any existing timeline for this TextArea and clear it
     Timeline existingTimeline = textAreaTimelines.get(dialogue);
@@ -423,7 +561,7 @@ public class CommanderController {
     displayStartHint();
   }
 
-  // Method to clear the phone.
+  /** Clears the phone screen of all previous messages. */
   public void clearPhones() {
     for (ListView<ChatMessage> phonescreen : phoneScreens) {
       // Get all the cells and clear the phone.
@@ -431,14 +569,14 @@ public class CommanderController {
     }
   }
 
-  // Method to clear the notes.
+  /** Clears the notepad when the user replays the game. */
   public void clearNotes() {
     for (TextArea notepad : notes) {
       notepad.clear();
     }
   }
 
-  // Method to clear the notes.
+  /** Clears the input text area when user replays the game. */
   public void clearInput() {
     for (TextArea input : inputAreas) {
       input.clear();

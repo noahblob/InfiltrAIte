@@ -30,6 +30,7 @@ public class TimeController {
   @FXML private Button back;
   private int gameTime;
 
+  /** Initializes the room view, it is called when the room loads. */
   public void initialize() {
 
     gameTime = 4;
@@ -38,14 +39,17 @@ public class TimeController {
     initialiseButtons();
   }
 
+  /** Initializes what happens when buttons are interacted with. */
   private void initialiseButtons() {
     increase.setOnAction(event -> adjustGameTime(TIME_INCREMENT));
     decrease.setOnAction(event -> adjustGameTime(-TIME_INCREMENT));
     back.setOnAction(event -> navigateBack());
   }
 
-  // Bind the difficulty label to the difficulty property so once user has chosen difficulty, it
-  // will show on watch when user selects time
+  /**
+   * Bind difficulty label to the difficulty property so once user has chosen difficulty, it will
+   * show on watch.
+   */
   private void bindDifficulty() {
     diff.textProperty()
         .bind(
@@ -58,6 +62,12 @@ public class TimeController {
                 GameState.difficulty));
   }
 
+  /**
+   * Adjust game time by the delta value passed in. If delta is positive, increase time, if delta is
+   * negative, decrease time.
+   *
+   * @param delta the amount of time to increase/decrease by
+   */
   private void adjustGameTime(int delta) {
     // Trigger the sound for clicking increase/decrease button and update time
     Sound.getInstance().playClickMinor();
@@ -88,21 +98,39 @@ public class TimeController {
     updateTime();
   }
 
+  /**
+   * Set the button to be disabled or enabled.
+   *
+   * @param button the button to set
+   * @param isDisabled true if the button should be disabled, false otherwise
+   */
   private void setButtonState(Button button, boolean isDisabled) {
     button.setDisable(isDisabled);
   }
 
+  /** Navigate back to the start menu if they wish to change difficulty. */
   private void navigateBack() {
     Sound.getInstance().playClickMinor();
     Scene currentScene = back.getScene();
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.TITLE));
   }
 
+  /**
+   * Plays a sound upon hovering over the buttons on screen.
+   *
+   * @param event the mouse event
+   */
   @FXML
   private void onHover(MouseEvent event) {
     Sound.getInstance().playHover();
   }
 
+  /**
+   * Handles the event of clicking buttons to change time on the watch and start the game.
+   *
+   * @param event the mouse event
+   * @throws Exception if there is an error loading the chat view
+   */
   @FXML
   private void onClick(MouseEvent event) throws Exception {
     Button rectangle = (Button) event.getSource();
@@ -135,11 +163,12 @@ public class TimeController {
         });
   }
 
+  /** Update the time on the watch to current gameTime. */
   private void updateTime() {
     time.setText(String.format("%d:00", gameTime));
   }
 
-  // Reset the scene to default state for replaying.
+  /** Reset the scene to default state for replaying. */
   private void resetTime() {
     gameTime = 4;
     updateTime();

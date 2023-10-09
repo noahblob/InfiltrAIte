@@ -46,6 +46,9 @@ public class ComputerController extends Commander {
     instance = this;
   }
 
+  /**
+   * Initializes the computer view, it is called when the computer loads.
+   */
   public void initialize() throws Exception {
     super.initialize();
     objective.setText("I wonder what could be on the computer...");

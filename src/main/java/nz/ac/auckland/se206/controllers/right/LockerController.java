@@ -183,6 +183,7 @@ public class LockerController extends Commander {
     }
   }
 
+  /** Reset all relevant states to the locker room when replay button is pressed. */
   public void resetRoom() {
     // Reset all the variables to their original state in the locker once the user restarts the game
     one = two = three = four = 0;

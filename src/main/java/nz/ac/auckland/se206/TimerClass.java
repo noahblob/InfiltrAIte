@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/** Class to store and manage the timer in the applicaiton. */
 public class TimerClass {
 
   private static volatile TimerClass instance;
@@ -86,6 +87,7 @@ public class TimerClass {
     timeline.play();
   }
 
+  /** Stop the timer and set label for timer to 00:00. */
   public void stop() {
     for (Text timer : timers) {
       timer.setText("00:00");
@@ -150,7 +152,12 @@ public class TimerClass {
     }
   }
 
-  // Method to create AI presence
+  /**
+   * Method to chat to player at certain times and create AI presence.
+   *
+   * @param timeLeft the time left in the game.
+   * @throws Exception if the chat fails.
+   */
   public void chatToPlayer(int timeLeft) throws Exception {
 
     String hint = null;
