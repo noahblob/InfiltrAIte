@@ -22,6 +22,7 @@ public class BlackBoardController extends Commander {
 
   /**
    * Stores and returns the current instance of black board controller.
+   *
    * @return the current instance of black board controller
    */
   public static BlackBoardController getInstance() {
@@ -29,7 +30,7 @@ public class BlackBoardController extends Commander {
   }
 
   /**
-   * Returns the correct answer for keypad
+   * Returns the correct answer for keypad.
    *
    * @return Correct answer for keypad
    */
@@ -39,7 +40,7 @@ public class BlackBoardController extends Commander {
 
   /**
    * Randomizes the keypad answer numbers on the blackboard upon every refresh of the blackboard.
-   * 
+   *
    * @return a hashmap of the random numbers
    */
   public static Map<Integer, Integer> randomizeNumbers() {
@@ -89,7 +90,7 @@ public class BlackBoardController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
     super.initialize();
@@ -98,9 +99,7 @@ public class BlackBoardController extends Commander {
     findDate();
   }
 
-  /**
-   * Finds the current date on users device and updates the blackboard.
-   */
+  /** Finds the current date on users device and updates the blackboard. */
   private void findDate() {
 
     // Get the system date, then get the current day of the week.

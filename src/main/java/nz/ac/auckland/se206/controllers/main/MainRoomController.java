@@ -59,7 +59,7 @@ public class MainRoomController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
 

@@ -405,7 +405,7 @@ public class CommanderController {
   }
 
   /**
-   * Helper method to keep track of content in user text area to keep across different scenes
+   * Helper method to keep track of content in user text area to keep across different scenes.
    *
    * @return the last input text
    */

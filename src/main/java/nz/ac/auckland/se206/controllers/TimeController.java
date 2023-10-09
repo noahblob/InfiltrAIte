@@ -15,6 +15,7 @@ import nz.ac.auckland.se206.TimerClass;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.GptPromptEngineering;
 
+/** Controller for the watch that player uses to select time for game. */
 public class TimeController {
 
   private static final int TIME_INCREMENT = 2;
@@ -51,6 +52,8 @@ public class TimeController {
    * show on watch.
    */
   private void bindDifficulty() {
+    // Bind difficulty label to difficulty property so once user has chosen difficulty, it will show
+    // on the watch.
     diff.textProperty()
         .bind(
             Bindings.createStringBinding(

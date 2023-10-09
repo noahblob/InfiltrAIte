@@ -62,7 +62,7 @@ public class LeftRoomController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
     // Initialize the commander and set up all relevant items in the room
@@ -75,17 +75,13 @@ public class LeftRoomController extends Commander {
     updateDigitFont();
   }
 
-  /**
-   * When door is clicked, navigate user back to main room.
-   */
+  /** When door is clicked, navigate user back to main room. */
   private void clickDoor() {
     Scene currentScene = door.getScene();
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.MAIN));
   }
 
-  /**
-   * Creates a hashmap of all objects in the room.
-   */
+  /** Creates a hashmap of all objects in the room. */
   private void createRoom() {
     // Initialize all objects in the room into a hashmap
     objects = new HashMap<>();
@@ -102,9 +98,7 @@ public class LeftRoomController extends Commander {
     objects.put(painting2, Object.MORSE);
   }
 
-  /**
-   * Sets opacity of objects upon user hovering them.
-   */
+  /** Sets opacity of objects upon user hovering them. */
   private void setHoverEvents() {
     // When a user hovers over some relevant object in the room, it should highlight yellow
     // indicating the user can interact with it, this sets that hover event up for all objects in
@@ -122,7 +116,7 @@ public class LeftRoomController extends Commander {
 
   /**
    * Sets the opacity of specified shape that has been hovered.
-   * 
+   *
    * @param shape The shape that has been hovered.
    */
   private void setOpacityOnHover(Shape shape) {
@@ -132,7 +126,7 @@ public class LeftRoomController extends Commander {
 
   /**
    * Shows the popup of the specified image.
-   * 
+   *
    * @param popup The image to be shown.
    */
   private void showPopup(ImageView popup) {
@@ -144,16 +138,14 @@ public class LeftRoomController extends Commander {
 
   /**
    * Toggles the visibility of the last digits of the year.
-   * 
+   *
    * @param flag Whether the digits should be visible or not.
    */
   private void toggleYear(Boolean flag) {
     this.lastDigits.setVisible(flag);
   }
 
-  /**
-   * Sets up the popups for the room, all initialized as not visible.
-   */
+  /** Sets up the popups for the room, all initialized as not visible. */
   private void setPopups() {
     visiblePopups = new ArrayList<>();
     popUpBackGround.setVisible(false);
@@ -178,25 +170,21 @@ public class LeftRoomController extends Commander {
         });
   }
 
-  /**
-   * Generates the last digits of the year for locker puzzle.
-   */
+  /** Generates the last digits of the year for locker puzzle. */
   private void generateYear() {
     // Unbind lastDigits from lastNumbers.
     lastDigits.textProperty().unbind();
     lastDigits.textProperty().bind(Bindings.convert(GameState.lastNumbers));
   }
 
-  /**
-   * Updates the font of digits for locker.
-   */
+  /** Updates the font of digits for locker. */
   private void updateDigitFont() {
     lastDigits.setStyle("-fx-font-size: 60px;");
   }
 
   /**
    * Handles the event of user clicking on objects in room.
-   * 
+   *
    * @param event The mouse event.
    * @throws Exception If the event cannot be handled.
    */

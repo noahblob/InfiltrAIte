@@ -35,7 +35,7 @@ public class KeyPadController extends Commander {
   /**
    * Initializes the keypad view, it is called when the keypad loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
     super.initialize();
@@ -47,7 +47,7 @@ public class KeyPadController extends Commander {
    * Handles the click event for the keypad buttons.
    *
    * @param event the mouse event
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   @FXML
   public void onClick(MouseEvent event) throws Exception {

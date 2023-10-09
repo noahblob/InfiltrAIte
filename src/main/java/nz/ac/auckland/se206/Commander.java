@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.gpt.ChatMessage;
 
-/** Abstract class representing the commander */
+/** Abstract class representing the commander. */
 public abstract class Commander {
 
   // Relevant FXML elements accessed across all scenes by commander
@@ -172,7 +172,7 @@ public abstract class Commander {
 
   /** If easy difficulty is selected, set hint number to infinite. */
   private void setInfiniteHints() {
-    hints.setText("\u221E");
+    hints.setText("∞");
   }
 
   /** If medium difficulty is selected, bind number of hints to current numhints in gamestate. */

@@ -27,7 +27,7 @@ public class BookController extends Commander {
   private static BookController instance;
 
   /**
-   * Stores and returns the current instance of BookController
+   * Stores and returns the current instance of BookController.
    *
    * @return the current instance of BookController
    */
@@ -218,11 +218,7 @@ public class BookController extends Commander {
     }
   }
 
-  /**
-   * Handles the return from popup of books.
-   *
-   * @param click
-   */
+  /** Handles the return from popup of books. */
   @FXML
   private void onGoBackShelf() {
     Sound.getInstance().playClickMinor();
@@ -243,10 +239,11 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the clicking of book type
+   * Handles the clicking of book type, sets up which book has been clicked and then shows this
+   * book.
    *
    * @param click the mouse event
-   * @throws Exception
+   * @throws Exception if the sound file cannot be found
    */
   @FXML
   public void checkBook(MouseEvent click) throws Exception {
@@ -285,7 +282,7 @@ public class BookController extends Commander {
   }
 
   /**
-   * Handles the un-hovering of rectangles
+   * Handles the un-hovering of rectangles.
    *
    * @param event the mouse
    */

@@ -22,6 +22,7 @@ import nz.ac.auckland.se206.gpt.openai.ChatCompletionRequest;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult;
 import nz.ac.auckland.se206.gpt.openai.ChatCompletionResult.Choice;
 
+/** Controller for the computer puzzle. */
 public class ComputerController extends Commander {
 
   public static ComputerController instance;
@@ -46,9 +47,7 @@ public class ComputerController extends Commander {
     instance = this;
   }
 
-  /**
-   * Initializes the computer view, it is called when the computer loads.
-   */
+  /** Initializes the computer view, it is called when the computer loads. */
   public void initialize() throws Exception {
     super.initialize();
     objective.setText("I wonder what could be on the computer...");
@@ -75,7 +74,6 @@ public class ComputerController extends Commander {
    * Runs the GPT model with a given chat message.
    *
    * @param msg the chat message to process
-   * @return the response chat message
    * @throws ApiProxyException if there is an error communicating with the API proxy
    */
   public void runGpt(ChatMessage msg) throws ApiProxyException {
@@ -115,7 +113,7 @@ public class ComputerController extends Commander {
    * Handles the event of user pressing the either button on the computer screen.
    *
    * @param event the mouse event
-   * @throws Exception
+   * @throws Exception if there is an error communicating with the API proxy
    */
   @FXML
   private void onClick(MouseEvent event) throws Exception {
