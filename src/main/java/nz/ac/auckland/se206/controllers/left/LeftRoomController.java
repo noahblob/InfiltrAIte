@@ -65,7 +65,7 @@ public class LeftRoomController extends Commander {
    * @throws Exception
    */
   public void initialize() throws Exception {
-
+    // Initialize the commander and set up all relevant items in the room
     super.initialize();
     objective.setText("I wonder where the enemy would hide their intelligence...");
     createRoom();

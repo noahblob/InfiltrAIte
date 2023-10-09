@@ -87,7 +87,9 @@ public class TextToSpeech {
         new Task<Void>() {
           @Override
           protected Void call() {
+            // Separate thread to run the speak method on so that it doesn't block the UI thread
             boolean isFirst = true;
+            // Speak all sentences passed in to speak method
             for (final String sentence : sentences) {
               if (isFirst) {
                 isFirst = false;

@@ -44,7 +44,7 @@ public abstract class Commander {
    */
   @FXML
   protected void initialize() throws Exception {
-
+    // Add timer to this scene and setup all relevant elements that are universal to every room
     TimerClass.getInstance().addTimer(timer);
     updateCommander();
     setUpUi();
@@ -57,7 +57,7 @@ public abstract class Commander {
             Bindings.when(GameState.isMuted)
                 .then(new Image("/images/icons8-mute-100-red.png"))
                 .otherwise(new Image("/images/icons8-volume-100-green.png")));
-
+    // If player clicks the mute button, toggle mute value and mute TTS
     soundButton.setOnMouseClicked(
         event -> {
           boolean current = GameState.isMuted.get();
@@ -124,9 +124,12 @@ public abstract class Commander {
   }
 
   private void setHintsBasedOnDifficulty() {
+    // If game difficulty is easy, user gets infinite hints, medium, user is given 5 hints and hard,
+    // user is given no hints
     int difficulty = GameState.difficulty.get();
     switch (difficulty) {
       case 1:
+        // refactor into helper methods to set number of hints
         setInfiniteHints();
         break;
       case 2:

@@ -44,6 +44,8 @@ public class TimeController {
     back.setOnAction(event -> navigateBack());
   }
 
+  // Bind the difficulty label to the difficulty property so once user has chosen difficulty, it
+  // will show on watch when user selects time
   private void bindDifficulty() {
     diff.textProperty()
         .bind(
@@ -57,12 +59,15 @@ public class TimeController {
   }
 
   private void adjustGameTime(int delta) {
+    // Trigger the sound for clicking increase/decrease button and update time
     Sound.getInstance().playClickMinor();
     gameTime += delta;
 
     boolean shouldDisableIncrease = false;
     boolean shouldDisableDecrease = false;
 
+    // Set limits on the time user can select, so button disables if they try to go above 6 mins, or
+    // below 2 mins
     if (gameTime >= MAX_GAME_TIME) {
       gameTime = MAX_GAME_TIME;
       shouldDisableIncrease = true;
@@ -71,6 +76,7 @@ public class TimeController {
       shouldDisableDecrease = true;
     }
 
+    // Check logic changes if button is disabled/enabled and set it to that state
     setButtonState(increase, shouldDisableIncrease);
     setButtonState(decrease, shouldDisableDecrease);
 

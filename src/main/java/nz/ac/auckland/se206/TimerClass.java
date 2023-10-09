@@ -87,11 +87,13 @@ public class TimerClass {
   }
 
   private void decreaseTimer() throws IOException {
+    // Decrement the timer and set the text of label to the new value.
     timeLeft--;
     for (Text timer : timers) {
       String time = getTimeLeft();
       timer.setText(String.valueOf(time));
     }
+    // Warn the player if their time is running out.
     warn();
     checkLost();
   }
