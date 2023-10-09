@@ -9,13 +9,13 @@ import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.collections.ListChangeListener;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.ChatCell;
 import nz.ac.auckland.se206.GameState;
@@ -301,7 +301,7 @@ public class CommanderController {
     ChatMessage msg = new ChatMessage("user", message);
     appendChatMessage(msg);
 
-    ChatMessage transmittingMsg = new ChatMessage("commander", "Transmitting...");
+    ChatMessage transmittingMsg = new ChatMessage("commander", "TRANSMITTING...");
     appendChatMessage(transmittingMsg);
     // Play transmitting sound effect.
     Sound.getInstance().transmitSound();
@@ -367,41 +367,6 @@ public class CommanderController {
   public void addListView(ListView<ChatMessage> textArea) {
     textArea.setCellFactory(param -> new ChatCell());
     phoneScreens.add(textArea);
-
-    // Ensure the scrollbar is at the bottom initially.
-    scrollToBottom(textArea);
-
-    // Add a change listener to keep the scrollbar at the bottom when new items are added.
-    textArea
-        .getItems()
-        .addListener(
-            (ListChangeListener<ChatMessage>)
-                c -> {
-                  if (scroll) {
-                    return;
-                  }
-                  while (c.next()) {
-                    if (c.wasAdded()) {
-                      scrollToBottom(textArea);
-                    }
-                  }
-                });
-  }
-
-  /**
-   * Method to scroll to the bottom of the phone screen.
-   *
-   * @param textArea the text area to scroll to the bottom of
-   */
-  private void scrollToBottom(ListView<ChatMessage> textArea) {
-    scroll = true;
-    // Add a non-visible empty item and scroll to it.
-    textArea.getItems().add(new ChatMessage("", ""));
-    textArea.scrollTo(textArea.getItems().size() - 1);
-
-    // Then remove the added empty item.
-    textArea.getItems().remove(textArea.getItems().size() - 1);
-    scroll = false;
   }
 
   /**
@@ -561,11 +526,26 @@ public class CommanderController {
     displayStartHint();
   }
 
-  /** Clears the phone screen of all previous messages. */
+  /** Creates new ListView for the phone. */
   public void clearPhones() {
-    for (ListView<ChatMessage> phonescreen : phoneScreens) {
-      // Get all the cells and clear the phone.
-      phonescreen.getItems().clear();
+    for (int i = 0; i < phoneScreens.size(); i++) {
+      ListView<ChatMessage> oldPhoneScreen = phoneScreens.get(i);
+
+      ListView<ChatMessage> newPhoneScreen = new ListView<>();
+      newPhoneScreen.setCellFactory(list -> new ChatCell());
+
+      // Copy properties
+      newPhoneScreen.setLayoutX(oldPhoneScreen.getLayoutX());
+      newPhoneScreen.setLayoutY(oldPhoneScreen.getLayoutY());
+      newPhoneScreen.setPrefSize(oldPhoneScreen.getPrefWidth(), oldPhoneScreen.getPrefHeight());
+
+      newPhoneScreen.getStyleClass().addAll(oldPhoneScreen.getStyleClass());
+
+      phoneScreens.set(i, newPhoneScreen);
+
+      Pane pane = (Pane) oldPhoneScreen.getParent();
+      int index = pane.getChildren().indexOf(oldPhoneScreen);
+      pane.getChildren().set(index, newPhoneScreen);
     }
   }
 
