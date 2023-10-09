@@ -4,7 +4,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import nz.ac.auckland.se206.Dialogue;
@@ -15,7 +14,6 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 
 public class EscapeController extends TextRollout {
 
-  @FXML private TextArea dialogue;
   @FXML private Button exit;
   @FXML private Button playAgain;
   @FXML private Pane winPane;
@@ -30,6 +28,7 @@ public class EscapeController extends TextRollout {
   @FXML
   private void onClick(MouseEvent event) throws Exception {
     Sound.getInstance().playClickMajor();
+    Sound.getInstance().stopRollout();
     // Get the button that was clicked to check against some conditionals
     Button button = (Button) event.getSource();
     if (button == playAgain) {
