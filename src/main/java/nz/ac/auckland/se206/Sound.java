@@ -107,7 +107,9 @@ public class Sound {
   }
 
   public void playRadio() {
-    playRadioSegment(radio);
+    if (!GameState.isMuted.get()) {
+      playRadioSegment(radio);
+    }
   }
 
   public void stopRadio() {
