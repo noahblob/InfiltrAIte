@@ -1,9 +1,9 @@
 package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Queue;
+import java.util.Map;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -39,7 +39,7 @@ public class CommanderController {
   }
 
   // Instance fields
-  private final Queue<String> messageQueue;
+  private Map<TextArea, Timeline> textAreaTimelines;
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> inputAreas;
@@ -48,13 +48,12 @@ public class CommanderController {
   private StringProperty notesProperty;
   private StringProperty lastInputTextProperty;
   private boolean scroll = false;
-  private boolean isRolling = false;
 
   private CommanderController() throws Exception {
+    textAreaTimelines = new HashMap<>();
     inputAreas = new ArrayList<>();
     notes = new ArrayList<>();
     notesProperty = new SimpleStringProperty("");
-    messageQueue = new LinkedList<>();
     lastInputTextProperty = new SimpleStringProperty("");
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
@@ -235,7 +234,7 @@ public class CommanderController {
         e -> {
           ChatMessage gptResponse = task.getValue();
           if (gptResponse != null) {
-
+            Sound.getInstance().stopTransmit();
             // Check if the response contains keywords determining if its a hint (Medium only).
             if (GameState.difficulty.get() == 2
                 && gptResponse.getContent().contains("I-OPS suggests")) {
@@ -271,6 +270,7 @@ public class CommanderController {
         });
     task.setOnFailed(
         e -> {
+          Sound.getInstance().stopTransmit();
           System.out.println("API KEY MISSING");
         });
     new Thread(task).start();
@@ -353,66 +353,61 @@ public class CommanderController {
     notes.add(notepad);
   }
 
-  // Method to update commander's dialogue.
   public void updateDialogueBox(String textToRollOut) {
-    messageQueue.offer(textToRollOut);
-    if (!isRolling) {
-      dequeueAndRoll();
+    stopAllTimelinesAndClearText();
+    for (TextArea dialogue : dialogues) {
+      textRollout(textToRollOut, dialogue);
     }
   }
 
-  private void dequeueAndRoll() {
-    if (isRolling) {
-      return;
-    }
-    if (messageQueue.isEmpty() || messageQueue.size() > 1) {
-      messageQueue.clear();
-      return;
-    }
-    String nextMessage = messageQueue.poll();
-    isRolling = true;
-
+  private void stopAllTimelinesAndClearText() {
+    // Stop all existing timelines and clear the text areas
     for (TextArea dialogue : dialogues) {
-      textRollout(nextMessage, dialogue);
+      Timeline existingTimeline = textAreaTimelines.get(dialogue);
+      if (existingTimeline != null) {
+        existingTimeline.stop();
+      }
+      dialogue.clear();
     }
   }
 
   public void textRollout(String message, TextArea dialogue) {
+    // Stop any existing timeline for this TextArea and clear it
+    Timeline existingTimeline = textAreaTimelines.get(dialogue);
+    if (existingTimeline != null) {
+      existingTimeline.stop();
+    }
+    dialogue.clear();
 
+    // Create a new timeline and associate it with this TextArea
+    Timeline newTimeline = new Timeline();
+    textAreaTimelines.put(dialogue, newTimeline);
+
+    // Initialize variables
     char[] chars = message.toCharArray();
-    Timeline timeline = new Timeline();
     Duration timepoint = Duration.ZERO;
 
+    // Roll out the text
     for (char ch : chars) {
-      // Play sound effect for the text rollout.
       if (!GameState.isMuted.get()) {
         Sound.getInstance().playTextRollout();
       }
       timepoint = timepoint.add(Duration.millis(20));
-      final char finalChar = ch;
-      KeyFrame keyFrame =
-          new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
-      timeline.getKeyFrames().add(keyFrame);
+      KeyFrame keyFrame = new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(ch)));
+      newTimeline.getKeyFrames().add(keyFrame);
     }
 
-    // Stop the sound at the same time the last character appears.
+    // Stop the sound when rollout completes
     KeyFrame stopSoundKeyFrame = new KeyFrame(timepoint, e -> Sound.getInstance().stopRollout());
-    timeline.getKeyFrames().add(stopSoundKeyFrame);
+    newTimeline.getKeyFrames().add(stopSoundKeyFrame);
 
+    // Clear the TextArea after a pause
     KeyFrame clearKeyFrame =
-        new KeyFrame(
-            timepoint.add(Duration.millis(1500)),
-            e -> {
-              if (dialogue != null) {
-                dialogue.clear();
-              }
-              isRolling = false;
-              dequeueAndRoll(); // Check if there is another message in the queue
-            });
+        new KeyFrame(timepoint.add(Duration.millis(1500)), e -> dialogue.clear());
+    newTimeline.getKeyFrames().add(clearKeyFrame);
 
-    timeline.getKeyFrames().add(clearKeyFrame);
-
-    timeline.play();
+    // Play the timeline
+    newTimeline.play();
   }
 
   public void setUpCommander() {
