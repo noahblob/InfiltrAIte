@@ -37,7 +37,7 @@ public class DrawerController extends Commander {
   /**
    * Initializes the room view, it is called when the room loads.
    *
-   * @throws Exception
+   * @throws Exception if there is an error loading the chat view
    */
   public void initialize() throws Exception {
 
@@ -116,9 +116,9 @@ public class DrawerController extends Commander {
 
   /**
    * Handles the click event for different drawers.
-   * 
-   * @param event
-   * @throws Exception
+   *
+   * @param event the mouse event
+   * @throws Exception if there is an error loading the chat view
    */
   @FXML
   public void onClick(MouseEvent event) throws Exception {

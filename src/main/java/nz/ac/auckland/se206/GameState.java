@@ -50,7 +50,7 @@ public class GameState {
   /** Indicates the difficulty level of the game, 1 for EASY, 2 for MEDIUM and 3 for HARD. */
   public static IntegerProperty difficulty = new SimpleIntegerProperty();
 
-  /** Indicates amount of intelligence gathered */
+  /** Indicates amount of intelligence gathered. */
   public static SimpleIntegerProperty numOfIntel = new SimpleIntegerProperty(0);
 
   /** Indeicates the number of hints allowed. */
@@ -131,7 +131,7 @@ public class GameState {
     return riddle;
   }
 
-  /** Method to create random slider combination for the current game */
+  /** Method to create random slider combination for the current game. */
   public static char[] setSliders() {
     // Create an array of chars to hold the slider answer
     char[] answer = new char[6];
@@ -245,7 +245,7 @@ public class GameState {
 
   /**
    * Reset main room and all states related.
-   * 
+   *
    * @throws ApiProxyException if the reset fails
    */
   private static void resetMainRoom() throws ApiProxyException {
@@ -259,16 +259,12 @@ public class GameState {
     MainRoomController.getInstance().resetRoom();
   }
 
-  /**
-   * Reset left room and all states related.
-   */
+  /** Reset left room and all states related. */
   private static void resetLeftRoom() {
     RadioController.getInstance().setSliders();
   }
 
-  /**
-   * Reset right room and all states related.
-   */
+  /** Reset right room and all states related. */
   private static void resetRightRoom() {
     // Reset BlackBoard Numbers
     BlackBoardController.getInstance().refreshBoard();

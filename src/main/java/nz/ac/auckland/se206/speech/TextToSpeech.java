@@ -21,7 +21,7 @@ public class TextToSpeech {
 
   /**
    * Gets the singleton instance of the TextToSpeech class.
-   * 
+   *
    * @return The singleton instance of the TextToSpeech class.
    */
   public static TextToSpeech getInstance() {
@@ -73,9 +73,7 @@ public class TextToSpeech {
     }
   }
 
-  /**
-   * Toggles mute status to opposite of current state.
-   */
+  /** Toggles mute status to opposite of current state. */
   public void toggleMute() {
     isMuted = !isMuted;
   }

@@ -53,18 +53,13 @@ public class EscapeController extends TextRollout {
     }
   }
 
-  /**
-   * Plays a sound upon hovering over the buttons on screen.
-   */
+  /** Plays a sound upon hovering over the buttons on screen. */
   @FXML
   private void onHover() {
     Sound.getInstance().playClickMinor();
   }
 
-
-  /**
-   * Set the win screen to be visible if the user has won.
-   */
+  /** Set the win screen to be visible if the user has won. */
   private void setWinScreen() {
     // If the user has won, set the win screen based on how much intel the user has found
     GameState.isEndScreen.addListener(
@@ -80,8 +75,9 @@ public class EscapeController extends TextRollout {
         });
   }
 
-  /** 
+  /**
    * Set the lose screen to be visible if the user has lost.
+   *
    * @param flag true if the user has lost, false otherwise
    */
   private void lose(boolean flag) {
@@ -89,9 +85,7 @@ public class EscapeController extends TextRollout {
     losePane.setVisible(flag);
   }
 
-  /**
-   * Displays the dialogue for the end screen.
-   */
+  /** Displays the dialogue for the end screen. */
   private void showDialogue() {
     dialogue.clear();
     // change commander dialogue based on number of intel user has found

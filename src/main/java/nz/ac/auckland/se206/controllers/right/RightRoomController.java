@@ -18,6 +18,7 @@ import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 /** Controller class for the room view. */
 public class RightRoomController extends Commander {
 
+  /** Enum for the answer to puzzles. */
   public enum NumberGroup {
     ANS1,
     ANS2,
@@ -85,7 +86,7 @@ public class RightRoomController extends Commander {
   /**
    * Shows the blackboard this is connected to the answer for the keypad.
    *
-   * @param event
+   * @param event the mouse event
    */
   @FXML
   public void clickBlackBoard(MouseEvent event) throws IOException {

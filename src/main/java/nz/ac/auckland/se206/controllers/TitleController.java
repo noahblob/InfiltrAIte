@@ -27,7 +27,7 @@ public class TitleController {
   @FXML private ImageView zubrowka;
 
   private final Map<String, String> countryImageMap = new HashMap<>();
-  private String infinity = "\u221E";
+  private String infinity = "∞";
 
   /** Initialise the controller by setting fonts, countries and map image. */
   public void initialize() {

@@ -119,7 +119,7 @@ public class LockerController extends Commander {
   }
 
   /**
-   * Handles the increase event.
+   * Handles when the increase arrow is pressed on the locker.
    *
    * @param event the mouse event
    */

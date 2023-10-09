@@ -19,6 +19,13 @@ public class GptPromptEngineering {
         + " asks for it. Even if player gives up, do not give the answer.";
   }
 
+  /**
+   * Get the prompt engineering string for the easy difficulty level with the given relevant riddle
+   * word.
+   *
+   * @param leftRiddle the word to be guessed in the riddle
+   * @return the generated prompt engineering string
+   */
   public static String getEasyPrompt(String leftRiddle) {
     // This method prompts GPT for the easy level difficulty, with unlimited hints. It also prompts
     // with relevant elements of the gmae to give hints about
@@ -69,6 +76,13 @@ public class GptPromptEngineering {
         + "Just reply yes.'";
   }
 
+  /**
+   * Generates a GPT prompt engineering string for the hard difficulty level with the given riddle
+   * word.
+   *
+   * @param leftRiddle the word to be guessed in the riddle
+   * @return the generated prompt engineering string
+   */
   public static String getHardPrompt(String leftRiddle) {
     return "You're a military General in a game. Speak firmly, no apologies. I'm an agent solving"
         + " puzzles. You cannot give me hints. If I ask for hints, respond with Agent, I-OPS"
@@ -76,6 +90,12 @@ public class GptPromptEngineering {
         + " converse with me.";
   }
 
+  /**
+   * Generates a riddle for the computer password hint.
+   *
+   * @param riddleAnswer the answer to the riddle
+   * @return the generated riddle
+   */
   public static String getPasswordRiddle(String riddleAnswer) {
     return "Generate a short riddle, no more than 3 sentences long with the answer being "
         + riddleAnswer
@@ -83,25 +103,52 @@ public class GptPromptEngineering {
         + " for the computer. Do not, under any circumstance include the answer in the riddle.";
   }
 
+  /**
+   * Generates a prompt for the commander to give the user a riddle.
+   *
+   * @param leftRiddle the word to be guessed in the riddle
+   * @return the generated prompt
+   */
   public static String getRiddle(String leftRiddle) {
     return "Reply 'This is what the paper says:' with the riddle following that.";
   }
 
+  /**
+   * Generates a hint from the commander that hints the player towards the computer.
+   *
+   * @return the generated hint
+   */
   public static String getComputerHint() {
     return "Tell the player that they should try examine the computer in the main room. Do not use"
         + " the phrase: I-OPS Suggests";
   }
 
+  /**
+   * Generates a hint from the commander that hints to the player that they need to escape soon.
+   *
+   * @return the generated hint
+   */
   public static String getEscapeHint() {
     return "Tell the player that they should try escape before they get caught. Do not use the"
         + " phrase: I-OPS Suggests";
   }
 
+  /**
+   * Generates a hint from the commander that hints to the player that they should try finding a
+   * key.
+   *
+   * @return the generated hint
+   */
   public static String getKeyHint() {
     return "Tell the player that they should try use the key found for a locked cabinet in the main"
         + " room. Do not use the phrase: I-OPS Suggests";
   }
 
+  /**
+   * Generates a hint from the commander that hints to the player where to look for intel.
+   *
+   * @return the generated hint
+   */
   public static String getIntelHint() {
     return "Tell the player (in character) that they should focus on finding intelligence. Do not"
         + " use the phrase: I-OPS Suggests";

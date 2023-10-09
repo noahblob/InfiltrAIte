@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 /** Class to manage the scenes in the application. */
 public class SceneManager {
 
+  /** Enum to store all relevant Ui elements in application. */
   public enum AppUi {
     UI,
     START,
