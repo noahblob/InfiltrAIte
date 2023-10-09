@@ -2,10 +2,8 @@ package nz.ac.auckland.se206.controllers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
@@ -42,7 +40,6 @@ public class CommanderController {
 
   // Instance fields
   private Map<TextArea, Timeline> textAreaTimelines;
-  private final Queue<String> messageQueue;
   private ChatCompletionRequest messages;
   private List<ListView<ChatMessage>> phoneScreens;
   private List<TextArea> inputAreas;
@@ -51,19 +48,15 @@ public class CommanderController {
   private StringProperty notesProperty;
   private StringProperty lastInputTextProperty;
   private boolean scroll = false;
-  private boolean isRolling = false;
-  private Timeline timeline;
 
   private CommanderController() throws Exception {
     textAreaTimelines = new HashMap<>();
     inputAreas = new ArrayList<>();
     notes = new ArrayList<>();
     notesProperty = new SimpleStringProperty("");
-    messageQueue = new LinkedList<>();
     lastInputTextProperty = new SimpleStringProperty("");
     phoneScreens = new ArrayList<>();
     dialogues = new ArrayList<>();
-    timeline = new Timeline();
     // Set Up the commander (can recall this when restarting the game)
     setUpCommander();
   }
@@ -361,19 +354,13 @@ public class CommanderController {
   }
 
   public void updateDialogueBox(String textToRollOut) {
-    // Clear the previous queue and add the new message
-    messageQueue.clear();
-    messageQueue.offer(textToRollOut);
-    dequeueAndRoll();
+    stopAllTimelinesAndClearText();
+    for (TextArea dialogue : dialogues) {
+      textRollout(textToRollOut, dialogue);
+    }
   }
 
-  private void dequeueAndRoll() {
-    if (messageQueue.isEmpty()) {
-      return;
-    }
-
-    String nextMessage = messageQueue.poll();
-
+  private void stopAllTimelinesAndClearText() {
     // Stop all existing timelines and clear the text areas
     for (TextArea dialogue : dialogues) {
       Timeline existingTimeline = textAreaTimelines.get(dialogue);
@@ -382,45 +369,44 @@ public class CommanderController {
       }
       dialogue.clear();
     }
-
-    // Start the new rollout
-    for (TextArea dialogue : dialogues) {
-      textRollout(nextMessage, dialogue);
-    }
   }
 
   public void textRollout(String message, TextArea dialogue) {
+    // Stop any existing timeline for this TextArea and clear it
+    Timeline existingTimeline = textAreaTimelines.get(dialogue);
+    if (existingTimeline != null) {
+      existingTimeline.stop();
+    }
+    dialogue.clear();
 
+    // Create a new timeline and associate it with this TextArea
     Timeline newTimeline = new Timeline();
     textAreaTimelines.put(dialogue, newTimeline);
 
+    // Initialize variables
     char[] chars = message.toCharArray();
     Duration timepoint = Duration.ZERO;
 
+    // Roll out the text
     for (char ch : chars) {
       if (!GameState.isMuted.get()) {
         Sound.getInstance().playTextRollout();
       }
       timepoint = timepoint.add(Duration.millis(20));
-      final char finalChar = ch;
-      KeyFrame keyFrame =
-          new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(finalChar)));
+      KeyFrame keyFrame = new KeyFrame(timepoint, e -> dialogue.appendText(String.valueOf(ch)));
       newTimeline.getKeyFrames().add(keyFrame);
     }
 
+    // Stop the sound when rollout completes
     KeyFrame stopSoundKeyFrame = new KeyFrame(timepoint, e -> Sound.getInstance().stopRollout());
     newTimeline.getKeyFrames().add(stopSoundKeyFrame);
 
+    // Clear the TextArea after a pause
     KeyFrame clearKeyFrame =
-        new KeyFrame(
-            timepoint.add(Duration.millis(1500)),
-            e -> {
-              dialogue.clear();
-              isRolling = false;
-              dequeueAndRoll();
-            });
+        new KeyFrame(timepoint.add(Duration.millis(1500)), e -> dialogue.clear());
     newTimeline.getKeyFrames().add(clearKeyFrame);
 
+    // Play the timeline
     newTimeline.play();
   }
 
