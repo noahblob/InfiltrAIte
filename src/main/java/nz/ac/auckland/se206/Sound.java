@@ -1,7 +1,10 @@
 package nz.ac.auckland.se206;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -29,18 +32,28 @@ public class Sound {
   private Media hoverOver;
   private Media textRollout;
   private Media phoneSound;
+  private Media radioSound;
+  private Media eggSound;
+  private Media eggTwoSound;
+  private Media completed;
   private MediaPlayer clickMajor;
   private MediaPlayer clickMinor;
   private MediaPlayer hover;
   private MediaPlayer rollout;
   private MediaPlayer phone;
-  private List<MediaPlayer> currentlyPlaying;
+  private MediaPlayer radio;
+  private MediaPlayer eggPlayerOne;
+  private MediaPlayer eggPlayerTwo;
+  private MediaPlayer buzz;
+
+  private Set<MediaPlayer> currentlyPlaying;
   private TextToSpeech tts;
+  private Random random;
 
   /** Constructor for sound class. */
   private Sound() {
 
-    currentlyPlaying = new ArrayList<>();
+    currentlyPlaying = new HashSet<>();
     tts = TextToSpeech.getInstance();
 
     String clickMajorPath = getClass().getResource("/sounds/clickMenu.mp3").toString();
@@ -48,18 +61,32 @@ public class Sound {
     String hoverPath = getClass().getResource("/sounds/hover.mp3").toString();
     String rollPath = getClass().getResource("/sounds/scroll.mp3").toString();
     String notePath = getClass().getResource("/sounds/phone.mp3").toString();
+    String radioPath = getClass().getResource("/sounds/radio.mp3").toString();
+    String eggOnePath = getClass().getResource("/sounds/egg1.mp3").toString();
+    String eggTwoPath = getClass().getResource("/sounds/egg2.mp3").toString();
+    String completedPath = getClass().getResource("/sounds/completed.mp3").toString();
 
     clickMajorSound = new Media(clickMajorPath);
     clickMinorSound = new Media(clickMinorPath);
     hoverOver = new Media(hoverPath);
     textRollout = new Media(rollPath);
     phoneSound = new Media(notePath);
+    radioSound = new Media(radioPath);
+    eggSound = new Media(eggOnePath);
+    eggTwoSound = new Media(eggTwoPath);
+    completed = new Media(completedPath);
 
     clickMajor = new MediaPlayer(clickMajorSound);
     clickMinor = new MediaPlayer(clickMinorSound);
     hover = new MediaPlayer(hoverOver);
     rollout = new MediaPlayer(textRollout);
     phone = new MediaPlayer(phoneSound);
+    radio = new MediaPlayer(radioSound);
+    eggPlayerOne = new MediaPlayer(eggSound);
+    eggPlayerTwo = new MediaPlayer(eggTwoSound);
+    buzz = new MediaPlayer(completed);
+
+    random = new Random();
 
     bindToMute();
   }
@@ -79,14 +106,45 @@ public class Sound {
     playSound(hover);
   }
 
+  public void playRadio() {
+    playRadioSegment(radio);
+  }
+
+  public void stopRadio() {
+    radio.stop();
+  }
+
   /** Plays sound for text rollout. */
   public void playTextRollout() {
     playOnLoop(rollout);
   }
 
+  public void stopBuzz() {
+    buzz.stop();
+  }
+
   /** Stops playing sound for text rollout. */
   public void stopRollout() {
     stopSound(rollout);
+  }
+
+  public void stopAllSound() {
+    for (MediaPlayer player : currentlyPlaying) {
+      player.stop();
+    }
+    currentlyPlaying.clear();
+  }
+
+  public void playCompleted() {
+    playSound(buzz);
+  }
+
+  public void playSoundOne() {
+    playSound(eggPlayerOne);
+  }
+
+  public void playSoundTwo() {
+    playSound(eggPlayerTwo);
   }
 
   /** Plays sound for phone when message is received from commander. */
@@ -114,9 +172,7 @@ public class Sound {
     GameState.isMuted.addListener(
         (observable, oldValue, newValue) -> {
           if (newValue) {
-            for (MediaPlayer player : currentlyPlaying) {
-              player.stop();
-            }
+            stopAllSound();
             currentlyPlaying.clear();
             tts.toggleMute(); // Toggle mute for tts based on the new value
           } else {
@@ -141,12 +197,29 @@ public class Sound {
     }
   }
 
+  private void playRadioSegment(MediaPlayer player) {
+    // Stop any currently running timelines and media player instances
+    if (currentlyPlaying.contains(player)) {
+      player.stop();
+    }
+
+    // Start playing from a new random point
+    int point = random.nextInt(100);
+    player.seek(Duration.seconds(point));
+    player.play();
+
+    // Set a new timeline to stop the player after 2 seconds
+    Timeline timeline = new Timeline(new KeyFrame(Duration.millis(10000), ae -> player.stop()));
+    timeline.play();
+  }
+
   /**
    * Plays sound on loop if game is not muted.
    *
    * @param player The media player to play
    */
   private void playOnLoop(MediaPlayer player) {
+    currentlyPlaying.add(player);
     player.stop();
     player.seek(Duration.ZERO);
     player.setCycleCount(MediaPlayer.INDEFINITE);

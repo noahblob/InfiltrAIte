@@ -144,6 +144,7 @@ public class GameState {
       answer[i] = symbols[index];
     }
     sliderAnswer = answer;
+    System.out.println(sliderAnswer);
     return sliderAnswer;
   }
 
