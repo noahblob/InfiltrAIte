@@ -227,7 +227,7 @@ public class GameState {
     // Update the new Commander controller with the list of dialogues and phonescreens.
     CommanderController.getInstance().setDialogues(dialogues);
     CommanderController.getInstance().setPhoneScreens(phoneScreens);
-    CommanderController.getInstance().setDialogues(inputAreas);
+    CommanderController.getInstance().setInputAreas(inputAreas);
     CommanderController.getInstance().displayStartHint();
   }
 

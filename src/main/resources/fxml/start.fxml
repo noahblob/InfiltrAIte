@@ -35,7 +35,7 @@
             <Image url="@../images/commander.png" />
          </image>
       </ImageView>
-      <TextArea fx:id="dialogue" editable="false" layoutX="284.0" layoutY="246.0" prefHeight="268.0" prefWidth="702.0" promptText="TESTING" styleClass="timeTitle" stylesheets="@../css/styles.css" wrapText="true">
+      <TextArea fx:id="dialogue" editable="false" layoutX="284.0" layoutY="246.0" prefHeight="268.0" prefWidth="702.0" styleClass="timeTitle" stylesheets="@../css/styles.css" wrapText="true">
          <font>
             <Font name="Calibri" size="14.0" />
          </font>
