@@ -190,5 +190,6 @@ public abstract class Commander {
     CommanderController.getInstance().addListView(output);
     CommanderController.getInstance().addDialogueBox(dialogue);
     CommanderController.getInstance().addNotes(notes);
+    CommanderController.getInstance().addInputArea(input);
   }
 }
