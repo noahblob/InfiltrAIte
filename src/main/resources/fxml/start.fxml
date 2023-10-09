@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.StartController">
    <children>
       <Button id="accept" fx:id="accept" layoutX="209.0" layoutY="654.0" mnemonicParsing="false" onMouseClicked="#onClick" onMouseEntered="#onHover" prefHeight="46.0" prefWidth="150.0" styleClass="accept" stylesheets="@../css/styles.css" text="ACCEPT">
          <font>

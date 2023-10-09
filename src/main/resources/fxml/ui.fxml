@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
    prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;"
-   xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1"
+   xmlns="http://javafx.com/javafx/" xmlns:fx="http://javafx.com/fxml/1"
    fx:controller="nz.ac.auckland.se206.controllers.main.MainRoomController">
    <children>
       <TextArea editable="false" layoutX="540.0" layoutY="538.0" prefHeight="58.0" prefWidth="254.0"
