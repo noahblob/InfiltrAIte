@@ -9,7 +9,7 @@ import javafx.util.Duration;
 /** Class that handles text rollout animation */
 public abstract class TextRollout {
 
-  @FXML private TextArea dialogue;
+  @FXML protected TextArea dialogue;
 
   /**
    * Method to generate text rollout animation

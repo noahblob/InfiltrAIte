@@ -72,6 +72,7 @@ public class LeftRoomController extends Commander {
     setPopups();
     setHoverEvents();
     generateYear();
+    updateDigitFont();
   }
 
   private void clickDoor() {
@@ -156,6 +157,10 @@ public class LeftRoomController extends Commander {
     lastDigits.textProperty().bind(Bindings.convert(GameState.lastNumbers));
   }
 
+  private void updateDigitFont() {
+    lastDigits.setStyle("-fx-font-size: 60px;");
+  }
+
   @FXML
   public void onClick(MouseEvent event) throws Exception {
 
@@ -200,7 +205,7 @@ public class LeftRoomController extends Commander {
         break;
       case HANGER:
         // If the key is not yet found, give player a key.
-        if (!GameState.isKeyUsed.get()) {
+        if (!GameState.isKeyUsed.get() && !GameState.isKeyFound.get()) {
           // Find the key to main room drawer.
           GameState.isKeyFound.set(true);
           updateDialogue(Dialogue.KEYFOUND);

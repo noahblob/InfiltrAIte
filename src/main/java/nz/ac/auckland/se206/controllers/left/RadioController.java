@@ -178,8 +178,7 @@ public class RadioController extends Commander {
   private void checkSlidersSolved() throws Exception {
     if (Arrays.equals(code, GameState.sliderAnswer) && !isSliderSolved) {
       isSliderSolved = true;
-      // Update game state and show sine wave.
-      GameState.isSlidersSolved = true;
+      // Show sine wave.
       Sound.getInstance().playClickMajor();
       sineWave.setVisible(true);
       // Update the image of the radio.
@@ -215,7 +214,8 @@ public class RadioController extends Commander {
     Scene currentScene = intel.getScene();
 
     Sound.getInstance().playClickMinor();
-
+    // Update the game state to solved.
+    GameState.isSlidersSolved = true;
     // Set the intelligence to invisible
     intelligence.setVisible(false);
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));

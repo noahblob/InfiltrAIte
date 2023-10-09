@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -15,109 +16,119 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.main.ComputerController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="nz.ac.auckland.se206.controllers.main.ComputerController">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/UI.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="460.0" fitWidth="460.0" layoutX="9.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/start.png" />
-         </image>
-      </ImageView>
-      <Text fx:id="timer" fill="#909090" layoutX="387.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="81.3333740234375">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Text>
-      <TextArea fx:id="dialogue" layoutX="64.0" layoutY="539.0" prefHeight="57.0" prefWidth="349.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
-         <font>
-            <Font name="Courier New" size="12.0" />
-         </font>
-         <effect>
-            <Bloom />
-         </effect>
-      </TextArea>
-      <TextArea fx:id="notes" layoutX="478.0" layoutY="302.0" prefHeight="233.0" prefWidth="316.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css" />
-      <ImageView fx:id="key" fitHeight="54.0" fitWidth="50.0" layoutX="481.0" layoutY="541.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Key.png" />
-         </image>
-      </ImageView>
-      <ListView fx:id="output" layoutX="478.0" layoutY="6.0" prefHeight="245.0" prefWidth="316.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreaChat" />
-         </styleClass>
-      </ListView>
-      <TextArea fx:id="objective" layoutX="6.0" layoutY="6.0" prefHeight="57.0" prefWidth="373.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
-         <effect>
-            <Bloom />
-         </effect>
-      </TextArea>
-      <Pane layoutX="9.0" layoutY="70.0" prefHeight="460.0" prefWidth="460.0">
+      <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" style="-fx-background-color: transparent;">
          <children>
-            <Rectangle fx:id="computerBorder" arcHeight="50.0" arcWidth="50.0" fill="#517d63" height="291.0" layoutX="28.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="404.0" />
-            <ImageView fitHeight="245.0" fitWidth="365.0" layoutX="48.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="750.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/UI.png" />
+               </image>
+            </ImageView>
+            <Text fx:id="timer" fill="#909090" layoutX="479.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TIMER" textAlignment="CENTER" wrappingWidth="112.3333740234375">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Text>
+            <TextArea fx:id="input" layoutX="596.0" layoutY="341.0" onKeyPressed="#onEnterPressed" prefHeight="48.0" prefWidth="335.0" stylesheets="@../css/styles.css">
+               <styleClass>
+                  <String fx:value="uiTextAreaChat" />
+               </styleClass>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextArea>
+            <TextArea fx:id="dialogue" editable="false" layoutX="81.0" layoutY="673.0" prefHeight="72.0" prefWidth="434.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+               <font>
+                  <Font name="Courier New" size="12.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </TextArea>
+            <ImageView fx:id="key" fitHeight="70.0" fitWidth="70.0" layoutX="597.0" layoutY="675.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/Key.png" />
+               </image>
+            </ImageView>
+            <ListView fx:id="output" layoutX="596.0" layoutY="8.0" prefHeight="326.0" prefWidth="395.0" stylesheets="@../css/styles.css">
+               <styleClass>
+                  <String fx:value="uiTextArea" />
+                  <String fx:value="uiTextAreaChat" />
+               </styleClass>
+            </ListView>
+            <TextArea fx:id="objective" editable="false" layoutX="8.0" layoutY="8.0" prefHeight="71.0" prefWidth="470.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css" text="OBJECTIVE">
+               <effect>
+                  <Bloom />
+               </effect>
+            </TextArea>
+            <Button fx:id="send" layoutX="937.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="48.0" prefWidth="54.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
+               <font>
+                  <Font size="10.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <TextArea fx:id="notes" layoutX="597.0" layoutY="396.0" prefHeight="271.0" prefWidth="395.0" promptText="NOTES" styleClass="uiNotePad" stylesheets="@../css/styles.css">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor>
+            </TextArea>
+            <TextArea editable="false" layoutX="519.0" layoutY="673.0" prefHeight="72.0" prefWidth="70.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
+               <font>
+                  <Font name="Courier New" size="12.0" />
+               </font>
+               <effect>
+                  <Bloom />
+               </effect>
+            </TextArea>
+            <Label fx:id="intel" layoutX="896.0" layoutY="681.0" prefHeight="58.0" prefWidth="99.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="soundButton" fitHeight="72.0" fitWidth="55.0" layoutX="530.0" layoutY="682.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/icons8-volume-100-green.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="hints" layoutX="746.0" layoutY="681.0" prefHeight="58.0" prefWidth="99.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
+               <font>
+                  <Font size="37.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="13.0" layoutY="89.0" prefHeight="572.0" prefWidth="576.0">
+         <children>
+            <ImageView fx:id="roomimage" fitHeight="572.0" fitWidth="576.0" opacity="0.34" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/startLocked.png" />
+               </image>
+            </ImageView>
+            <Rectangle fx:id="computerBorder" arcHeight="50.0" arcWidth="50.0" fill="#517d63" height="372.0" layoutX="28.0" layoutY="85.0" stroke="BLACK" strokeType="INSIDE" width="523.0" />
+            <ImageView fitHeight="362.0" fitWidth="486.0" layoutX="48.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/computer-background.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="back" layoutX="366.0" layoutY="388.0" mnemonicParsing="false" onMouseClicked="#onClick" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" />
-            <ImageView fitHeight="79.0" fitWidth="94.0" layoutX="191.0" layoutY="139.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="back" layoutX="476.0" layoutY="508.0" mnemonicParsing="false" onMouseClicked="#onClick" prefHeight="40.0" prefWidth="79.0" styleClass="send" stylesheets="@../css/styles.css" text="RETURN" />
+            <ImageView fitHeight="79.0" fitWidth="94.0" layoutX="249.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icon_user_whiteongrey.png" />
                </image>
             </ImageView>
-            <TextField fx:id="computerPassword" layoutX="121.0" layoutY="231.0" onKeyPressed="#onKeyPressed" prefHeight="28.0" prefWidth="153.0" promptText="password" styleClass="computerSend" stylesheets="@../css/styles.css" />
-            <Label fx:id="passwordHint" alignment="TOP_CENTER" layoutX="104.0" layoutY="261.0" prefHeight="79.0" prefWidth="254.0" style="-fx-background-color: #000a;" styleClass="text" stylesheets="@../css/styles.css" text="password hint:" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-            <Button fx:id="submitButton" layoutX="280.0" layoutY="232.0" mnemonicParsing="false" onMouseClicked="#onClick" styleClass="computerSend" stylesheets="@../css/styles.css" text="SUBMIT" />
+            <TextField fx:id="computerPassword" layoutX="215.0" layoutY="245.0" onKeyPressed="#onKeyPressed" prefHeight="28.0" prefWidth="153.0" promptText="password" styleClass="computerSend" stylesheets="@../css/styles.css" />
+            <Label fx:id="passwordHint" alignment="TOP_CENTER" layoutX="128.0" layoutY="286.0" prefHeight="124.0" prefWidth="326.0" style="-fx-background-color: #000a;" styleClass="text" stylesheets="@../css/styles.css" text="password hint:" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+            <Button fx:id="submitButton" layoutX="372.0" layoutY="248.0" mnemonicParsing="false" onMouseClicked="#onClick" styleClass="computerSend" stylesheets="@../css/styles.css" text="SUBMIT" />
          </children>
       </Pane>
-      <Label fx:id="intel" layoutX="725.0" layoutY="541.0" prefHeight="54.0" prefWidth="66.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#aeaeae">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <Label fx:id="hints" layoutX="596.0" layoutY="540.0" prefHeight="54.0" prefWidth="81.0" styleClass="uiIntel" stylesheets="@../css/styles.css" text="x0" textFill="#a4a4a4">
-         <font>
-            <Font size="37.0" />
-         </font>
-      </Label>
-      <TextArea fx:id="input" layoutX="478.0" layoutY="255.0" onKeyPressed="#onEnterPressed" prefHeight="44.0" prefWidth="254.0" stylesheets="@../css/styles.css">
-         <styleClass>
-            <String fx:value="uiTextArea" />
-            <String fx:value="uiTextAreaChat" />
-         </styleClass>
-         <cursor>
-            <Cursor fx:constant="TEXT" />
-         </cursor>
-      </TextArea>
-      <Button fx:id="send" layoutX="738.0" layoutY="255.0" mnemonicParsing="false" onMouseClicked="#onSendMessage" prefHeight="42.0" prefWidth="56.0" styleClass="send" stylesheets="@../css/styles.css" text="SEND">
-         <font>
-            <Font size="10.0" />
-         </font>
-         <effect>
-            <Bloom />
-         </effect>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Button>
-      <TextArea editable="false" layoutX="415.0" layoutY="539.0" prefHeight="57.0" prefWidth="56.0" styleClass="uiTextAreaCommander" stylesheets="@../css/styles.css">
-         <font>
-            <Font name="Courier New" size="12.0" />
-         </font>
-         <effect>
-            <Bloom />
-         </effect>
-      </TextArea>
-      <ImageView fx:id="soundButton" fitHeight="45.0" fitWidth="43.0" layoutX="422.0" layoutY="546.0" onMouseClicked="#onMute" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/icons8-volume-100-green.png" />
-         </image>
-      </ImageView>
    </children>
 </Pane>
