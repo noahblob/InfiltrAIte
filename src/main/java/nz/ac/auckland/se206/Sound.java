@@ -106,12 +106,14 @@ public class Sound {
     playSound(hover);
   }
 
+  /** Play sound for radio when sliders change. */
   public void playRadio() {
     if (!GameState.isMuted.get()) {
       playRadioSegment(radio);
     }
   }
 
+  /** Stop radio sound when user presses return. */
   public void stopRadio() {
     radio.stop();
   }
@@ -121,6 +123,7 @@ public class Sound {
     playOnLoop(rollout);
   }
 
+  /** Stop buzz sound when user presses return. */
   public void stopBuzz() {
     buzz.stop();
   }
@@ -130,6 +133,7 @@ public class Sound {
     stopSound(rollout);
   }
 
+  /** Stop all sounds if there are multiple playing concurrently. */
   public void stopAllSound() {
     for (MediaPlayer player : currentlyPlaying) {
       player.stop();
@@ -137,14 +141,17 @@ public class Sound {
     currentlyPlaying.clear();
   }
 
+  /** Play sound for user completing the radio puzzle. */
   public void playCompleted() {
     playSound(buzz);
   }
 
+  /** Play easter egg sound one. */
   public void playSoundOne() {
     playSound(eggPlayerOne);
   }
 
+  /** Play easter egg sound two. */
   public void playSoundTwo() {
     playSound(eggPlayerTwo);
   }

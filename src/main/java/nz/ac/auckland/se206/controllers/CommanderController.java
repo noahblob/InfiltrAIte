@@ -53,7 +53,6 @@ public class CommanderController {
   private List<TextArea> notes;
   private StringProperty notesProperty;
   private StringProperty lastInputTextProperty;
-  private boolean scroll = false;
 
   /**
    * Constructor for the commandercontroller than initializes all relevant fields.

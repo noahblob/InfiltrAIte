@@ -98,8 +98,10 @@ public class ChatCell extends ListCell<ChatMessage> {
    * @param imageSource The image source to be used
    */
   protected void updateChatBox(String imageSource) {
+    // update user image depending on if commander or user is speaking
     portrait.setImage(new Image(getClass().getResource(imageSource).toString()));
     chatHorizontalBox.getChildren().clear();
+    // change styling for each message, including background colour, padding, border and text colour
     messageText.setStyle("-fx-fill: #000000");
     if (imageSource.equals("/images/user.png")) {
       chatHorizontalBox.getChildren().addAll(messageText, portrait);
