@@ -19,6 +19,11 @@ public class TextToSpeech {
 
   private static volatile TextToSpeech instance;
 
+  /**
+   * Gets the singleton instance of the TextToSpeech class.
+   * 
+   * @return The singleton instance of the TextToSpeech class.
+   */
   public static TextToSpeech getInstance() {
     if (instance == null) {
       synchronized (TextToSpeech.class) {
@@ -68,7 +73,9 @@ public class TextToSpeech {
     }
   }
 
-  // New method to toggle mute status
+  /**
+   * Toggles mute status to opposite of current state.
+   */
   public void toggleMute() {
     isMuted = !isMuted;
   }

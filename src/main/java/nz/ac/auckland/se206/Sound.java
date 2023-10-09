@@ -7,10 +7,16 @@ import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import nz.ac.auckland.se206.speech.TextToSpeech;
 
+/** Class to store all sound effects for the game. */
 public class Sound {
 
   private static Sound instance;
 
+  /**
+   * Gets the singleton instance of the Sound class.
+   *
+   * @return The singleton instance of the Sound class.
+   */
   public static Sound getInstance() {
     if (instance == null) {
       instance = new Sound();
@@ -31,6 +37,7 @@ public class Sound {
   private List<MediaPlayer> currentlyPlaying;
   private TextToSpeech tts;
 
+  /** Constructor for sound class. */
   private Sound() {
 
     currentlyPlaying = new ArrayList<>();
@@ -57,42 +64,52 @@ public class Sound {
     bindToMute();
   }
 
+  /** Plays sound for major click. */
   public void playClickMajor() {
     playSound(clickMajor);
   }
 
+  /** Plays sound for minor click. */
   public void playClickMinor() {
     playSound(clickMinor);
   }
 
+  /** Plays sound for user hovering object. */
   public void playHover() {
     playSound(hover);
   }
 
+  /** Plays sound for text rollout. */
   public void playTextRollout() {
     playOnLoop(rollout);
   }
 
+  /** Stops playing sound for text rollout. */
   public void stopRollout() {
     stopSound(rollout);
   }
 
+  /** Plays sound for phone when message is received from commander. */
   public void playRecieved() {
     playSound(phone);
   }
 
+  /** Plays transmission sound when message is sending from commander. */
   public void transmitSound() {
     playOnLoop(phone);
   }
 
+  /** Stops playing transmission sound when message has finished sending. */
   public void stopTransmit() {
     stopSound(phone);
   }
 
+  /** Plays text to speech warning when user has 30 seconds remaining. */
   public void playTextToSpeech() {
     tts.speak("ENEMY DETECTED IN OUR BASE!! ENEMY DETECTED IN OUR BASE!!");
   }
 
+  /** Toggles mute for all sounds in the game. */
   private void bindToMute() {
     GameState.isMuted.addListener(
         (observable, oldValue, newValue) -> {
@@ -108,6 +125,11 @@ public class Sound {
         });
   }
 
+  /**
+   * Plays sound if game is not muted.
+   *
+   * @param player The media player to play
+   */
   private void playSound(MediaPlayer player) {
 
     if (!GameState.isMuted.get()) {
@@ -119,6 +141,11 @@ public class Sound {
     }
   }
 
+  /**
+   * Plays sound on loop if game is not muted.
+   *
+   * @param player The media player to play
+   */
   private void playOnLoop(MediaPlayer player) {
     player.stop();
     player.seek(Duration.ZERO);
@@ -126,6 +153,11 @@ public class Sound {
     player.play();
   }
 
+  /**
+   * Stops sound that is playing on loop.
+   *
+   * @param player The media player to stop
+   */
   private void stopSound(MediaPlayer player) {
     player.stop();
   }

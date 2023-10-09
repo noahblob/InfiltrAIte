@@ -95,28 +95,36 @@ public abstract class Commander {
   /**
    * Handles when the sound/volume button is pressed to mute and/or unmute the tts in the game.
    *
-   * @param event
+   * @param event the mouse event
    */
   @FXML
   protected void onMute(MouseEvent event) {
     GameState.isMuted.set(!GameState.isMuted.get());
   }
 
-  // Method to update the commander's dialogue box.
+  /**
+   * Updates the dialogue box with the relevant dialogue.
+   *
+   * @param dialogue the dialogue to update
+   * @throws Exception if the dialogue fails to update
+   */
   protected void updateDialogue(Dialogue dialogue) throws Exception {
     String msg = dialogue.toString();
     CommanderController.getInstance().updateDialogueBox(msg);
   }
 
+  /** Sets up the hints based on the difficulty of the game. */
   private void setupHints() {
     unbindHints();
     setHintsBasedOnDifficulty();
   }
 
+  /** Unbinds the hints from the gamestate upon replaying the game. */
   private void unbindHints() {
     hints.textProperty().unbind();
   }
 
+  /** Sets the number of hints based on the difficulty of the game. */
   private void setHintsBasedOnDifficulty() {
     // If game difficulty is easy, user gets infinite hints, medium, user is given 5 hints and hard,
     // user is given no hints
@@ -142,6 +150,9 @@ public abstract class Commander {
     timer.setStyle("-fx-font-family: 'DS-Digital'; -fx-font-size: 40px; -fx-text-fill: black;");
   }
 
+  /**
+   * Handles the event of user clicking the sound button to mute and/or unmute the tts in the game.
+   */
   private void setUpSoundButton() {
     // if the game is muted, change image to muted image and disable tts
     soundButton
@@ -159,14 +170,17 @@ public abstract class Commander {
         });
   }
 
+  /** If easy difficulty is selected, set hint number to infinite. */
   private void setInfiniteHints() {
     hints.setText("\u221E");
   }
 
+  /** If medium difficulty is selected, bind number of hints to current numhints in gamestate. */
   private void setMediumHints() {
     hints.textProperty().bind(Bindings.concat("x", GameState.numHints.asString()));
   }
 
+  /** If hard difficulty is selected, set number of hints to 0. */
   private void setNoHints() {
     hints.setText("x0");
   }
@@ -178,6 +192,11 @@ public abstract class Commander {
         });
   }
 
+  /**
+   * Sets up the UI for the commander.
+   *
+   * @throws Exception if the UI fails to set up
+   */
   private void setUpUi() throws Exception {
     // Bind key, intel, notes, input and output elements to commander controller to be passed
     // through rooms
@@ -202,6 +221,11 @@ public abstract class Commander {
     notes.setPromptText("NOTEPAD: Write your findings");
   }
 
+  /**
+   * Updates the commander controller with the relevant FXML elements.
+   *
+   * @throws Exception if the commander fails to update
+   */
   private void updateCommander() throws Exception {
     // Add the relevant FXML elements to the commander controller
     CommanderController.getInstance().addListView(output);
