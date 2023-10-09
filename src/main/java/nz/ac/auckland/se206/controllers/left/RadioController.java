@@ -56,8 +56,12 @@ public class RadioController extends Commander {
   private List<Slider> sliders;
   private List<Label> passcode;
   private char[] code;
+  private char[] codeOne;
+  private char[] codeTwo;
   private Map<Integer, Character> sliderMap;
   private boolean isSliderSolved;
+  private boolean hasPlayedOne;
+  private boolean hasPlayedTwo;
 
   /**
    * Initializes the room view, it is called when the room loads.
@@ -72,8 +76,11 @@ public class RadioController extends Commander {
     objective.setText("Hmm I wonder what this does...");
     // Set up all elements of the slider pane so answer can be set
     isSliderSolved = false;
+    hasPlayedOne = false;
+    hasPlayedTwo = false;
     setSliders();
     createSliderMap();
+    createAnswers();
     setPigeonHole();
   }
 
@@ -86,6 +93,9 @@ public class RadioController extends Commander {
   public void onReturn(MouseEvent event) {
     Button button = (Button) event.getSource();
     Scene currentScene = button.getScene();
+    Sound.getInstance().stopRadio();
+    Sound.getInstance().stopBuzz();
+    Sound.getInstance().stopAllSound();
     Sound.getInstance().playClickMinor();
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.LEFT));
   }
@@ -132,6 +142,11 @@ public class RadioController extends Commander {
     sliderMap.put(10, '?');
   }
 
+  private void createAnswers() {
+    codeOne = new char[] {'?', '#', '%', '&', '-', '!'};
+    codeTwo = new char[] {'?', '!', '-', '@', '+', '#'};
+  }
+
   /**
    * Set the hover event for pigeon hole, so when user hovers over, an indicator will become
    * visible.
@@ -158,6 +173,9 @@ public class RadioController extends Commander {
                 int intValue = newValue.intValue();
                 s.setValue(intValue); // Update the slider value to the nearest integer
 
+                // Play sound effect.
+                Sound.getInstance().playRadio();
+
                 // Get the respective character from slider map.
                 char codeValue = sliderMap.get(intValue);
 
@@ -177,6 +195,10 @@ public class RadioController extends Commander {
 
   private void checkSlidersSolved() throws Exception {
     if (Arrays.equals(code, GameState.sliderAnswer) && !isSliderSolved) {
+
+      // Update the sound of the radio
+      Sound.getInstance().playCompleted();
+
       isSliderSolved = true;
       // Show sine wave.
       Sound.getInstance().playClickMajor();
@@ -189,6 +211,16 @@ public class RadioController extends Commander {
         slider.setDisable(true);
       }
       updateDialogue(Dialogue.SLIDERSOLVED);
+    } else if (Arrays.equals(code, codeOne) && !hasPlayedOne) {
+      Sound.getInstance().stopRadio();
+      Sound.getInstance().stopAllSound();
+      Sound.getInstance().playSoundOne();
+      hasPlayedOne = true;
+    } else if (Arrays.equals(code, codeTwo) && !hasPlayedTwo) {
+      Sound.getInstance().stopRadio();
+      Sound.getInstance().stopAllSound();
+      Sound.getInstance().playSoundTwo();
+      hasPlayedTwo = true;
     }
   }
 
@@ -208,6 +240,8 @@ public class RadioController extends Commander {
     ImageView intel = (ImageView) event.getSource();
     Scene currentScene = intel.getScene();
 
+    Sound.getInstance().stopRadio();
+    Sound.getInstance().stopBuzz();
     Sound.getInstance().playClickMinor();
     // Update the game state to solved.
     GameState.isSlidersSolved = true;
