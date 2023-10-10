@@ -108,7 +108,6 @@ public class TitleController {
 
     // Update in the future with different difficulties but for now just click to next screen.
     ImageView image = (ImageView) event.getSource();
-    System.out.println(image.getId());
     // Set difficulty of game
     if (image.equals(elbonia)) {
       GameState.difficulty.set(1);
@@ -120,9 +119,6 @@ public class TitleController {
       GameState.difficulty.set(3);
       GameState.numHints.set(0);
     }
-
-    System.out.println(GameState.numHints);
-
     Scene currentScene = image.getScene();
     // Update the scene to the watch.
     currentScene.setRoot(SceneManager.getuserInterface(AppUi.WATCH));

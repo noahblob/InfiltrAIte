@@ -1,9 +1,13 @@
 package nz.ac.auckland.se206.controllers.main;
 
 import java.util.Random;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -11,6 +15,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
+import javafx.util.Duration;
 import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
@@ -39,6 +45,7 @@ public class MainRoomController extends Commander {
   @FXML private Polygon leftDoor;
   @FXML private Polygon rightDoor;
   @FXML private Rectangle computer;
+  @FXML private Rectangle keyPad;
   @FXML private Rectangle middleDoor;
   @FXML private Rectangle background;
   @FXML private Rectangle topDrawer;
@@ -68,6 +75,9 @@ public class MainRoomController extends Commander {
     // separate method for left and right door hover and click events
     setDoorEvents();
     setCabinetVisibility(false);
+
+    // initialise the computer with a glow effect.
+    setGlow(computer);
   }
 
   /** Resets relevant aspects of the room upon the play again button being pressed. */
@@ -102,6 +112,30 @@ public class MainRoomController extends Commander {
 
     setHoverEvents(leftDoor);
     setHoverEvents(rightDoor);
+  }
+
+  /** Prompts the player to check out key pad once riddle solved. */
+  public void updateKeyPadGlow() {
+    setGlow(keyPad);
+  }
+
+  /** Sets the glow effects for initial entry of room */
+  private void setGlow(Shape shape) {
+    // Create a Glow effect
+    Glow glow = new Glow();
+    shape.setEffect(glow);
+    shape.setOpacity(1);
+
+    // Create a Timeline to animate the Glow effect
+    Timeline timeline =
+        new Timeline(
+            new KeyFrame(Duration.ZERO, new KeyValue(glow.levelProperty(), 0)),
+            new KeyFrame(Duration.seconds(0.2), new KeyValue(glow.levelProperty(), 0.8)),
+            new KeyFrame(Duration.seconds(0.5), new KeyValue(glow.levelProperty(), 0)));
+
+    timeline.setCycleCount(Timeline.INDEFINITE);
+    timeline.setAutoReverse(true);
+    timeline.play();
   }
 
   /**
