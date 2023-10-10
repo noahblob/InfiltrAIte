@@ -13,6 +13,7 @@ import nz.ac.auckland.se206.Commander;
 import nz.ac.auckland.se206.Dialogue;
 import nz.ac.auckland.se206.GameState;
 import nz.ac.auckland.se206.Sound;
+import nz.ac.auckland.se206.controllers.CommanderController;
 import nz.ac.auckland.se206.controllers.SceneManager;
 import nz.ac.auckland.se206.controllers.SceneManager.AppUi;
 import nz.ac.auckland.se206.gpt.ChatMessage;
@@ -165,6 +166,13 @@ public class ComputerController extends Commander {
         computerPassword.clear();
       } else {
         updateDialogue(Dialogue.CORRECTPASSCODE);
+        // Update GPT to suggest player where to look only in easy and medium difficulty.
+        if (!(GameState.difficulty.get() == 3)) {
+          CommanderController.getInstance().sendForUser(GptPromptEngineering.getGameDirection());
+        }
+        // Update the glow of the keypad.
+        MainRoomController.getInstance().updateKeyPadGlow();
+
         GameState.isPasswordSolved = true;
         computerPassword.clear();
       }

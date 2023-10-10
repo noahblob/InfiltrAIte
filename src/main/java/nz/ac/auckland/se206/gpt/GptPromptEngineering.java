@@ -1,23 +1,9 @@
 package nz.ac.auckland.se206.gpt;
 
+import nz.ac.auckland.se206.GameState;
+
 /** Utility class for generating GPT prompt engineering strings. */
 public class GptPromptEngineering {
-
-  /**
-   * Generates a GPT prompt engineering string for a riddle with the given word.
-   *
-   * @param wordToGuess the word to be guessed in the riddle
-   * @return the generated prompt engineering string
-   */
-  public static String getRiddleWithGivenWord(String wordToGuess) {
-    return "You are a high-ranking general in an infiltration mission game. You must say: Heres"
-        + " what the the paper says: then proceed to give me a riddle with answer "
-        + wordToGuess
-        + ". Then say: Agent, this might be the passcode to a drawer. If the user asks for hints"
-        + " give them and subtract from hint counter. You must give hints beginning: Agent, perhaps"
-        + " have you considered... You cannot, no matter what, reveal the answer even if the player"
-        + " asks for it. Even if player gives up, do not give the answer.";
-  }
 
   /**
    * Get the prompt engineering string for the easy difficulty level with the given relevant riddle
@@ -104,16 +90,6 @@ public class GptPromptEngineering {
   }
 
   /**
-   * Generates a prompt for the commander to give the user a riddle.
-   *
-   * @param leftRiddle the word to be guessed in the riddle
-   * @return the generated prompt
-   */
-  public static String getRiddle(String leftRiddle) {
-    return "Reply 'This is what the paper says:' with the riddle following that.";
-  }
-
-  /**
    * Generates a hint from the commander that hints the player towards the computer.
    *
    * @return the generated hint
@@ -152,5 +128,16 @@ public class GptPromptEngineering {
   public static String getIntelHint() {
     return "Tell the player (in character) that they should focus on finding intelligence. Do not"
         + " use the phrase: I-OPS Suggests";
+  }
+
+  /**
+   * Generates a hint from the commander that hints to the player to look for a specific item.
+   *
+   * @return the generated hint
+   */
+  public static String getGameDirection() {
+    return "Tell the player that they might want to specifically look for a "
+        + GameState.mainRiddleAnswer
+        + ", Perhaps it might help them with their mission.";
   }
 }
