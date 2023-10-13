@@ -14,7 +14,7 @@ public class GptPromptEngineering {
    */
   public static String getEasyPrompt(String leftRiddle) {
     // This method prompts GPT for the easy level difficulty, with unlimited hints. It also prompts
-    // with relevant elements of the gmae to give hints about
+    // with relevant elements of the game to give hints about
     return "You're a military general, General Nasty, in a game. Speak firmly, no apologies. I'm an"
         + " agent solving puzzles. I can request unlimited hints. Keep your responses less"
         + " than 50 words. Only give hints when I ask questions related to the game. Game"
@@ -39,6 +39,10 @@ public class GptPromptEngineering {
    * @return the generated prompt engineering string
    */
   public static String getMediumPrompt(String leftRiddle, int numHints) {
+    // This method prompts GPT for the medium level difficulty, with 5 hints. It also prompts
+    // with relevant elements of the game to give hints about, so that the game master can provide
+    // hints when asked. Hint counter is decremented when the phrase I-OPS suggests is returned by
+    // GPT.
     return "Role-Playing Instructions: You are General Nasty, a military general, and I am an agent"
         + " you are assisting in infiltrating an enemy base. Maintain your character as"
         + " stern and no-nonsense. Do not reveal that you are an AI. Normal Conversation: We"

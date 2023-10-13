@@ -119,7 +119,7 @@ public class MainRoomController extends Commander {
     setGlow(keyPad);
   }
 
-  /** Sets the glow effects for initial entry of room */
+  /** Sets the glow effects for initial entry of room. */
   private void setGlow(Shape shape) {
     // Create a Glow effect
     Glow glow = new Glow();
