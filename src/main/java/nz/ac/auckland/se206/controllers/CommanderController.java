@@ -208,6 +208,7 @@ public class CommanderController {
           ChatMessage gptMsg = task.getValue();
           Platform.runLater(
               () -> {
+                Sound.getInstance().playRecieved();
                 appendChatMessage(gptMsg);
               });
         });
@@ -348,6 +349,7 @@ public class CommanderController {
             // Stop the sound.
             Sound.getInstance().stopTransmit();
             appendChatMessage(gptResponse); // Add GPT's response to the UI
+            Sound.getInstance().playRecieved();
           }
         });
     task.setOnFailed(
