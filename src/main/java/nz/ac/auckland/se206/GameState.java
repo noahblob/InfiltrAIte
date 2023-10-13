@@ -26,8 +26,7 @@ import nz.ac.auckland.se206.gpt.openai.ApiProxyException;
 /** Represents the state of the game. */
 public class GameState {
 
-  private static final Set<String> riddleSetOne = new HashSet<>();
-  private static final Set<String> riddleSetTwo = new HashSet<>();
+  private static final Set<String> riddleSet = new HashSet<>();
 
   /** Indicates the answer to slider puzzle for current game. */
   public static char[] sliderAnswer;
@@ -90,27 +89,15 @@ public class GameState {
 
   // Create riddle answers for drawer.
   static {
-    // Decide what type of riddle answers we want later.
-    riddleSetOne.add("apple");
-    riddleSetOne.add("pear");
-    riddleSetOne.add("banana");
-    riddleSetOne.add("book");
-    riddleSetOne.add("cake");
-    riddleSetOne.add("riddlers");
-    riddleSetOne.add("aiishere");
 
-    // Create riddle set for computer.
-    riddleSetTwo.add("poster");
-    riddleSetTwo.add("book");
-    riddleSetTwo.add("locker");
-    riddleSetTwo.add("blackboard");
-    riddleSetTwo.add("radio");
+    // // Create riddle set for computer.
+    riddleSet.add("book");
+    riddleSet.add("locker");
+    riddleSet.add("blackboard");
+    riddleSet.add("key");
     // Add more words.
 
-    // Update GameState:
-    GameState.puzzleWord = getRandomWord(riddleSetOne);
-
-    GameState.mainRiddleAnswer = getRandomWord(riddleSetTwo);
+    GameState.mainRiddleAnswer = getRandomWord(riddleSet);
     System.out.println(GameState.mainRiddleAnswer);
 
     // setUp listeners to check if game is won or not.
@@ -202,8 +189,7 @@ public class GameState {
     isSlidersSolved = false;
     isPasswordSolved = false;
 
-    puzzleWord = getRandomWord(riddleSetOne);
-    mainRiddleAnswer = getRandomWord(riddleSetTwo);
+    mainRiddleAnswer = getRandomWord(riddleSet);
     sliderAnswer = setSliders();
     lastNumbers.set(random.nextInt(41) + 20);
     isEndScreen.set(false);

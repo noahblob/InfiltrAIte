@@ -36,6 +36,7 @@ public class Sound {
   private Media eggSound;
   private Media eggTwoSound;
   private Media completed;
+  private Media recieved;
   private MediaPlayer clickMajor;
   private MediaPlayer clickMinor;
   private MediaPlayer hover;
@@ -45,6 +46,7 @@ public class Sound {
   private MediaPlayer eggPlayerOne;
   private MediaPlayer eggPlayerTwo;
   private MediaPlayer buzz;
+  private MediaPlayer notification;
 
   private Set<MediaPlayer> currentlyPlaying;
   private TextToSpeech tts;
@@ -65,6 +67,7 @@ public class Sound {
     String eggOnePath = getClass().getResource("/sounds/egg1.mp3").toString();
     String eggTwoPath = getClass().getResource("/sounds/egg2.mp3").toString();
     String completedPath = getClass().getResource("/sounds/completed.mp3").toString();
+    String recievedPath = getClass().getResource("/sounds/recieved.mp3").toString();
 
     clickMajorSound = new Media(clickMajorPath);
     clickMinorSound = new Media(clickMinorPath);
@@ -75,6 +78,7 @@ public class Sound {
     eggSound = new Media(eggOnePath);
     eggTwoSound = new Media(eggTwoPath);
     completed = new Media(completedPath);
+    recieved = new Media(recievedPath);
 
     clickMajor = new MediaPlayer(clickMajorSound);
     clickMinor = new MediaPlayer(clickMinorSound);
@@ -85,6 +89,7 @@ public class Sound {
     eggPlayerOne = new MediaPlayer(eggSound);
     eggPlayerTwo = new MediaPlayer(eggTwoSound);
     buzz = new MediaPlayer(completed);
+    notification = new MediaPlayer(recieved);
 
     random = new Random();
 
@@ -158,7 +163,7 @@ public class Sound {
 
   /** Plays sound for phone when message is received from commander. */
   public void playRecieved() {
-    playSound(phone);
+    playSound(notification);
   }
 
   /** Plays transmission sound when message is sending from commander. */
