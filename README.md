@@ -16,10 +16,7 @@
 `./mvnw clean javafx:run`
 
 ## Gameplay!
-[![Watch the video](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab/hqdefault.jpg)](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab)
-
-[<img src="https://www.youtube.com/watch?v=KBMJhbqPgFk&ab/hqdefault.jpg" width="600" height="300"
-/>](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab)
+<iframe width="560" height="315" src="https://www.youtube.com/embed/KBMJhbqPgFk?si=qVOSY9tcgPiGV3KN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Art Attribution
 
