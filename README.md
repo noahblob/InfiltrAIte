@@ -16,7 +16,8 @@
 `./mvnw clean javafx:run`
 
 ## Gameplay!
-<iframe width="560" height="315" src="https://www.youtube.com/embed/KBMJhbqPgFk?si=qVOSY9tcgPiGV3KN" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+https://www.youtube.com/watch?v=KBMJhbqPgFk&ab_channel=KayTang
 
 ## Art Attribution
 
