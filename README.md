@@ -16,10 +16,10 @@
 `./mvnw clean javafx:run`
 
 ## Gameplay!
-[![Watch the video](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab_channel=KayTang/hqdefault.jpg)](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab_channel=KayTang)
+[![Watch the video](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab/hqdefault.jpg)](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab)
 
-[<img src="https://www.youtube.com/watch?v=KBMJhbqPgFk&ab_channel=KayTang/hqdefault.jpg" width="600" height="300"
-/>](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab_channel=KayTang)
+[<img src="https://www.youtube.com/watch?v=KBMJhbqPgFk&ab/hqdefault.jpg" width="600" height="300"
+/>](https://www.youtube.com/watch?v=KBMJhbqPgFk&ab)
 
 ## Art Attribution
 
